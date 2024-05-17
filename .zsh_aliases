@@ -1,18 +1,18 @@
-#!/bin/zsh
+#/bin/zsh
 
 # zsh config files
-alias zshaliases="lvim ~/.zsh_aliases"
-alias zshpath="lvim ~/.zsh_path"
-alias zshrc="lvim ~/.zshrc"
-alias zshenv="lvim ~/.zshenv"
-alias omzconfig="lvim ~/.oh-my-zsh"
+alias zshaliases="nvim ~/.zsh_aliases"
+alias zshpath="nvim ~/.zsh_path"
+alias zshrc="nvim ~/.zshrc"
+alias zshenv="nvim ~/.zshenv"
+alias omzconfig="nvim ~/.oh-my-zsh"
 
 #######################################
 # Other configs
 #######################################
-alias alacrittyconfig="lvim ~/.config/alacritty"
-alias kittyconfig="lvim ~/.config/kitty"
-alias neofetchconfig="lvim ~/.config/neofetch"
+alias alacrittyconfig="nvim ~/.config/alacritty"
+alias kittyconfig="nvim ~/.config/kitty"
+alias neofetchconfig="nvim ~/.config/neofetch"
 
 #######################################
 # CLI tools
