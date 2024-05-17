@@ -1,0 +1,26 @@
+#!/bin/zsh
+
+# zsh config files
+alias zshaliases="lvim ~/.zsh_aliases"
+alias zshpath="lvim ~/.zsh_path"
+alias zshrc="lvim ~/.zshrc"
+alias zshenv="lvim ~/.zshenv"
+alias omzconfig="lvim ~/.oh-my-zsh"
+
+#######################################
+# Other configs
+#######################################
+alias alacrittyconfig="lvim ~/.config/alacritty"
+alias kittyconfig="lvim ~/.config/kitty"
+alias neofetchconfig="lvim ~/.config/neofetch"
+
+#######################################
+# CLI tools
+#######################################
+alias lt="tree"
+
+#######################################
+# VIM keybindings
+#######################################
+alias ":q"="exit"
+

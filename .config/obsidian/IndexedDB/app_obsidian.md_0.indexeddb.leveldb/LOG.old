@@ -1,0 +1,6 @@
+2024/04/28-21:41:05.355 4533 Reusing MANIFEST /home/johne/.config/obsidian/IndexedDB/app_obsidian.md_0.indexeddb.leveldb/MANIFEST-000001
+2024/04/28-21:41:05.355 4533 Recovering log #18
+2024/04/28-21:41:05.388 4533 Reusing old log /home/johne/.config/obsidian/IndexedDB/app_obsidian.md_0.indexeddb.leveldb/000018.log 
+2024/04/28-21:43:45.129 4533 Level-0 table #23: started
+2024/04/28-21:43:45.156 4533 Level-0 table #23: 1219259 bytes OK
+2024/04/28-21:43:45.169 4533 Delete type=0 #18

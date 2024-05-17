@@ -1,0 +1,97 @@
+[0a5e1a08-2307-4688-802d-4ae86f09a915]
+Description=Kitty active opacity
+opacityactive=95
+opacityactiverule=2
+wmclass=kitty
+wmclassmatch=1
+
+[1]
+Description=Remove kitty decorations
+noborder=true
+noborderrule=3
+wmclass=kitty
+wmclassmatch=1
+
+[162a6ff4-3bf2-4635-aa3d-d7f0957e66ac]
+Description=Remove Spotify decorations
+noborder=true
+noborderrule=3
+wmclass=Spotify
+wmclassmatch=1
+
+[2]
+Description=Remove Spotify decorations
+noborder=true
+noborderrule=3
+wmclass=Spotify
+wmclassmatch=1
+
+[3]
+Description=Apps open on primary screen
+screen=1
+screenrule=3
+types=1
+
+[364efedc-9e30-420c-a6a4-fe4041ffba46]
+Description=Alacritty active opacity
+opacityactive=95
+opacityactiverule=2
+wmclass=alacritty
+wmclassmatch=1
+
+[4]
+Description=Kitty active opacity
+opacityactive=97
+opacityactiverule=2
+wmclass=kitty
+wmclassmatch=1
+
+[5]
+Description=Alacritty active opacity
+opacityactive=95
+opacityactiverule=2
+wmclass=alacritty
+wmclassmatch=1
+
+[659517a4-5865-418e-ad5a-c4ca583b8da7]
+Description=Hide Discord title bar
+noborder=true
+noborderrule=3
+wmclass=discord
+wmclassmatch=1
+
+[General]
+count=5
+rules=1,2,3,4,5
+
+[a45eb683-05cd-4205-9247-804de1115fec]
+Description=Firefox left side
+position=0,0
+positionrule=3
+size=1440,1754
+sizerule=3
+wmclass=firefoxdeveloperedition
+wmclassmatch=1
+
+[ae94bdc3-375a-4933-b2cd-39f96b966118]
+Description=Remove kitty decorations
+noborder=true
+noborderrule=3
+wmclass=kitty
+wmclassmatch=1
+
+[efff0786-4aec-4868-8e60-bc8e44979161]
+Description=Apps open on primary screen
+screen=1
+screenrule=3
+types=1
+
+[fa5b1167-c48f-4ebb-ae32-a7adfb49c80e]
+Description=Firefox size and position
+position=0,0
+positionrule=2
+size=1440,1754
+sizerule=2
+types=1
+wmclass=firefoxdeveloperedition
+wmclassmatch=1

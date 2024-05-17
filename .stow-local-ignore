@@ -1,0 +1,3 @@
+# Ignored files and folder with stow, local to the .dotfiles directory
+
+^/README.md

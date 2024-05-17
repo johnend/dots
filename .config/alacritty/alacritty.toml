@@ -1,0 +1,56 @@
+# alacritty.toml config
+live_config_reload = true
+
+import = ["~/.config/alacritty/themes/catppuccin-mocha-darker.toml"]
+
+# [env]
+# WINIT_X11_SCALE_FACTOR = "1.0"
+# TERM = "xterm-256color"
+
+[shell]
+program = "/usr/bin/zsh"
+
+[cursor]
+blink_interval = 550
+thickness = 0.15
+
+[cursor.style]
+blinking = "On"
+shape = "Block"
+
+[selection]
+save_to_clipboard = true
+
+[window]
+decorations = 'none'
+dynamic_padding = false
+dynamic_title = true
+title = ''
+
+[window.dimensions]
+columns = 100
+lines = 30
+
+[window.padding]
+x = 16
+y = 16
+
+[scrolling]
+history = 12000
+
+[font]
+builtin_box_drawing = false
+size = 12
+offset = { x = 0, y = 0 }
+
+[font.normal]
+family = "OperatorMonoLig Nerd Font"
+style = "Light"
+
+[font.bold]
+family = "OperatorMonoLig Nerd Font"
+style = "Light"
+
+[font.italic]
+family = "OperatorMonoLig Nerd Font"
+style = "Light Italic"
