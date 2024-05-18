@@ -84,7 +84,7 @@ plugins=(
   git 
   command-not-found 
   colored-man-pages
-  # zsh-autosuggestions
+  zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
