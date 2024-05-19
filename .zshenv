@@ -17,8 +17,11 @@ export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
 
 # change default editor to nvim
 export EDITOR=nvim
+
 # Firefox developer edition user directory
 export FFD_USER_DIR=$HOME/.mozilla/firefox/6dh274r9.dev-edition-default/
+
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ca9ee6"
 
 # Source cargo env
 . "$HOME/.cargo/env"
