@@ -41,7 +41,6 @@ wmclassmatch=1
 
 [4]
 Description=Kitty active opacity
-opacityactive=97
 opacityactiverule=2
 wmclass=kitty
 wmclassmatch=1
