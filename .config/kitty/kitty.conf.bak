@@ -24,7 +24,7 @@ font_family        OperatorMonoLig Nerd Font
 #:     italic_font      Operator Mono Book Italic
 #:     bold_italic_font Operator Mono Medium Italic
 
-# font_size 11.0
+font_size 12.0
 
 #: Font size (in pts).
 
@@ -249,9 +249,7 @@ font_family        OperatorMonoLig Nerd Font
 #: }}}
 
 #: Cursor customization {{{
-
-cursor #f2f4f8
-
+cursor #ff4081
 #: Default cursor color. If set to the special value none the cursor
 #: will be rendered with a "reverse video" effect. It's color will be
 #: the color of the text in the cell it is over and the text will be
@@ -261,8 +259,7 @@ cursor #f2f4f8
 #: background and foreground colors have very low contrast. Note that
 #: some themes set this value, so if you want to override it, place
 #: your value after the lines where the theme file is included.
-
-cursor_text_color #000000
+# cursor_text_color #000000
 
 #: The color of text under the cursor. If you want it rendered with
 #: the background color of the cell underneath instead, use the
@@ -777,9 +774,9 @@ shell_integration no-cursor
 
 #: Window layout {{{
 
-# remember_window_size  yes
-# initial_window_width  640
-# initial_window_height 400
+remember_window_size  yes
+initial_window_width  160
+initial_window_height 40
 
 #: If enabled, the OS Window size will be remembered so that new
 #: instances of kitty will have the same size as the previous
@@ -819,7 +816,7 @@ shell_integration no-cursor
 #: that setting a non-zero window_margin_width overrides this and
 #: causes all borders to be drawn.
 
-# window_margin_width 0
+window_margin_width 8
 
 #: The window margin (in pts) (blank area outside the border). A
 #: single value sets all four sides. Two values set the vertical and
@@ -834,7 +831,7 @@ shell_integration no-cursor
 #: set the vertical and horizontal sides. Three values set top,
 #: horizontal and bottom. Four values set top, right, bottom and left.
 
-# window_padding_width 0
+# window_padding_width 4
 
 #: The window padding (in pts) (blank area between the text and the
 #: window border). A single value sets all four sides. Two values set
@@ -877,7 +874,7 @@ shell_integration no-cursor
 #: Fade the text in inactive windows by the specified amount (a number
 #: between zero and one, with zero being fully faded).
 
-# hide_window_decorations no
+hide_window_decorations yes
 
 #: Hide the window decorations (title-bar and window borders) with
 #: yes. On macOS, titlebar-only and titlebar-and-corners can be used
@@ -942,6 +939,9 @@ shell_integration no-cursor
 
 # confirm_os_window_close -1
 
+# Stops asking for confimation on exit
+confirm_os_window_close 0
+
 #: Ask for confirmation when closing an OS window or a tab with at
 #: least this number of kitty windows in it by window manager (e.g.
 #: clicking the window close button or pressing the operating system
@@ -958,6 +958,13 @@ shell_integration no-cursor
 #: }}}
 
 #: Tab bar {{{
+
+# from Catppuccin github
+tab_bar_min_tabs        1
+tab_bar_edge            bottom
+tab_bar_style           powerline
+tab_powerline_style     slanted
+tab_title_template      {title}{' :{}:'.format(num_windows) if num_windows > 1 else ''}
 
 # tab_bar_edge bottom
 
@@ -2475,3 +2482,9 @@ shell_integration no-cursor
 #: }}}
 
 #: }}}
+
+
+# BEGIN_KITTY_THEME
+# Catppuccin-Mocha
+include current-theme.conf
+# END_KITTY_THEME
