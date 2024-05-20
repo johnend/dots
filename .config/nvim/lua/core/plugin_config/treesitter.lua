@@ -41,8 +41,8 @@ local opts = {
   indent = { enable = true, disable = {} },
   rainbow = {
     enable = true,
-    query = "rainbow-parens",
-    strategy = require("ts-rainbow").strategy.global,
+    query = "rainbow-delimiters",
+    strategy = require("rainbow-delimiters").strategy.global,
   },
 }
 

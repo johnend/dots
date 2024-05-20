@@ -24,13 +24,13 @@ require("catppuccin").setup {
         NeoTreeRootName = { fg = colors.mauve, bg = "" },
 
         -- Rainbow delimeters
-        TSRainbowRed = { fg = colors.red },
-        TSRainbowYellow = { fg = colors.yellow },
-        TSRainbowBlue = { fg = colors.blue },
-        TSRainbowOrange = { fg = colors.flamingo },
-        TSRainbowGreen = { fg = colors.green },
-        TSRainbowViolet = { fg = colors.mauve },
-        TSRainbowCyan = { fg = colors.sapphire },
+        RainbowDelimiterRed = { fg = colors.red },
+        RainbowDelimiterYellow = { fg = colors.yellow },
+        RainbowDelimiterBlue = { fg = colors.blue },
+        RainbowDelimiterOrange = { fg = colors.flamingo },
+        RainbowDelimiterGreen = { fg = colors.green },
+        RainbowDelimiterViolet = { fg = colors.mauve },
+        RainbowDelimiterCyan = { fg = colors.sapphire },
       }
     end,
   },
