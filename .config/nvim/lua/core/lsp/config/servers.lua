@@ -48,7 +48,6 @@ local servers = {
   cssmodules_ls = {
     on_attach = function(client)
       client.server_capabilities.definitionProvider = false
-      custom_on_attach(client)
     end,
   },
 }
