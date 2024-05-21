@@ -8,16 +8,9 @@ alias zshenv="nvim ~/.zshenv"
 alias omzconfig="nvim ~/.oh-my-zsh"
 
 #######################################
-# Other configs
-#######################################
-alias alacrittyconfig="nvim ~/.config/alacritty"
-alias kittyconfig="nvim ~/.config/kitty"
-alias neofetchconfig="nvim ~/.config/neofetch"
-
-#######################################
 # CLI tools
 #######################################
-alias lt="tree"
+alias lt="tree -a -L 2"
 
 #######################################
 # VIM keybindings
