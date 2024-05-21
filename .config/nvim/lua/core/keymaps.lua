@@ -53,10 +53,10 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Diagnostic keymaps
 -- TODO: enable these in the future
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
-vim.keymap.set("n", "<leader>de", vim.diagnostic.open_float, { desc = "Show [D]iagnostic [E]rror messages" })
-vim.keymap.set("n", "<leader>dq", vim.diagnostic.setloclist, { desc = "Open [D]iagnostic [Q]uickfix list" })
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostic message" })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic message" })
+vim.keymap.set("n", "<leader>de", vim.diagnostic.open_float, { desc = "Diagnostic error messages" })
+vim.keymap.set("n", "<leader>dq", vim.diagnostic.setloclist, { desc = "Diagnostic quickfix list" })
 
 -- INSERT --
 -- press jk fast to exit
@@ -93,4 +93,4 @@ vim.keymap.set("n", "<leader>/", "<Plug>(comment_toggle_linewise_current)", { de
 -- [[ Auto formatting ]]
 vim.keymap.set("n", "<leader>f", function()
   require("conform").format { async = true, lsp_format = true }
-end, { desc = "[F]ormat buffer" })
+end, { desc = "Format buffer" })

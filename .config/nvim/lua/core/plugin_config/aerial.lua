@@ -1,6 +1,7 @@
 local aerial = require "aerial"
 
 aerial.setup {
+  backends = { "treesitter", "lsp", "markdown", "asciidoc", "man" },
   on_attach = function(bufnr)
     vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
   end,
@@ -11,18 +12,7 @@ aerial.setup {
     default_direction = "prefer_left",
     resize_to_content = false,
   },
-  filter_kind = {
-    "Class",
-    "Constant",
-    "Constructor",
-    "Enum",
-    "Function",
-    "Interface",
-    "Module",
-    "Method",
-    "Struct",
-    "Variable",
-  },
+  filter_kind = false,
   ignore = {
     filetypes = {
       "dirvish",

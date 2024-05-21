@@ -291,4 +291,14 @@ local lazy_opts = {
   },
 }
 
+--[[ Keymaps ]]
+vim.keymap.set("n", "<leader>lo", ":Lazy<CR>", { desc = "Open" })
+vim.keymap.set("n", "<leader>ll", ":Lazy log<CR>", { desc = "Log" })
+vim.keymap.set("n", "<leader>lp", ":Lazy profile<CR>", { desc = "Profile" })
+vim.keymap.set("n", "<leader>ld", ":Lazy debug<CR>", { desc = "Debug" })
+vim.keymap.set("n", "<leader>lh", ":Lazy health<CR>", { desc = "Health" })
+vim.keymap.set("n", "<leader>l?", ":Lazy help<CR>", { desc = "Help" })
+vim.keymap.set("n", "<leader>ls", ":Lazy sync<CR>", { desc = "Sync" })
+vim.keymap.set("n", "<leader>lu", ":Lazy update<CR>", { desc = "Update" })
+
 require("lazy").setup(plugins, lazy_opts)
