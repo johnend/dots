@@ -47,8 +47,7 @@ local options = {
   foldlevel = 99,
   foldnestmax = 4,
   -- sets cursor display to be different for visual (horizontal line) and insert (vertical line) modes
-  guicursor = "v:hor20,i:ver30",
-
+  guicursor = "v:hor20,i:ver30,n-v-c-i:blinkon500-blinkoff500",
   -- the font used in NON-TERMINAL neovim applications
   guifont = "monospace:h17",
 

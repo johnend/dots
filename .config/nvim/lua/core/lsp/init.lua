@@ -10,7 +10,7 @@
 --]]
 
 require "core.lsp.config.styling"
-local lspconfig = require "lspconfig"
+require "lspconfig"
 
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),

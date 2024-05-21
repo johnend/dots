@@ -62,7 +62,7 @@ telescope.setup {
     oldfiles = {
       theme = "dropdown",
       layout_config = {
-        width = 0.3,
+        width = 0.5,
         height = 0.3,
       },
     },
