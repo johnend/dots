@@ -1,5 +1,10 @@
 require("neo-tree").setup({
   popup_border_style = "single",
+  sources = {
+    "filesystem",
+    "git_status",
+    -- "document_symbols", -- maybe add this back in at some point?
+  },
   source_selector = {
     winbar = true,
   },
