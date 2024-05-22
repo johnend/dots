@@ -241,9 +241,11 @@ local plugins = {
       "nvim-tree/nvim-web-devicons",
     },
   }, -- file breadcrumbs like VSCode
-  --
+
+  -- Document symbols
   {
-    "stevearc/aerial.nvim",
+    "hedyhli/outline.nvim",
+  },
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "nvim-tree/nvim-web-devicons",

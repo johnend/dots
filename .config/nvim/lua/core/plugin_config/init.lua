@@ -1,6 +1,5 @@
 local plugins = {
   "alpha",
-  "aerial",
   "autopairs",
   "autotags",
   "barbecue",
@@ -15,6 +14,7 @@ local plugins = {
   "neodev",
   "noice",
   "nvim-colorizer",
+  "outline",
   "which-key",
   "gitsigns",
   "telescope",
