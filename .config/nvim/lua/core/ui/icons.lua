@@ -157,6 +157,7 @@ return {
   },
   misc = {
     Robot = "󰚩",
+    Industry = "󱨚",
     Squirrel = "",
     Tag = "",
     Watch = "",

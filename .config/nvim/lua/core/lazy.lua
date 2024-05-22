@@ -266,7 +266,14 @@ local plugins = {
   -----------------------------------------------------------------------------
   -- NOTE: to be considered once less experimental
   --
-  -- {"folke/noice"}, -- ui plugin for "noice" messages, cmdline, and popup menu
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+  }, -- ui plugin for "noice" messages, cmdline, and popup menu
 }
 
 local lazy_opts = {
