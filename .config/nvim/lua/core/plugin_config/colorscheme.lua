@@ -12,6 +12,7 @@ require("catppuccin").setup {
         VertSplit = { fg = "#301e48", bg = "" },
         IncSearch = { fg = colors.mantle, bg = colors.mauve },
         FloatBorder = { fg = colors.mauve, bg = "" },
+        NotifyBackground = { bg = colors.crust },
         NeoTreeCursorLine = { fg = "", bg = "#1e1825" },
         NeoTreeDirectoryIcon = { fg = colors.mauve, bg = "" },
         NeoTreeDirectoryName = { fg = colors.text, bg = "" },
@@ -31,6 +32,9 @@ require("catppuccin").setup {
         RainbowDelimiterGreen = { fg = colors.green },
         RainbowDelimiterViolet = { fg = colors.mauve },
         RainbowDelimiterCyan = { fg = colors.sapphire },
+
+        -- Noice highlights
+        NoiceCmdlinePopupBorder = { fg = colors.mauve },
       }
     end,
   },

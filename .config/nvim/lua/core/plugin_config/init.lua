@@ -13,6 +13,7 @@ local plugins = {
   "lualine/lualine",
   "neo-tree",
   "neodev",
+  "noice",
   "nvim-colorizer",
   "which-key",
   "gitsigns",
