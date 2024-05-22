@@ -246,10 +246,15 @@ local plugins = {
   {
     "hedyhli/outline.nvim",
   },
+  -- Buffers and tabs
+  {
+    "willothy/nvim-cokeline",
     dependencies = {
-      "nvim-treesitter/nvim-treesitter",
+      "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons",
+      "stevearc/resession.nvim",
     },
+    config = true,
   },
   --  Testing
   -- {"nvim-neotest/neotest"}, -- extensible embedded testing framework

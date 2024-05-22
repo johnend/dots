@@ -105,7 +105,6 @@ vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "Resume" })
 vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = 'Recent Files ("." for repeat)' })
 vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "Open buffers" })
 vim.keymap.set("n", "<leader>st", ":TodoTelescope theme=dropdown previewer=false layout_config={width=0.5,height=0.3}<CR>", { desc = "Todos" })
-vim.keymap.set("n", "<leader>sa", ":Telescope aerial theme=dropdown layout_config={width=0.5,height=0.3}<CR>", { desc = "Aerial" })
 vim.keymap.set("", "<leader>sb", builtin.current_buffer_fuzzy_find, { desc = "Search in current buffer" })
 
 -- Shortcut for searching your Neovim configuration files

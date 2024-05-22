@@ -4,6 +4,7 @@ local plugins = {
   "autotags",
   "barbecue",
   "colorscheme",
+  "cokeline",
   "conform",
   "comment",
   "cmp",
