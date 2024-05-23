@@ -4,7 +4,7 @@ require("catppuccin").setup {
   styles = { -- Handles the styles of general hi groups (see: :h highlight-args):
   },
   highlight_overrides = {
-    all = function(colors)
+    all = function()
       return {
         CursorLine = { fg = "", bg = colors.base },
         Folded = { fg = colors.overlay0, bg = colors.mantle },
@@ -38,6 +38,13 @@ require("catppuccin").setup {
 
         -- IBL highlights
         IblIndent = { fg = colors.mantle },
+        RainbowRed = { bg = colors.transparent.red },
+        RainbowYellow = { bg = colors.transparent.yellow },
+        RainbowBlue = { bg = colors.transparent.blue },
+        RainbowOrange = { bg = colors.transparent.peach },
+        RainbowGreen = { bg = colors.transparent.green },
+        RainbowViolet = { bg = colors.transparent.mauve },
+        RainbowCyan = { bg = colors.transparent.sapphire },
       }
     end,
   },
