@@ -17,6 +17,7 @@ local plugins = {
   "noice",
   "nvim-colorizer",
   "outline",
+  "precognition",
   "which-key",
   "gitsigns",
   "telescope",

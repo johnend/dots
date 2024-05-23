@@ -39,6 +39,8 @@ local plugins = {
     cmd = "WhichKey",
   },
 
+  { "tris203/precognition.nvim" },
+
   -- autopairs
   {
     "windwp/nvim-autopairs",
