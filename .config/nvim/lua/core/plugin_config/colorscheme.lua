@@ -35,6 +35,9 @@ require("catppuccin").setup {
 
         -- Noice highlights
         NoiceCmdlinePopupBorder = { fg = colors.mauve },
+
+        -- IBL highlights
+        IblIndent = { fg = colors.mantle },
       }
     end,
   },

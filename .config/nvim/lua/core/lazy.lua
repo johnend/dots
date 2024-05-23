@@ -53,6 +53,9 @@ local plugins = {
 
   -- [[ UI ]]
 
+  -- show indent guides
+  { "lukas-reineke/indent-blankline.nvim" },
+
   -- An implementation of the Popup API from vim in NeoVim
   { "nvim-lua/popup.nvim" },
 

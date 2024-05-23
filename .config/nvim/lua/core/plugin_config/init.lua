@@ -10,6 +10,7 @@ local plugins = {
   "cmp",
   "fidget",
   "illuminate",
+  "indent-blankline",
   "lualine/lualine",
   "neo-tree",
   "neodev",
