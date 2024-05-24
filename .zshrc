@@ -1,3 +1,5 @@
+zstyle :omz:plugins:ssh-agent identities ~/.ssh/gh_id_ed25519.pub quiet yes
+
 source <(fzf --zsh)
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
