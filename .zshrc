@@ -86,6 +86,7 @@ plugins=(
   command-not-found 
   colored-man-pages
   zsh-autosuggestions
+  ssh-agent
 )
 
 source $ZSH/oh-my-zsh.sh
