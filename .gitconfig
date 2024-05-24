@@ -1,0 +1,41 @@
+[include]
+	path = "~/.gitsettings/catppuccin/.gitconfig"
+
+[core]
+	pager = delta
+	editor = nvim --wait
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	side-by-side = true
+	navigate = true
+	keep-plus-minus-markers = true
+	features = catppuccin-mocha
+[merge]
+	conflictstyle = diff3
+[diff]
+	colorMoved = default
+[commit]
+	template = ~/.gitsettings/.gitmessage.txt
+[init]
+	defaultBranch = main
+[alias]
+ fix = "!f() { git commit -m \"fix: $1\" ; }; f"
+ feat = "!f() { git commit -m \"feat: $1\" ; }; f"
+ build = "!f() { git commit -m \"build: $1\" ; }; f"
+ chore = "!f() { git commit -m \"chore: $1\" ; }; f"
+ ci = "!f() { git commit -m \"ci: $1\" ; }; f"
+ docs = "!f() { git commit -m \"docs: $1\" ; }; f"
+ style = "!f() { git commit -m \"style: $1\" ; }; f"
+ refactor = "!f() { git commit -m \"refactor: $1\" ; }; f"
+ test = "!f() { git commit -m \"test: $1\" ; }; f"
+ force = "!f() { git add . && git commit --amend --no-edit --no-verify && git push --force-with-lease ; }; f"
+ untrack = "!f() { git ls-files --ignored --exclude-standard | xargs -0 git rm -r ; }; f"
+[user]
+	name = John Enderby
+	email = john.enderby.1987@gmail.com
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
