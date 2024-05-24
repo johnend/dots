@@ -3,3 +3,6 @@
 ## K9s ignores
 .config/k9s/clusters/
 .config/k9s/k9s.log
+
+## Lazygit state
+.config/lazygit/state.yml
