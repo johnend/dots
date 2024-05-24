@@ -1,0 +1,18 @@
+lastupdatecheck: 1715175142
+recentrepos:
+- /Users/john.enderby/Developer/personal/dots
+- /Users/john.enderby/Developer/fdweb/contentx-marketing-frontend
+- /Users/john.enderby/Developer/personal/boiler
+- /Users/john.enderby/.config/lvim
+startuppopupversion: 5
+lastversion: 0.41.0
+customcommandshistory:
+- q
+- quit
+hidecommandlog: false
+ignorewhitespaceindiffview: false
+diffcontextsize: 3
+localbranchsortorder: recency
+remotebranchsortorder: alphabetical
+gitlogorder: topo-order
+gitlogshowgraph: always
