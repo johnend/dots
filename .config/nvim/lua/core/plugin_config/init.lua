@@ -8,7 +8,6 @@ local plugins = {
   "conform",
   "comment",
   "cmp",
-  "fidget",
   "illuminate",
   "indent-blankline",
   "lualine/lualine",

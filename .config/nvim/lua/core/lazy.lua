@@ -168,7 +168,6 @@ local plugins = {
       { "williamboman/mason.nvim", config = true, lazy = true, cmd = { "Mason", "MasonInstall", "MasonUninstall", "MasonUninstallAll", "MasonLog" } },
       { "williamboman/mason-lspconfig.nvim", lazy = true, event = "User FileOpened" }, -- helps with the above
       "WhoIsSethDaniel/mason-tool-installer.nvim",
-      "j-hui/fidget.nvim",
       { "folke/neodev.nvim" },
       { "nvimtools/none-ls.nvim" }, -- LSP diagnostics and code actions
     },
