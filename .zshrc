@@ -1,4 +1,4 @@
-zstyle :omz:plugins:ssh-agent identities ~/.ssh/gh_id_ed25519.pub quiet yes
+. ~/.zsh_ssh
 
 source <(fzf --zsh)
 
