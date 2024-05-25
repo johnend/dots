@@ -61,3 +61,5 @@ require("gitsigns").setup {
   },
   yadm = { enable = false },
 }
+
+vim.keymap.set("n", "<leader>tgb", ":Gitsigns toggle_current_line_blame<CR>", { desc = "Git blame" })
