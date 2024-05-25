@@ -282,7 +282,12 @@ local plugins = {
     event = "VeryLazy",
     dependencies = {
       "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
+      {
+        "rcarriga/nvim-notify",
+        opts = {
+          top_down = false,
+        },
+      },
     },
   }, -- ui plugin for "noice" messages, cmdline, and popup menu
 }

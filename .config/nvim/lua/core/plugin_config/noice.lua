@@ -26,11 +26,11 @@ noice.setup {
       views = {
         cmdline_popup = {
           position = {
-            row = 8,
+            row = 10,
             col = "50%",
           },
           size = {
-            min_width = 60,
+            min_width = 75,
             width = "auto",
             height = "auto",
           },
@@ -38,11 +38,11 @@ noice.setup {
         cmdline_popupmenu = {
           relative = "editor",
           position = {
-            row = 11,
+            row = 13,
             col = "50%",
           },
           size = {
-            width = 60,
+            width = 75,
             height = "auto",
             max_height = 16,
           },
