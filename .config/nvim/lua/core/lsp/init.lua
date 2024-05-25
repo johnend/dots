@@ -1,5 +1,3 @@
---[[
---
 --  ██╗     ███████╗██████╗      ██████╗ ██████╗ ███╗   ██╗███████╗██╗ ██████╗
 --  ██║     ██╔════╝██╔══██╗    ██╔════╝██╔═══██╗████╗  ██║██╔════╝██║██╔════╝
 --  ██║     ███████╗██████╔╝    ██║     ██║   ██║██╔██╗ ██║█████╗  ██║██║  ███╗
@@ -16,7 +14,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
   callback = function(event)
     local map = function(keys, func, desc)
-      vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+      vim.keymap.set("n", keys, func, { buffer = event.buf, desc = desc })
     end
 
     -- Jump to the definition of the word under your cursor.
@@ -34,7 +32,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- Jump to the type of the word under your cursor.
     --  Useful when you're not sure what type a variable is and you want to see
     --  the definition of its *type*, not where it was *defined*.
-    map("<leader>cD", require("telescope.builtin").lsp_type_definitions, "Type definition")
+    map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type definition")
 
     -- Fuzzy find all the symbols in your current document.
     --  Symbols are things like variables, functions, types, etc.
