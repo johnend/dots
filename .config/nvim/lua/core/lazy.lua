@@ -38,7 +38,7 @@ local plugins = {
     event = "VimEnter",
     cmd = "WhichKey",
   },
-
+  { "folke/twilight.nvim" },
   { "tris203/precognition.nvim" },
 
   -- autopairs

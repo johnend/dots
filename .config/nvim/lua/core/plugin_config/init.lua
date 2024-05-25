@@ -23,6 +23,7 @@ local plugins = {
   "toggleterm",
   "todo-comments",
   "treesitter",
+  "twilight",
 }
 
 -- keep colorscheme at the top
