@@ -80,7 +80,7 @@ local plugins = {
     event = "User DirOpened",
     cmd = { "Neotree show", "Neotree close", "Neotree toggle", "Neotree focus" },
   },
-
+  { "kosayoda/nvim-lightbulb" },
   -- [[ Completion plugins ]]
   {
     "hrsh7th/nvim-cmp", -- The completion plugin
@@ -213,6 +213,7 @@ local plugins = {
       "ToggleTermSendVisualSelection",
     },
   },
+  { "aznhe21/actions-preview.nvim" },
   -- #########################################################################
   --              NOTE: plugins for future consideration below
   -- ##########################################################################

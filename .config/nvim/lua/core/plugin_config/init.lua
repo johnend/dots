@@ -1,4 +1,5 @@
 local plugins = {
+  "actions-preview",
   "alpha",
   "autopairs",
   "autotags",
@@ -10,6 +11,7 @@ local plugins = {
   "cmp",
   "illuminate",
   "indent-blankline",
+  "lightbulb",
   "lualine/lualine",
   "neo-tree",
   "neodev",
