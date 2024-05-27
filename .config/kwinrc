@@ -58,7 +58,12 @@ layoutsJson=[\n  {\n    "name": "Fullscreen",\n    "padding": 16,\n    "zones": 
 zoneSelectorTriggerDistance=2
 
 [SecondOutline]
-SecondOutlineThickness=2
+InactiveSecondOutlineThickness=0
+SecondOutlineThickness=0
+
+[Shadow]
+ActiveShadowAlpha=124
+InactiveShadowAlpha=0
 
 [Tiling]
 padding=16
