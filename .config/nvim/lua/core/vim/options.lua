@@ -31,6 +31,7 @@ local options = {
   -- so that `` is visible in markdown files
   conceallevel = 0,
 
+  colorcolumn = "100",
   -- highlight the current line
   cursorline = true,
 

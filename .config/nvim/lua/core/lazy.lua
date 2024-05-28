@@ -55,6 +55,12 @@ local plugins = {
 
   -- [[ UI ]]
 
+  -- Deadcolumn - color columns
+  {
+    "Bekaboo/deadcolumn.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+  },
+
   -- show indent guides
   { "lukas-reineke/indent-blankline.nvim" },
 
