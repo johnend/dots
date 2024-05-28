@@ -18,6 +18,8 @@ export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
 # change default editor to nvim
 export EDITOR=nvim
 
+export PACMAN_CACHE=/var/cache/pacman/
+
 # Firefox developer edition user directory
 export FFD_USER_DIR=$HOME/.mozilla/firefox/6dh274r9.dev-edition-default/
 
