@@ -9,6 +9,18 @@
 --
 --]]
 
+Fold_Text = function()
+  local fold_start = table.concat(vim.fn.getbufline(vim.api.nvim_get_current_buf(), vim.v.foldstart))
+  local icon = fold_start:match 'Icon:%s*"([^"]+)"' or " 󰆧 "
+  local line_text = vim.fn.substitute(fold_start, '^"{+', "", "g")
+  local pre = "─┤"
+  local post = "├─"
+  local folded_line_num = vim.v.foldend - vim.v.foldstart
+  return "󰐕 " .. pre .. icon .. line_text .. " " .. post .. "───" .. pre .. " " .. folded_line_num .. " lines " .. post
+end
+
+vim.opt.fillchars:append { fold = "─" }
+
 local options = {
   -- :help options
 
@@ -44,7 +56,7 @@ local options = {
   -- fold settings
   foldmethod = "expr",
   foldexpr = "v:lua.vim.treesitter.foldexpr()",
-  foldtext = "",
+  foldtext = "v:lua.Fold_Text()",
   foldlevel = 99,
   foldnestmax = 4,
   -- sets cursor display to be different for visual (horizontal line) and insert (vertical line) modes
