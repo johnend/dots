@@ -25,7 +25,6 @@ local plugins = {
   -- [[ General utils ]]
   -- detect tab stops and shiftwidth automatically
   "tpope/vim-sleuth",
-  "VidocqH/auto-indent.nvim",
   -- gc to comment visual regions/lines
   { "numToStr/Comment.nvim", lazy = false, event = "User FileOpened" },
 
