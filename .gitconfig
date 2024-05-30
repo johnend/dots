@@ -3,7 +3,7 @@
 
 [core]
 	pager = delta
-	editor = nvim --wait
+	editor = nvim
 [interactive]
 	diffFilter = delta --color-only
 [delta]

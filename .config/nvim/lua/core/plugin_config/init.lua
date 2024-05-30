@@ -9,6 +9,7 @@ local plugins = {
   "conform",
   "comment",
   "cmp",
+  "deadcolumn",
   "illuminate",
   "indent-blankline",
   "lightbulb",

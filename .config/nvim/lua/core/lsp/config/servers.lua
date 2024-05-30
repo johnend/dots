@@ -41,6 +41,7 @@ local servers = {
           url = "",
         },
         schemas = schemastore.yaml.schemas(),
+        validate = { enable = true },
       },
     },
   },
