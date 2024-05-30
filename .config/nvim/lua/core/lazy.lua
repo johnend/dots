@@ -252,9 +252,10 @@ local plugins = {
     },
   }, -- file breadcrumbs like VSCode
 
-  -- Document symbols
+  -- Document symbols, diagnostics, references, implementations and all that good stuff
   {
-    "hedyhli/outline.nvim",
+    "folke/trouble.nvim",
+    branch = "dev",
   },
   -- Buffers and tabs
   {

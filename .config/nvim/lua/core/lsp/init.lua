@@ -34,10 +34,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
     --  the definition of its *type*, not where it was *defined*.
     map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type definition")
 
-    -- Fuzzy find all the symbols in your current document.
-    --  Symbols are things like variables, functions, types, etc.
-    map("<leader>cd", require("telescope.builtin").lsp_document_symbols, "Document symbols")
+    -- Open document symbols in Trouble.
+    -- Symbols are things like variables, functions, types, etc.
+    map("<leader>cd", ":Trouble symbols toggle focus=false<CR>", "Document symbols")
 
+    map("<leader>cl", ":Trouble lsp toggle focus=false<CR>", "LSP toggle (Trouble)")
     -- Fuzzy find all the symbols in your current workspace.
     --  Similar to document symbols, except searches over your entire project.
     map("<leader>cw", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace symbols")
@@ -50,6 +51,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- or a suggestion from your LSP for this to activate.
     map("<leader>ca", require("actions-preview").code_actions, "Code action")
 
+    -- Show LSP info
+    map("<leader>ci", ":LspInfo<CR>", "LSP info")
     -- Opens a popup that displays documentation about the word under your cursor
     --  See `:help K` for why this keymap.
     map("K", vim.lsp.buf.hover, "Hover Documentation")

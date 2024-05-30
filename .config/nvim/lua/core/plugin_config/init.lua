@@ -18,7 +18,6 @@ local plugins = {
   "neodev",
   "noice",
   "nvim-colorizer",
-  "outline",
   "precognition",
   "which-key",
   "gitsigns",
@@ -26,6 +25,7 @@ local plugins = {
   "toggleterm",
   "todo-comments",
   "treesitter",
+  "trouble",
   "twilight",
 }
 
