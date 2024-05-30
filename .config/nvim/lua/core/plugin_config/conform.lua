@@ -14,5 +14,8 @@ require("conform").setup {
   end,
   formatters_by_ft = {
     lua = { "stylua" },
+    javascript = { { "prettierd", "prettier" } },
+    css = { { "prettierd", "prettier" } },
+    scss = { { "prettierd", "prettier" } },
   },
 }
