@@ -24,6 +24,7 @@ vim.opt.rtp:prepend(lazypath)
 require "core.keymaps"
 require "core.vim.commands"
 require "core.vim.options"
+require "core.vim.filetypes"
 require "core.lazy"
 require "core.plugin_config"
 require "core.lsp"

@@ -49,7 +49,7 @@ local filename = {
 local filetype = {
   "filetype",
   colored = true,
-  icon_only = true,
+  icon_only = false,
   padding = { left = 2, right = 1 },
 }
 
@@ -66,7 +66,7 @@ local diagnostics = {
 
 local spaces = {
   function()
-    local shiftwidth = vim.api.nvim_buf_get_option(0, "shiftwidth")
+    local shiftwidth = vim.api.nvim_get_option_value("shiftwidth", { buf = 0 })
     return icons.ui.Tab .. " " .. shiftwidth
   end,
   padding = 1,
