@@ -114,6 +114,12 @@ cmp.setup {
     { name = "luasnip" },
     { name = "path" },
     { name = "buffer" },
+    {
+      name = "scss",
+      option = {
+        folders = { "node_modules/@fanduel/formation-tokens/build/scss" },
+      },
+    },
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
