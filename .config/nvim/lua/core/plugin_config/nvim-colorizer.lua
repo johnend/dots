@@ -5,7 +5,7 @@ require("colorizer").setup {
     RRGGBB = true,
     RRGGBBAA = true,
     AARRGGBB = true,
-    mode = "virtualtext",
+    mode = "background",
     virtualtext = "■",
     always_update = true,
   },
