@@ -126,3 +126,8 @@ require("mason-lspconfig").setup {
     end,
   },
 }
+
+vim.diagnostic.config { virtual_text = false }
+vim.o.updatetime = 250
+vim.keymap.set("n", "<leader>cx", ":lua vim.diagnostic.open_float(nil, {focus=false})<CR>", { desc = "Show diagnostic" })
+-- vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
