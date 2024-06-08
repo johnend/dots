@@ -50,6 +50,7 @@ return {
               "bash-language-server",
               "css-lsp",
               "cssmodules-language-server",
+              "css-variables-language-server",
               "emmet-language-server",
               "eslint_d",
               "helm-ls",

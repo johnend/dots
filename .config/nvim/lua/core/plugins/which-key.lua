@@ -85,6 +85,7 @@ return {
       ["<leader>s"] = { name = "Search", _ = "which_key_ignore" },
       ["<leader>t"] = { name = "Toggle", _ = "which_key_ignore" },
       ["<leader>b"] = { name = "Buffers", _ = "which_key_ignore" },
+      ["<leader>x"] = { name = "Trouble", _ = "which_key_ignore" },
       -- ['<leader>h'] = { name = 'Git Hunk', _ = 'which_key_ignore' },
       ["<leader>tg"] = { name = "Git", _ = "which_key_ignore" },
     }
