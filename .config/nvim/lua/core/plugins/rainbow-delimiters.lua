@@ -7,7 +7,6 @@ return {
       return
     end
     rainbow.setup {
-      ignore_filetypes = { "markdown", "help", "neogitstatus", "alpha", "TelescopePrompt", "TelescopeResults", "lspinfo", "NeoTree" },
     }
   end,
 }
