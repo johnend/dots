@@ -16,11 +16,6 @@ local term_opts = { silent = true }
 -- shorten function name
 local keymap = vim.api.nvim_set_keymap
 
--- remap space to <leader>
-keymap("", "<Space>", "<Nop>", opts)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 -- Modes
 --   normal_mode = "n"
 --   insert_mode = "i"
@@ -47,7 +42,7 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 -- Navigate buffers
 keymap("n", "<leader>bn", ":bnext<CR>", opts)
 keymap("n", "<leader>bb", ":bprevious<CR>", opts)
-
+keymap("n", "<leader>bc", ":bd<CR>", opts)
 -- Use ESC to clear highlights
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
@@ -87,5 +82,5 @@ vim.keymap.set("n", "<leader>/", "<Plug>(comment_toggle_linewise_current)", { de
 
 -- [[ Auto formatting ]]
 vim.keymap.set("n", "<leader>f", function()
-  require("conform").format { async = true, lsp_format = true }
+  require("conform").format { async = true, lsp_fallback = true }
 end, { desc = "Format buffer" })
