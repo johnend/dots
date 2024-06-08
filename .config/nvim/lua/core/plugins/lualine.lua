@@ -1,7 +1,3 @@
-local lualine = require "lua.core.plugins.lualine"
-local components = require "core.plugin_config.lualine.components"
-local catppuccin = require "core.plugin_config.lualine.lualine-theme"
-
 return {
   'nvim-lualine/lualine.nvim',
   event = { 'BufReadPre', 'BufNewFile' },
@@ -10,6 +6,10 @@ return {
     if not status_ok then
       return
     end
+
+    local components = require "core.plugins.lualine.components"
+    local catppuccin = require "core.plugins.lualine.lualine-theme"
+
     lualine.setup {
       options = {
         -- custom theme imported above

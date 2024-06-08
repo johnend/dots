@@ -1,24 +1,30 @@
-local disabled_filetypes = {
-  c = true,
-  cpp = true,
-}
+return {
+  "stevearc/conform.nvim",
+  lazy = "BufWritePre",
+  cmd = "ConformInfo",
+  config = function()
+    local status_ok, conform = pcall(require, "conform")
+    if not status_ok then
+      return
+    end
 
-require("conform").setup {
-  notify_on_error = false,
-  format_on_save = function(bufnr)
-    local disable_filetypes = disabled_filetypes
-    return {
-      timeout_ms = 500,
-      lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
+    local disabled_filetypes = {
+      c = true,
+      cpp = true,
+    }
+
+    conform.setup {
+      notify_on_error = false,
+      format_on_save = { timeout_ms = 500, lsp_fallback = true },
+      formatters_by_ft = {
+        lua = { "stylua" },
+        javascript = { { "prettierd", "prettier" } },
+        javascriptreact = { { "prettierd", "prettier" } },
+        typescript = { { "prettierd", "prettier" } },
+        typescriptreact = { { "prettierd", "prettier" } },
+        css = { { "prettierd", "prettier" } },
+        scss = { { "prettierd", "prettier" } },
+      },
     }
   end,
-  formatters_by_ft = {
-    lua = { "stylua" },
-    javascript = { { "prettierd", "prettier" } },
-    javascriptreact = { { "prettierd", "prettier" } },
-    typescript = { { "prettierd", "prettier" } },
-    typescriptreact = { { "prettierd", "prettier" } },
-    css = { { "prettierd", "prettier" } },
-    scss = { { "prettierd", "prettier" } },
-  },
 }

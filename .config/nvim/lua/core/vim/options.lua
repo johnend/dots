@@ -23,7 +23,7 @@ vim.opt.fillchars:append { fold = "─" }
 
 local options = {
   -- :help options
-
+  background = "dark",
   -- creates a backup file
   backup = false,
 
@@ -59,6 +59,7 @@ local options = {
   foldtext = "v:lua.Fold_Text()",
   foldlevel = 99,
   foldnestmax = 4,
+  foldcolumn = "1",
   -- sets cursor display to be different for visual (horizontal line) and insert (vertical line) modes
   guicursor = "v:hor20,i:ver30,n-v-c-i:blinkon500-blinkoff500",
   -- the font used in NON-TERMINAL neovim applications

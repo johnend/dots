@@ -16,11 +16,6 @@ local term_opts = { silent = true }
 -- shorten function name
 local keymap = vim.api.nvim_set_keymap
 
--- remap space to <leader>
-keymap("", "<Space>", "<Nop>", opts)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 -- Modes
 --   normal_mode = "n"
 --   insert_mode = "i"
@@ -87,5 +82,5 @@ vim.keymap.set("n", "<leader>/", "<Plug>(comment_toggle_linewise_current)", { de
 
 -- [[ Auto formatting ]]
 vim.keymap.set("n", "<leader>f", function()
-  require("conform").format { async = true, lsp_format = true }
+  require("conform").format { async = true, lsp_fallback = true }
 end, { desc = "Format buffer" })
