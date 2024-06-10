@@ -16,16 +16,21 @@ return {
     require("lspconfig.ui.windows").default_options.border = "rounded"
 
     vim.diagnostic.config {
-      virtual_text = false,
+      -- virtual_text = false,
       signs = true,
       underline = true,
       float = {
-        header = '',
+        header = "",
         border = "rounded",
       },
     }
     vim.o.updatetime = 700
-    vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+    vim.keymap.set(
+      "n",
+      "<leader>df",
+      ":lua vim.diagnostic.open_float(nil, {focus=false})<CR>",
+      { desc = "Show diagnostic popup" }
+    )
   end,
   lazy = true,
 }
