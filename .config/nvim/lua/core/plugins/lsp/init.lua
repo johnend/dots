@@ -14,6 +14,18 @@ return {
     end
     require("core.plugins.lsp.configs.lsp").config()
     require("lspconfig.ui.windows").default_options.border = "rounded"
+
+    vim.diagnostic.config {
+      virtual_text = false,
+      signs = true,
+      underline = true,
+      float = {
+        header = '',
+        border = "rounded",
+      },
+    }
+    vim.o.updatetime = 700
+    vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
   end,
   lazy = true,
 }
