@@ -14,6 +14,46 @@ return {
       dependencies = {
         "rafamadriz/friendly-snippets",
       },
+      opts = function()
+        local types = require "luasnip.util.types"
+        return {
+          ext_opts = {
+            [types.insertNode] = {
+              unvisited = {
+                virt_text = { { "|", "Conceal" } },
+                virt_text_pos = "inline",
+              },
+            },
+
+            [types.exitNode] = {
+              unvisited = {
+                virt_text = { { "|", "Conceal" } },
+                virt_text_pos = "inline",
+              },
+            },
+          },
+        }
+      end,
+      config = function(_, opts)
+        local luasnip = require "luasnip"
+        luasnip.setup(opts)
+
+        vim.api.nvim_create_autocmd("ModeChanged", {
+          group = vim.api.nvim_create_augroup("quantumvim/unlink-snippet", { clear = true }),
+          desc = "Cancel snippet selection when leaving insert mode",
+          pattern = { "s:n", "i:*" },
+          callback = function()
+            if
+              luasnip.session
+              and luasnip.session.current_nodes
+              and not luasnip.session.jump_active
+              and not luasnip.choice_active()
+            then
+              luasnip.unlink_current()
+            end
+          end,
+        })
+      end,
     },
     { "hrsh7th/cmp-nvim-lua", event = "InsertEnter" },
     { "mmolhoek/cmp-scss", event = "InsertEnter" },
@@ -82,11 +122,7 @@ return {
         -- Set `select` to `false` to only confirm explicitly selected items.
         ["<CR>"] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false },
         ["<Tab>"] = cmp.mapping(function(fallback)
-          local copilot = require "copilot.suggestion"
-
-          if copilot.is_visible() then
-            copilot.accept()
-          elseif cmp.visible() then
+          if cmp.visible() then
             cmp.select_next_item()
           elseif luasnip.expand_or_locally_jumpable() then
             luasnip.expand_or_jump()
