@@ -46,6 +46,7 @@
   "popup.nvim": { "branch": "master", "commit": "b7404d35d5d3548a82149238289fa71f7f6de4ac" },
   "precognition.nvim": { "branch": "main", "commit": "5255b72c52b1159e9757f50389bde65e05e3bfb1" },
   "rainbow-delimiters.nvim": { "branch": "master", "commit": "0f314613125fdd7c85faaee3c87051611d883253" },
+  "render-markdown": { "branch": "main", "commit": "c7fda73e83a489fe0bcbd0a6ed1a19a05d173a8d" },
   "resession.nvim": { "branch": "master", "commit": "460759570451a37bd7d9684f5e060016055a89af" },
   "schemastore.nvim": { "branch": "main", "commit": "1c2e917655b14dff9ef38466be6fb0b72c4797b2" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "9ef21b2e6bb6ebeaf349a0781745549bbb870d27" },
