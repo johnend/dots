@@ -16,10 +16,21 @@ Fold_Text = function()
   local pre = "─┤"
   local post = "├─"
   local folded_line_num = vim.v.foldend - vim.v.foldstart
-  return "󰐕 " .. pre .. icon .. line_text .. " " .. post .. "───" .. pre .. " " .. folded_line_num .. " lines " .. post
+  return "󰐕 "
+    .. pre
+    .. icon
+    .. line_text
+    .. " "
+    .. post
+    .. "───"
+    .. pre
+    .. " "
+    .. folded_line_num
+    .. " lines "
+    .. post
 end
 
--- vim.opt.fillchars:append { fold = "─" }
+vim.opt.fillchars:append { fold = "─" }
 
 local options = {
   -- :help options
@@ -51,12 +62,12 @@ local options = {
   expandtab = true,
 
   -- fold settings
-  -- foldmethod = "expr",
-  -- foldexpr = "v:lua.vim.treesitter.foldexpr()",
-  -- foldtext = "v:lua.Fold_Text()",
-  -- foldlevel = 99,
-  -- foldnestmax = 4,
-  -- foldcolumn = "1",
+  foldmethod = "expr",
+  foldexpr = "v:lua.vim.treesitter.foldexpr()",
+  foldtext = "v:lua.Fold_Text()",
+  foldlevel = 99,
+  foldnestmax = 4,
+  foldcolumn = "1",
   -- sets cursor display to be different for visual (horizontal line) and insert (vertical line) modes
   guicursor = "v:hor20,i:ver30,n-v-c-i:blinkon500-blinkoff500",
   -- the font used in NON-TERMINAL neovim applications
