@@ -51,6 +51,9 @@ local servers = {
       client.server_capabilities.definitionProvider = false
     end,
   },
+  -----------------------------------------------------------------------------
+  rust_analyzer = { function() end, },
+  -----------------------------------------------------------------------------
 }
 
 return servers

@@ -13,7 +13,7 @@ return {
 
       masonlsp.setup {
         handlers = {
-          function(server_name)
+           function(server_name)
             local server = servers[server_name] or {}
 
             server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
@@ -65,6 +65,7 @@ return {
               "stylua",
               "typescript-language-server",
               "yaml-language-server",
+              "rust-analyzer",
             })
             masontools.setup { ensure_installed = ensure_installed }
           end,

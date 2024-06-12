@@ -2,7 +2,7 @@ local mappings = {
   q = { "<cmd>confirm q<CR>", "Quit" },
   g = {
     name = "LazyGit",
-    g = { "<cmd>lua require 'core.plugins.toggleterm'.lazygit_toggle()<cr>", "Lazygit" },
+    g = { "<cmd>lua require 'core.plugins.ui.toggleterm'.lazygit_toggle()<cr>", "Lazygit" },
   },
 }
 local opts = {

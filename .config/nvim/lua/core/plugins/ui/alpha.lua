@@ -8,7 +8,6 @@ return {
     end
 
     local dashboard = require "alpha.themes.dashboard"
-    local icons = require "core.ui.icons"
 
     local function button(sc, txt, keybind)
       local b = dashboard.button(sc, txt, keybind)
@@ -16,7 +15,7 @@ return {
       return b
     end
 
-    local headers = require "core.ui.dashboard.headers"
+    local headers = require "core.config.dashboard.headers"
 
     dashboard.section.header.val = headers.king
     dashboard.section.buttons.val = {

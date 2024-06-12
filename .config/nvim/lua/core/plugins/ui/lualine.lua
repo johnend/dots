@@ -7,8 +7,8 @@ return {
       return
     end
 
-    local components = require "core.plugins.lualine.components"
-    local catppuccin = require "core.plugins.lualine.lualine-theme"
+    local components = require "core.config.lualine.components"
+    local catppuccin = require "core.config.lualine.lualine-theme"
 
     lualine.setup {
       options = {

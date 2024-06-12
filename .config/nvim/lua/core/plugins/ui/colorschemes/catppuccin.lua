@@ -8,6 +8,11 @@ return {
     if not status_ok then
       return
     end
+
+    for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+      vim.api.nvim_set_hl(0, group, {})
+    end
+
     catppuccin.setup {
       flavour = "mocha",
       transparent_background = true,
@@ -60,5 +65,6 @@ return {
       },
     }
     vim.cmd.colorscheme "catppuccin"
-  end
+
+  end,
 }

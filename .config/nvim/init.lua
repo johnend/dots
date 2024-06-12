@@ -1,7 +1,7 @@
 ---@diagnostic disable: lowercase-global
 -- Use global variable objects for colors and icons
-colors = require "core.ui.colors"
-icons = require "core.ui.icons"
+colors = require "core.config.colors"
+icons = require "core.config.icons"
 
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
@@ -30,6 +30,9 @@ local lazy_opts = {
   spec = {
     { import = "core.plugins" },
     { import = "core.plugins.lsp" },
+    { import = "core.plugins.ui" },
+    { import = "core.plugins.ui.colorschemes" },
+    { import = "core.plugins.helpers" },
   },
   ui = {
     border = "rounded",
@@ -64,6 +67,6 @@ vim.keymap.set("n", "<leader>ls", ":Lazy sync<CR>", { desc = "Sync" })
 vim.keymap.set("n", "<leader>lu", ":Lazy update<CR>", { desc = "Update" })
 
 require "core.keymaps"
-require "core.vim.commands"
-require "core.vim.options"
-require "core.vim.filetypes"
+require "core.commands"
+require "core.options"
+require "core.filetypes"
