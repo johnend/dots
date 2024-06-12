@@ -13,7 +13,8 @@ return {
     if not status_ok then
       return
     end
-    neotree.setup({
+
+    neotree.setup {
       filesystem = {
         filtered_items = {
           visible = true,
@@ -54,10 +55,10 @@ return {
         git_status = {
           symbols = {
             -- Change type
-            added = icons.git.LineAdded,       -- or "✚", but this is redundant info if you use git_status_colors on the name
+            added = icons.git.LineAdded, -- or "✚", but this is redundant info if you use git_status_colors on the name
             modified = icons.git.LineModified, -- or "", but this is redundant info if you use git_status_colors on the name
-            deleted = icons.git.FileRemoved,   -- this can only be used in the git_status source
-            renamed = icons.git.FileRenamed,   -- this can only be used in the git_status source
+            deleted = icons.git.FileRemoved, -- this can only be used in the git_status source
+            renamed = icons.git.FileRenamed, -- this can only be used in the git_status source
             -- Status type
             untracked = icons.git.FileUntracked,
             ignored = icons.git.FileIgnored,
@@ -67,6 +68,6 @@ return {
           },
         },
       },
-    })
-  end
+    }
+  end,
 }
