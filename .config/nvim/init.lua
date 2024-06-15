@@ -13,6 +13,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+---@diagnostic disable-next-line: undefined-field
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system {
     "git",
@@ -25,11 +26,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 
 vim.opt.rtp:prepend(lazypath)
-
-vim.fn.sign_define("DiagnosticSignError", { text = icons.diagnostics.Error })
-vim.fn.sign_define("DiagnosticSignWarn", { text = icons.diagnostics.Warning })
-vim.fn.sign_define("DiagnosticSignInfo", { text = icons.diagnostics.Information })
-vim.fn.sign_define("DiagnosticSignHint", { text = icons.diagnostics.Hint })
 
 local lazy_opts = {
   -- Lazy options
