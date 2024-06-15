@@ -1,6 +1,6 @@
 return {
   "stevearc/conform.nvim",
-  lazy = { "BufWritePre" },
+  event = { "BufWritePre", "BufWinEnter", "BufNewFile" },
 
   cmd = "ConformInfo",
   config = function()
@@ -8,6 +8,11 @@ return {
     if not status_ok then
       return
     end
+
+    -- [[ Auto formatting ]]
+    vim.keymap.set("n", "<leader>f", function()
+      require("conform").format { async = true, lsp_fallback = true }
+    end, { desc = "Format buffer" })
 
     conform.setup {
       notify_on_error = false,
