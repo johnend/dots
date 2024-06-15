@@ -18,6 +18,9 @@ function behaviour.apply_to_config(config)
     "pwsh.exe",
     "powershell.exe",
   }
+
+  config.initial_rows = 48
+  config.initial_cols = 140
 end
 
 return behaviour
