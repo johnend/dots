@@ -141,6 +141,7 @@ return {
     vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "Select Telescope picker" })
     vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "Search current word" })
     vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "Grep" })
+    vim.keymap.set("n", "<leader>sv", builtin.git_files, { desc = "Git files" })
     vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "Diagnostics" })
     vim.keymap.set("n", "<leader>sp",
       ":Telescope project project theme=dropdown layout_config={width=0.5, height=0.4}<CR>", { desc = "Projects" })
