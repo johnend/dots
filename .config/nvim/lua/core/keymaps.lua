@@ -1,4 +1,4 @@
---[[
+--[[key
 --
 --  ██╗  ██╗███████╗██╗   ██╗███╗   ███╗ █████╗ ██████╗ ███████╗
 --  ██║ ██╔╝██╔════╝╚██╗ ██╔╝████╗ ████║██╔══██╗██╔══██╗██╔════╝
@@ -31,7 +31,7 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
-keymap("n", "<leader>e", ":Neotree toggle<cr>", opts)
+keymap("n", "<leader>e", ":Neotree float toggle<cr>", opts)
 
 -- Resize splits with arrow keys
 keymap("n", "<C-Up>", ":resize +2<CR>", opts)
@@ -39,10 +39,18 @@ keymap("n", "<C-Down>", ":resize -2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
+-- Center cursor on half page vertical jumps
+keymap("n", "<C-d>", "<C-d>zz", opts)
+keymap("n", "<C-u>", "<C-u>zz", opts)
+
+-- Center cursor when moving between search results
+keymap("n", "n", "nzzzv", opts)
+keymap("n", "N", "nzzzv", opts)
+
 -- Navigate buffers
 keymap("n", "<leader>bn", ":bnext<CR>", opts)
 keymap("n", "<leader>bb", ":bprevious<CR>", opts)
-keymap("n", "<leader>bc", ":bd<CR>", opts)
+keymap("n", "<leader>bd", ":bd<CR>", opts)
 -- Use ESC to clear highlights
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
@@ -78,9 +86,6 @@ keymap("n", "<leader>tu", ":UndotreeToggle<cr>", {desc = "Undotree"})
 -- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 -- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
-
--- [[ Commenting ]]
-vim.keymap.set("n", "<leader>/", "<Plug>(comment_toggle_linewise_current)", { desc = "Comment toggle current line" })
 
 -- [[ Auto formatting ]]
 vim.keymap.set("n", "<leader>f", function()
