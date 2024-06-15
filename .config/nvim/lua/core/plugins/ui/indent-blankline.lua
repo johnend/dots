@@ -23,6 +23,6 @@ return {
       scope = { enabled = false },
     }
 
-    vim.keymap.set("n", "<leader>ti", ":IBLToggle<CR>", { desc = "Toggle indent line" })
+    vim.keymap.set("n", "<leader>ti", ":IBLToggle<CR>", { desc = "Indent line" })
   end,
 }

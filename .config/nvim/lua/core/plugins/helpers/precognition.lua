@@ -11,6 +11,6 @@ return {
         link = "Comment",
       },
     }
-    vim.keymap.set("n", "<leader>tp", ":lua require('precognition').toggle()<CR>", { desc = "Toggle precognition" })
+    vim.keymap.set("n", "<leader>tp", ":lua require('precognition').toggle()<CR>", { desc = "Precognition" })
   end,
 }
