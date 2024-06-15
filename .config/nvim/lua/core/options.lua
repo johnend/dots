@@ -48,7 +48,6 @@ local options = {
   cmdheight = 2,
 
   -- mostly just for cmp
-
   completeopt = { "menuone", "noselect" },
 
   -- so that `` is visible in markdown files
@@ -75,6 +74,8 @@ local options = {
 
   -- highlight all matches on previous search pattern
   hlsearch = true,
+  incsearch = true,
+
   -- ignore case in search patterns
   ignorecase = true,
   -- smart case
@@ -93,7 +94,7 @@ local options = {
   mouse = "a",
 
   -- set numbered lines
-  number = true,
+  nu = true,
 
   -- set number column width to 2 {default 4}
   numberwidth = 4,
@@ -102,7 +103,7 @@ local options = {
   pumheight = 10,
 
   -- set relative numbered lines
-  relativenumber = false,
+  relativenumber = true,
 
   -- scrolling space
   scrolloff = 32,
@@ -131,6 +132,7 @@ local options = {
 
   -- insert 2 spaces for a tab
   tabstop = 2,
+  softtabstop = 2,
 
   -- set term gui colors (most terminals support this)
   termguicolors = true,
@@ -139,6 +141,7 @@ local options = {
   timeoutlen = 300,
 
   -- enable persistent undo
+  undodir = os.getenv "HOME" .. "/vim/undodir",
   undofile = true,
 
   -- faster completion (4000ms default)
