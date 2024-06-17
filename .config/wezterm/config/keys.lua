@@ -1,5 +1,5 @@
 local wezterm = require "wezterm"
-local action = wezterm.action
+local act = wezterm.action
 
 local keys = {}
 
@@ -16,48 +16,72 @@ function keys.apply_to_config(config)
   -- config.config_option = config_option_value
   config.leader = { key = " ", mods = "SHIFT" }
 
-  -- Normal keys
   config.keys = {
-    {
-      key = "s",
-      mods = "LEADER",
-      action = action.ActivateKeyTable {
-        name = "splits",
-        one_shot = false,
-      },
-    },
 
     {
       key = "w",
-      mods = "CMD",
-      action = action.CloseCurrentTab { confirm = false },
+      mods = "SUPER",
+      action = act.CloseCurrentTab { confirm = false },
+    },
+    { key = "p", mods = "CMD|SHIFT", action = act.ActivateCommandPalette },
+
+    -- manage splits/panes
+    { key = "s", mods = "LEADER", action = act.SplitVertical { domain = "CurrentPaneDomain" } },
+    { key = "v", mods = "LEADER", action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
+    { key = "h", mods = "LEADER", action = act.ActivatePaneDirection "Left" },
+    { key = "j", mods = "LEADER", action = act.ActivatePaneDirection "Down" },
+    { key = "k", mods = "LEADER", action = act.ActivatePaneDirection "Up" },
+    { key = "l", mods = "LEADER", action = act.ActivatePaneDirection "Right" },
+    { key = "o", mods = "LEADER", action = act.RotatePanes "Clockwise" },
+
+    -- manage tabs
+    { key = "t", mods = "LEADER", action = act.SpawnTab "CurrentPaneDomain" },
+    { key = "[", mods = "LEADER", action = act.ActivateTabRelative(-1) },
+    { key = "]", mods = "LEADER", action = act.ActivateTabRelative(1) },
+    { key = "n", mods = "LEADER", action = act.ShowTabNavigator },
+    {
+      key = "e",
+      mods = "LEADER",
+      action = act.PromptInputLine {
+        description = wezterm.format {
+          { Attribute = { Intensity = "Bold" } },
+          { Foreground = { AnsiColor = "Fuchsia" } },
+          { Text = "Enter a new tab title..." },
+        },
+        action = wezterm.action_callback(function(window, pane, line)
+          if line then
+            window:active_tab():set_title(line)
+          end
+        end),
+      },
     },
 
-    { key = "h", mods = "CMD|SHIFT", action = action.ActivatePaneDirection "Left" },
-    { key = "l", mods = "CMD|SHIFT", action = action.ActivatePaneDirection "Right" },
-    { key = "k", mods = "CMD|SHIFT", action = action.ActivatePaneDirection "Up" },
-    { key = "j", mods = "CMD|SHIFT", action = action.ActivatePaneDirection "Down" },
-
-    {key = "p", mods = "CMD|SHIFT", action = action.ActivateCommandPalette }
+    -- key table activation
+    {
+      key = "r",
+      mods = "LEADER",
+      action = act.ActivateKeyTable { name = "resize_pane", one_shot = false, timeout_milliseconds = 2000 },
+    },
+    {
+      key = "m",
+      mods = "LEADER",
+      action = act.ActivateKeyTable { name = "move_tab", one_shot = false, timeout_milliseconds = 2000 },
+    },
   }
 
-
-  -- Key tables (chords)
   config.key_tables = {
-    splits = {
-      { key = "d", action = action.SplitVertical { domain = "CurrentPaneDomain" } },
-      { key = "f", action = action.SplitHorizontal { domain = "CurrentPaneDomain" } },
-      { key = "LeftArrow", action = action.AdjustPaneSize { "Left", 1 } },
-      { key = "h", action = action.AdjustPaneSize { "Left", 1 } },
-
-      { key = "RightArrow", action = action.AdjustPaneSize { "Right", 1 } },
-      { key = "l", action = action.AdjustPaneSize { "Right", 1 } },
-
-      { key = "UpArrow", action = action.AdjustPaneSize { "Up", 1 } },
-      { key = "k", action = action.AdjustPaneSize { "Up", 1 } },
-
-      { key = "DownArrow", action = action.AdjustPaneSize { "Down", 1 } },
-      { key = "j", action = action.AdjustPaneSize { "Down", 1 } },
+    resize_pane = {
+      { key = "h", action = act.AdjustPaneSize { "Left", 1 } },
+      { key = "j", action = act.AdjustPaneSize { "Down", 1 } },
+      { key = "k", action = act.AdjustPaneSize { "Up", 1 } },
+      { key = "l", action = act.AdjustPaneSize { "Right", 1 } },
+      { key = "Escape", action = "PopKeyTable" },
+    },
+    move_tab = {
+      { key = "h", action = act.MoveTabRelative(-1) },
+      { key = "j", action = act.MoveTabRelative(-1) },
+      { key = "k", action = act.MoveTabRelative(1) },
+      { key = "l", action = act.MoveTabRelative(1) },
       { key = "Escape", action = "PopKeyTable" },
     },
   }

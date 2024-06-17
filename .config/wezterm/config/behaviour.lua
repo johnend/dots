@@ -18,6 +18,11 @@ function behaviour.apply_to_config(config)
     "pwsh.exe",
     "powershell.exe",
   }
+
+  config.adjust_window_size_when_changing_font_size = false
+  config.tab_max_width = 25
+  config.switch_to_last_active_tab_when_closing_tab = true
+  config.scrollback_lines = 5000
 end
 
 return behaviour
