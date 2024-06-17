@@ -1,6 +1,6 @@
 return {
   "willothy/nvim-cokeline",
-  event = {"BufRead", "BufNewFile"},
+  event = { "BufRead", "BufNewFile" },
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons",
@@ -113,7 +113,7 @@ return {
           end,
         },
         {
-          text = "",
+          text = " ",
           fg = function(buffer)
             if buffer.is_focused then
               return colors.text
@@ -140,5 +140,5 @@ return {
         },
       },
     }
-  end
+  end,
 }
