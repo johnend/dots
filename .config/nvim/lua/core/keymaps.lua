@@ -33,6 +33,10 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 
 keymap("n", "<leader>e", ":Neotree float toggle<cr>", opts)
 
+-- Open splits
+keymap("n", "<leader>xh", ":sp<cr>", { desc = "Horizontally" })
+keymap("n", "<leader>xv", ":vs<cr>", { desc = "Vertically" })
+
 -- Resize splits with arrow keys
 keymap("n", "<C-Up>", ":resize +2<CR>", opts)
 keymap("n", "<C-Down>", ":resize -2<CR>", opts)
