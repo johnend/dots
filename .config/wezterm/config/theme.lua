@@ -87,6 +87,13 @@ function theme.apply_to_config(config)
     -- saturation = 0.66,
     brightness = 0.5,
   }
+
+  config.window_padding = {
+    left = 8,
+    right = 8,
+    top = 0,
+    bottom = 0,
+  }
 end
 
 return theme
