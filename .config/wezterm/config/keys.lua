@@ -24,6 +24,11 @@ function keys.apply_to_config(config)
       action = act.CloseCurrentTab { confirm = false },
     },
     { key = "p", mods = "CMD|SHIFT", action = act.ActivateCommandPalette },
+    { key = "p", mods = "CTRL|SHIFT", action = act.DisableDefaultAssignment },
+    { key = "n", mods = "CTRL|SHIFT", action = act.DisableDefaultAssignment },
+
+    -- reset zoom
+    { key = "z", mods = "LEADER", action = act.TogglePaneZoomState },
 
     -- manage splits/panes
     { key = "s", mods = "LEADER", action = act.SplitVertical { domain = "CurrentPaneDomain" } },
