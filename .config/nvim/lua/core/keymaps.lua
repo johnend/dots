@@ -31,7 +31,8 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
-keymap("n", "<leader>e", ":Neotree float toggle<cr>", opts)
+keymap("n", "<leader>nf", ":Neotree float toggle<cr>", { desc = "Float" })
+keymap("n", "<leader>ne", ":Neotree left toggle<cr>", { desc = "Sidebar" })
 
 -- Open splits
 keymap("n", "<leader>xh", ":sp<cr>", { desc = "Horizontally" })

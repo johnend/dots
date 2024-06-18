@@ -79,7 +79,9 @@ return {
     wk.register {
       ["<leader>c"] = { name = "Code (LSP)", _ = "which_key_ignore" },
       ["<leader>d"] = { name = "Diagnostics", _ = "which_key_ignore" },
+      ["<leader>h"] = { name = "Harpoon", _ = "which_key_ignore" },
       ["<leader>l"] = { name = "Lazy", _ = "which_key_ignore" },
+      ["<leader>n"] = { name = "NeoTree", _ = "which_key_ignore" },
       ["<leader>s"] = { name = "Search", _ = "which_key_ignore" },
       ["<leader>t"] = { name = "Toggle", _ = "which_key_ignore" },
       ["<leader>b"] = { name = "Buffers", _ = "which_key_ignore" },
