@@ -39,7 +39,8 @@ function theme.apply_to_config(config)
 
   -- config.line_height = 1.2
 
-  config.harfbuzz_features = { "calt", "liga", "dlig", "ss01", "ss02", "ss03", "ss04", "ss05", "ss06", "ss07", "ss08" }
+  config.harfbuzz_features =
+    { "calt", "liga", "dlig", "ss01", "ss02", "ss03", "ss04", "ss05", "ss06", "ss07", "ss08", "ss09" }
 
   config.freetype_load_flags = "NO_HINTING"
 
