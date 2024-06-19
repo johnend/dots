@@ -2,7 +2,7 @@ local mappings = {
   q = { "<cmd>confirm q<CR>", "Quit" },
   g = {
     name = "LazyGit",
-    g = { "<cmd>lua require 'core.plugins.ui.toggleterm'.lazygit_toggle()<cr>", "Lazygit" },
+    g = { "<cmd>lua require 'core.plugins.ui.toggleterm'.lazygit_toggle()<cr>", "LazyGit" },
   },
 }
 local opts = {
@@ -87,7 +87,6 @@ return {
       ["<leader>b"] = { name = "Buffers", _ = "which_key_ignore" },
       ["<leader>x"] = { name = "Split", _ = "which_key_ignore" },
       -- ['<leader>h'] = { name = 'Git Hunk', _ = 'which_key_ignore' },
-      ["<leader>tg"] = { name = "Git", _ = "which_key_ignore" },
     }
   end,
 }

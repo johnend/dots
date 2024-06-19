@@ -71,6 +71,6 @@ return {
       yadm = { enable = false },
     }
 
-    vim.keymap.set("n", "<leader>tgb", ":Gitsigns toggle_current_line_blame<CR>", { desc = "Git blame" })
+    vim.keymap.set("n", "<leader>gb", ":Gitsigns toggle_current_line_blame<CR>", { desc = "Git blame" })
   end,
 }
