@@ -9,6 +9,11 @@ function window.apply_to_config(config)
 
   -- window decorations
   config.window_decorations = "RESIZE"
+
+  -- window padding
+  config.window_padding = {
+    top = 8,
+  }
 end
 
 return window
