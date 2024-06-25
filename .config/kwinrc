@@ -66,7 +66,7 @@ ActiveShadowAlpha=124
 InactiveShadowAlpha=0
 
 [Tiling]
-padding=16
+padding=4
 
 [Tiling][28cb088b-b05e-5a00-a36f-3f3443f61182]
 tiles={"layoutDirection":"vertical","tiles":[{"height":1,"layoutDirection":"horizontal","tiles":[{"width":0.5},{"width":0.5}]}]}
@@ -79,6 +79,9 @@ tiles={"layoutDirection":"vertical","tiles":[{"height":1,"layoutDirection":"hori
 
 [Tiling][77222b47-39c5-58f7-9d7a-99a007e3887e]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.5128472222222222},{"layoutDirection":"vertical","tiles":[{"height":0.5783333333333333},{"height":0.42166666666666675}],"width":0.48715277777777777}]}
+
+[Tiling][d7ce7540-205d-51b2-b3a5-25a32ffd440a]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Windows]
 AutoRaise=true
