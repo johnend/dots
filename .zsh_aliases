@@ -1,0 +1,20 @@
+#/bin/zsh
+
+# zsh config files
+alias zshaliases="nvim ~/.zsh_aliases"
+alias zshpath="nvim ~/.zsh_path"
+alias zshrc="nvim ~/.zshrc"
+alias zshenv="nvim ~/.zshenv"
+alias omzconfig="nvim ~/.oh-my-zsh"
+
+#######################################
+# CLI tools
+#######################################
+alias lt="tree -a -L 2"
+alias pacmanConf="sudo nano /etc/pacman.conf"
+
+#######################################
+# VIM keybindings
+#######################################
+alias ":q"="exit"
+

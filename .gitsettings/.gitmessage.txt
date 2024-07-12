@@ -1,0 +1,31 @@
+### Commit messages should follow the following format:
+########################################################################
+### Subject line
+########################################################################
+#   <type>[optional scope]: <description>
+############################### 50 chars is here #
+
+### Message body
+#   [optional body]
+################################################### 70 chars is here #
+########################################################################
+
+### Message footer, uncomment line 16 to include
+# BREAKING CHANGE: <description>
+########################################################################
+#
+# Subject: Follow the format on line 24, no longer than 50 characters, 
+# don't end with a period.
+#
+# Two main types are fix, and feat. Fix correlates with PATCH version 
+# changes in SemVer, and feat correlates with MINOR version changes. 
+# Other allowed types are: build, chore, ci, docs, style, refactor, test
+#
+# Body: Explain _what_ and _why_ (not _how_). Include task ID 
+# (Jira issue) - optional but preferred
+#
+# Footer: the footer is reserved for breaking changes. Alternatively 
+# breaking changes can be highlighted with an ! after the type.
+#
+# Examples of commit messages and more information can be found here: 
+# https://www.conventionalcommits.org/en/v1.0.0/

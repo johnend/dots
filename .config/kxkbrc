@@ -1,0 +1,6 @@
+[Layout]
+LayoutList=us
+Model=applealu_iso
+ResetOldOptions=true
+Use=true
+VariantList=mac

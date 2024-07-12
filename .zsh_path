@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+# add /.local/bin to path
+export PATH=/home/johne/.local/bin:$PATH
+
+# ruby gems
+export PATH=/home/johne/.local/share/gem/ruby/3.0.0/bin:$PATH
+
+# go
+export PATH=$PATH:/usr/local/go/bin
