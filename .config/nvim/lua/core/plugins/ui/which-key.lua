@@ -1,28 +1,3 @@
-local mappings = {
-  q = { "<cmd>confirm q<CR>", "Quit" },
-  g = {
-    name = "LazyGit",
-    g = { "<cmd>lua require 'core.plugins.ui.toggleterm'.lazygit_toggle()<cr>", "LazyGit" },
-  },
-}
-local opts = {
-  mode = "n",
-  prefix = "<leader>",
-  buffer = nil,
-  silent = true,
-  noremap = true,
-  nowait = true,
-}
-
-local vopts = {
-  mode = "v",
-  prefix = "<leader>",
-  buffer = nil,
-  silent = true,
-  noremap = true,
-  nowait = true,
-}
-
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",
@@ -33,6 +8,8 @@ return {
       return
     end
     wk.setup {
+      preset = "modern",
+      delay = 300,
       plugins = {
         marks = true,
         registers = true,
@@ -60,33 +37,43 @@ return {
         scroll_down = "<c-d>",
         scroll_up = "<c-u>",
       },
-      window = {
+      win = {
         border = "rounded",
-        position = "bottom",
-        padding = { 2, 2, 2, 2 },
-        margin = { 1, 0, 1, 0 },
-        winblend = 0,
+        padding = { 1, 1 },
+        wo = { winblend = 0 },
+        title = false,
+      },
+      layout = {
+        spacing = 2,
       },
       ignore_missing = false,
       show_help = true,
       show_keys = true,
     }
 
-    wk.register(mappings, opts)
-    wk.register(mappings, vopts)
-
     -- Document existing
-    wk.register {
-      ["<leader>c"] = { name = "Code (LSP)", _ = "which_key_ignore" },
-      ["<leader>d"] = { name = "Diagnostics", _ = "which_key_ignore" },
-      ["<leader>h"] = { name = "Harpoon", _ = "which_key_ignore" },
-      ["<leader>l"] = { name = "Lazy", _ = "which_key_ignore" },
-      ["<leader>n"] = { name = "NeoTree", _ = "which_key_ignore" },
-      ["<leader>s"] = { name = "Search", _ = "which_key_ignore" },
-      ["<leader>t"] = { name = "Toggle", _ = "which_key_ignore" },
-      ["<leader>b"] = { name = "Buffers", _ = "which_key_ignore" },
-      ["<leader>x"] = { name = "Split", _ = "which_key_ignore" },
-      -- ['<leader>h'] = { name = 'Git Hunk', _ = 'which_key_ignore' },
+    wk.add {
+      { "<leader>c", group = "Code (LSP)" },
+      { "<leader>d", group = "Diagnostics" },
+      { "<leader>g", group = "Git" },
+      { "<leader>h", group = "Harpoon", icon = icons.misc.Hook },
+      { "<leader>l", group = "Lazy", icon = icons.misc.Lazy },
+      { "<leader>n", group = "NeoTree", icon = icons.ui.FileTree },
+      { "<leader>s", group = "Search" },
+      { "<leader>t", group = "Toggle" },
+      { "<leader>b", group = "Buffers" },
+      { "<leader>x", group = "Split", icon = icons.misc.Split },
+      {
+        mode = { "n", "v" },
+        { "<leader>q", "<cmd>q<cr>", desc = "Quit" },
+        { "<leader>w", "<cmd>w<cr>", desc = "Write", icon = icons.misc.Write },
+        {
+          "<leader>gg",
+          "<cmd> lua require 'core.plugins.ui.toggleterm'.lazygit_toggle()<cr>",
+          desc = "LazyGit",
+          icon = icons.git.Octoface,
+        },
+      },
     }
   end,
 }
