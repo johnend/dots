@@ -1,10 +1,19 @@
 return {
-  'nvim-lualine/lualine.nvim',
-  event = { 'BufReadPre', 'BufNewFile' },
+  "nvim-lualine/lualine.nvim",
+  event = { "BufReadPre", "BufNewFile" },
   config = function()
     local status_ok, lualine = pcall(require, "lualine")
     if not status_ok then
       return
+    end
+
+    local function macro_recording()
+      local recording_register = vim.fn.reg_recording()
+      if recording_register == "" then
+        return ""
+      else
+        return "Recording @" .. recording_register
+      end
     end
 
     local components = require "core.config.lualine.components"
@@ -34,7 +43,7 @@ return {
         },
       },
       sections = {
-        lualine_a = { components.mode },
+        lualine_a = { components.mode, macro_recording },
         lualine_b = { components.branch },
         lualine_c = { components.diff, components.searchcount },
         lualine_x = { components.diagnostics, components.spaces, components.filetype },
@@ -42,9 +51,9 @@ return {
         lualine_z = { components.progress },
       },
       inactive_sections = {
-        lualine_a = { components.mode },
-        lualine_b = { components.branch },
-        lualine_c = { components.diff },
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = {},
         lualine_x = { components.diagnostics, components.spaces, components.filetype },
         lualine_y = { components.location },
         lualine_z = { components.progress },
@@ -54,5 +63,5 @@ return {
       inactive_winbar = {},
       extensions = {},
     }
-  end
+  end,
 }
