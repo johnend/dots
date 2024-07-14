@@ -105,6 +105,7 @@ return {
     File = "",
     FileSymlink = "",
     Files = "",
+    FileTree = "",
     FindFile = "󰈞",
     FindText = "󰊄",
     Fire = "",
@@ -165,5 +166,9 @@ return {
     Smiley = "",
     Package = "",
     CircuitBoard = "",
+    Hook = "󰛢",
+    Lazy = "",
+    Split = "󰃻",
+    Write = "",
   },
 }
