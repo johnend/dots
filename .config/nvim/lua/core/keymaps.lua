@@ -56,6 +56,7 @@ keymap("n", "N", "nzzzv", opts)
 keymap("n", "<leader>bn", ":bnext<CR>", opts)
 keymap("n", "<leader>bb", ":bprevious<CR>", opts)
 keymap("n", "<leader>bd", ":bd<CR>", opts)
+keymap("n", "<leader>bx", ":bd|e#|bd#<CR>", opts)
 -- Use ESC to clear highlights
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
