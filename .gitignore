@@ -9,3 +9,4 @@
 
 # macOS files
 .DS_Store
+.config/nvim/tmux*.log
