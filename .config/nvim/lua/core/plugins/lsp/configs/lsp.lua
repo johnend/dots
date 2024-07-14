@@ -23,11 +23,11 @@ M.config = function()
       -- Jump to the type of the word under your cursor.
       --  Useful when you're not sure what type a variable is and you want to see
       --  the definition of its *type*, not where it was *defined*.
-      map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type definition")
+      map("<leader>cd", require("telescope.builtin").lsp_type_definitions, "Type definition")
 
       -- Open document symbols in Trouble.
       -- Symbols are things like variables, functions, types, etc.
-      map("<leader>cd", ":Trouble symbols toggle focus=false<CR>", "Document symbols")
+      map("<leader>cs", ":Trouble symbols toggle focus=false<CR>", "Document symbols")
 
       map("<leader>cl", ":Trouble lsp toggle focus=false<CR>", "LSP toggle (Trouble)")
       -- Fuzzy find all the symbols in your current workspace.
