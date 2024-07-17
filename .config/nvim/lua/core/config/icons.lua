@@ -135,6 +135,8 @@ return {
     Table = "",
     Target = "󰀘",
     Telescope = "",
+    TestCovered = "󰙨",
+    TestUncovered = "󰤒",
     Text = "",
     Tree = "",
     Triangle = "󰐊",
