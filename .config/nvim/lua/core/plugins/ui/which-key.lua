@@ -33,10 +33,6 @@ return {
         separator = icons.ui.BoldArrowRight,
         group = icons.ui.Plus,
       },
-      popup_mappings = {
-        scroll_down = "<c-d>",
-        scroll_up = "<c-u>",
-      },
       win = {
         border = "rounded",
         padding = { 1, 1 },
@@ -46,7 +42,6 @@ return {
       layout = {
         spacing = 2,
       },
-      ignore_missing = false,
       show_help = true,
       show_keys = true,
     }
