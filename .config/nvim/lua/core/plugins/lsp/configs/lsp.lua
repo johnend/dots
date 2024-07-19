@@ -44,6 +44,10 @@ M.config = function()
 
       -- Show LSP info
       map("<leader>ci", ":LspInfo<CR>", "LSP info")
+
+      -- Show LSP info
+      map("<leader>r", ":LspRestart<CR>", "Restart LSP Server")
+
       -- Opens a popup that displays documentation about the word under your cursor
       --  See `:help K` for why this keymap.
       map("K", vim.lsp.buf.hover, "Hover Documentation")
@@ -51,6 +55,14 @@ M.config = function()
       -- WARN: This is not Goto Definition, this is Goto Declaration.
       --  For example, in C this would take you to the header.
       map("gD", vim.lsp.buf.declaration, "Goto declaration")
+
+      local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+      if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+        map("<leader>th", function()
+          vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+        end, "Inlay Hints")
+      end
     end,
   })
 
