@@ -25,6 +25,33 @@ return {
         cancel_defered_save = {},
       },
       debounce_delay = 1500,
+      conditon = function(buf)
+        local fn = vim.fn
+        local utils = require "auto-save.utils.data"
+        if fn.getbutvar(buf, "&buftype") ~= "" then
+          return false
+        end
+
+        if
+          utils.not_in(fn.getbufvar(buf, "&filetype"), {
+            "dirvish",
+            "fugitive",
+            "alpha",
+            "neo-tree",
+            "lazy",
+            "Trouble",
+            "Outline",
+            "spectre_panel",
+            "toggleterm",
+            "TelescopePrompt",
+            "WhichKey",
+          })
+        then
+          return false
+        end
+
+        return true
+      end,
     }
   end,
 }

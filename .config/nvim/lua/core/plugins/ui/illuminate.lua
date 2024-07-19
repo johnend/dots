@@ -18,8 +18,6 @@ return {
         "dirvish",
         "fugitive",
         "alpha",
-        "Neotree",
-        "neotree",
         "neo-tree",
         "lazy",
         "Trouble",
