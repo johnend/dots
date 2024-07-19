@@ -29,9 +29,9 @@ return {
       float = {
         header = "",
         border = "rounded",
-        max_width = 120,
+        max_width = 160,
       },
-      virtual_text = false,
+      virtual_text = true,
     }
     vim.o.updatetime = 700
     vim.keymap.set(
