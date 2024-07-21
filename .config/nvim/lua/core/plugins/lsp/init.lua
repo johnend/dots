@@ -31,7 +31,7 @@ return {
         border = "rounded",
         max_width = 160,
       },
-      virtual_text = true,
+      virtual_text = false,
     }
     vim.o.updatetime = 700
     vim.keymap.set(
