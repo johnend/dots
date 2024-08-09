@@ -13,7 +13,7 @@ return {
 
       masonlsp.setup {
         handlers = {
-           function(server_name)
+          function(server_name)
             local server = servers[server_name] or {}
 
             server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
@@ -63,7 +63,8 @@ return {
               "shellcheck",
               "sonarlint-language-server",
               "stylua",
-              "typescript-language-server",
+              "vtsls",
+              -- "typescript-language-server",
               "yaml-language-server",
               "rust-analyzer",
             })
