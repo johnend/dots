@@ -68,6 +68,9 @@ InactiveShadowAlpha=0
 [Tiling]
 padding=4
 
+[Tiling][14a319d6-9577-5cb6-a5aa-c5cbe55556b8]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
 [Tiling][28cb088b-b05e-5a00-a36f-3f3443f61182]
 tiles={"layoutDirection":"vertical","tiles":[{"height":1,"layoutDirection":"horizontal","tiles":[{"width":0.5},{"width":0.5}]}]}
 
@@ -81,6 +84,9 @@ tiles={"layoutDirection":"vertical","tiles":[{"height":1,"layoutDirection":"hori
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.5128472222222222},{"layoutDirection":"vertical","tiles":[{"height":0.5783333333333333},{"height":0.42166666666666675}],"width":0.48715277777777777}]}
 
 [Tiling][d7ce7540-205d-51b2-b3a5-25a32ffd440a]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][dbff8e4a-3aba-579e-b6f9-c08639ee541b]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Windows]
