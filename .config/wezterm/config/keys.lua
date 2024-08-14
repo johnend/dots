@@ -39,8 +39,9 @@ function keys.apply_to_config(config)
     { key = "l", mods = "LEADER", action = act.ActivatePaneDirection "Right" },
     { key = "o", mods = "LEADER", action = act.RotatePanes "Clockwise" },
 
-    -- manage tabs
-    { key = "a", mods = "LEADER", action = act.EmitEvent "setup_custom_layout" },
+    -- manage layouts and tabs
+    { key = "a", mods = "LEADER", action = act.EmitEvent "work_layout" },
+    { key = "p", mods = "LEADER", action = act.EmitEvent "personal_layout" },
     { key = "t", mods = "LEADER", action = act.SpawnTab "CurrentPaneDomain" },
     { key = "[", mods = "LEADER", action = act.ActivateTabRelative(-1) },
     { key = "]", mods = "LEADER", action = act.ActivateTabRelative(1) },

@@ -22,9 +22,12 @@ wezterm.on("update-right-status", function(window, pane)
   window:set_right_status(leader)
 end)
 
-wezterm.on("setup_custom_layout", function(window, pane, name, value)
-  print "Custom layout event triggered"
-  layouts.setup_layout()
+wezterm.on("work_layout", function(window, pane, name, value)
+  layouts.work_layout()
+end)
+
+wezterm.on("personal_layout", function(window, pane, name, value)
+  layouts.personal_layout()
 end)
 
 return M
