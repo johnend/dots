@@ -59,9 +59,16 @@ noborderrule=3
 wmclass=discord
 wmclassmatch=1
 
+[90bb12fb-94ee-47c3-a65f-fc155dd155f2]
+Description=Wezterm
+desktops=d265a439-821e-4425-aac3-c018b440e7b0
+desktopsrule=3
+wmclass=org.wezfurlong.wezterm
+wmclassmatch=1
+
 [General]
-count=5
-rules=1,2,3,4,5
+count=6
+rules=1,2,3,4,5,90bb12fb-94ee-47c3-a65f-fc155dd155f2
 
 [a45eb683-05cd-4205-9247-804de1115fec]
 Description=Firefox left side

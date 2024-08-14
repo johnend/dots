@@ -44,7 +44,7 @@ blurEnabled=true
 contrastEnabled=false
 desktopchangeosdEnabled=false
 diminactiveEnabled=true
-kzonesEnabled=true
+kzonesEnabled=false
 translucencyEnabled=true
 
 [PrimaryOutline]
@@ -98,7 +98,7 @@ FocusPolicy=FocusFollowsMouse
 RollOverDesktops=true
 
 [Xwayland]
-Scale=1
+Scale=1.25
 
 [org.kde.kdecoration2]
 library=org.kde.kwin.aurorae
