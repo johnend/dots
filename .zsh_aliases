@@ -18,3 +18,11 @@ alias pacmanConf="sudo nano /etc/pacman.conf"
 #######################################
 alias ":q"="exit"
 
+#######################################
+# LSD
+#######################################
+alias ls='lsd'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt="ls --tree -A -L -I"
+alias ltd="ls --tree -d -A -L"
