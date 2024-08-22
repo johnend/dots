@@ -12,4 +12,4 @@ fi
 swww query || swww init
 
 # Change to random wallpaper in the Pictures directory
-swww img ${DIR}/${RANDOMWALL} --transition-fps 60 --transition-type any --transition-duration 3
+swww img "${DIR}"/"${RANDOMWALL}" --transition-fps 60 --transition-type any --transition-duration 3
