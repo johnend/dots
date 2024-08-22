@@ -36,6 +36,7 @@ return {
           KC_RALT = "󰘵",
           KC_LGUI = "󰘳/",
           KC_RGUI = "󰘳/",
+          KC_HYPR = "",
           -- media keys
           KC_MPLY = "",
           KC_VOLU = "",
