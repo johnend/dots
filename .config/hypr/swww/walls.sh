@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR=$HOME/Pictures/Wallpapers/minimal/
+DIR=$HOME/Pictures/Wallpapers/anime/
 WALLS=($(ls "${DIR}"))
 
 RANDOMWALL=${WALLS[ $RANDOM % ${#WALLS[@]} ]}
