@@ -7,6 +7,10 @@
 # Lazygit state
 .config/lazygit/state.yml
 
+# Spicetify
+.spicetify/
+.config/spicetify/
+
 # macOS files
 .DS_Store
 .config/nvim/tmux*.log
