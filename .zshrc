@@ -124,13 +124,13 @@ source $ZSH/oh-my-zsh.sh
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
-export PATH=$PATH:/home/johne/.spicetify
+export PATH=$PATH:/home/johnend/.spicetify
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # bun completions
-[ -s "/home/johne/.bun/_bun" ] && source "/home/johne/.bun/_bun"
+[ -s "/home/johnend/.bun/_bun" ] && source "/home/johnend/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
