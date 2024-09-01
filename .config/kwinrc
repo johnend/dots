@@ -98,7 +98,7 @@ FocusPolicy=FocusFollowsMouse
 RollOverDesktops=true
 
 [Xwayland]
-Scale=1.25
+Scale=1.35
 
 [org.kde.kdecoration2]
 library=org.kde.kwin.aurorae

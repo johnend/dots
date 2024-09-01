@@ -21,7 +21,6 @@ wmclassmatch=1
 
 [2]
 Description=Remove Spotify decorations
-noborder=true
 noborderrule=3
 wmclass=Spotify
 wmclassmatch=1
