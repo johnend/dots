@@ -1,7 +1,15 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   event = "User FileOpened",
-  cmd = {"TSInstallFromGrammar", "TSInstall", "TSUninstall", "TSUpdate", "TSUpdateSync", "TSInstallInfo", "TSInstallSync"},
+  cmd = {
+    "TSInstallFromGrammar",
+    "TSInstall",
+    "TSUninstall",
+    "TSUpdate",
+    "TSUpdateSync",
+    "TSInstallInfo",
+    "TSInstallSync",
+  },
   config = function()
     local status_ok, ts = pcall(require, "nvim-treesitter.configs")
     if not status_ok then
@@ -18,6 +26,8 @@ return {
       "git_config",
       "graphql",
       "html",
+      "hyprlang",
+      "javascript",
       "json",
       "jsonc",
       "lua",
