@@ -57,8 +57,17 @@ keymap("n", "<leader>bn", ":bnext<CR>", opts)
 keymap("n", "<leader>bb", ":bprevious<CR>", opts)
 keymap("n", "<leader>bd", ":bd<CR>", opts)
 keymap("n", "<leader>bx", ":%bd|e#|bd#<CR>", opts)
+
 -- Use ESC to clear highlights
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+
+-- Toggle between small and high scrolloff values
+vim.keymap.set(
+  "n",
+  "<leader>ts",
+  "<cmd>let &scrolloff=999-&scrolloff<CR>",
+  { desc = "Toggle between high and low scrolloff values" }
+)
 
 -- Diagnostic keymaps
 -- TODO: enable these in the future

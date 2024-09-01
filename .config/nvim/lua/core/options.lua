@@ -106,7 +106,7 @@ local options = {
   relativenumber = true,
 
   -- scrolling space
-  scrolloff = 999,
+  scrolloff = 8,
 
   -- the number of spaces inserted for each indentation
   shiftwidth = 2,
