@@ -56,7 +56,7 @@ return {
       end,
     },
     { "hrsh7th/cmp-nvim-lua", event = "InsertEnter" },
-    { "mmolhoek/cmp-scss", event = "InsertEnter" },
+    -- { "mmolhoek/cmp-scss", event = "InsertEnter" },
   },
 
   config = function()
@@ -171,12 +171,15 @@ return {
         { name = "luasnip" },
         { name = "path" },
         { name = "buffer" },
-        {
-          name = "scss",
-          option = {
-            folders = { "node_modules/@fanduel/formation-tokens/build/scss" },
-          },
-        },
+        -- {
+        --   name = "scss",
+        --   option = {
+        --     triggers = { "$" },
+        --     extension = ".scss",
+        --
+        --     folders = { "node_modules/@fanduel/formation-tokens/build/scss" },
+        --   },
+        -- },
       },
       window = {
         completion = cmp.config.window.bordered(),

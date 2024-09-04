@@ -62,6 +62,7 @@ return {
               "pyright",
               "shellcheck",
               "sonarlint-language-server",
+              "some-sass-language-server",
               "stylua",
               "vtsls",
               -- "typescript-language-server",
