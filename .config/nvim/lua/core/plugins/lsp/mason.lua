@@ -65,7 +65,7 @@ return {
               "some-sass-language-server",
               "stylua",
               "vtsls",
-              -- "typescript-language-server",
+              -- typscript language server has been renamed, check Mason if you want to install
               "yaml-language-server",
               "rust-analyzer",
             })
