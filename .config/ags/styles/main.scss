@@ -1,0 +1,68 @@
+@use "./variables" as *;
+
+.window {
+  @include content-font-body();
+  background-color: transparent;
+}
+
+/*
+* Containers
+*/
+.date-time,
+.workspaces,
+.utilities {
+  background-color: $base;
+  padding: $spacing-100 $spacing-300 $spacing-100 $spacing-300;
+  border-bottom: $spacing-025 solid $crust;
+  margin-top: $spacing-100;
+}
+.date-time {
+  border-radius: $spacing-400;
+}
+
+.workspaces {
+  border-radius: 0 $spacing-400 $spacing-400 0;
+}
+
+.utilities {
+  border-radius: $spacing-400 0 0 $spacing-400;
+}
+
+/*
+* Date time
+*/
+
+.watch-circle {
+  margin-right: $spacing-100;
+  margin-top: $spacing-025;
+}
+
+.hours,
+.minutes,
+.time-separator {
+  font-weight: bold;
+}
+
+.time-separator {
+  color: $mauve;
+  margin-bottom: 3px;
+}
+
+/*
+* Workspaces
+*/
+
+.workspace-button {
+  border: none;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  margin: 0;
+}
+
+/*
+* Utilities
+*/
+.utilities > svg {
+  color: $mauve;
+}

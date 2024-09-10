@@ -1,0 +1,90 @@
+@use "./colors" as c;
+$font-famiy-main: "Recursive Sans Linear Static";
+$font-famiy-personality: "Recursive Sans Casual Static";
+
+@mixin content-font-main-heading {
+  font-family: $font-famiy-main;
+  font-weight: 600;
+  font-size: 45px;
+  margin: 52px;
+  color: c.$text;
+}
+
+@mixin content-font-section-title {
+  font-family: $font-famiy-main;
+  font-weight: 400;
+  font-size: 30px;
+  margin: 39px 0 13px 0;
+  color: c.$text;
+}
+
+@mixin content-font-sub-heading-1 {
+  font-family: $font-famiy-main;
+  font-weight: 400;
+  font-size: 23px;
+  text-transform: uppercase;
+  margin: 39px 0 13px 0;
+  color: c.$text;
+}
+
+@mixin content-font-sub-heading-2 {
+  font-family: $font-famiy-main;
+  font-weight: 600;
+  font-size: 19px;
+  margin: 39px 0 13px 0;
+  color: c.$text;
+}
+
+@mixin content-font-sub-heading-3 {
+  font-family: $font-famiy-main;
+  font-weight: 400;
+  font-size: 18px;
+  text-transform: uppercase;
+  margin: 39px 0 13px 0;
+  color: c.$text;
+}
+
+@mixin content-font-sub-heading-4 {
+  font-family: $font-famiy-main;
+  font-weight: 400;
+  font-size: 14px;
+  font-style: italic;
+  margin: 39px 0 13px 0;
+  color: c.$text;
+}
+
+@mixin content-font-blockquote {
+  font-family: $font-famiy-main;
+  font-weight: 400;
+  font-style: italic;
+  margin: 39px;
+  color: c.$subtext-0;
+}
+
+@mixin content-font-body {
+  font-family: $font-famiy-main;
+  font-weight: 400;
+  font-size: 16px;
+  color: c.$text;
+}
+
+@mixin content-font-caption {
+  font-family: $font-famiy-main;
+  font-weight: 400;
+  font-size: 14px;
+  color: c.$text;
+}
+
+@mixin content-font-endnote {
+  font-family: $font-famiy-main;
+  font-weight: 400;
+  font-size: 14px;
+  color: c.$text;
+}
+
+@mixin content-font-endnote {
+  font-family: $font-famiy-main;
+  font-weight: 400;
+  font-size: 14px;
+  color: c.$text;
+}

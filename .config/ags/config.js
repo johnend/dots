@@ -18,7 +18,19 @@ const Bar = (/** @type {number} */ monitor) =>
   });
 
 App.addIcons(`${App.configDir}/assets`);
+
+const scssDir = `${App.configDir}/styles`;
+const scss = `${App.configDir}/styles/main.scss`;
+const css = `/tmp/ags/main.css`;
+Utils.exec(`sass ${scss} ${css}`);
+
+Utils.monitorFile(scssDir, function () {
+  Utils.exec(`sass ${scss} ${css}`);
+  App.resetCss();
+  App.applyCss(css);
+});
+
 App.config({
-  style: "./styles.css",
+  style: css,
   windows: [Bar(2)],
 });
