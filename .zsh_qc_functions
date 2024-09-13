@@ -1,0 +1,27 @@
+#!/bin/bash
+
+#######################################
+# QMK compile repo based
+#######################################
+function compile_qmk() {
+  # Get the root directory of the current Git repo
+  REPO_NAME=$(basename $(git rev-parse --show-toplevel) 2>/dev/null)
+
+  # If we're not in a git repo, exit
+  if [ -z "$REPO_NAME" ]; then
+    echo "Error: Not a git repo"
+    exit 1
+  fi
+
+  # Choose the compile command based on the repo name
+  if [ "$REPO_NAME" = "vial-qmk" ]; then
+    echo "Compiling firmware for Cyboard Imprint..."
+    qmk compile -kb cyboard/imprint/imprint_number_row -km qc
+  elif [ "$REPO_NAME" = "qmk_firmware" ]; then
+    echo "Compiling firmware for Sofle..."
+    qmk compile -kb sofle/rev1 -km johnend
+  else
+    echo "Error: Unknown repo"
+    exit 1
+  fi
+}
