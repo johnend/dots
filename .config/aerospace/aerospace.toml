@@ -10,7 +10,7 @@ after-login-command = []
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
-  'exec-and-forget borders'
+  'exec-and-forget borders active_color=0xFFB4BEFE width=8.0'
 ]
 
 # Start AeroSpace at login
@@ -130,19 +130,19 @@ ctrl-alt-shift-f = 'workspace F'
 ctrl-alt-shift-v = 'workspace V'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-cmd-ctrl-alt-shift-1 = 'workspace 1'
-cmd-ctrl-alt-shift-2 = 'workspace 2'
-cmd-ctrl-alt-shift-3 = 'workspace 3'
-cmd-ctrl-alt-shift-4 = 'workspace 4'
-cmd-ctrl-alt-shift-w = 'workspace W'
-cmd-ctrl-alt-shift-s = 'workspace S'
-cmd-ctrl-alt-shift-x = 'workspace X'
-cmd-ctrl-alt-shift-e = 'workspace E'
-cmd-ctrl-alt-shift-d = 'workspace D'
-cmd-ctrl-alt-shift-c = 'workspace C'
-cmd-ctrl-alt-shift-r = 'workspace R'
-cmd-ctrl-alt-shift-f = 'workspace F'
-cmd-ctrl-alt-shift-v = 'workspace V'
+cmd-ctrl-alt-shift-1 = 'move-node-to-workspace 1'
+cmd-ctrl-alt-shift-2 = 'move-node-to-workspace 2'
+cmd-ctrl-alt-shift-3 = 'move-node-to-workspace 3'
+cmd-ctrl-alt-shift-4 = 'move-node-to-workspace 4'
+cmd-ctrl-alt-shift-w = 'move-node-to-workspace W'
+cmd-ctrl-alt-shift-s = 'move-node-to-workspace S'
+cmd-ctrl-alt-shift-x = 'move-node-to-workspace X'
+cmd-ctrl-alt-shift-e = 'move-node-to-workspace E'
+cmd-ctrl-alt-shift-d = 'move-node-to-workspace D'
+cmd-ctrl-alt-shift-c = 'move-node-to-workspace C'
+cmd-ctrl-alt-shift-r = 'move-node-to-workspace R'
+cmd-ctrl-alt-shift-f = 'move-node-to-workspace F'
+cmd-ctrl-alt-shift-v = 'move-node-to-workspace V'
 
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
