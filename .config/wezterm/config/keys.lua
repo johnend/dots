@@ -14,7 +14,7 @@ end)
 function keys.apply_to_config(config)
   -- set config options here
   -- config.config_option = config_option_value
-  config.leader = { key = "s", mods = "CTRL" }
+  -- config.leader = { key = "s", mods = "CTRL" }
 
   config.keys = {
 
