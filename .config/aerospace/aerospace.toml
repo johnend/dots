@@ -128,6 +128,7 @@ ctrl-alt-shift-c = 'workspace C'
 ctrl-alt-shift-r = 'workspace R'
 ctrl-alt-shift-f = 'workspace F'
 ctrl-alt-shift-v = 'workspace V'
+ctrl-alt-shift-z = 'workspace Z'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 cmd-ctrl-alt-shift-1 = 'move-node-to-workspace 1'
@@ -143,6 +144,7 @@ cmd-ctrl-alt-shift-c = 'move-node-to-workspace C'
 cmd-ctrl-alt-shift-r = 'move-node-to-workspace R'
 cmd-ctrl-alt-shift-f = 'move-node-to-workspace F'
 cmd-ctrl-alt-shift-v = 'move-node-to-workspace V'
+cmd-ctrl-alt-shift-z = 'move-node-to-workspace Z'
 
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
@@ -179,14 +181,51 @@ shift-equal = 'resize smart +50'
 [workspace-to-monitor-force-assignment]
 1 = 'main'
 2 = 'retina'
-W = 'retina'
-S = 'retina'
-X = 'retina'
 3 = 'dell'
-E = 'dell'
-D = 'dell'
-C = 'dell'
 4 = 'xg258'
-R = 'xg258'
-F = 'xg258'
-V = 'xg258'
+W = 'retina' # wife (messages)
+S = 'retina' # spotify
+X = 'retina' # placeholder
+E = 'dell' # explore (browser)
+D = 'dell' # development (terminal)
+C = 'dell' # content (obsidian)
+Z = 'dell' # zoom
+R = 'xg258' # 
+F = 'xg258' # work
+V = 'xg258' #
+
+[[on-window-detected]]
+if.app-id = 'com.github.wez.wezterm'
+run = 'move-node-to-workspace D'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.MobileSMS'
+run = 'move-node-to-workspace W'
+
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = 'move-node-to-workspace S'
+
+[[on-window-detected]]
+if.app-id = 'company.thebrowser.Browser'
+run = 'move-node-to-workspace E'
+
+[[on-window-detected]]
+if.app-id = 'md.Obsidian'
+run = 'move-node-to-workspace C'
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = 'move-node-to-workspace F'
+
+[[on-window-detected]]
+if.app-id = 'com.readdle.SparkDesktop.appstore'
+run = 'move-node-to-workspace F'
+
+[[on-window-detected]]
+if.app-id = 'com.flexbits.fantastical2.mac'
+run = 'move-node-to-workspace F'
+
+[[on-window-detected]]
+if.app-id = 'us.zoom.xos'
+run = 'move-node-to-workspace F'
