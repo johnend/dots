@@ -11,6 +11,9 @@
 .spicetify/
 .config/spicetify/
 
+# tmux/tpm
+.config/tmux/plugins
+
 # macOS files
 .DS_Store
 .config/nvim/tmux*.log
