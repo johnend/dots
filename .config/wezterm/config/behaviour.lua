@@ -28,6 +28,8 @@ function behaviour.apply_to_config(config)
   config.initial_cols = 140
 
   config.front_end = "OpenGL"
+
+  config.enable_wayland = false
 end
 
 return behaviour
