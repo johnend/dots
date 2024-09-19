@@ -1,0 +1,82 @@
+# alacritty.toml config
+
+live_config_reload = true
+
+[env]
+TERM = "xterm-256color"
+
+[shell]
+program = '/bin/zsh'
+
+[window]
+decorations = 'buttonless'
+dynamic_padding = false
+dynamic_title = true
+opacity = 0.95
+title = ''
+
+[window.dimensions]
+columns = 100
+lines = 32
+
+[window.padding]
+x = 24
+y = 24
+
+[scrolling]
+history = 12000
+
+[font]
+builtin_box_drawing = false
+size = 12
+offset = { x = 0, y = 0 }
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+style = "Medium"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+style = "Italic"
+
+[font.bold_italic]
+family = "JetBrainsMono Nerd Font"
+style = "Medium Italic"
+
+[colors]
+primary = { background = "#000000", foreground = "#cccccc" }
+
+[colors.cursor]
+text = "CellBackground"
+cursor = "#f81ce5"
+
+[colors.search]
+matches = { background = "0xadd7ff", foreground = "0x1b1e28"}
+focused_match = {  foreground = "0x1b1e28", background = "0xadd7ff" }
+[colors.selection]
+text = "CellForeground"
+background = "0x303340"
+
+[colors.normal]
+  black = "0x100e23"
+  red = "0xff8080"
+  green = "0x5de4c7"
+  yellow = "0xffe9aa"
+  blue = "0x91ddff"
+  magenta = "0xc991e1"
+  cyan = "0xaaffe4"
+  white = "0xcbe3e7"
+
+[colors.bright]
+  black = "0xa6accd"
+  red = "0xff5458"
+  green = "0x5de4c7"
+  yellow = "0xffb378"
+  blue = "0x65b2ff"
+  magenta = "0x906cff"
+  cyan = "0x63f2f1"
+  white = "0xa6b3cc"

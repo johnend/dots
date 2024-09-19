@@ -1,56 +1,51 @@
 # alacritty.toml config
 live_config_reload = true
 
-import = ["~/.config/alacritty/themes/catppuccin-mocha-darker.toml"]
+import = [
+  "~/.config/alacritty/catppuccin-mocha-dark.toml"
+]
 
-# [env]
-# WINIT_X11_SCALE_FACTOR = "1.0"
-# TERM = "xterm-256color"
+[env]
+WINIT_X11_SCALE_FACTOR = "1.0"
+TERM = "xterm-256color"
 
 [shell]
-program = "/usr/bin/zsh"
-
-[cursor]
-blink_interval = 550
-thickness = 0.15
-
-[cursor.style]
-blinking = "On"
-shape = "Block"
-
-[selection]
-save_to_clipboard = true
+program = "/bin/zsh"
 
 [window]
-decorations = 'none'
+decorations = 'Buttonless'
 dynamic_padding = false
 dynamic_title = true
+opacity = 1
 title = ''
 
 [window.dimensions]
 columns = 100
-lines = 30
+lines = 32
 
 [window.padding]
-x = 16
-y = 16
+x = 8
+y = 8
 
 [scrolling]
 history = 12000
 
 [font]
-builtin_box_drawing = false
-size = 12
-offset = { x = 0, y = 0 }
+size = 14
+glyph_offset = {x = 0, y = -1}
 
 [font.normal]
-family = "OperatorMonoLig Nerd Font"
-style = "Light"
+family = "RecMonoLinear Nerd Font Mono"
+style = "Regular"
 
 [font.bold]
-family = "OperatorMonoLig Nerd Font"
-style = "Light"
+family = "RecMonoLinear Nerd Font Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "RecMonoCasual Nerd Font Mono"
+style = "Bold Italic"
 
 [font.italic]
-family = "OperatorMonoLig Nerd Font"
-style = "Light Italic"
+family = "RecMonoCasual Nerd Font Mono"
+style = "Italic"
