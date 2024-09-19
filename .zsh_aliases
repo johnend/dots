@@ -11,3 +11,14 @@ alias gitconfig='nvim ~/.gitconfig'
 
 # QoL
 alias ":q"="exit"
+
+# Lazygit
+alias "gg"="lazygit"
+
+# eza - much better ls
+alias "ls"="eza --icons"
+alias "la"="ls -la --show-symlinks"
+alias "ld"="ls -D"
+alias "lad"="ls -lDa --show-symlinks"
+alias "lt"="ls -T --level=2"
+alias "lat"="ls -Ta" # use with caution!
