@@ -32,7 +32,7 @@ history = 12000
 
 [font]
 size = 14
-glyph_offset = {x = 0, y = -1}
+glyph_offset = {x = 0, y = 0}
 
 [font.normal]
 family = "RecMonoLinear Nerd Font Mono"
