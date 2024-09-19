@@ -1,0 +1,35 @@
+#  ███████╗███╗   ██╗██╗   ██╗    ██╗   ██╗ █████╗ ██████╗ ███████╗
+#  ██╔════╝████╗  ██║██║   ██║    ██║   ██║██╔══██╗██╔══██╗██╔════╝
+#  █████╗  ██╔██╗ ██║██║   ██║    ██║   ██║███████║██████╔╝███████╗
+#  ██╔══╝  ██║╚██╗██║╚██╗ ██╔╝    ╚██╗ ██╔╝██╔══██║██╔══██╗╚════██║
+#  ███████╗██║ ╚████║ ╚████╔╝      ╚████╔╝ ██║  ██║██║  ██║███████║
+#  ╚══════╝╚═╝  ╚═══╝  ╚═══╝        ╚═══╝  ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝
+
+# fzf
+export FZF_DEFAULT_COMMAND='fd --type f --hidden'
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+  --color=fg:#a6adc8,fg+:#d0d0d0,bg:-1,bg+:#1e1e2e
+  --color=hl:#7287fd,hl+:#5fd7ff,info:#cba6f7,marker:#a6e3a1
+  --color=prompt:#d7005f,spinner:#cba6f7,pointer:#cba6f7,header:#87afaf
+  --color=border:#313244,label:#aeaeae,query:#d9d9d9
+  --border="rounded" --border-label="" --preview-window="border-rounded" --prompt="> "
+  --marker=">" --pointer="◆" --separator="─" --scrollbar="│"
+  --layout="reverse" --info="right"'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :50 {}'"
+
+# prefix for yarn script completion in fzf
+export FZF_COMPLETION_TRIGGER="."
+
+export DOTS="$HOME/Developer/personal/dots"
+
+export BAT_CONFIG_PATH=~/.config/bat/config
+
+# This does not work on a mac for some reason 🤦
+# export FZF_ALT_C_COMMAND='fd --type d . --hidden'
+# export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50"
+
+# alternative
+bindkey -s 'ç' "fd --type d . --hidden | fzf --preview 'tree -C {} | head -50'^M"
+
+. "$HOME/.cargo/env"

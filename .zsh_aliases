@@ -1,28 +1,13 @@
-#/bin/zsh
-
-# zsh config files
-alias zshaliases="nvim ~/.zsh_aliases"
-alias zshpath="nvim ~/.zsh_path"
+# Settings files open in VSCode
 alias zshrc="nvim ~/.zshrc"
-alias zshenv="nvim ~/.zshenv"
-alias omzconfig="nvim ~/.oh-my-zsh"
+alias npmrc="nvim ~/.npmrc"
+alias sshconfig="nvim ~/.ssh"
+alias ohmyzsh="nvim ~/.oh-my-zsh"
+alias alacrittysettings="nvim ~/.config/alacritty"
 
-#######################################
-# CLI tools
-#######################################
-alias lt="tree -a -L 2"
-alias pacmanConf="sudo nano /etc/pacman.conf"
+# git aliases
+alias gitforce='git add . && git commit --amend --no-edit --no-verify && git push -f'
+alias gitconfig='nvim ~/.gitconfig'
 
-#######################################
-# VIM keybindings
-#######################################
+# QoL
 alias ":q"="exit"
-
-#######################################
-# LSD
-#######################################
-alias ls='lsd'
-alias la='ls -a'
-alias lla='ls -la'
-alias lt="ls --tree -A -L -I"
-alias ltd="ls --tree -d -A -L"
