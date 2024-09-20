@@ -1,5 +1,6 @@
-source $HOME/.zsh_secrets
-source $HOME/.zsh_functions
+. $HOME/.zsh_secrets
+. $HOME/.zsh_functions
+. $HOME/.zsh_env
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
