@@ -10,7 +10,7 @@ after-login-command = []
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
-  'exec-and-forget borders active_color=0xFFB4BEFE width=8.0'
+  'exec-and-forget borders active_color=( 0xFFCBA6F7, 0xFFB4BEFE) width=8.0'
 ]
 
 # Start AeroSpace at login
@@ -196,6 +196,10 @@ V = 'xg258' #
 
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
+run = 'move-node-to-workspace D'
+
+[[on-window-detected]]
+if.app-id = 'org.alacritty'
 run = 'move-node-to-workspace D'
 
 [[on-window-detected]]
