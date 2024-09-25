@@ -21,8 +21,11 @@ return {
     dashboard.section.buttons.val = {
       button("f", icons.ui.Files .. "  Find file", ":Telescope find_files <CR>"),
       button("n", icons.ui.NewFile .. "  New file", ":ene <BAR> start insert <CR>"),
-      button("p", icons.git.Repo .. "  Find project",
-        ":Telescope project project theme=dropdown layout_config={width=0.3, height=0.4}<CR>"),
+      button(
+        "p",
+        icons.git.Repo .. "  Find project",
+        ":Telescope project project theme=dropdown layout_config={width=0.3, height=0.4}<CR>"
+      ),
       button("r", icons.ui.History .. "  Recent files", ":Telescope oldfiles <CR>"),
       button("t", icons.ui.Text .. "  Find text", ":Telescope live_grep <CR>"),
       button("c", icons.ui.Gear .. "  Config", ":e ~/.config/nvim/init.lua <CR>"),
