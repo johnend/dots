@@ -131,7 +131,7 @@ args = []
 # mode = "windowed"
 # opacity = 0.9
 # blur = true
-decorations = "Transparent"
+decorations = "Buttonless"
 
 # Renderer
 #
