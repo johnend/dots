@@ -2,6 +2,7 @@ local servers = require "core.plugins.lsp.configs.servers"
 return {
   {
     "williamboman/mason-lspconfig.nvim",
+    event = "LspAttach",
     config = function()
       local status_ok, masonlsp = pcall(require, "mason-lspconfig")
       if not status_ok then
@@ -24,6 +25,7 @@ return {
     end,
     dependencies = {
       "williamboman/mason.nvim",
+      event = "LspAttach",
       config = function()
         local status_ok, mason = pcall(require, "mason")
         if not status_ok then
@@ -39,6 +41,7 @@ return {
       dependencies = {
         {
           "WhoIsSethDaniel/mason-tool-installer.nvim",
+          event = "LspAttach",
           config = function()
             local status_ok, masontools = pcall(require, "mason-tool-installer")
             if not status_ok then

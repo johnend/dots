@@ -1,5 +1,6 @@
 return {
   "andythigpen/nvim-coverage",
+  event = "BufRead",
   dependencies = { "nvim-lua/plenary.nvim" },
 
   config = function()

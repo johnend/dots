@@ -1,6 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  event = "User FileOpened",
+  event = "BufRead",
   cmd = {
     "TSInstallFromGrammar",
     "TSInstall",
