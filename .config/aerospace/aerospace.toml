@@ -92,7 +92,7 @@ outer.right =      16
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 ctrl-alt-shift-slash = 'layout tiles horizontal vertical'
-ctrl-alt-shift-comma = 'layout accordion horizontal vertical'
+ctrl-alt-shift-semicolon = 'layout accordion horizontal vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 ctrl-alt-shift-h = 'focus left'
@@ -154,7 +154,7 @@ cmd-ctrl-alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 cmd-ctrl-alt-shift-semicolon = 'mode service'
-cmd-ctrl-alt-shift-backslash = 'mode resize'
+cmd-ctrl-alt-shift-slash = 'mode resize'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
