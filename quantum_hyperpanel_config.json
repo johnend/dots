@@ -1,0 +1,122 @@
+{
+  "bar.customModules.updates.pollingInterval": 1440000,
+  "theme.font.weight": 400,
+  "theme.font.size": "1.1rem",
+  "theme.font.name": "Recursive",
+  "terminal": "alacritty",
+  "theme.bar.floating": true,
+  "theme.bar.buttons.enableBorders": true,
+  "theme.bar.menus.monochrome": false,
+  "theme.bar.menus.opacity": 100,
+  "theme.bar.transparent": true,
+  "theme.bar.outer_spacing": "0.05em",
+  "theme.bar.buttons.spacing": "0.4em",
+  "theme.bar.buttons.padding_x": "0.8rem",
+  "theme.bar.buttons.padding_y": "0.3rem",
+  "theme.bar.buttons.radius": "1.5em",
+  "theme.bar.layer": "top",
+  "theme.bar.margin_top": "0.05em",
+  "theme.bar.buttons.workspaces.enableBorder": false,
+  "bar.workspaces.show_icons": false,
+  "bar.workspaces.show_numbered": false,
+  "bar.workspaces.showWsIcons": false,
+  "theme.bar.buttons.workspaces.smartHighlight": true,
+  "bar.workspaces.workspaces": 6,
+  "bar.workspaces.hideUnoccupied": false,
+  "bar.workspaces.monitorSpecific": true,
+  "bar.workspaces.workspaceMask": false,
+  "bar.windowtitle.icon": true,
+  "bar.windowtitle.truncation": true,
+  "theme.bar.buttons.windowtitle.spacing": "0.8em",
+  "bar.network.truncation": false,
+  "bar.clock.format": "%a %b %d  %H:%M %p",
+  "theme.bar.buttons.clock.spacing": "0.8em",
+  "theme.bar.buttons.media.spacing": "0.8em",
+  "bar.media.show_active_only": false,
+  "bar.notifications.show_total": false,
+  "notifications.ignore": [],
+  "theme.osd.orientation": "horizontal",
+  "theme.osd.location": "bottom",
+  "theme.osd.margins": "0px 0px 80px 0px",
+  "menus.clock.time.military": true,
+  "menus.clock.weather.location": "Edinburgh",
+  "menus.clock.weather.key": "4aeddbb43936437e827205538240210",
+  "menus.clock.weather.unit": "metric",
+  "menus.dashboard.powermenu.avatar.image": "/home/johnend/Pictures/profile.jpg",
+  "theme.bar.menus.menu.dashboard.profile.size": "9em",
+  "menus.dashboard.shortcuts.left.shortcut1.icon": "󰈹",
+  "menus.dashboard.shortcuts.left.shortcut1.command": "firefox",
+  "menus.dashboard.shortcuts.left.shortcut1.tooltip": "Firefox",
+  "menus.dashboard.shortcuts.left.shortcut2.command": "spotify",
+  "menus.dashboard.directories.right.directory3.label": "󱂵  Home",
+  "menus.dashboard.directories.right.directory2.label": "󰉏  Pictures",
+  "menus.dashboard.directories.right.directory1.label": "󱧶  Documents",
+  "menus.dashboard.directories.left.directory3.label": "󰚝  Projects",
+  "menus.dashboard.directories.left.directory2.label": "󰉏  Videos",
+  "menus.dashboard.directories.left.directory1.label": "󰉍  Downloads",
+  "menus.dashboard.shortcuts.right.shortcut3.icon": "󰄀",
+  "menus.dashboard.shortcuts.right.shortcut1.icon": "",
+  "menus.dashboard.shortcuts.left.shortcut4.icon": "",
+  "menus.dashboard.shortcuts.left.shortcut3.icon": " ",
+  "menus.dashboard.shortcuts.left.shortcut2.icon": "",
+  "bar.windowtitle.custom_title": true,
+  "theme.bar.buttons.media.enableBorder": false,
+  "bar.media.show_artist": true,
+  "bar.launcher.icon": "󰈸",
+  "theme.bar.buttons.dashboard.enableBorder": false,
+  "theme.bar.buttons.borderSize": "0.01em",
+  "notifications.position": "bottom right",
+  "bar.layouts": {
+    "0": {
+      "left": [
+        "dashboard",
+        "workspaces",
+        "media"
+      ],
+      "middle": [
+        "windowtitle"
+      ],
+      "right": [
+        "volume",
+        "clock",
+        "notifications"
+      ]
+    },
+    "1": {
+      "left": [
+        "dashboard",
+        "workspaces",
+        "media"
+      ],
+      "middle": [
+        "windowtitle"
+      ],
+      "right": [
+        "volume",
+        "clock",
+        "notifications"
+      ]
+    },
+    "2": {
+      "left": [
+        "dashboard",
+        "workspaces",
+        "media"
+      ],
+      "middle": [
+        "windowtitle"
+      ],
+      "right": [
+        "volume",
+        "network",
+        "bluetooth",
+        "systray",
+        "clock",
+        "notifications"
+      ]
+    }
+  },
+  "bar.windowtitle.truncation_size": 45,
+  "bar.bluetooth.label": false,
+  "theme.bar.buttons.bluetooth.enableBorder": false
+}
