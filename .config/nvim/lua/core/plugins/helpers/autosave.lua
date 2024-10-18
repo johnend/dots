@@ -22,7 +22,7 @@ return {
         immediate_save = { "BufLeave", "FocusLost" },
         -- uncomment the following lines to turn off saving after buffer changes
         defer_save = {},
-        cancel_defered_save = {},
+        cancel_deferred_save = {},
       },
       debounce_delay = 1500,
       conditon = function(buf)
