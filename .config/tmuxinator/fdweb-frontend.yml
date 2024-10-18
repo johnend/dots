@@ -1,7 +1,7 @@
 # /Users/john.enderby/.config/tmuxinator/fdweb.yml
 
 name: fdweb-frontend
-root: ~/Developer/fdweb/
+root: /Users/john.enderby/Developer/fdweb/
 
 # Optional tmux socket
 # socket_name: foo
@@ -46,7 +46,7 @@ root: ~/Developer/fdweb/
 
 windows:
   - front:
-      root: ~/Developer/fdweb/contentx-marketing-frontend/
+      root: /Users/john.enderby/Developer/fdweb/contentx-marketing-frontend/
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
@@ -60,7 +60,7 @@ windows:
           - yarn dev
         - fastfetch
   - sanity:
-      root: ~/Developer/fdweb/contentx-sanity-studio-marketing/
+      root: /Users/john.enderby/Developer/fdweb/contentx-sanity-studio-marketing/
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
@@ -72,7 +72,7 @@ windows:
         - yarn & yarn dev
         - 
   - gql:
-      root: ~/Developer/fdweb/contentx-gql-marketing/
+      root: /Users/john.enderby/Developer/fdweb/contentx-gql-marketing/
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
