@@ -1,3 +1,5 @@
+# config home
+export XDG_CONFIG_HOME="$HOME/.config"
 # fzf
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
