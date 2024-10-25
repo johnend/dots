@@ -1,3 +1,4 @@
 config-file = ./config_base
 
+window-decorations = false
 font-size = 12
