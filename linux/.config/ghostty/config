@@ -1,17 +1,3 @@
-theme = mocha
-background = 11111B
-
-cursor-color = D20F39
-
-font-family = RecMonoLinear Nerd Font Mono
-font-family-bold = RecMonoLinear Nerd Font Mono
-font-family-italic = RecMonoCasual Nerd Font Mono
-font-family-bold-italic = RecMonoCasual Nerd Font Mono
-
-font-feature = dlig ss05 liga
-
-adjust-cell-height = 8%
-
-shell-integration = zsh
+config-file = ./config_base
 
 font-size = 12
