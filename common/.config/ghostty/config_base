@@ -13,3 +13,5 @@ font-feature = dlig ss05 liga
 adjust-cell-height = 8%
 
 shell-integration = zsh
+
+confirm-close-surface = false
