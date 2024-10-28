@@ -1,0 +1,8 @@
+[general]
+import = [
+  "./alacritty_base.toml"
+]
+
+[font]
+size = 14
+glyph_offset = {x = 0, y = 0}

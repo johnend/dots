@@ -1,0 +1,48 @@
+# alacritty.toml config
+[general]
+import = [
+  "~/.config/alacritty/catppuccin-mocha-dark.toml"
+]
+live_config_reload = true
+
+[env]
+WINIT_X11_SCALE_FACTOR = "1.0"
+TERM = "xterm-256color"
+
+[terminal]
+shell = "/bin/zsh"
+
+[window]
+decorations = 'Buttonless'
+dynamic_padding = false
+dynamic_title = true
+opacity = 1
+title = ''
+
+[window.dimensions]
+columns = 100
+lines = 32
+
+[window.padding]
+x = 8
+y = 8
+
+[scrolling]
+history = 12000
+
+
+[font.normal]
+family = "RecMonoLinear Nerd Font Mono"
+style = "Regular"
+
+[font.bold]
+family = "RecMonoLinear Nerd Font Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "RecMonoCasual Nerd Font Mono"
+style = "Bold Italic"
+
+[font.italic]
+family = "RecMonoCasual Nerd Font Mono"
+style = "Italic"

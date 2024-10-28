@@ -1,0 +1,4 @@
+config-file = ./config_base
+
+font-size = 14
+macos-titlebar-style = hidden

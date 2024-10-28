@@ -1,29 +1,37 @@
 # Dotfiles
 
-These dotfiles contain lot of stuff. Not all of it is complete.
+Well hello 👋
 
-NeoVim and other smaller tools are in a _more_ complete place than others (fzf,
-tmux, bat some others).
+Welcome to my dotfiles.
 
-## Some things to think about before you copy everything
+I have set these up to cater for my specific workflow and setup. I work on both
+Mac and Linux so there are some things here that have to be in separate
+directories in order for them to work properly on both machines.
 
-- these dots are for me across MacOS, for work, as well as KDE and Hyprland,
-- not everything is finished (AGS for example),
-- some things could probably be better (many things)
+Tools you will probably need to install these:
 
-### NOTE to self
+- GNU Stow - great for if you are doing this sort of shenanigans. If you're not
+  using a tool like stow then you probably should be, especially if you spend
+  your life in the terminal using TUIs.
+- I like zsh and I like ohmyzsh, if you do too and you want to steal some of the
+  things I have here then feel free, however if you just want to roll your own
+  then there is a script `commmon/omz-install.sh` that will install some of my
+  favourite plugins and powerlevel10k (if you don't want all of them then that's
+  cool, just use it as a reference).
+- My Linux setup is still a work in progress, I've been messing with someone
+  else's AGS setup to see what I can learn from it. YMMV
+- If you're looking for my neovim setup then its all in `common/.config/nvim`,
+  and if you're desperate to steal the ascii I use in my alpha dashboard it can be
+  found in there too.
 
-- currently using `input-remapper` to have:
-  - CAPS as a mod tap with HYPER as hold,
-  - ESC as mod tap with MEH as hold,
+Some other things to think about:
 
-Probably would be better to find something more useful for the tap on CAPS as
-that's probably going to be annoying with accidental activations.
+The config files for certain applications (Alacritty and Ghostty, but maybe more
+in the future) are split across common and the specifc OS using imports in the
+specific OS's config file.
 
-## TODO
+This allows me to have some OS specific config options set (for example, due to
+Hyprland's scaling I have a different font size on Linux than on Mac).
 
-- [ ] update AGS to include a bunch more functionality
-  - [ ] run menu,
-  - [ ] settings toggles (bluetooth, volume etc.)
-  - [ ] wallpaper switcher
-  - [ ] theme switcher (one day)
+Otherwise go ham and see what you can borrow. Hopefully something I have here
+helps you out!
