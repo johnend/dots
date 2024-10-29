@@ -17,3 +17,6 @@
 # macOS files
 .DS_Store
 .config/nvim/tmux*.log
+
+#tmux logs
+tmux-client-*.log
