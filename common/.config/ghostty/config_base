@@ -15,3 +15,5 @@ adjust-cell-height = 8%
 shell-integration = zsh
 
 confirm-close-surface = false
+
+window-padding-y = 4,0
