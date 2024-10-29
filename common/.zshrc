@@ -103,3 +103,6 @@ export PATH="/usr/local/go/bin:$PATH"
 # zoxide
 eval "$(zoxide init zsh)"
 
+if [ -f ~/.netskope_env ]; then
+  source ~/.netskope_env
+fi
