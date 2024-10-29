@@ -18,5 +18,6 @@
 .DS_Store
 .config/nvim/tmux*.log
 
-#tmux logs
+#tmux
+common/.config/tmux/plugins
 tmux-client-*.log
