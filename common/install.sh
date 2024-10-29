@@ -38,7 +38,12 @@ sed -i '' 's/plugins=(.*/plugins=(git fzf-tab zsh-vi-mode fzf-yarn zsh-autosugge
 
 # Reload Zsh configuration
 echo "Reloading .zshrc..."
-source ~/.zshrc
+source "$XDG_CONFIG_HOME"/.zshrc
 
-# Run Powerlevel10k configuration wizard
+
+# Install TPM for tmux
+echo "Installing TPM for tmux..."
+git clone https://github.com/tmux-plugins/tpm ~/.config/plugins/tpm
+
+# Installation complete
 echo "Installation complete! Please restart your terminal or run 'source ~/.zshrc' if changes do not take effect."
