@@ -43,7 +43,7 @@ source "$XDG_CONFIG_HOME"/.zshrc
 
 # Install TPM for tmux
 echo "Installing TPM for tmux..."
-git clone https://github.com/tmux-plugins/tpm ~/.config/plugins/tpm
+git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 
 # Installation complete
 echo "Installation complete! Please restart your terminal or run 'source ~/.zshrc' if changes do not take effect."
