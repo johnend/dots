@@ -14,6 +14,12 @@ return {
       },
     }
 
-    vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "Open parent directory" })
+    vim.keymap.set("n", "-", function()
+      local util = require "oil.util"
+      oil.open()
+      util.run_after_load(0, function()
+        oil.open_preview()
+      end)
+    end, { desc = "Oil" })
   end,
 }
