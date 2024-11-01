@@ -2,6 +2,7 @@ theme = mocha
 background = 11111B
 
 cursor-color = D20F39
+adjust-cursor-thickness = 1
 
 font-family = RecMonoLinear Nerd Font Mono
 font-family-bold = RecMonoLinear Nerd Font Mono
