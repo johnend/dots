@@ -143,14 +143,23 @@ return {
     vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "Grep" })
     vim.keymap.set("n", "<leader>sv", builtin.git_files, { desc = "Git files" })
     vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "Diagnostics" })
-    vim.keymap.set("n", "<leader>sp",
-      ":Telescope project project theme=dropdown layout_config={width=0.5, height=0.4}<CR>", { desc = "Projects" })
+    vim.keymap.set(
+      "n",
+      "<leader>sp",
+      ":Telescope project project theme=dropdown layout_config={width=0.5, height=0.4}<CR>",
+      { desc = "Projects" }
+    )
     vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "Resume" })
     vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = 'Recent Files ("." for repeat)' })
     vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "Open buffers" })
-    vim.keymap.set("n", "<leader>st",
-      ":TodoTelescope theme=dropdown previewer=false layout_config={width=0.5,height=0.3}<CR>", { desc = "Todos" })
-    vim.keymap.set("", "<leader>sb", builtin.current_buffer_fuzzy_find, { desc = "Search in current buffer" })
+    vim.keymap.set(
+      "n",
+      "<leader>st",
+      ":TodoTelescope theme=dropdown previewer=false layout_config={width=0.5,height=0.3}<CR>",
+      { desc = "Todos" }
+    )
+    vim.keymap.set("", "<leader>sb", builtin.buffers, { desc = "Search open buffers" })
+    vim.keymap.set("", "<leader>sc", builtin.current_buffer_fuzzy_find, { desc = "Search in current buffer" })
 
     -- Shortcut for searching your Neovim configuration files
     vim.keymap.set("n", "<leader>sn", function()
