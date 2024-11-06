@@ -66,8 +66,8 @@ return {
               "sonarlint-language-server",
               "some-sass-language-server",
               "stylua",
-              "vtsls",
-              -- typscript language server has been renamed, check Mason if you want to install
+              "ts_ls",
+              -- "vtsls",
               "yaml-language-server",
               "rust-analyzer",
             })
