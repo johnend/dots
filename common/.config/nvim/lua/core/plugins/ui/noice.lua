@@ -3,7 +3,7 @@ return {
   event = "VimEnter",
   dependencies = {
     "MunifTanjim/nui.nvim",
-    { "rcarriga/nvim-notify", opts = { top_down = false } },
+    { "rcarriga/nvim-notify", opts = { top_down = true } },
   },
   config = function()
     local status_ok, noice = pcall(require, "noice")
