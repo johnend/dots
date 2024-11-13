@@ -44,17 +44,17 @@ separator_close = ""
 separator_style = { fg = "#45475a", bg = "#45475a" }
 
 # Mode
-mode_normal = { fg = "#1e1e2e", bg = "#89b4fa", bold = true }
+mode_normal = { fg = "#1e1e2e", bg = "#cba6f7", bold = true }
 mode_select = { fg = "#1e1e2e", bg = "#a6e3a1", bold = true }
 mode_unset  = { fg = "#1e1e2e", bg = "#f2cdcd", bold = true }
 
 # Progress
 progress_label  = { fg = "#ffffff", bold = true }
-progress_normal = { fg = "#89b4fa", bg = "#45475a" }
+progress_normal = { fg = "#cba6f7", bg = "#45475a" }
 progress_error  = { fg = "#f38ba8", bg = "#45475a" }
 
 # Permissions
-permissions_t = { fg = "#89b4fa" }
+permissions_t = { fg = "#cba6f7" }
 permissions_r = { fg = "#f9e2af" }
 permissions_w = { fg = "#f38ba8" }
 permissions_x = { fg = "#a6e3a1" }
@@ -66,7 +66,7 @@ permissions_s = { fg = "#7f849c" }
 # : Select {{{
 
 [select]
-border   = { fg = "#89b4fa" }
+border   = { fg = "#cba6f7" }
 active   = { fg = "#f5c2e7", bold = true }
 inactive = {}
 
@@ -76,7 +76,7 @@ inactive = {}
 # : Input {{{
 
 [input]
-border   = { fg = "#89b4fa" }
+border   = { fg = "#cba6f7" }
 title    = {}
 value    = {}
 selected = { reversed = true }
@@ -87,7 +87,7 @@ selected = { reversed = true }
 # : Completion {{{
 
 [completion]
-border = { fg = "#89b4fa" }
+border = { fg = "#cba6f7" }
 
 # : }}}
 
@@ -95,7 +95,7 @@ border = { fg = "#89b4fa" }
 # : Tasks {{{
 
 [tasks]
-border  = { fg = "#89b4fa" }
+border  = { fg = "#cba6f7" }
 title   = {}
 hovered = { fg = "#f5c2e7", underline = true }
 
@@ -156,7 +156,7 @@ rules = [
 
 	# Fallback
 	{ name = "*", fg = "#cdd6f4" },
-	{ name = "*/", fg = "#89b4fa" }
+	{ name = "*/", fg = "#cba6f7" }
 ]
 
 # : }}}
