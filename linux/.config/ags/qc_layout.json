@@ -42,7 +42,7 @@
             "volume",
             "network",
             "bluetooth",
-            "systray",
+            "battery",
             "clock",
             "notifications"
         ]
