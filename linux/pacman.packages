@@ -34,8 +34,15 @@ alacritty
 firefox-developer-edition
 input-remapper-git
 dart-sass
+vesktop
+rofi-wayland
 
-# testing
+#################################################
+# Hyprpanel
+#################################################
+Intstall hyprpanel manually from github
+
+# dependencies
 libgtop
 grimblast
 gpu-screen-recorder
