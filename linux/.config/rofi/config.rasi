@@ -1,0 +1,40 @@
+configuration {
+	modes: "drun,run,window";
+	show-icons: true;
+	fallback-icon: "fire";
+	font: "Noto Sans Medium 11";
+	terminal: "alacritty";
+	sidebar-mode: true;
+/*	location: 0;*/
+/*	yoffset: 0;*/
+/*	xoffset: 0;*/
+/*	window-format: "{w}    {c}   {t}";*/
+	kb-mode-next: "";
+	kb-mode-previous: "";
+	kb-mode-previous: "ISO_Left_Tab";
+	kb-mode-next: "Tab";
+	kb-element-next: "";
+	kb-element-prev: "";
+
+	display-drun: "󰣆";
+	display-run: "󱃷";
+	display-window: "󱂬";
+	display-filebrowser: "";
+  timeout {
+      action: "kb-cancel";
+      delay:  0;
+  }
+  drun {
+      fallback-icon: "applications-other";
+  }
+  run {
+      fallback-icon: "applications-other";
+  }
+  filebrowser {
+      directories-first: true;
+      sorting-method:    "name";
+      show-hidden: true;
+  }
+}
+
+@theme "./themes/catppuccin-mocha.rasi"
