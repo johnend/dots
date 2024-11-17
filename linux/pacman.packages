@@ -36,6 +36,7 @@ input-remapper-git
 dart-sass
 vesktop
 rofi-wayland
+playerctl
 
 #################################################
 # Hyprpanel
