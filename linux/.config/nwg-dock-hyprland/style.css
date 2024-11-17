@@ -1,0 +1,37 @@
+window {
+  background: rgba(17, 17, 27, 0.6);
+  border-radius: 32px;
+}
+
+#box {
+  /* Define attributes of the box surrounding icons here */
+  padding: 4px;
+}
+#active {
+  /* This is to underline the button representing the currently active window */
+  /* border-bottom: 1px solid; */
+  /* border-color: #cba6f7; */
+}
+
+button,
+image {
+  background: none;
+  border-style: none;
+  box-shadow: none;
+}
+
+button {
+  padding: 8px;
+  margin: 0 2px;
+  color: #eee;
+  font-size: 12px;
+}
+
+button:hover {
+  background-color: #11111b;
+  border-radius: 32px;
+}
+
+button:focus {
+  box-shadow: none;
+}
