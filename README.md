@@ -35,3 +35,34 @@ Hyprland's scaling I have a different font size on Linux than on Mac).
 
 Otherwise go ham and see what you can borrow. Hopefully something I have here
 helps you out!
+
+### Other things to note
+
+I have disabled the Emacs text based shortcuts due to them causing issues when
+typing and using a mod-tap with CTRL and Space on the same key. If you don't
+know what this means then don't worry about it, but if you do, then you might
+want to do the same.
+
+To do so, you can either use Karabiner elements (though this can have other
+unintentional side effects), or _create_ a file under `~/Library/KeyBindings/`
+called `DefaultKeyBinding.dict` and then insert the following:
+
+```
+{
+    "^a" = noop; // Disable Ctrl+A
+    "^b" = noop; // Disable Ctrl+B
+    "^d" = noop; // Disable Ctrl+D
+    "^e" = noop; // Disable Ctrl+E
+    "^f" = noop; // Disable Ctrl+F
+    "^h" = noop; // Disable Ctrl+H
+    "^k" = noop; // Disable Ctrl+K
+    "^n" = noop; // Disable Ctrl+N
+    "^p" = noop; // Disable Ctrl+P
+    "^t" = noop; // Disable Ctrl+T
+    "^v" = noop; // Disable Ctrl+V
+    "^w" = noop; // Disable Ctrl+W
+    "^y" = noop; // Disable Ctrl+Y
+}
+```
+
+I have them all disabled, but you might only want to disable a few.
