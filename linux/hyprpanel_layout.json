@@ -1,0 +1,38 @@
+{
+  "0": {
+    "left": ["dashboard", "workspaces", "media", "systray"],
+    "middle": ["windowtitle"],
+    "right": [
+      "volume",
+      "network",
+      "battery",
+      "bluetooth",
+      "clock",
+      "notifications"
+    ]
+  },
+  "1": {
+    "left": ["dashboard", "workspaces", "media", "systray"],
+    "middle": ["windowtitle"],
+    "right": [
+      "volume",
+      "network",
+      "battery",
+      "bluetooth",
+      "clock",
+      "notifications"
+    ]
+  },
+  "2": {
+    "left": ["dashboard", "workspaces", "media", "systray"],
+    "middle": ["windowtitle"],
+    "right": [
+      "volume",
+      "network",
+      "battery",
+      "bluetooth",
+      "clock",
+      "notifications"
+    ]
+  }
+}
