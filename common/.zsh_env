@@ -22,7 +22,13 @@ export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :50 {}'"
 # prefix for yarn script completion in fzf
 export FZF_COMPLETION_TRIGGER="."
 
-export DOTS="$HOME/Developer/personal/dots"
+if [[ "$(uname)" == "Linux" ]]; then
+  export DOTS="$HOME/.dots/"
+elif [[ "$(uname)" == "Darwin" ]]; then
+  export DOTS="$HOME/Developer/personal/dots"
+fi
+
+
 
 export BAT_CONFIG_PATH=~/.config/bat/config
 
