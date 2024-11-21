@@ -36,7 +36,9 @@ input-remapper-git
 dart-sass
 vesktop
 rofi-wayland
+nwg-dock-hyprland
 playerctl
+beeper-latest-bin
 
 #################################################
 # Hyprpanel
