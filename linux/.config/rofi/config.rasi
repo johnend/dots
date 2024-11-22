@@ -1,5 +1,5 @@
 configuration {
-	modes: "drun,run,window";
+	modes: "drun,run,window,emoji";
 	show-icons: true;
 	fallback-icon: "fire";
 	font: "Noto Sans Medium 11";
@@ -20,6 +20,7 @@ configuration {
 	display-run: "󱃷";
 	display-window: "󱂬";
 	display-filebrowser: "";
+	display-emoji: "󰝴";
   timeout {
       action: "kb-cancel";
       delay:  0;
