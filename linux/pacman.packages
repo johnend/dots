@@ -39,6 +39,7 @@ rofi-wayland
 nwg-dock-hyprland
 playerctl
 beeper-latest-bin
+rofi-emoji-git
 
 #################################################
 # Hyprpanel
