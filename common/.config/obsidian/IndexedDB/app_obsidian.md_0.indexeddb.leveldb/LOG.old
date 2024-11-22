@@ -1,9 +1,0 @@
-2024/11/21-00:24:14.559 2f7cf Reusing MANIFEST /home/johnend/.config/obsidian/IndexedDB/app_obsidian.md_0.indexeddb.leveldb/MANIFEST-000001
-2024/11/21-00:24:14.560 2f7cf Recovering log #22
-2024/11/21-00:24:14.566 2f7cf Reusing old log /home/johnend/.config/obsidian/IndexedDB/app_obsidian.md_0.indexeddb.leveldb/000022.log 
-2024/11/21-00:30:00.632 2f7cf Compacting 1@1 + 1@2 files
-2024/11/21-00:30:00.648 2f7cf Generated table #25@1: 1009 keys, 251370 bytes
-2024/11/21-00:30:00.648 2f7cf Compacted 1@1 + 1@2 files => 251370 bytes
-2024/11/21-00:30:00.660 2f7cf compacted to: files[ 0 0 1 0 0 0 0 ]
-2024/11/21-00:30:00.660 2f7cf Delete type=2 #20
-2024/11/21-00:30:00.660 2f7cf Delete type=2 #23
