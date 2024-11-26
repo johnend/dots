@@ -60,11 +60,13 @@ return {
             RainbowGreen = { bg = colors.transparent.green },
             RainbowViolet = { bg = colors.transparent.mauve },
             RainbowCyan = { bg = colors.transparent.sapphire },
+
+            -- Terminal (toggleterm)
+            TermCursor = { fg = colors.mantle, bg = "#D20F39" },
           }
         end,
       },
     }
     vim.cmd.colorscheme "catppuccin"
-
   end,
 }
