@@ -77,6 +77,8 @@ return {
           find_command = {
             "fd",
             "--hidden",
+            "--type",
+            "file",
           },
         },
         builtin = {
