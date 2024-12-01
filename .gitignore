@@ -1,22 +1,22 @@
 .stow-local-ignore
 
+# aerc ignores
+linux/.config/aerc/accounts.conf
+
 # K9s ignores
-.config/k9s/clusters/
-.config/k9s/k9s.log
+common/.config/k9s/clusters/
+common/.config/k9s/k9s.log
 
 # Lazygit state
-.config/lazygit/state.yml
+common/.config/lazygit/state.yml
 
 # Spicetify
-.spicetify/
-.config/spicetify/
-
-# tmux/tpm
-.config/tmux/plugins
+linux/.spicetify/
+linux/.config/spicetify/
 
 # macOS files
 .DS_Store
-.config/nvim/tmux*.log
+commmon/.config/nvim/tmux*.log
 
 #tmux
 common/.config/tmux/plugins
