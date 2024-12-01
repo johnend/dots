@@ -24,3 +24,10 @@ alias "ld"="ls -D"
 alias "lad"="ls -lDa --show-symlinks"
 alias "lt"="ls -T --level=2"
 alias "lat"="ls -Ta" # use with caution!
+
+# aerc
+alias "a"="aerc"
+
+# neovim
+alias "vim"="nvim"
+alias "v"="nvim"
