@@ -40,6 +40,9 @@ nwg-dock-hyprland
 playerctl
 beeper-latest-bin
 rofi-emoji-git
+thefuck
+aerc
+lynx
 
 #################################################
 # Hyprpanel
