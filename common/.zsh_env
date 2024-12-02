@@ -5,8 +5,12 @@
 #  ███████╗██║ ╚████║ ╚████╔╝      ╚████╔╝ ██║  ██║██║  ██║███████║
 #  ╚══════╝╚═╝  ╚═══╝  ╚═══╝        ╚═══╝  ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝
 
+
+# config home
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
 # fzf
-export FZF_DEFAULT_COMMAND='fd --type f --hidden'
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
   --color=fg:#a6adc8,fg+:#cdd6f4,bg:-1,bg+:#1e1e2e
   --color=hl:#cba6f7,hl+:#94e2d5,info:#cba6f7,marker:#a6e3a1
@@ -19,8 +23,11 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :50 {}'"
 
-# prefix for yarn script completion in fzf
+# prefix for yarn script completion
 export FZF_COMPLETION_TRIGGER="."
+
+export FZF_ALT_C_COMMAND="fd --type d . --hidden"
+export FZF_ALT_C_OPTS="--preview 'eza -T {} | head -50'"
 
 if [[ "$(uname)" == "Linux" ]]; then
   export DOTS="$HOME/.dots/"
@@ -28,15 +35,16 @@ elif [[ "$(uname)" == "Darwin" ]]; then
   export DOTS="$HOME/Developer/personal/dots"
 fi
 
+# change default editor to nvim
+export EDITOR=nvim
 
+export PACMAN_CACHE=/var/cache/pacman/
 
-export BAT_CONFIG_PATH=~/.config/bat/config
+# Firefox developer edition user directory
+export FFD_USER_DIR=$HOME/.mozilla/firefox/6dh274r9.dev-edition-default/
 
-# This does not work on a mac for some reason 🤦
-# export FZF_ALT_C_COMMAND='fd --type d . --hidden'
-# export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50"
+# Autosuggestions highlight color
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ca9ee6"
 
-# alternative
-bindkey -s 'ç' "fd --type d . --hidden | fzf --preview 'tree -C {} | head -50'^M"
-
+# Source cargo env
 . "$HOME/.cargo/env"
