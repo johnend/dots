@@ -60,7 +60,7 @@ return {
       { "<leader>x", group = "Split", icon = icons.misc.Split },
       {
         mode = { "n", "v" },
-        { "<leader>q", "<cmd>qa<cr>", desc = "Quit" },
+        { "<leader>q", "<cmd>q<cr>", desc = "Quit" },
         { "<leader>w", "<cmd>w<cr>", desc = "Write", icon = icons.misc.Write },
         {
           "<leader>gg",
