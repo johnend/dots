@@ -95,10 +95,10 @@ ctrl-alt-shift-slash = 'layout tiles horizontal vertical'
 ctrl-alt-shift-semicolon = 'layout accordion horizontal vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-ctrl-alt-shift-h = 'focus left'
+ctrl-alt-shift-h = 'focus --boundaries-action wrap-around-the-workspace left'
 ctrl-alt-shift-j = 'focus down'
 ctrl-alt-shift-k = 'focus up'
-ctrl-alt-shift-l = 'focus right'
+ctrl-alt-shift-l = 'focus --boundaries-action wrap-around-the-workspace right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
 cmd-ctrl-alt-shift-h = 'move left'
@@ -163,14 +163,6 @@ esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
 f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
-
-# sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
-#s = ['layout sticky tiling', 'mode main']
-
-ctrl-alt-shift-h = ['join-with left', 'mode main']
-ctrl-alt-shift-j = ['join-with down', 'mode main']
-ctrl-alt-shift-k = ['join-with up', 'mode main']
-ctrl-alt-shift-l = ['join-with right', 'mode main']
 
 [mode.resize.binding]
 esc = ['reload-config', 'mode main']
