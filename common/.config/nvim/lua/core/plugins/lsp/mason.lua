@@ -55,6 +55,7 @@ return {
               "css-variables-language-server",
               "emmet-language-server",
               "eslint_d",
+              "graphql",
               "helm-ls",
               "html-lsp",
               "json-lsp",

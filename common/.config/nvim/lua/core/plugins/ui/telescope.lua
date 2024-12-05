@@ -85,6 +85,10 @@ return {
           theme = "dropdown",
           previewer = false,
         },
+        colorscheme = {
+          theme = "dropdown",
+          enable_preview = true,
+        },
         grep_string = {
           theme = "dropdown",
         },
