@@ -1,4 +1,4 @@
-# /Users/john.enderby/.config/tmuxinator/fdweb-frontend.yml
+# /Users/john.enderby/.config/tmuxinator/fdweb.yml
 
 name: fdweb
 root: /Users/john.enderby/Developer/fdweb/
@@ -59,3 +59,28 @@ windows:
           - yarn
           - 
         - fastfetch
+  - sanity:
+      root: /Users/john.enderby/Developer/fdweb/contentx-sanity-studio-marketing/
+      layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        - editor:
+          - tmux resize-pane -x 60%
+          - nvim
+        - yarn & yarn dev
+        - 
+  - gql:
+      root: /Users/john.enderby/Developer/fdweb/contentx-gql-marketing/
+      layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        - editor:
+          - tmux resize-pane -x 60%
+          - nvim
+        - docker:
+          - docker-compose build
+          - docker-compose up
