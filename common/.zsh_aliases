@@ -29,5 +29,4 @@ alias "lat"="ls -Ta" # use with caution!
 alias "a"="aerc"
 
 # neovim
-alias "vim"="nvim"
 alias "v"="nvim"
