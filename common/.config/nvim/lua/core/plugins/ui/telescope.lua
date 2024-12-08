@@ -152,7 +152,6 @@ return {
       { desc = "Todos" }
     )
     vim.keymap.set("", "<leader>sb", builtin.buffers, { desc = "Search open buffers" })
-    vim.keymap.set("", "<leader>sc", builtin.current_buffer_fuzzy_find, { desc = "Search in current buffer" })
 
     -- Shortcut for searching your Neovim configuration files
     vim.keymap.set("n", "<leader>sn", function()
