@@ -51,17 +51,20 @@ return {
         NoiceCmdlinePopupBorder = { fg = "iris" },
 
         -- IBL highlights
-        IblIndent = { fg = "iris" },
-        RainbowRed = { bg = "love" },
-        RainbowYellow = { bg = "gold" },
-        RainbowBlue = { bg = "pine" },
-        RainbowOrange = { bg = "rose" },
-        RainbowGreen = { bg = "foam" },
-        RainbowViolet = { bg = "iris" },
-        RainbowCyan = { bg = "pine" },
+        IblIndent = { fg = colors.mantle },
+        RainbowRed = { bg = colors.transparent.red },
+        RainbowYellow = { bg = colors.transparent.yellow },
+        RainbowBlue = { bg = colors.transparent.blue },
+        RainbowOrange = { bg = colors.transparent.peach },
+        RainbowGreen = { bg = colors.transparent.green },
+        RainbowViolet = { bg = colors.transparent.mauve },
+        RainbowCyan = { bg = colors.transparent.sapphire },
 
         -- Terminal (toggleterm)
         TermCursor = { fg = "surface", bg = "#D20F39" },
+
+        -- Telescope
+        TelescopeBorder = { fg = "foam", bg = "" },
       },
     }
     vim.cmd.colorscheme "rose-pine"

@@ -17,12 +17,9 @@ return {
     end
 
     local components = require "core.config.lualine.components"
-    local catppuccin = require "core.config.lualine.lualine-theme"
 
     lualine.setup {
       options = {
-        -- custom theme imported above
-        theme = catppuccin,
         -- rounded section separators one one side only
         section_separators = { left = "", right = "" },
         -- enable icons
@@ -46,7 +43,16 @@ return {
         lualine_a = { components.mode, macro_recording },
         lualine_b = { components.branch },
         lualine_c = { components.diff, components.searchcount },
-        lualine_x = { components.diagnostics, components.spaces, components.filetype },
+        lualine_x = {
+          components.diagnostics,
+          components.spaces,
+          {
+            "filename",
+            separator = { left = "" },
+            symbols = { modified = icons.git.LineModified, readonly = icons.ui.Lock },
+          },
+          { "filetype", icon_only = true, separator = { right = "" } },
+        },
         lualine_y = { components.location },
         lualine_z = { components.progress },
       },
@@ -54,7 +60,7 @@ return {
         lualine_a = {},
         lualine_b = {},
         lualine_c = {},
-        lualine_x = { components.diagnostics, components.spaces, components.filetype },
+        lualine_x = { components.diagnostics, components.spaces, components.filename, components.filetype },
         lualine_y = { components.location },
         lualine_z = { components.progress },
       },
