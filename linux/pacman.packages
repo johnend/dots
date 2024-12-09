@@ -43,6 +43,8 @@ rofi-emoji-git
 thefuck
 aerc
 lynx
+inotify-tools
+ghostty-git --devel
 
 #################################################
 # Hyprpanel
