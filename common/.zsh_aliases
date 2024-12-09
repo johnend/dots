@@ -30,3 +30,8 @@ alias "a"="aerc"
 
 # neovim
 alias "v"="nvim"
+
+#gh cli
+gh-create() { 
+  gh repo create "${1:-$(basename "$PWD")}" --public --source=. --remote=origin
+}
