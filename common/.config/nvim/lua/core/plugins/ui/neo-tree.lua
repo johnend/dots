@@ -16,6 +16,11 @@ return {
 
     neotree.setup {
       filesystem = {
+        window = {
+          mappings = {
+            ["o"] = "system_open",
+          },
+        },
         follow_current_file = {
           enabled = true,
         },
@@ -32,6 +37,28 @@ return {
           },
           never_show = {},
         },
+      },
+      commands = {
+        system_open = function(state)
+          local node = state.tree:get_node()
+          local path = node:get_id()
+          local os = vim.loop.os_uname().sysname
+
+          if os == "Darwin" then
+            vim.fn.jobstart({ "open", path }, { detach = true })
+          elseif os == "Linux" then
+            vim.fn.jobstart({ "xdg-open", path }, { detach = true })
+          else
+            local p
+            local lastSlashIndex = path:match "^.+()\\[^\\]*$" -- Match the last slash and everything before it
+            if lastSlashIndex then
+              p = path:sub(1, lastSlashIndex - 1) -- Extract substring before the last slash
+            else
+              p = path -- If no slash found, return original path
+            end
+            vim.cmd("silent !start explorer " .. p)
+          end
+        end,
       },
       popup_border_style = "single",
       sources = {
