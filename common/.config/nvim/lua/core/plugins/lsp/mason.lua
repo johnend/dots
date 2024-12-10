@@ -67,8 +67,8 @@ return {
               "sonarlint-language-server",
               "some-sass-language-server",
               "stylua",
-              "ts_ls",
-              -- "vtsls",
+              -- "ts_ls",
+              "vtsls",
               "yaml-language-server",
               "rust-analyzer",
             })
