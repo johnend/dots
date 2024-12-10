@@ -6,23 +6,67 @@ return {
     if not status_ok then
       return
     end
+
     trouble.setup {
-      win = {
-        position = "right",
-        size = { width = 0.3 },
+      auto_close = false, -- auto close when there are no items
+      auto_open = false, -- auto open when there are items
+      auto_preview = false, -- automatically open preview when on an item
+      auto_refresh = true, -- auto refresh when open
+      auto_jump = false, -- auto jump to the item when there's only one
+      focus = true, -- Focus the window when opened
+      restore = true, -- restores the last location in the list when opening
+      follow = true, -- Follow the current item
+      indent_guides = true, -- show indent guides
+      max_items = 200, -- limit number of items that can be displayed per section
+      multiline = true, -- render multi-line messages
+      pinned = false, -- When pinned, the opened trouble window will be bound to the current buffer
+      warn_no_results = true, -- show a warning when there are no results
+      open_no_results = false, -- open the trouble window when there are no results
+      ---@type trouble.Window.opts
+      win = {}, -- window options for the results window. Can be a split or a floating window.
+      -- Window options for the preview window. Can be a split, floating window,
+      -- or `main` to show the preview in the main editor window.
+      ---@type trouble.Window.opts
+      preview = {
+        type = "float",
+        border = "rounded",
+        title = "Preview",
+        title_pos = "center",
+        size = { width = 0.5, height = 0.5 },
+        position = { 0.3, 0.5 },
+        -- when a buffer is not yet loaded, the preview window will be created
+        -- in a scratch buffer with only syntax highlighting enabled.
+        -- Set to false, if you want the preview to always be a real loaded buffer.
+        scratch = true,
       },
+      -- Throttle/Debounce settings. Should usually not be changed.
+      ---@type table<string, number|{ms:number, debounce?:boolean}>
+      throttle = {
+        refresh = 20, -- fetches new data when needed
+        update = 10, -- updates the window
+        render = 10, -- renders the window
+        follow = 100, -- follows the current item
+        preview = { ms = 100, debounce = true }, -- shows the preview for the current item
+      },
+      -- Key mappings can be set to the name of a builtin action,
+      -- or you can define your own custom action.
+      ---@type table<string, trouble.Mode>
       modes = {
-        preview_float = {
-          mode = "diagnostics",
-          preview = {
-            type = "float",
-            relative = "editor",
-            border = "rounded",
-            title = "Preview",
-            title_pos = "center",
-            position = { 0, -2 },
-            size = { width = 0.3, height = 0.3 },
-            zindex = 200,
+        -- sources define their own modes, which you can use directly,
+        -- or override like in the example below
+        lsp_references = {
+          -- some modes are configurable, see the source code for more details
+          params = {
+            include_declaration = true,
+          },
+        },
+        -- The LSP base mode for:
+        -- * lsp_definitions, lsp_references, lsp_implementations
+        -- * lsp_type_definitions, lsp_declarations, lsp_command
+        lsp_base = {
+          params = {
+            -- don't include the current location in the results
+            include_current = false,
           },
         },
       },
@@ -35,7 +79,7 @@ return {
       ":Trouble diagnostics toggle filter.buf=0<CR>",
       { desc = "Buffer diagnostics (Trouble)" }
     )
-    vim.keymap.set("n", "<leader>cL", ":Trouble loclist toggle<CR>", { desc = "Location list (Trouble)" })
-    vim.keymap.set("n", "<leader>cQ", ":Trouble qflist toggle<CR>", { desc = "Quickfix list (Trouble)" })
+    vim.keymap.set("n", "<leader>cl", ":Trouble loclist toggle<CR>", { desc = "Location list (Trouble)" })
+    vim.keymap.set("n", "<leader>cq", ":Trouble qflist toggle<CR>", { desc = "Quickfix list (Trouble)" })
   end,
 }
