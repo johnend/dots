@@ -19,13 +19,9 @@ dynamic_title = true
 opacity = 1
 title = ''
 
-[window.dimensions]
-columns = 100
-lines = 32
-
 [window.padding]
-x = 8
-y = 8
+x = 4
+y = 4
 
 [scrolling]
 history = 12000
