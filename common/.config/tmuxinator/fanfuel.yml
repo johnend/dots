@@ -47,7 +47,7 @@ root: /Users/john.enderby/Developer/hackathon/fanfuel/
 windows:
   - front:
       root: /Users/john.enderby/Developer/hackathon/fanfuel/
-      layout: main-vertical
+      layout: f96e,282x76,0,0{169x76,0,0,1,112x76,170,0[112x38,170,0,2,112x37,170,39,3]}
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
