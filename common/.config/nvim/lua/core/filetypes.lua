@@ -1,3 +1,5 @@
+-- forces specific "filetypes" for files with odd extensions
+-- helps with syntax highlighting especially for configuration files
 vim.filetype.add {
   extension = {
     conf = "conf",
