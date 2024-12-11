@@ -91,6 +91,7 @@ return {
         },
         grep_string = {
           theme = "dropdown",
+          file_ignore_patterns = { "node_modules", ".git", ".build", "dist", ".vscode", ".next" },
         },
         diagnostics = {
           theme = "dropdown",
