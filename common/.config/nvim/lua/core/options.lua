@@ -9,6 +9,8 @@
 --
 --]]
 
+-- sets nice looking fold text when lines are folded e.g. this function folded looks like:
+-- ─┤ 󰆧 Fold_text = function () ├─────┤ 19 lines ├───────────────────────────────────────────────────────────────────
 Fold_Text = function()
   local fold_start = table.concat(vim.fn.getbufline(vim.api.nvim_get_current_buf(), vim.v.foldstart))
   local icon = fold_start:match 'Icon:%s*"([^"]+)"' or " 󰆧 "
@@ -30,11 +32,13 @@ Fold_Text = function()
     .. post
 end
 
+-- fills the rest of the folded text line with a character
 vim.opt.fillchars:append { fold = "─" }
 
 local options = {
   -- :help options
   background = "dark",
+
   -- creates a backup file
   backup = false,
 
