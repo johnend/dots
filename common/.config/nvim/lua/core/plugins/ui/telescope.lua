@@ -77,6 +77,7 @@ return {
           find_command = {
             "fd",
             "--hidden",
+            "--no-ignore-vcs",
             "--type",
             "file",
           },
