@@ -52,6 +52,14 @@ local servers = {
     end,
   },
   -----------------------------------------------------------------------------
+  cssls = {
+    filetypes = { "css", "scss", "less" },
+    on_attach = function()
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities.textDocument.completion.completionItem.snippetSupport = true
+    end,
+  },
+  -----------------------------------------------------------------------------
   rust_analyzer = { function() end },
   -----------------------------------------------------------------------------
   graphql = { filetypes = { "graphql" } },
