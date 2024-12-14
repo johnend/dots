@@ -4,14 +4,12 @@ background = 11111B
 cursor-color = D20F39
 adjust-cursor-thickness = 1
 
-font-family = RecMonoLinear Nerd Font Mono
-font-family-bold = RecMonoLinear Nerd Font Mono
-font-family-italic = RecMonoCasual Nerd Font Mono
-font-family-bold-italic = RecMonoCasual Nerd Font Mono
+font-family = ""
+font-family = Recursive Mono Linear Static
+font-family = Symbols Nerd Font
 
 font-feature = dlig ss05 liga
 
-adjust-cell-height = 8%
 
 shell-integration = zsh
 
