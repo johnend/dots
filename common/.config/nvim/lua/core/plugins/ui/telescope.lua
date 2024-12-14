@@ -32,6 +32,16 @@ return {
     ---| "ivy"      # see `telescope.themes.get_ivy()`
     ---| "center"   # use the default telescope theme
 
+    local dropdown_config = { theme = "dropdown", layout_config = { width = 0.5, height = 0.2 } }
+    local ignore_patterns = { "node_modules", ".git", ".build", "dist", ".vscode", ".next" }
+
+    -- more performant sorting with rg
+    local glob_args = vim.tbl_map(function(pattern)
+      return "--glob=!" .. pattern
+    end, ignore_patterns)
+    local find_command = { "rg", "--files", "--hidden", "--no-ignore", "--sortr=modified" }
+    vim.list_extend(find_command, glob_args)
+
     telescope.setup {
       theme = "dropdown", ---@type telescope_themes
       defaults = {
@@ -40,7 +50,7 @@ return {
         entry_prefix = " ",
         initial_mode = "insert",
         selection_strategy = "reset",
-        sorting_strategy = nil,
+        sorting_strategy = "descending",
         layout_strategy = nil,
         layout_config = {},
         file_ignore_patterns = {},
@@ -51,74 +61,55 @@ return {
       -- TODO: figure out how to change the layouts of the pickers (increased width for preview for example)
       pickers = {
         help_tags = {
-          theme = "dropdown",
-          layout_config = {
-            width = 0.5,
-            height = 0.3,
-          },
+          theme = dropdown_config.theme,
+          layout_config = dropdown_config.layout_config,
         },
         keymaps = {
+          theme = dropdown_config.theme,
+          layout_config = dropdown_config.layout_config,
           selection_caret = icons.ui.Forward,
-          theme = "dropdown",
-          layout_config = { width = 0.6, height = 0.3 },
         },
         commands = {
+          theme = dropdown_config.theme,
+          layout_config = dropdown_config.layout_config,
           selection_caret = icons.ui.Forward,
-          theme = "dropdown",
-          layout_config = { width = 0.5, height = 0.3 },
         },
         find_files = {
-          theme = "dropdown",
-          file_ignore_patterns = { "node_modules", ".git", ".build", "dist", ".vscode", ".next" },
-          layout_config = {
-            width = 0.5,
-            height = 0.3,
-          },
-          find_command = {
-            "fd",
-            "--hidden",
-            "--no-ignore-vcs",
-            "--type",
-            "file",
-          },
+          theme = dropdown_config.theme,
+          sorting_strategy = nil,
+          layout_config = dropdown_config.layout_config,
+          file_ignore_patterns = ignore_patterns,
+          find_command = find_command,
         },
         builtin = {
           theme = "dropdown",
           previewer = false,
         },
         colorscheme = {
-          theme = "dropdown",
+          theme = dropdown_config.theme,
+          layout_config = dropdown_config.layout_config,
           enable_preview = true,
         },
         grep_string = {
           theme = "dropdown",
-          file_ignore_patterns = { "node_modules", ".git", ".build", "dist", ".vscode", ".next" },
+          file_ignore_patterns = ignore_patterns,
         },
         diagnostics = {
           theme = "dropdown",
         },
         oldfiles = {
-          theme = "dropdown",
-          layout_config = {
-            width = 0.5,
-            height = 0.3,
-          },
+          theme = dropdown_config.theme,
+          layout_config = dropdown_config.layout_config,
         },
         buffers = {
-          theme = "dropdown",
-          layout_config = {
-            width = 0.5,
-            height = 0.3,
-          },
           initial_mode = "normal",
+          theme = dropdown_config.theme,
+          layout_config = dropdown_config.layout_config,
         },
         current_buffer_fuzzy_find = {
-          theme = "dropdown",
           previewer = false,
-          layout_config = {
-            width = 0.4,
-            height = 0.3,
-          },
+          theme = dropdown_config.theme,
+          layout_config = dropdown_config.layout_config,
         },
       },
     }
@@ -129,35 +120,44 @@ return {
 
     -- [[ Keymaps ]]
     local builtin = require "telescope.builtin"
-    vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "Help" })
-    vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "Keymaps" })
-    vim.keymap.set("n", "<leader>sc", builtin.commands, { desc = "Commands" })
-    vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "Files" })
-    vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "Select Telescope picker" })
-    vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "Search current word" })
-    vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "Grep" })
-    vim.keymap.set("n", "<leader>sv", builtin.git_files, { desc = "Git files" })
-    vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "Diagnostics" })
-    vim.keymap.set(
-      "n",
-      "<leader>sp",
-      ":Telescope project project theme=dropdown layout_config={width=0.5, height=0.4}<CR>",
-      { desc = "Projects" }
-    )
-    vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "Resume" })
-    vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = 'Recent Files ("." for repeat)' })
-    vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "Open buffers" })
-    vim.keymap.set(
-      "n",
-      "<leader>st",
-      ":TodoTelescope theme=dropdown previewer=false layout_config={width=0.5,height=0.3}<CR>",
-      { desc = "Todos" }
-    )
-    vim.keymap.set("", "<leader>sb", builtin.buffers, { desc = "Search open buffers" })
-
-    -- Shortcut for searching your Neovim configuration files
-    vim.keymap.set("n", "<leader>sn", function()
-      builtin.find_files { cwd = vim.fn.stdpath "config" }
-    end, { desc = "Search Neovim files" })
+    local keymaps = {
+      { "n", "<leader>sh", builtin.help_tags, "Help" },
+      { "n", "<leader>sk", builtin.keymaps, "Keymaps" },
+      { "n", "<leader>sx", builtin.commands, "Commands" },
+      { "n", "<leader>sc", builtin.colorscheme, "Colorscheme" },
+      { "n", "<leader>sf", builtin.find_files, "Files" },
+      { "n", "<leader>ss", builtin.builtin, "Select Telescope picker" },
+      { "n", "<leader>sw", builtin.grep_string, "Search current word" },
+      { "n", "<leader>sg", builtin.live_grep, "Grep" },
+      { "n", "<leader>sv", builtin.git_files, "Git files" },
+      { "n", "<leader>sd", builtin.diagnostics, "Diagnostics" },
+      {
+        "n",
+        "<leader>sp",
+        ":Telescope project project theme=dropdown layout_config={width=0.5, height=0.4}<CR>",
+        "Projects",
+      },
+      { "n", "<leader>sr", builtin.resume, "Resume" },
+      { "n", "<leader>s.", builtin.oldfiles, 'Recent Files ("." for repeat)' },
+      { "n", "<leader><leader>", builtin.buffers, "Open buffers" },
+      {
+        "n",
+        "<leader>st",
+        ":TodoTelescope theme=dropdown previewer=false layout_config={width=0.5,height=0.3}<CR>",
+        "TODOs",
+      },
+      { "", "<leader>sb", builtin.buffers, "Search open buffers" },
+      {
+        "n",
+        "<leader>sn",
+        function()
+          builtin.find_files { cwd = vim.fn.stdpath "config" }
+        end,
+        "Neovim config",
+      },
+    }
+    for _, map in ipairs(keymaps) do
+      vim.keymap.set(map[1], map[2], map[3], { desc = map[4] })
+    end
   end,
 }
