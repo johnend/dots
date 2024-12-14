@@ -118,8 +118,8 @@ local options = {
   -- we don't need to see things like -- INSERT -- anymore
   showmode = false,
 
-  -- always show tabs
-  showtabline = 2,
+  -- never show tabs
+  showtabline = 0,
 
   -- always show the sign column, otherwise it would shift the text each time
   signcolumn = "yes",
