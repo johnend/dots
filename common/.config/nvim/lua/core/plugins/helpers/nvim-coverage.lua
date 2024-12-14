@@ -21,6 +21,6 @@ return {
       },
     }
 
-    vim.keymap.set("n", "<leader>tc", "<cmd>CoverageToggle<cr>", { desc = "Test Coverage" })
+    vim.keymap.set("n", "<leader>Tc", "<cmd>CoverageToggle<cr>", { desc = "Test Coverage" })
   end,
 }
