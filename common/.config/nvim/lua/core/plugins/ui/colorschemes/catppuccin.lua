@@ -18,6 +18,7 @@ return {
       transparent_background = true,
       styles = { -- Handles the styles of general hi groups (see: :h highlight-args):
       },
+
       highlight_overrides = {
         all = function()
           return {
@@ -63,6 +64,9 @@ return {
 
             -- Terminal (toggleterm)
             TermCursor = { fg = colors.mantle, bg = "#D20F39" },
+
+            -- Treesitter context
+            TreesitterContextSeparator = { fg = colors.surface0 },
           }
         end,
       },

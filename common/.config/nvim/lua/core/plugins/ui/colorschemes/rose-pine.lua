@@ -65,6 +65,9 @@ return {
 
         -- Telescope
         TelescopeBorder = { fg = "foam", bg = "" },
+
+        -- Treesitter context
+        TreesitterContextSeparator = { fg = "pine" },
       },
     }
     vim.cmd.colorscheme "rose-pine"

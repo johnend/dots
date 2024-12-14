@@ -8,7 +8,7 @@ return {
     end
 
     tscontext.setup {
-      enable = true,
+      enable = false,
       multiwindow = false,
       max_lines = 0,
       min_window_height = 0,
@@ -16,9 +16,10 @@ return {
       multiline_threshold = 20,
       trim_scope = "outer",
       mode = "cursor",
-      separator = nil,
+      separator = "─",
       zindex = 20,
       on_attach = nil,
     }
   end,
+  vim.keymap.set("n", "<leader>to", ":TSContextToggle<cr>", { desc = "Treesitter context" }),
 }
