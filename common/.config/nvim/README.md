@@ -1,3 +1,6 @@
+![image](https://github.com/user-attachments/assets/6369533f-381e-4ab6-8f4c-cd4376d01a47)
+
+
 This is my NeoVim config. There are many like it, but this one is mine.
 
 ## Something to bear in mind
