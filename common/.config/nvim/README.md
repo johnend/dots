@@ -1,6 +1,6 @@
 This is my NeoVim config. There are many like it, but this one is mine.
 
-## Something to bare in mind
+## Something to bear in mind
 
 I haven't been using NeoVim long, and the only Lua I have investigated is in
 this repo 🤷 (it's something I plan on learning more though as it seems
