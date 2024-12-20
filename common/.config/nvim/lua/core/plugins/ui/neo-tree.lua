@@ -15,6 +15,7 @@ return {
     end
 
     neotree.setup {
+      close_if_last_window = true,
       filesystem = {
         window = {
           mappings = {
@@ -42,6 +43,8 @@ return {
         system_open = function(state)
           local node = state.tree:get_node()
           local path = node:get_id()
+
+          ---@diagnostic disable-next-line: undefined-field
           local os = vim.loop.os_uname().sysname
 
           if os == "Darwin" then
