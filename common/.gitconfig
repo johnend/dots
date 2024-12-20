@@ -13,6 +13,10 @@
 	features = catppuccin-mocha
 [merge]
 	conflictstyle = diff3
+	tool = nvimdiff
+[mergetool "nvimdiff"]
+	cmd = "nvim -d $LOCAL $MERGED $REMOTE"
+	prompt = true
 [diff]
 	colorMoved = default
 [commit]
