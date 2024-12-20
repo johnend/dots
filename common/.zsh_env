@@ -46,5 +46,9 @@ export FFD_USER_DIR=$HOME/.mozilla/firefox/6dh274r9.dev-edition-default/
 # Autosuggestions highlight color
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ca9ee6"
 
-# Source cargo env
-. "$HOME/.cargo/env"
+# oh-my-zsh custom dir
+export ZSH_CUSTOM="$HOME/.oh-my-zsh/custom/"
+
+# cargo for rust
+[[ -f ~/.cargo ]] && source ~/.cargo/env
+
