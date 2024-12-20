@@ -4,6 +4,11 @@ Id_2=656533f6-364c-4157-a1f3-e80093084f1b
 Id_3=f65a18be-faee-44ee-9647-4fbb91a0e52f
 Id_4=5615369f-90a5-4b8b-86c7-28b22f51533c
 Id_5=f1f14d71-91ed-4db3-a4eb-ea153622e2a4
+Name_1=
+Name_2=
+Name_3=󰓓
+Name_4=󰈹
+Name_5=
 Number=5
 Rows=1
 
@@ -44,7 +49,6 @@ blurEnabled=true
 contrastEnabled=false
 desktopchangeosdEnabled=false
 diminactiveEnabled=true
-kzonesEnabled=false
 translucencyEnabled=true
 
 [PrimaryOutline]
@@ -52,10 +56,6 @@ ActiveOutlineUseCustom=false
 ActiveOutlineUsePalette=true
 InactiveOutlineThickness=0
 OutlineThickness=2
-
-[Script-kzones]
-layoutsJson=[\n  {\n    "name": "Fullscreen",\n    "padding": 16,\n    "zones": [\n      {\n        "x": 0,\n        "y": 0,\n        "height": 100,\n        "width": 100\n      }\n    ]\n  },\n  {\n    "name": "50/50",\n    "padding": 16,\n    "zones": [\n      {\n        "x": 0,\n        "y": 0,\n        "width": 50,\n        "height": 100\n      },\n      {\n        "x": 50,\n        "y": 0,\n        "width": 50,\n        "height": 100\n      }\n    ]\n  },\n  {\n    "name": "One Left + Two right",\n    "padding": 16,\n    "zones": [\n      {\n        "x": 0,\n        "y": 0,\n        "height": 100,\n        "width": 50\n      },\n      {\n        "x": 50,\n        "y": 0,\n        "height": 50,\n        "width": 50\n      },\n      {\n        "x": 50,\n        "y": 50,\n        "width": 50,\n        "height": 50\n      }\n    ]\n  },\n  {\n    "name": "Quadrant Grid",\n    "padding": 16,\n    "zones": [\n      {\n        "x": 0,\n        "y": 0,\n        "height": 50,\n        "width": 50\n      },\n      {\n        "x": 0,\n        "y": 50,\n        "height": 50,\n        "width": 50\n      },\n      {\n        "x": 50,\n        "y": 50,\n        "height": 50,\n        "width": 50\n      },\n      {\n        "x": 50,\n        "y": 0,\n        "height": 50,\n        "width": 50\n      }\n    ]\n  }\n]
-zoneSelectorTriggerDistance=2
 
 [SecondOutline]
 InactiveSecondOutlineThickness=0
@@ -89,12 +89,16 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 [Tiling][dbff8e4a-3aba-579e-b6f9-c08639ee541b]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
+[Tiling][ec8d5e7e-8634-58a8-8aa8-1a41bc757c66]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.5},{"width":0.5}]}
+
 [Windows]
 AutoRaise=true
 AutoRaiseInterval=500
 ClickRaise=false
 DelayFocusInterval=500
 FocusPolicy=FocusFollowsMouse
+NextFocusPrefersMouse=true
 RollOverDesktops=true
 
 [Xwayland]
