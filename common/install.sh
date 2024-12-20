@@ -47,3 +47,14 @@ git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 
 # Installation complete
 echo "Installation complete! Please restart your terminal or run 'source ~/.zshrc' if changes do not take effect."
+
+# Update the bat binary cache
+if command -v bat &>/dev/null; then
+  echo "bat is installed, rebuilding cache"
+  bat cache --build
+else
+  echo "bat is not installed"
+  echo "Install bat and then run:"
+  echo "  bat cache --build"
+  exit 1
+fi
