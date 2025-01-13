@@ -13,7 +13,7 @@ vim.filetype.add {
     [".cfg"] = "cfg",
   },
   pattern = {
-    ["%.env%.[%w_.-]+"] = "bash",
+    ["%.env%.[%w_.-]+"] = "sh",
     [".*/kitty/.*%.conf"] = "bash",
     [".*%.rc"] = "bash",
     [".*/hypr/.*%.conf"] = "hyprlang",
