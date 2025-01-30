@@ -63,8 +63,8 @@ local servers = {
   rust_analyzer = { function() end },
   -----------------------------------------------------------------------------
   graphql = {
-    filetypes = { "graphql", "typescriptreact", "typescript", "javascript" },
-    root_dir = require("lspconfig.util").root_pattern("graphql.config.*", "package.json"),
+    filetypes = { "graphql", "typescriptreact", "javascriptreact", "typescript", "javascript" },
+    root_dir = require("lspconfig.util").root_pattern("graphql.config.*", ".git"),
   },
 }
 
