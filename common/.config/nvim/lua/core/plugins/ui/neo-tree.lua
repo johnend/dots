@@ -17,6 +17,7 @@ return {
     neotree.setup {
       close_if_last_window = true,
       filesystem = {
+        hijack_netrw_behavior = "disabled",
         window = {
           mappings = {
             ["o"] = "system_open",
