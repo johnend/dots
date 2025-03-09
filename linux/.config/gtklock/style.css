@@ -1,0 +1,97 @@
+@define-color base            #191724;
+@define-color surface         #1f1d2e;
+@define-color overlay         #26233a;
+
+@define-color muted           #6e6a86;
+@define-color subtle          #908caa;
+@define-color text            #e0def4;
+
+@define-color love            #eb6f92;
+@define-color gold            #f6c177;
+@define-color rose            #ebbcba;
+@define-color pine            #31748f;
+@define-color foam            #9ccfd8;
+@define-color iris            #c4a7e7;
+
+@define-color highlightLow    #21202e;
+@define-color highlightMed    #403d52;
+@define-color highlightHigh   #524f67;
+
+* {
+  all: unset;
+}
+
+window {
+  background-color: @base;
+  background-image: url("./wallpaper.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#window-box {
+  background-color: alpha(@base, 0.96);
+  border: 1px solid @overlay;
+  padding: 0 32px;
+  box-shadow:
+    0 60px 80px rgba(0, 0, 0, 0.6),
+    0 45px 26px rgba(0, 0, 0, 0.14);
+  border-radius: 8px;
+}
+
+#time-box {
+  font-size: 0;
+}
+
+#clock-label {
+  min-width: 320px;
+  background-color: alpha(@pine, 0.1);
+  color: @pine;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 10px 30px;
+  margin-bottom: 10px;
+  border-radius: 0 0 10px 10px;
+  border: 1px solid alpha(@pine, 0.5);
+  border-top: 0;
+}
+
+/* hide "Password:" label */
+#input-label {
+  font-size: 0;
+}
+
+#user-icon {
+  margin: 8px 0 0 0;
+}
+
+#user-name {
+  font-size: 32px;
+  margin: 8px 0 8px 0;
+}
+
+#input-field {
+  border-radius: 20px;
+  padding: 10px 15px;
+  border: 1px solid @overlay;
+}
+
+#input-field:focus {
+  border: 1px solid @muted;
+}
+
+#warning-label,
+#error-label,
+#unlock-button {
+  margin-top: 12px;
+  padding: 10px 2rem;
+  margin-bottom: 20px;
+}
+
+#unlock-button {
+  border-radius: 20px;
+  background-color: alpha(@rose, 0.1);
+  color: @rose;
+  border-radius: 24px;
+  border: 1px solid alpha(@rose, 0.5);
+}
