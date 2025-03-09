@@ -1,0 +1,51 @@
+/*  /* Music player */ */
+/* .widget-mpris { */
+/*     background: @background-alt; */
+/*     border-radius: 16px; */
+/*     color: @text; */
+/*     margin:  20px 6px; */
+/* } */
+/**/
+/*   /* NOTE: Background need *opacity 1* otherwise will turn into the album art blurred  */ */
+/* .widget-mpris-player { */
+/*     background-color: @background-sec; */
+/*     border-radius: 22px; */
+/*     padding: 6px 14px; */
+/*     margin: 6px; */
+/* } */
+/**/
+/* .widget-mpris > box > button { */
+/*   color: @text; */
+/*   border-radius: 20px; */
+/* } */
+/*   */
+/* .widget-mpris button { */
+/*   color: alpha(@text, .6); */
+/* } */
+/**/
+/* .widget-mpris button:hover { */
+/*   color: @text; */
+/* } */
+/**/
+/* .widget-mpris-album-art { */
+/*   border-radius: 16px; */
+/* } */
+/*   */
+/* .widget-mpris-title { */
+/*     font-weight: 700; */
+/*     font-size: 1rem; */
+/* } */
+/*   */
+/* .widget-mpris-subtitle { */
+/*     font-weight: 500; */
+/*     font-size: 0.8rem; */
+/* } */
+/**/
+/* /* Volume */ */
+/* .widget-volume { */
+/*   background: @background-sec; */
+/*   color: @background; */
+/*   padding: 4px; */
+/*   margin: 6px; */
+/*   border-radius: 6px; */
+/* } */
