@@ -1,0 +1,313 @@
+// -*- mode: jsonc -*-
+{
+  // "layer": "top", // Waybar at top layer
+  // "position": "bottom", // Waybar position (top|bottom|left|right)
+  "height": 30, // Waybar height (to be removed for auto height)
+  "spacing": 4, // Gaps between modules (4px)
+  /////////////////////////////////////
+  //
+  // Modules - left
+  //
+  /////////////////////////////////////
+  //
+  // Selection
+  //
+  "modules-left": [
+    "group/datetime",
+    "group/workspacegroup"
+  ],
+  // Groups
+  "group/datetime": {
+    "orientation": "horizontal",
+    "modules": [
+      "clock"
+    ]
+  },
+  "group/workspacegroup": {
+    "orientation": "horizontal",
+    "modules": [
+      "sway/workspaces",
+      "sway/mode",
+      "sway/scratchpad"
+    ]
+  },
+  //
+  // Configuration
+  //
+  // Clock
+  "clock": {
+    // TODO: figure out icons here
+    "format": "󰅐{:%R    %d/%m}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>"
+  },
+  // Workspaces
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "warp-on-scroll": false,
+    "active-only": false,
+    "format": "{icon}",
+    "sort-by-number": true,
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": []
+    },
+    "format-icons": {
+      "1": "一",
+      "2": "二",
+      "3": "三",
+      "4": "四",
+      "5": "五",
+      "6": "六",
+      "7": "七",
+      "8": "八",
+      "9": "九",
+      "10": "十"
+    }
+  },
+  // Sway mode
+  "sway/mode": {
+    "format": "<span style=\"italic\">{}</span>"
+  },
+  // Scratchpad
+  "sway/scratchpad": {
+    "format": "{icon}",
+    "show-empty": false,
+    "format-icons": [
+      "󱉍",
+      "󱉋"
+    ],
+    "tooltip": true,
+    "tooltip-format": "{app}: {title}"
+  },
+  /////////////////////////////////////
+  //
+  // Modules - center
+  //
+  /////////////////////////////////////
+  //
+  // Selection
+  //
+  "modules-center": [
+    "custom/spotify"
+  ],
+  //
+  // Configuration
+  //
+  // Spotify
+  "custom/spotify": {
+    "exec": "/usr/bin/python3 $HOME/.config/waybar/scripts/mediaplayer.py --player spotify",
+    "format": "󰓇 {}",
+    "return-type": "json",
+    "on-click": "playerctl play-pause",
+    "on-click_right": "killall spotify",
+    "smooth-scrolling-threshold": 10,
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous"
+  },
+  /////////////////////////////////////
+  //
+  // Modules - right
+  //
+  /////////////////////////////////////
+  //
+  // Selection
+  //
+  "modules-right": [
+    "group/stats",
+    "group/controls",
+    // "group/systray",
+    "group/ncandpower"
+  ],
+  // Groups
+  "group/stats": {
+    "orientation": "horizontal",
+    "modules": [
+      "network",
+      "bluetooth",
+      "temperature",
+      // "cpu",
+      "memory",
+      "power-profiles-daemon",
+      "battery"
+    ]
+  },
+  "group/controls": {
+    "orientation": "horizontal",
+    "modules": [
+      "pulseaudio",
+      "backlight"
+    ]
+  },
+  "group/systray": {
+    "orientation": "horizontal",
+    "modules": [
+      "tray"
+    ]
+  },
+  "group/ncandpower": {
+    "orientation": "horizontal",
+    "modules": [
+      // "idle_inhibitor",
+      "custom/swaync",
+      "custom/power"
+    ]
+  },
+  //
+  // Configuration
+  //
+  // Idle inhibitor - is this needed?
+  // "idle_inhibitor": {
+  //   "format": "{icon}",
+  //   "format-icons": {
+  //     "activated": "",
+  //     "deactivated": ""
+  //   }
+  // },
+  // Network
+  "network": {
+    "format-wifi": "  {signalStrength}%",
+    "on-click": "nm-connection-editor"
+  },
+  // Bluetooth
+  "bluetooth": {
+    "format": "",
+    "format-connected": " {num_connections}",
+    "on-click": "blueman-manager",
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
+  },
+  // Temperature
+  "temperature": {
+    // "thermal-zone": 2,
+    // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    "critical-threshold": 80,
+    // "format-critical": "{temperatureC}°C {icon}",
+    "format": "{temperatureC}°C {icon}",
+    "format-icons": [
+      "",
+      "",
+      ""
+    ]
+  },
+  // CPU - not currently active
+  "cpu": {
+    "format": "{usage}% ",
+    "tooltip": false
+  },
+  // Memory
+  "memory": {
+    "format": "{}% 󰍜"
+  },
+  // Battery
+  "battery": {
+    "states": {
+      // "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{capacity}% {icon}",
+    "format-full": "{capacity}% {icon}",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% ",
+    "format-alt": "{time} {icon}",
+    // "format-good": "", // An empty format will hide the module
+    // "format-full": "",
+    "format-icons": [
+      "󰂎",
+      "󰁼",
+      "󰁾",
+      "󰁿",
+      "󰁹"
+    ]
+  },
+  // Pulseaudio
+  "pulseaudio": {
+    // TODO: update icons
+    // "scroll-step": 1, // %, can be a float
+    "format": "{volume}% {icon}", // add {format_source} for microphone
+    // "format-bluetooth": "{volume}% {icon} {format_source}",
+    // "format-bluetooth-muted": " {icon} {format_source}",
+    "format-muted": "0% 󰝟",
+    // "format-source": "{volume}% ",
+    // "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "on-click": "GTK_THEME=Adwaita-dark pavucontrol"
+  },
+  // Backlight
+  "backlight": {
+    // "device": "acpi_video1",
+    "format": "{percent}% {icon}",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  // Power profiles
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    }
+  },
+  // Tray
+  "tray": {
+    // "icon-size": 21,
+    "spacing": 8,
+  },
+  // Notifications
+  "custom/swaync": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "<span foreground='#eb6f92'><sup></sup></span>",
+      "none": "",
+      "dnd-notification": "<span foreground='#eb6f92'><sup></sup></span>",
+      "dnd-none": "",
+      "inhibited-notification": "<span foreground='#eb6f92'><sup></sup></span>",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": "<span foreground='#eb6f92'><sup></sup></span>",
+      "dnd-inhibited-none": ""
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
+  // Power menu
+  "custom/power": {
+    "format": "󰐥 ",
+    "tooltip": false,
+    "on-click": "rofi -show p -modi p:${HOME}/.config/rofi/rofi-power-menu --symbols-font 'Symbols Nerd Font' -theme rose-pine-power"
+  }
+}

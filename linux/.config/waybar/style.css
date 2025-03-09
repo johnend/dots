@@ -1,0 +1,342 @@
+@import "./rose-pine.css";
+
+* {
+  /* `otf-font-awesome` is required to be installed for icons */
+  font-family:
+    Ubuntu Nerd Font,
+    sans-serif;
+  font-size: 14px;
+}
+
+/*Groups*/
+#datetime,
+#workspacegroup,
+#stats,
+#controls,
+#systray,
+#ncandpower {
+  border: 1px solid @overlay;
+  border-radius: 8px;
+  padding: 1px;
+  background: @base;
+}
+
+#datetime,
+#workspacegroup,
+#stats,
+#controls,
+#systray {
+  margin: 4px 0 6px 0;
+}
+
+#datetime {
+  margin: 4px 0 6px 8px;
+}
+
+#ncandpower {
+  margin: 4px 8px 6px 0;
+}
+
+window#waybar {
+  border-bottom: none;
+  color: @foam;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  background-color: @surface;
+  padding: 4px;
+  border-bottom: 2px solid @base;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+/*
+window#waybar.empty {
+    background-color: transparent;
+}
+window#waybar.solo {
+    background-color: #FFFFFF;
+}
+*/
+
+window#waybar.termite {
+  background-color: #3f3f3f;
+}
+
+window#waybar.chromium {
+  background-color: #000000;
+  border: none;
+}
+
+button {
+  /* Use box-shadow instead of border so the text isn't offset */
+  box-shadow: inset 0 -2px transparent;
+  /* Avoid rounded borders under each button name */
+  border: none;
+  border-radius: 0;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+  background: none;
+  /* box-shadow: inset 0 -2px @muted; */
+}
+
+#workspaces button {
+  padding: 0 4px;
+  background-color: transparent;
+  color: @highlightHigh;
+}
+
+#workspaces button:hover {
+  color: @muted;
+}
+
+#workspaces button.focused {
+  color: @rose;
+}
+
+#workspaces button.urgent {
+  background-color: #eb4d4b;
+}
+
+#mode {
+  background-color: #64727d;
+  box-shadow: inset 0 -2px #ffffff;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#custom-swaync,
+#trayR #mode,
+#idle_inhibitor,
+#scratchpad,
+#power-profiles-daemon,
+#custom-spotify,
+#mpd {
+  padding: 4px 8px;
+  color: @text;
+}
+
+#custom-power {
+  padding: 4px 8px;
+  color: @pine;
+}
+
+#custom-spotify {
+  color: @foam;
+}
+#window,
+#workspaces {
+  margin: 0 4px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+  margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+  margin-right: 0;
+}
+
+#clock {
+  color: @gold;
+}
+
+#battery {
+}
+
+#battery.charging,
+#battery.plugged {
+  color: @pine;
+}
+
+@keyframes blink {
+  to {
+    color: @text;
+  }
+}
+
+/* Using steps() instead of linear as a timing function to limit cpu usage */
+#battery.critical:not(.charging) {
+  color: @love;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#power-profiles-daemon {
+}
+
+#power-profiles-daemon.performance {
+  color: @love;
+}
+
+#power-profiles-daemon.balanced {
+  color: @foam;
+}
+
+#power-profiles-daemon.power-saver {
+  color: @gold;
+}
+
+label:focus {
+  background-color: #000000;
+}
+
+#cpu {
+  color: @pine;
+}
+
+#memory {
+  color: @foam;
+}
+
+#backlight {
+  color: @gold;
+}
+
+#network {
+  color: @love;
+}
+
+#network.disconnected {
+  background-color: #f53c3c;
+}
+
+#pulseaudio {
+  color: @iris;
+}
+/* you can set a style on hover for any module like this */
+#pulseaudio:hover {
+  background-color: @overlay;
+}
+
+#pulseaudio.muted {
+  color: @love;
+}
+
+/* #custom-media { */
+/*   background-color: #66cc99; */
+/*   color: #2a5c45; */
+/*   min-width: 100px; */
+/* } */
+/**/
+/* #custom-media.custom-spotify { */
+/*   background-color: #66cc99; */
+/* } */
+/**/
+/* #custom-media.custom-vlc { */
+/*   background-color: #ffa000; */
+/* } */
+
+#temperature {
+  color: @rose;
+}
+
+#temperature.critical {
+  color: @love;
+}
+
+/*
+* TODO: Spotify needs a desktop entry update?
+*/
+#tray {
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: @love;
+}
+
+#idle_inhibitor {
+  color: @highlightHigh;
+}
+
+#idle_inhibitor.activated {
+  color: @gold;
+}
+
+/* #mpd { */
+/*   background-color: #66cc99; */
+/*   color: #2a5c45; */
+/* } */
+/**/
+/* #mpd.disconnected { */
+/*   background-color: #f53c3c; */
+/* } */
+/**/
+/* #mpd.stopped { */
+/*   background-color: #90b1b1; */
+/* } */
+/**/
+/* #mpd.paused { */
+/*   background-color: #51a37a; */
+/* } */
+
+#language {
+  color: @iris;
+}
+
+/* #keyboard-state { */
+/*   background: #97e1ad; */
+/*   color: #000000; */
+/*   padding: 0 0px; */
+/*   margin: 0 5px; */
+/*   min-width: 16px; */
+/* } */
+
+/* #keyboard-state > label { */
+/*   padding: 0 5px; */
+/* } */
+/**/
+/* #keyboard-state > label.locked { */
+/*   background: rgba(0, 0, 0, 0.2); */
+/* } */
+
+#scratchpad {
+  background-color: @surface;
+}
+
+#scratchpad.empty {
+  background-color: transparent;
+}
+
+/* #privacy { */
+/*   padding: 0; */
+/* } */
+/**/
+/* #privacy-item { */
+/*   padding: 0 5px; */
+/*   color: white; */
+/* } */
+/**/
+/* #privacy-item.screenshare { */
+/*   background-color: #cf5700; */
+/* } */
+/**/
+/* #privacy-item.audio-in { */
+/*   background-color: #1ca000; */
+/* } */
+/**/
+/* #privacy-item.audio-out { */
+/*   background-color: #0069d4; */
+/* } */
