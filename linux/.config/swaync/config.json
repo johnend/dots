@@ -10,7 +10,7 @@
   "control-center-height": 800,
   "notification-2fa-action": true,
   "notification-inline-replies": false,
-  "notification-window-width": 400,
+  "notification-window-width": 350,
   "notification-icon-size": 56,
   "notification-body-image-height": 100,
   "notification-body-image-width": 200,
