@@ -35,3 +35,6 @@ alias "v"="nvim"
 gh-create() { 
   gh repo create "${1:-$(basename "$PWD")}" --public --source=. --remote=origin
 }
+
+#pavucontrol temp gtk fix
+alias pavucontrol="GTK_THEME=Adwaita-dark pavucontrol"

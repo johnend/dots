@@ -1,4 +1,4 @@
-. $HOME/.zsh_secrets
+# . $HOME/.zsh_secrets
 . $HOME/.zsh_functions
 . $HOME/.zsh_env
 
@@ -29,7 +29,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-vi-mode fzf-tab fzf-yarn gh git zsh-autosuggestions command-not-found colored-man-pages fzf) 
+plugins=(zsh-vi-mode fzf-tab fzf-yarn gh git zsh-autosuggestions command-not-found colored-man-pages) 
 
 source $ZSH/oh-my-zsh.sh
 
@@ -84,7 +84,7 @@ export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="/usr/local/go/bin:$PATH"
 
 # cargo for rust
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -96,6 +96,8 @@ export PATH="/usr/local/go/bin:$PATH"
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+. $HOME/.zsh_fzf
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
@@ -109,3 +111,4 @@ eval "$(thefuck --alias)"
 if [ -f ~/.netskope_env ]; then
   source ~/.netskope_env
 fi
+
