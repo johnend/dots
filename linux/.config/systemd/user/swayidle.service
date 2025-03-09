@@ -1,0 +1,21 @@
+[Unit]
+Description=Idle manager for Wayland with gtklock
+Documentation=man:swayidle(1)
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/swayidle -w \
+    timeout 300 'brightnessctl set 50%' \
+    resume 'sleep 2; brightnessctl set 100%' \
+    timeout 600 'gtklock' \
+    timeout 900 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"' \
+    timeout 1750 'gtklock' \
+    timeout 1800 'systemctl suspend' \
+    before-sleep 'gtklock'
+Restart=always
+
+[Install]
+WantedBy=graphical-session.target
+
