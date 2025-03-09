@@ -1,0 +1,137 @@
+* {
+    rosewater: #f5e0dc;
+    flamingo: #f2cdcd;
+    pink: #f5c2e7;
+    mauve: #cba6f7;
+    red: #f38ba8;
+    maroon: #eba0ac;
+    peach: #fab387;
+    yellow: #f9e2af;
+    green: #a6e3a1;
+    teal: #94e2d5;
+    sapphire: #74c6ec;
+    blue: #89b4fa;
+    lavender: #b4befe;
+    text: #cdd6f4;
+    subtext1: #bac2de;
+    subtext0: #a6adc8;
+    overylay2: #9399b2;
+    overylay1: #7f849c;
+    overylay0: #6c7086;
+    surface2: #585b70;
+    surface1: #45475a;
+    surface0: #313244;
+    base: #1e1e2e;
+    mantle: #181825;
+    crust: #11111b;
+
+    width: 300;
+}
+
+element-text, element-icon , mode-switcher {
+    background-color: inherit;
+    text-color:       inherit;
+}
+
+window {
+    border: 1px;
+    border-color: @base;
+    background-color: @crust;
+    border-radius: 8px;
+}
+
+mainbox {
+    border: 1px;
+    background-color: @crust;
+}
+
+inputbar {
+    children: [prompt,entry];
+    background-color: @crust;
+    border: 0 0 1px 0;
+    border-color: @base;
+    padding: 8px;
+}
+
+prompt {
+    background-color: @crust;
+    text-color: @mauve;
+    border-radius: 2px;
+    padding: 8px 20px 8px 8px;
+    vertical-align: 0.5;
+    horizontal-align: 0.5;
+    border: 0 1px 0 0;
+    border-color: @base;
+}
+
+textbox-prompt-colon {
+    expand: false;
+    str: ":";
+}
+
+entry {
+    text-color: @text;
+    margin: 8px 0 0 16px;
+    background-color: @crust;
+    cursor-color: @mauve;
+}
+
+listview {
+    background-color: @crust;
+    columns: 3;
+    lines: 8;
+    padding: 8px;
+}
+
+element {
+    background-color: @crust;
+    text-color: @text;
+    margin: 0 8px;
+    padding: 4px 0;
+    border-radius: 4px;
+}
+
+element-text {
+    padding: 8px 0;
+}
+
+element-icon {
+    size: 24px;
+}
+
+element selected {
+    background-color:  @mantle;
+    text-color: @mauve;
+    border: 1px;
+    border-color: @surface0;
+}
+
+mode-switcher {
+    spacing: 0;
+}
+
+button {
+    background-color: @crust;
+    text-color: @text;
+    vertical-align: 0.5; 
+    horizontal-align: 0.5;
+    padding: 4px 0 2px 0;
+    border: 1px 0 0 0;
+    border-color: @base;
+}
+
+button selected {
+  background-color: @mantle;
+  text-color: @mauve;
+}
+
+message {
+    padding: 8px 0;
+    background-color: @crust;
+}
+
+textbox {
+    padding: 0 20px;
+    text-color: @lavender;
+    background-color: @crust;
+}

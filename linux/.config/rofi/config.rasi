@@ -3,7 +3,7 @@ configuration {
 	show-icons: true;
 	fallback-icon: "fire";
 	font: "Noto Sans Medium 11";
-	terminal: "alacritty";
+	terminal: "ghostty";
 	sidebar-mode: true;
 /*	location: 0;*/
 /*	yoffset: 0;*/
@@ -36,6 +36,7 @@ configuration {
       sorting-method:    "name";
       show-hidden: true;
   }
+	
 }
 
-@theme "./themes/catppuccin-mocha.rasi"
+@theme "./themes/rose-pine.rasi"
