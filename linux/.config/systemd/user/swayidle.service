@@ -11,7 +11,6 @@ ExecStart=/usr/bin/swayidle -w \
     timeout 600 'gtklock' \
     timeout 900 'swaymsg "output * dpms off"' \
     resume 'swaymsg "output * dpms on"' \
-    timeout 1750 'gtklock' \
     timeout 1800 'systemctl suspend' \
     before-sleep 'gtklock'
 Restart=always
