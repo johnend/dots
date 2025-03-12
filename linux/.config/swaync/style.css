@@ -200,6 +200,20 @@
   .notification-row
   .notification-background
   .notification
+  .notification-content
+  .time {
+  color: @base;
+  background: @rose;
+  border-radius: 2px;
+  margin: 0.5rem 0.5rem 0 0;
+  padding: 0 0.5rem;
+  font-size: 0.75rem;
+}
+
+.control-center
+  .notification-row
+  .notification-background
+  .notification
   > *:last-child
   > * {
   min-height: 3rem;
@@ -328,7 +342,6 @@ trough {
 .widget-buttons-grid > flowbox > flowboxchild > button:hover {
   background: @surface;
 }
-
 .widget-mpris .widget-mpris-player {
   background: #26233a;
   padding: 7px;
