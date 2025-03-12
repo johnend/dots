@@ -36,7 +36,6 @@
   //
   // Clock
   "clock": {
-    // TODO: figure out icons here
     "format": "󰅐{:%R    %d/%m}",
     "tooltip-format": "<tt><small>{calendar}</small></tt>"
   },
