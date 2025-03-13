@@ -21,3 +21,4 @@ commmon/.config/nvim/tmux*.log
 #tmux
 common/.config/tmux/plugins
 tmux-client-*.log
+linux/.config/spicetify
