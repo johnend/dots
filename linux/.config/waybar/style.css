@@ -98,13 +98,14 @@ button:hover {
 }
 
 #workspaces button.urgent {
-  background-color: #eb4d4b;
+  color: @rose;
+  box-shadow: inset 0 -2px @rose;
 }
 
-#mode {
-  background-color: #64727d;
-  box-shadow: inset 0 -2px #ffffff;
-}
+/* #mode { */
+/*   background-color: #64727d; */
+/*   box-shadow: inset 0 -2px #ffffff; */
+/* } */
 
 #clock,
 #battery,
@@ -211,11 +212,11 @@ label:focus {
 }
 
 #network {
-  color: @love;
+  color: @iris;
 }
 
 #network.disconnected {
-  background-color: #f53c3c;
+  background-color: @love;
 }
 
 #pulseaudio {
