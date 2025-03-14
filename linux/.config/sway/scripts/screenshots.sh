@@ -15,6 +15,14 @@ case "$1" in
     file="$HOME/Pictures/Screenshots/screenshot-$(date +'%d-%m-%Y_%H-%M-%S').png"
     grim -g "$(slurp)" "$file"  # Area screenshot
     ;;
+  clipboard)
+    temp_file=$(mktemp /tmp/screenshot-preview-XXXXX.png)
+    grim -g "$(slurp)" "$temp_file"
+    wl-copy < "$temp_file"
+    notify-send "Screenshot copied to clipboard" "Go forth and paste" -i "$temp_file"
+    rm "$temp_file"
+    exit 0
+    ;;
   *)
     notify-send "Error" "Unknown screenshot type"  # If invalid argument is passed
     exit 1
