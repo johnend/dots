@@ -13,9 +13,17 @@
   // Selection
   //
   "modules-left": [
+    "group/menu",
     "group/datetime",
     "group/workspacegroup"
   ],
+  // Groups
+  "group/menu": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/launcher"
+    ]
+  },
   // Groups
   "group/datetime": {
     "orientation": "horizontal",
@@ -34,6 +42,11 @@
   //
   // Configuration
   //
+  // Launcher
+  "custom/launcher": {
+    "format": "󰣇",
+    "on-click": "rofi -show drun"
+  },
   // Clock
   "clock": {
     "format": "󰅐{:%R    %d/%m}",
