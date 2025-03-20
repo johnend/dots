@@ -1,6 +1,7 @@
 configuration {
-	modes: "drun,run,window,emoji";
+	modes: "drun,window,filebrowser,run,emoji";
 	show-icons: true;
+	icon-theme: "oomox-Rose-Pine-Main";
 	fallback-icon: "fire";
 	font: "Noto Sans Medium 11";
 	terminal: "ghostty";
@@ -15,6 +16,8 @@ configuration {
 	kb-mode-next: "Tab";
 	kb-element-next: "";
 	kb-element-prev: "";
+	
+	disable-history: true; // disables recency sorting
 
 	display-drun: "󰣆";
 	display-run: "󱃷";
@@ -36,7 +39,10 @@ configuration {
       sorting-method:    "name";
       show-hidden: true;
   }
-	
+}
+
+element {
+    children: [element-icon, element-text];
 }
 
 @theme "./themes/rose-pine.rasi"
