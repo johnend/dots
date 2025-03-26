@@ -74,7 +74,7 @@
             file_ops.confirm_move_to_trash = "true" 
             file_ops.enable_delete_key = "true" 
             file_ops.use_system_trash = "true" 
-            file_ops.safe_delete_enable = "true" 
+            file_ops.safe_delete_enable = "false" 
             file_ops.safe_delete_path = "/home/johne/.local/share/geeqie/trash" 
             file_ops.safe_delete_folder_maxsize = "128" 
             file_ops.no_trash = "false" 
@@ -317,12 +317,12 @@
         home_path = "" 
         startup_path = "0" 
 
-        main_window.x = "0" 
-        main_window.y = "0" 
-        main_window.w = "720" 
-        main_window.h = "540" 
+        main_window.x = "3480" 
+        main_window.y = "259" 
+        main_window.w = "1163" 
+        main_window.h = "630" 
         main_window.maximized = "true" 
-        main_window.hdivider_pos = "434" 
+        main_window.hdivider_pos = "427" 
         main_window.vdivider_pos = "409" 
         workspace = "-1" 
 
@@ -371,8 +371,11 @@
         advanced_exif_window.w = "900" 
         advanced_exif_window.h = "600" 
 
-        animate = "true" >
+        animate = "false" >
 
+        <dialogs>
+            <window title = "Delete" role = "dlg_confirm" x = "3632" y = "468" w = "416" h = "302" />
+        </dialogs>
 
         <toolbar>
             <clear/>
