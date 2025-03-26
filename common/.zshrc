@@ -1,4 +1,4 @@
-# . $HOME/.zsh_secrets
+. $HOME/.zsh_secrets
 . $HOME/.zsh_functions
 . $HOME/.zsh_env
 
@@ -29,7 +29,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-vi-mode fzf-tab fzf-yarn gh git zsh-autosuggestions command-not-found colored-man-pages) 
+plugins=(zsh-vi-mode fzf-tab gh git zsh-autosuggestions command-not-found colored-man-pages) 
 
 source $ZSH/oh-my-zsh.sh
 

@@ -16,7 +16,14 @@ export FZF_CTRL_R_OPTS="
   --color header:italic
   --header '<c-y> to copy command'"
 
+# fzf yarn completion trigger
+export FZF_COMPLETION_TRIGGER=','
+
 
 # fzf keybindings
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
+
+
+if [[ "$(uname)" == "Linux" ]]; then
+  source /usr/share/fzf/key-bindings.zsh
+  source /usr/share/fzf/completion.zsh
+fi

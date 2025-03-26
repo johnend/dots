@@ -25,3 +25,27 @@ function compile_qmk() {
     exit 1
   fi
 }
+
+#######################################
+# Yarn and NPM script runner with fzf
+#######################################
+function run() {
+  if cat package.json > /dev/null 2>&1; then
+    scripts=$(cat package.json | jq .scripts | sed '1d;$d' | fzf --height 40%)
+
+    if [[ -n $scripts ]]; then
+      script_name=$(echo $scripts | awk -F ': ' '{gsub(/"/, "", $1); print $1}' | awk '{$1=$1};1')
+      if cat yarn.lock > /dev/null 2>&1; then
+        print -s "yarn run "$script_name;
+        yarn run $script_name
+      elif cat package.lock > /dev/null 2>&1; then
+        print -s "npm run "$script_name;
+        npm run $script_name
+      fi
+    else
+      echo "Exit: You haven't selected a script"
+    fi
+  else
+    echo "Error: There's no package.json"
+  fi
+}
