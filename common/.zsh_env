@@ -5,37 +5,37 @@
 #  ███████╗██║ ╚████║ ╚████╔╝      ╚████╔╝ ██║  ██║██║  ██║███████║
 #  ╚══════╝╚═╝  ╚═══╝  ╚═══╝        ╚═══╝  ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝
 
-
-# config home
+# XDG base directory
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 
-# prefix for yarn script completion
-export FZF_COMPLETION_TRIGGER="."
-
-export FZF_ALT_C_COMMAND="fd --type d . --hidden"
-export FZF_ALT_C_OPTS="--preview 'eza -T {} | head -50'"
-
-if [[ "$(uname)" == "Linux" ]]; then
-  export DOTS="$HOME/.dots/"
-  export PACMAN_CACHE=/var/cache/pacman/
-elif [[ "$(uname)" == "Darwin" ]]; then
-  export DOTS="$HOME/Developer/personal/dots"
-fi
-
-# change default editor to nvim
-export EDITOR=nvim
-
-
-# Firefox developer edition user directory
-export FFD_USER_DIR=$HOME/.mozilla/firefox/6dh274r9.dev-edition-default/
-
-# Autosuggestions highlight color
+# Theme customisation for autosuggestion
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ca9ee6"
 
-# oh-my-zsh custom dir
+# Firefox developer edition profile (look into this on mac)
+# export FFD_USER_DIR="$HOME/.mozilla/firefox/6dh274r9.dev-edition-default"
+
+# Dotfiles location
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  export DOTS="$HOME/.dots/"
+  export PACMAN_CACHE="/var/cache/pacman/"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  export DOTS="$HOME/Developer/personal/dots/"
+fi
+
+# Custom location for OMZ custom plugins/themes
 export ZSH_CUSTOM="$HOME/.oh-my-zsh/custom/"
 
-# cargo for rust
-[[ -f ~/.cargo ]] && source ~/.cargo/env
+# Node.js (using n) global install prefix
+export N_PREFIX="$HOME/.n"
+
+# Cargo (Rust) - activate only if installed
+[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+
+# Editor
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR="vim"
+else
+  export EDITOR="nvim"
+fi
 

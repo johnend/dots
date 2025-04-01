@@ -1,7 +1,13 @@
 # fzf
+if [[ ! "$PATH" == */opt/homebrew/opt/fzf/bin* ]]; then
+  PATH="${PATH:+${PATH}:}/opt/homebrew/opt/fzf/bin"
+fi
+
+source <(fzf --zsh)
+
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-  --color=fg:#a6adc8,fg+:#cdd6f4,bg:-1,bg+:#1e1e2e
+  --color=fg:#a6adc8,fg+:#cdd6f4,bg:-1,bg+:#313244
   --color=hl:#cba6f7,hl+:#94e2d5,info:#cba6f7,marker:#a6e3a1
   --color=prompt:#d7005f,spinner:#cba6f7,pointer:#cba6f7,header:#b4befe
   --color=border:#313244,preview-fg:#cdd6f4,preview-label:#bac2de,label:#bac2de
@@ -16,14 +22,21 @@ export FZF_CTRL_R_OPTS="
   --color header:italic
   --header '<c-y> to copy command'"
 
-# fzf yarn completion trigger
-export FZF_COMPLETION_TRIGGER=','
+# Yarn fzf settings (not currently used)
+# export FZF_COMPLETION_TRIGGER="."
+
+# Other fzf options
+export FZF_ALT_C_COMMAND="fd --type d . --hidden"
+export FZF_ALT_C_OPTS="--preview 'eza -T {} | head -50'"
 
 
 # fzf keybindings
 
 
-if [[ "$(uname)" == "Linux" ]]; then
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   source /usr/share/fzf/key-bindings.zsh
   source /usr/share/fzf/completion.zsh
+elif [[ "$OSTYPE" == "darwin" ]]; then
+  source "$(brew --prefix)/opt/fzf/shell/keybindings.zsh"
+  source "$(brew --prefix)/opt/fzf/shell/completion.zsh"
 fi

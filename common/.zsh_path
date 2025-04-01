@@ -1,14 +1,28 @@
-#!/bin/zsh
+# Common paths (added to front to ensure priority)
+export PATH="$HOME/bin:$N_PREFIX/bin:$PATH"
+export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="$PATH:$HOME/.local/bin"
 
-#######################################
-# Linux path
-#######################################
+# macOS-specific paths
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  export PATH="$PATH:/opt/homebrew/bin:/opt/homebrew/sbin"
+  export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
+  export PATH="$PATH:$HOME/Library/Python/3.9/bin"
+  export PATH="$PATH:$HOME/.rd/bin"  # Rancher Desktop
+fi
 
-# add /.local/bin to path
-export PATH=/home/johnend/.local/bin:$PATH
+# Linux-specific paths
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  export PATH="$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin"
+fi
 
-# ruby gems
-export PATH=/home/johnend/.local/share/gem/ruby/3.0.0/bin:$PATH
+# Language/toolchain-specific paths
+export PATH="$PATH:/usr/local/go/bin"
+export PATH="$PATH:$HOME/.bun/bin"
 
-# go
-export PATH=$PATH:/usr/local/go/bin
+# Python (Homebrew or Linuxbrew)
+if command -v brew &>/dev/null; then
+  PYTHON_BIN=$(brew --prefix)/opt/python/libexec/bin
+  export PATH="$PYTHON_BIN:$PATH"
+fi
+

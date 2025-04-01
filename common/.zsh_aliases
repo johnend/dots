@@ -1,4 +1,4 @@
-# Settings files open in VSCode
+# Settings files open in NeoVim
 alias zshrc="nvim ~/.zshrc"
 alias npmrc="nvim ~/.npmrc"
 alias sshconfig="nvim ~/.ssh"
@@ -11,6 +11,7 @@ alias gitconfig='nvim ~/.gitconfig'
 
 # tmux
 alias muxi='project=$(tmuxinator list | grep -v -e "projects:" -e "tmuxinator" | tr -s " " "\n" | fzf --header="Select a tmuxinator project:"); if [ -n "$project" ]; then tmuxinator start "$project"; fi'
+
 # QoL
 alias ":q"="exit"
 
@@ -25,9 +26,6 @@ alias "lad"="ls -lDa --show-symlinks"
 alias "lt"="ls -T --level=2"
 alias "lat"="ls -Ta" # use with caution!
 
-# aerc
-alias "a"="aerc"
-
 # neovim
 alias "v"="nvim"
 
@@ -36,5 +34,11 @@ gh-create() {
   gh repo create "${1:-$(basename "$PWD")}" --public --source=. --remote=origin
 }
 
-#pavucontrol temp gtk fix
-alias pavucontrol="GTK_THEME=Adwaita-dark pavucontrol"
+# Linux specific aliases
+
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  alias "a"="aerc"
+  alias pavucontrol="GTK_THEME=Adwaita-dark pavucontrol"
+fi
+
+
