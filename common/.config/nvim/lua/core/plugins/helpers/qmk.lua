@@ -23,6 +23,7 @@ return {
           KC_DEL = "󰹾",
           KC_LSFT = "󰘶",
           KC_RSFT = "󰘶",
+          LSFT = "󰘶",
           KC_TAB = "󰌒",
           -- arrow keys
           KC_LEFT = "",
@@ -31,12 +32,19 @@ return {
           KC_RIGHT = "",
           -- mod keys
           KC_LCTL = "󰘴",
+          LCTL = "󰘴",
           KC_RCTL = "󰘴",
           KC_LALT = "󰘵",
           KC_RALT = "󰘵",
           KC_LGUI = "󰘳/",
+          LGUI = "󰘳/",
           KC_RGUI = "󰘳/",
+          LGUI_T = "󰘳/",
+          LCTL_T = "󰘴",
           KC_HYPR = "",
+          KC_MEH = "",
+          HYPR_T = "",
+          MEH_T = "",
           -- media keys
           KC_MPLY = "",
           KC_VOLU = "",
