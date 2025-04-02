@@ -25,7 +25,6 @@ HISTSIZE=1000000
 SAVEHIST=1000000
 setopt extended_history share_history hist_expire_dups_first hist_ignore_dups hist_verify
 
-
 # Aliases
 source "$HOME/.zsh_aliases"
 
@@ -43,6 +42,9 @@ command -v zoxide &> /dev/null && eval "$(zoxide init zsh)"
 
 # thefuck
 command -v thefuck &> /dev/null && eval "$(thefuck --alias)"
+
+# jenv
+command -v jenv &> /dev/null && eval "$(jenv init -)"
 
 # Netskope certs (mac-specific)
 if [[ "$OSTYPE" == darwin* && -f "$HOME/netskope/certs/nscacert_combined.pem" ]]; then
