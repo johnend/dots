@@ -41,9 +41,72 @@ function run() {
         npm run $script_name
       fi
     else
-      echo "Exit: You haven't selected a script"
+      echo "🚨 Error: Nothing to run"
     fi
   else
-    echo "Error: There's no package.json"
+    echo "🚨 Error: could not find package.json"
   fi
+}
+
+#######################################
+# Make homebrew act like yay
+#######################################
+function brzf() {
+  if [[ "$OSTYPE" != "darwin"* ]]; then
+    echo "brzf is only available on macOS."
+    return 1
+  fi
+
+  if ! command -v brew &>/dev/null; then
+    echo "Homebrew is not installed."
+    return 1
+  fi
+
+  local cmd=""
+  local arg=""
+
+  while [[ "$#" -gt 0 ]]; do
+    case "$1" in
+      --rm|-r)
+        cmd="uninstall"
+        ;;
+      --cask|-c)
+        cmd="cask"
+        ;;
+      --help|-h)
+        echo "brzf: Interactive Homebrew with fuzzy search"
+        echo ""
+        echo "Usage:"
+        echo "  brzf [query]             Search and install package (default)"
+        echo "  brzf -r | --rm           Fuzzy uninstall installed package"
+        echo "  brzf -c | --cask [query] Search and install GUI app (cask)"
+        echo "  brzf -h | --help         Show this help message"
+        return 0
+        ;;
+      *)
+        arg="$1"
+        ;;
+    esac
+    shift
+  done
+
+  case "$cmd" in
+    uninstall)
+      local choice
+      choice=$(brew list | fzf --height=40% --prompt="❌ brzf: Uninstall > ")
+      [[ -n "$choice" ]] && echo "🧼 Uninstalling $choice..." && brew uninstall "$choice" || echo "❌ No package selected."
+      ;;
+
+    cask)
+      local choice
+      choice=$(brew search --casks "$arg" | fzf --height=40% --prompt="🖥️ brzf: Cask > ")
+      [[ -n "$choice" ]] && echo "📦 Installing cask: $choice..." && brew install --cask "$choice" || echo "❌ No cask selected."
+      ;;
+
+    *)
+      local choice
+      choice=$(brew search "$arg" | fzf --height=40% --prompt="🍺 brzf: Install > ")
+      [[ -n "$choice" ]] && echo "🔧 Installing $choice..." && brew install "$choice" || echo "❌ No package selected."
+      ;;
+  esac
 }
