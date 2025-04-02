@@ -3,6 +3,9 @@
 # aerc ignores
 linux/.config/aerc/accounts.conf
 
+# btop
+common/.config/btop/btop.log
+
 # K9s ignores
 common/.config/k9s/clusters/
 common/.config/k9s/k9s.log
@@ -22,3 +25,4 @@ commmon/.config/nvim/tmux*.log
 common/.config/tmux/plugins
 tmux-client-*.log
 linux/.config/spicetify
+linux/.config/thefuck/__pycache__/settings.cpython-313.pyc
