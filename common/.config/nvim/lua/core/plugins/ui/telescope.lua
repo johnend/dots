@@ -81,6 +81,12 @@ return {
           file_ignore_patterns = ignore_patterns,
           find_command = find_command,
         },
+        live_grep = {
+          file_ignore_patterns = vim.list_extend(
+            vim.deepcopy(ignore_patterns),
+            { "package%-lock%.json", "yarn%.lock", "lazy%-lock%.json" }
+          ),
+        },
         builtin = {
           theme = "dropdown",
           previewer = false,
@@ -91,8 +97,11 @@ return {
           enable_preview = true,
         },
         grep_string = {
-          theme = "dropdown",
-          file_ignore_patterns = ignore_patterns,
+          theme = dropdown_config.theme,
+          file_ignore_patterns = vim.list_extend(vim.deepcopy(ignore_patterns), {
+            "package%-lock%.json",
+            "yarn%.lock",
+          }),
         },
         diagnostics = {
           theme = "dropdown",
