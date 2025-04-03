@@ -1,0 +1,100 @@
+nnoremap <Space> <Nop>
+let mapleader = " "
+
+""" Plugins ============================
+set surround
+set commentary
+set nerdtree
+set which-key
+set notimeout
+
+set highlightedyank
+
+""" Base settings ======================
+set scrolloff=10
+set number
+set relativenumber
+set showmode
+set showcmd
+set history=1000
+
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+set cursorline
+
+set visualbell
+
+" Use system clipboard
+set clipboard+=unnamed
+
+""" Mappings ==========================
+
+inoremap kj <Esc>
+
+" idea specific
+nnoremap <leader>ir :action IdeaVim.ReloadVimRc.reload<CR>
+
+" telescope equivalents
+nnoremap <leader>sf :action GotoFile<CR>
+nnoremap <leader>ss :action FileStructurePopup<CR>
+nnoremap <leader>sb :action Switcher<CR>
+nnoremap <leader>sg :action FindInPath<CR>
+
+" show file history
+nnoremap <leader>gf :action Vcs.ShowTabbedFileHistory<CR>
+
+" neotree
+nnoremap <leader>ne :action ActivateProjectToolWindow<CR>
+nnoremap <leader>nt :action :NERDTreeToggle<CR>
+
+nnoremap <leader>/ :action CommentByLineComment<CR>
+vnoremap <leader>/ :action CommentByLineComment<CR>
+nnoremap <leader>w :action SaveAll<CR>
+nnoremap <leader>q :action CloseContent<CR>
+
+" Pane navigation
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+nnoremap <C-k> <C-w>k
+nnoremap <C-j> <C-w>j
+
+nnoremap <leader>xs :action SplitVertically<CR>
+nnoremap <leader>xh :action SplitHorizontally<CR>
+
+" Which key titles etc.
+let g:WhichKeyDesc_space                = "<Space> Leader"
+
+let g:WhichKeyDesc_search               = "<leader>s Search"
+let g:WhichKeyDesc_search_file          = "<leader>sf files"
+let g:WhichKeyDesc_search_structure     = "<leader>ss structure"
+let g:WhichKeyDesc_search_switcher      = "<leader>sb switcher"
+let g:WhichKeyDesc_search_grep          = "<leader>sg grep"
+
+let g:WhichKeyDesc_idea                 = "<leader>i IdeaVim"
+
+let g:WhichKeyDesc_git                  = "<leader>g Git"
+let g:WhichKeyDesc_git_filehistory      = "<leader>gf file history"
+
+let g:WhichKeyDesc_neotree              = "<leader>n Neotree"
+let g:WhichKeyDesc_neotree_focus        = "<leader>ne focus"
+let g:WhichKeyDesc_neotree_toggle       = "<leader>nt toggle"
+
+let g:WhichKeyDesc_split                = "<leader>x Split"
+let g:WhichKeyDesc_split_vertically     = "<leader>xs vertically"
+let g:WhichKeyDesc_split_horizontally   = "<leader>xh horizontally"
+
+let g:WhichKeyDesc_commment             = "<leader>/ Comment current line"
+let g:WhichKeyDesc_saveall              = "<leader>w Save all"
+let g:WhichKeyDesc_close_buffer         = "<leader>q Close buffer/tab"
+
+" disable the following
+let g:WhichKeyDesc_goto_prefix = "g"
+let g:WhichKeyDesc_surround_change_prefix = "c"
+let g:WhichKeyDesc_surround_delete_prefix = "d"
+let g:WhichKeyDesc_surround_prefix = "y"
+let g:WhichKeyDesc_hide_m_h = "<⌃-h>"
+let g:WhichKeyDesc_hide_m_j = "<⌃-j>"
+let g:WhichKeyDesc_hide_m_k = "<⌃-k>"
+let g:WhichKeyDesc_hide_m_l = "<⌃-l>"
