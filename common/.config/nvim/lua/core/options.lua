@@ -142,7 +142,7 @@ local options = {
   termguicolors = true,
 
   -- time to wait for a mapped sequence to complete (in milliseconds)
-  timeoutlen = 300,
+  timeoutlen = 210,
 
   -- enable persistent undo
   undodir = os.getenv "HOME" .. "/vim/undodir",

@@ -1,4 +1,4 @@
---[[key
+--[[
 --
 --  ██╗  ██╗███████╗██╗   ██╗███╗   ███╗ █████╗ ██████╗ ███████╗
 --  ██║ ██╔╝██╔════╝╚██╗ ██╔╝████╗ ████║██╔══██╗██╔══██╗██╔════╝
@@ -36,7 +36,7 @@ keymap("n", "<leader>ne", ":Neotree left toggle<cr>", { desc = "Sidebar" })
 
 -- Open splits
 keymap("n", "<leader>xh", ":sp<cr>", { desc = "Horizontally" })
-keymap("n", "<leader>xv", ":vs<cr>", { desc = "Vertically" })
+keymap("n", "<leader>xs", ":vs<cr>", { desc = "Vertically" })
 
 -- Resize splits with arrow keys
 keymap("n", "<C-Up>", ":resize +2<CR>", opts)
@@ -70,11 +70,14 @@ vim.keymap.set(
 )
 
 -- Diagnostic keymaps
--- TODO: enable these in the future
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostic message" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic message" })
+-- TODO: the goto_prev and goto_next methods are deprecated will need something else
+-- vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostic message" })
+-- vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic message" })
 vim.keymap.set("n", "<leader>de", vim.diagnostic.open_float, { desc = "Diagnostic error messages" })
 vim.keymap.set("n", "<leader>dq", vim.diagnostic.setloclist, { desc = "Diagnostic quickfix list" })
+
+-- INSERT --
+keymap("i", "jj", "<Esc>", opts)
 
 -- VISUAL --
 -- Stay in indent mode
