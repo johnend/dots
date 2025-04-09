@@ -17,7 +17,7 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ca9ee6"
 
 # Dotfiles location
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  export DOTS="$HOME/.dots/"
+  export DOTS="$HOME/Developer/dots/"
   export PACMAN_CACHE="/var/cache/pacman/"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   export DOTS="$HOME/Developer/personal/dots/"
