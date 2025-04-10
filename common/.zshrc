@@ -1,6 +1,3 @@
-# 🤫
-[[ -f "$HOME/.zsh_secrets" ]] && source "$HOME/.zsh_secrets"
-
 # Load env vars and system config
 source "$HOME/.zsh_env"
 source "$HOME/.zsh_path"
@@ -58,3 +55,5 @@ if [[ "$OSTYPE" == darwin* && -f "$HOME/netskope/certs/nscacert_combined.pem" ]]
   export DENO_TLS_CA_STORE=system
 fi
 
+# 🤫
+[[ -f "$HOME/.zsh_secrets" ]] && source "$HOME/.zsh_secrets"
