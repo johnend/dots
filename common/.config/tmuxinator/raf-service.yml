@@ -1,7 +1,7 @@
-# /Users/john.enderby/.config/tmuxinator/fanfuel.yml
+# /Users/john.enderby/.config/tmuxinator/raf-service.yml
 
-name: fanfuel
-root: /Users/john.enderby/Developer/hackathon/fanfuel/
+name: refer-a-friend-service
+root: /Users/john.enderby/Developer/raccoons/refer-a-friend-service/
 
 # Optional tmux socket
 # socket_name: foo
@@ -46,7 +46,7 @@ root: /Users/john.enderby/Developer/hackathon/fanfuel/
 
 windows:
   - front:
-      root: /Users/john.enderby/Developer/hackathon/fanfuel/
+      root: /Users/john.enderby/Developer/fdweb/contentx-marketing-frontend/
       layout: f96e,282x76,0,0{169x76,0,0,1,112x76,170,0[112x38,170,0,2,112x37,170,39,3]}
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
@@ -56,18 +56,5 @@ windows:
           - tmux resize-pane -x 60% 
           - nvim
         - dev:
-          - npm install
-          - npm run dev
+          - 
         - fastfetch
-  - dots:
-      root: /Users/john.enderby/Developer/personal/dots/
-      layout: main-vertical
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
-      panes:
-        - editor:
-          - tmux resize-pane -x 60%
-          - nvim
-        - 
-        - 
