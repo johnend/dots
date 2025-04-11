@@ -64,7 +64,7 @@ return {
         { "<leader>w", "<cmd>w<cr>", desc = "Write", icon = icons.misc.Write },
         {
           "<leader>gg",
-          "<cmd> lua require 'core.plugins.ui.toggleterm'.lazygit_toggle()<cr>",
+          "<cmd> lua require 'core.plugins.devtools.toggleterm'.lazygit_toggle()<cr>",
           desc = "LazyGit",
           icon = icons.git.Octoface,
         },

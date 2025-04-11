@@ -31,10 +31,15 @@ local lazy_opts = {
   -- Lazy options
   spec = {
     { import = "core.plugins" },
+    { import = "core.plugins.utilities" },
+    { import = "core.plugins.git" },
     { import = "core.plugins.lsp" },
+    { import = "core.plugins.editing" },
+    { import = "core.plugins.navigation" },
+    { import = "core.plugins.devtools" },
+    { import = "core.plugins.syntax" },
     { import = "core.plugins.ui" },
     { import = "core.plugins.ui.colorschemes" },
-    { import = "core.plugins.helpers" },
   },
   ui = {
     border = "rounded",
