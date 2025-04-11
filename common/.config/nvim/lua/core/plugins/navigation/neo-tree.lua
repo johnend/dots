@@ -18,6 +18,7 @@ return {
       close_if_last_window = true,
       filesystem = {
         hijack_netrw_behavior = "disabled",
+        use_libuv_file_watcher = true,
         window = {
           mappings = {
             ["o"] = "system_open",
