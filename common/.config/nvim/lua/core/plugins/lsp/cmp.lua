@@ -43,14 +43,18 @@ return {
           desc = "Cancel snippet selection when leaving insert mode",
           pattern = { "s:n", "i:*" },
           callback = function()
-            if
-              luasnip.session
-              and luasnip.session.current_nodes
-              and not luasnip.session.jump_active
-              and not luasnip.choice_active()
-            then
-              luasnip.unlink_current()
-            end
+            local ok, _ = pcall(function()
+              local current_buf = vim.api.nvim_get_current_buf()
+              if
+                luasnip.session
+                and luasnip.session.current_nodes
+                and luasnip.session.current_nodes[current_buf]
+                and not luasnip.session.jump_active
+                and not luasnip.choice_active()
+              then
+                luasnip.unlink_current()
+              end
+            end)
           end,
         })
       end,
