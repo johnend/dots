@@ -17,9 +17,18 @@ return {
         virtualtext = "■",
         always_update = true,
       },
+      -- customise these filetypes
       css = { css = true },
       html = { css = true },
       javascript = { css = true },
     }
+
+    -- disallow these filetypes
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = { "neo-tree", "TelescopePrompt", "oil", "alpha", "lazy", "mason" },
+      callback = function()
+        require("colorizer").detach_from_buffer()
+      end,
+    })
   end,
 }
