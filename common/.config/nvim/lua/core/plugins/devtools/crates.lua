@@ -1,4 +1,3 @@
-local completion = require "vim.lsp.completion"
 return {
   "saecki/crates.nvim",
   tag = "stable",
