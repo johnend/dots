@@ -71,8 +71,12 @@ vim.keymap.set(
 
 -- Diagnostic keymaps
 -- TODO: the goto_prev and goto_next methods are deprecated will need something else
--- vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostic message" })
--- vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic message" })
+vim.keymap.set("n", "[d", function()
+  vim.diagnostic.jump { count = 1 }
+end, { desc = "Previous diagnostic message" })
+vim.keymap.set("n", "]d", function()
+  vim.diagnostic.jump { count = -1 }
+end, { desc = "Next diagnostic message" })
 vim.keymap.set("n", "<leader>de", vim.diagnostic.open_float, { desc = "Diagnostic error messages" })
 vim.keymap.set("n", "<leader>dq", vim.diagnostic.setloclist, { desc = "Diagnostic quickfix list" })
 

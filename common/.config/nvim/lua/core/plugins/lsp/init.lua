@@ -32,6 +32,9 @@ return {
         max_width = 160,
       },
       virtual_text = false,
+      jump = {
+        float = true,
+      },
     }
     vim.keymap.set(
       "n",
