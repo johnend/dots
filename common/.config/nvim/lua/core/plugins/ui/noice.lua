@@ -11,6 +11,23 @@ return {
       return
     end
     noice.setup {
+      -- TODO: remove the routes once updates come through
+      routes = {
+        {
+          filter = {
+            event = "notify",
+            find = "position_encoding param is required",
+          },
+          opts = { skip = true },
+        },
+        {
+          filter = {
+            event = "msg_show",
+            find = "vim%.lsp%.util%.jump_to_location is deprecated",
+          },
+          opts = { skip = true },
+        },
+      },
       views = {
         notify = {
           replace = true,
