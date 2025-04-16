@@ -22,6 +22,7 @@ return {
       options = {
         -- rounded section separators one one side only
         section_separators = { left = "", right = "" },
+        component_separators = { left = "", right = "" },
         -- enable icons
         icons_enabled = true,
         -- disabled filetypes
@@ -34,7 +35,7 @@ return {
         -- don't render multiple status lines (only show active buffer's)
         globalstatus = true,
         refresh = {
-          statusline = 1000,
+          statusline = 300,
           tabline = 1000,
           winbar = 1000,
         },
@@ -45,13 +46,14 @@ return {
         lualine_c = { components.diff, components.searchcount },
         lualine_x = {
           components.diagnostics,
-          components.spaces,
+          components.lsp,
           {
             "filename",
             separator = { left = "" },
             symbols = { modified = icons.git.LineModified, readonly = icons.ui.Lock },
           },
           { "filetype", icon_only = true, separator = { right = "" } },
+          components.spaces,
         },
         lualine_y = { components.location },
         lualine_z = { components.progress },

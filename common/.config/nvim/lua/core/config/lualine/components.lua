@@ -1,3 +1,70 @@
+local M = {}
+
+-- Spinner stuff
+local spinner_frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+local spinner_index = 1
+
+local active_progress = false
+
+-- Timer for animation
+---@diagnostic disable-next-line: undefined-field
+local timer = vim.loop.new_timer()
+timer:start(
+  0,
+  120,
+  vim.schedule_wrap(function()
+    spinner_index = (spinner_index % #spinner_frames) + 1
+  end)
+)
+
+-- Listen to $/progress messages
+vim.api.nvim_create_autocmd("LspProgress", {
+  callback = function()
+    active_progress = true
+    vim.defer_fn(function()
+      active_progress = false
+    end, 1000)
+  end,
+})
+
+local function lsp_status()
+  local clients = vim.lsp.get_clients { bufnr = 0 }
+  if #clients == 0 then
+    return "No LSP"
+  end
+
+  local names = {}
+  for _, client in ipairs(clients) do
+    if client.name ~= "" then
+      table.insert(names, client.name)
+    end
+  end
+
+  local status = icons.ui.Gear .. " " .. table.concat(names, ", ")
+  if active_progress then
+    status = spinner_frames[spinner_index] .. " " .. status
+  end
+
+  return status
+end
+
+local function lsp_color()
+  local clients = vim.lsp.get_clients { bufnr = 0 }
+  if #clients == 0 then
+    return { fg = colors.red }
+  elseif active_progress then
+    return { fg = colors.yellow }
+  else
+    return { fg = colors.green }
+  end
+end
+
+M.lsp = {
+  lsp_status,
+  color = lsp_color,
+  padding = { left = 1, right = 1 },
+}
+
 local mode = {
   function()
     return " " .. icons.ui.Target .. " "
@@ -50,7 +117,7 @@ local filetype = {
   "filetype",
   colored = true,
   icon_only = false,
-  padding = { left = 2, right = 1 },
+  padding = { left = 0, right = 0 },
 }
 
 local diagnostics = {
@@ -72,7 +139,10 @@ local spaces = {
   padding = 1,
 }
 
-local location = { "location" }
+local location = {
+  "location",
+  padding = { left = 0, right = 1 },
+}
 
 local progress = {
   "progress",
@@ -102,4 +172,5 @@ return {
   location = location,
   searchcount = searchcount,
   spaces = spaces,
+  lsp = M.lsp,
 }
