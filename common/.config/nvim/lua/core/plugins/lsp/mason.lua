@@ -50,12 +50,14 @@ return {
 
             local ensure_installed = vim.tbl_keys(servers or {})
             vim.list_extend(ensure_installed, {
+              -------------------------
+              -- LSPs
+              -------------------------
               "bash-language-server",
               "css-lsp",
               "cssmodules-language-server",
               "css-variables-language-server",
               "emmet-language-server",
-              "eslint_d",
               "graphql",
               "helm-ls",
               "html-lsp",
@@ -64,14 +66,21 @@ return {
               "prettier",
               "prettierd",
               "pyright",
-              "shellcheck",
-              "sonarlint-language-server",
               "some-sass-language-server",
               "stylua",
-              -- "ts_ls",
+              -- "ts_ls", # this can be useful but is much slower than vtsls
               "vtsls",
               "yaml-language-server",
-              -- "rust-analyzer",
+              -------------------------
+              -- DAPs
+              -------------------------
+              "codelldb",
+              -------------------------
+              -- Linters
+              -------------------------
+              "eslint_d",
+              "sonarlint-language-server",
+              "shellcheck",
             })
             masontools.setup { ensure_installed = ensure_installed }
           end,
