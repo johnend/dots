@@ -60,7 +60,7 @@ local servers = {
     end,
   },
   -----------------------------------------------------------------------------
-  rust_analyzer = { function() end },
+  -- rust_analyzer = { function() end },
   -----------------------------------------------------------------------------
   graphql = {
     filetypes = { "graphql", "typescriptreact", "javascriptreact", "typescript", "javascript" },

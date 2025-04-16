@@ -10,6 +10,7 @@ return {
       end
 
       local capabilties = vim.lsp.protocol.make_client_capabilities()
+      ---@diagnostic disable-next-line: lowercase-global
       capabilities = vim.tbl_deep_extend("force", capabilties, require("cmp_nvim_lsp").default_capabilities())
 
       masonlsp.setup {
@@ -70,7 +71,7 @@ return {
               -- "ts_ls",
               "vtsls",
               "yaml-language-server",
-              "rust-analyzer",
+              -- "rust-analyzer",
             })
             masontools.setup { ensure_installed = ensure_installed }
           end,
