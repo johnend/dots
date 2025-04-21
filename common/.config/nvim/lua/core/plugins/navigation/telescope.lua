@@ -126,47 +126,5 @@ return {
     telescope.load_extension "fzf"
     telescope.load_extension "ui-select"
     telescope.load_extension "project"
-
-    -- [[ Keymaps ]]
-    local builtin = require "telescope.builtin"
-    local keymaps = {
-      { "n", "<leader>sh", builtin.help_tags, "Help" },
-      { "n", "<leader>sk", builtin.keymaps, "Keymaps" },
-      { "n", "<leader>sx", builtin.commands, "Commands" },
-      { "n", "<leader>sc", builtin.colorscheme, "Colorscheme" },
-      { "n", "<leader>sf", builtin.find_files, "Files" },
-      { "n", "<leader>ss", builtin.builtin, "Select Telescope picker" },
-      { "n", "<leader>sw", builtin.grep_string, "Search current word" },
-      { "n", "<leader>sg", builtin.live_grep, "Grep" },
-      { "n", "<leader>sv", builtin.git_files, "Git files" },
-      { "n", "<leader>sd", builtin.diagnostics, "Diagnostics" },
-      {
-        "n",
-        "<leader>sp",
-        ":Telescope project project theme=dropdown layout_config={width=0.5, height=0.4}<CR>",
-        "Projects",
-      },
-      { "n", "<leader>sr", builtin.resume, "Resume" },
-      { "n", "<leader>s.", builtin.oldfiles, 'Recent Files ("." for repeat)' },
-      { "n", "<leader><leader>", builtin.buffers, "Open buffers" },
-      {
-        "n",
-        "<leader>st",
-        ":TodoTelescope theme=dropdown previewer=false layout_config={width=0.5,height=0.3}<CR>",
-        "TODOs",
-      },
-      { "", "<leader>sb", builtin.buffers, "Search open buffers" },
-      {
-        "n",
-        "<leader>sn",
-        function()
-          builtin.find_files { cwd = vim.fn.stdpath "config" }
-        end,
-        "Neovim config",
-      },
-    }
-    for _, map in ipairs(keymaps) do
-      vim.keymap.set(map[1], map[2], map[3], { desc = map[4] })
-    end
   end,
 }
