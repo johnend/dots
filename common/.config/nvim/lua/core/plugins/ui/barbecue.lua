@@ -14,6 +14,5 @@ return {
     end
     barbecue.setup()
     require("barbecue.ui").toggle(false)
-    vim.keymap.set("n", "<leader>tb", "<cmd>lua require('barbecue.ui').toggle()<cr>", { desc = "Barbecue" })
   end,
 }

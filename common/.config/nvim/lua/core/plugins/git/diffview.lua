@@ -518,8 +518,4 @@ return {
       },
     }
   end,
-
-  vim.keymap.set("n", "<leader>gdo", ":DiffviewOpen<cr>", { desc = "Open diffview" }),
-  vim.keymap.set("n", "<leader>gdc", ":DiffviewClose<cr>", { desc = "Close diffview" }),
-  vim.keymap.set("n", "<leader>gdr", ":DiffviewRefresh<cr>", { desc = "Refresh diffview" }),
 }

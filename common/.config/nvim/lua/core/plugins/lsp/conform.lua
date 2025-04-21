@@ -48,7 +48,5 @@ return {
     end, {
       desc = "Toggle auto format on save - buffer",
     })
-
-    vim.keymap.set("n", "<leader>tf", ":ToggleFormat<cr>", { desc = "Toggle format on save (buffer)" })
   end,
 }

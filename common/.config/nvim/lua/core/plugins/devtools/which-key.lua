@@ -47,21 +47,27 @@ return {
 
     local keymaps = require "core.config.keymaps"
     local buffers = keymaps.buffers
-    local telescope = keymaps.telescope
-    local plugins = keymaps.plugins
+    local diagnostics = keymaps.diagnostics
+    local git = keymaps.git
+    local harpoon = keymaps.harpoon
     local lsp = keymaps.lsp
-    -- local telescope = unpack(require "core.config.keymaps.buffers")
+    local neotree = keymaps.neotree
+    local plugins = keymaps.plugins
+    local telescope = keymaps.telescope
+    local toggle = keymaps.toggle
 
     -- Document existing
     wk.add {
       ---------------------------------
       buffers,
       ---------------------------------
-      { "<leader>d", group = "Diagnostics" },
-      { "<leader>g", group = "Git" },
-      { "<leader>h", group = "Harpoon", icon = icons.misc.Hook },
-      { "<leader>p", group = "Lazy", icon = icons.misc.Lazy },
-      { "<leader>n", group = "NeoTree", icon = icons.ui.FileTree },
+      diagnostics,
+      ---------------------------------
+      neotree,
+      ---------------------------------
+      git,
+      ---------------------------------
+      harpoon,
       ---------------------------------
       lsp,
       ---------------------------------
@@ -69,19 +75,13 @@ return {
       ---------------------------------
       telescope,
       ---------------------------------
-      { "<leader>t", group = "Toggle" },
-      { "<leader>b", group = "Buffers" },
+      toggle,
+      ---------------------------------
       { "<leader>x", group = "Split", icon = icons.misc.Split },
       {
         mode = { "n", "v" },
         { "<leader>q", "<cmd>q<cr>", desc = "Quit" },
         { "<leader>w", "<cmd>w<cr>", desc = "Write", icon = icons.misc.Write },
-        {
-          "<leader>gg",
-          "<cmd> lua require 'core.plugins.devtools.toggleterm'.lazygit_toggle()<cr>",
-          desc = "LazyGit",
-          icon = icons.git.Octoface,
-        },
       },
     }
   end,

@@ -57,6 +57,4 @@ return {
       end,
     })
   end,
-
-  vim.keymap.set("n", "<leader>ta", "<cmd>ASToggle<cr>", { desc = "AutoSave" }),
 }

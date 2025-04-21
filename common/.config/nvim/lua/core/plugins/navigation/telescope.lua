@@ -34,15 +34,17 @@ return {
 
     local dropdown_config = { theme = "dropdown", layout_config = { width = 0.5, height = 0.2 } }
     local ignore_patterns = {
-      "node_modules/",
-      ".git/",
-      "dist*/",
-      ".build/",
-      ".vscode/",
-      ".next/",
-      "package.lock",
-      "yarn.lock",
-      "coverage/",
+      -- folders
+      "^node_modules/",
+      "^.git/",
+      "^dist.*/",
+      "^%.build/",
+      "^.vscode/",
+      "^.next/",
+      "^coverage/",
+      -- specific files
+      "package%.lock",
+      "yarn%.lock",
     }
 
     -- more performant sorting with rg

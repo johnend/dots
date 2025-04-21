@@ -31,9 +31,6 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
-keymap("n", "<leader>nf", ":Neotree float toggle<cr>", { desc = "Float" })
-keymap("n", "<leader>ne", ":Neotree left toggle<cr>", { desc = "Sidebar" })
-
 -- Open splits
 keymap("n", "<leader>xh", ":sp<cr>", { desc = "Horizontally" })
 keymap("n", "<leader>xs", ":vs<cr>", { desc = "Vertically" })
@@ -55,14 +52,6 @@ keymap("n", "N", "nzzzv", opts)
 -- Use ESC to clear highlights
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
--- Toggle between small and high scrolloff values
-vim.keymap.set(
-  "n",
-  "<leader>ts",
-  "<cmd>let &scrolloff=999-&scrolloff<CR>",
-  { desc = "Toggle between high and low scrolloff values" }
-)
-
 -- Diagnostic keymaps
 -- TODO: the goto_prev and goto_next methods are deprecated will need something else
 vim.keymap.set("n", "[d", function()
@@ -71,8 +60,6 @@ end, { desc = "Previous diagnostic message" })
 vim.keymap.set("n", "]d", function()
   vim.diagnostic.jump { count = -1 }
 end, { desc = "Next diagnostic message" })
-vim.keymap.set("n", "<leader>de", vim.diagnostic.open_float, { desc = "Diagnostic error messages" })
-vim.keymap.set("n", "<leader>dq", vim.diagnostic.setloclist, { desc = "Diagnostic quickfix list" })
 
 -- INSERT --
 keymap("i", "jj", "<Esc>", opts)
