@@ -33,7 +33,17 @@ return {
     ---| "center"   # use the default telescope theme
 
     local dropdown_config = { theme = "dropdown", layout_config = { width = 0.5, height = 0.2 } }
-    local ignore_patterns = { "node_modules", ".git", ".build", "dist", ".vscode", ".next" }
+    local ignore_patterns = {
+      "node_modules/",
+      ".git/",
+      "dist*/",
+      ".build/",
+      ".vscode/",
+      ".next/",
+      "package.lock",
+      "yarn.lock",
+      "coverage/",
+    }
 
     -- more performant sorting with rg
     local glob_args = vim.tbl_map(function(pattern)
@@ -80,12 +90,13 @@ return {
           layout_config = dropdown_config.layout_config,
           file_ignore_patterns = ignore_patterns,
           find_command = find_command,
+          hidden = true,
         },
         live_grep = {
-          file_ignore_patterns = vim.list_extend(
-            vim.deepcopy(ignore_patterns),
-            { "package%-lock%.json", "yarn%.lock", "lazy%-lock%.json" }
-          ),
+          file_ignore_patterns = ignore_patterns,
+          additional_args = function()
+            return { "--hidden" }
+          end,
         },
         builtin = {
           theme = "dropdown",
