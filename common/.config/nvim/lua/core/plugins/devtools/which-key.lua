@@ -48,9 +48,11 @@ return {
     local keymaps = require "core.config.keymaps"
     local buffers = keymaps.buffers
     local diagnostics = keymaps.diagnostics
+    local general = keymaps.general
     local git = keymaps.git
     local harpoon = keymaps.harpoon
     local lsp = keymaps.lsp
+    local neotest = keymaps.neotest
     local neotree = keymaps.neotree
     local plugins = keymaps.plugins
     local splits = keymaps.splits
@@ -64,7 +66,11 @@ return {
       ---------------------------------
       diagnostics,
       ---------------------------------
+      neotest,
+      ---------------------------------
       neotree,
+      ---------------------------------
+      general,
       ---------------------------------
       git,
       ---------------------------------

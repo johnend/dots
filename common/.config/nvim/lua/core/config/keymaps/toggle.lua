@@ -10,6 +10,15 @@ return {
   },
   { "<leader>ti", ":IBLToggle<CR>", desc = "Indent line" },
   {
+    "<leader>tl",
+    function()
+      _G.cokeline_enabled = not _G.cokeline_enabled
+      vim.o.showtabline = _G.cokeline_enabled and 2 or 0
+      vim.notify("Cokeline " .. (_G.cokeline_enabled and "enabled" or "disabled"))
+    end,
+    desc = "Toggle Cokeline Tabline",
+  },
+  {
     "<leader>to",
     ":TSContextToggle<cr>",
     desc = "Treesitter context",

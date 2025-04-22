@@ -1,9 +1,11 @@
 return {
   buffers = require(... .. ".buffers"),
   diagnostics = require(... .. ".diagnostics"),
+  general = require(... .. ".general"),
   git = require(... .. ".git"),
   harpoon = require(... .. ".harpoon"),
   lsp = require(... .. ".lsp"),
+  neotest = require(... .. ".neotest"),
   neotree = require(... .. ".neotree"),
   plugins = require(... .. ".plugins"),
   splits = require(... .. ".splits"),
