@@ -8,14 +8,6 @@ return {
       return
     end
 
-    -- [[ Commenting ]]
-    vim.keymap.set(
-      "n",
-      "<leader>/",
-      "<Plug>(comment_toggle_linewise_current)",
-      { desc = "Comment toggle current line" }
-    )
-
     Comment.setup {
       pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
     }

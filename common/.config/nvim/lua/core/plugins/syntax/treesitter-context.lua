@@ -21,5 +21,4 @@ return {
       on_attach = nil,
     }
   end,
-  vim.keymap.set("n", "<leader>to", ":TSContextToggle<cr>", { desc = "Treesitter context" }),
 }

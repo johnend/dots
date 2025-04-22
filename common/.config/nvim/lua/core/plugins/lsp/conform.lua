@@ -10,9 +10,6 @@ return {
     end
 
     -- [[ Auto formatting ]]
-    vim.keymap.set("n", "<leader>f", function()
-      require("conform").format { async = true, lsp_fallback = true }
-    end, { desc = "Format buffer" })
 
     conform.setup {
       notify_on_error = false,
@@ -48,7 +45,5 @@ return {
     end, {
       desc = "Toggle auto format on save - buffer",
     })
-
-    vim.keymap.set("n", "<leader>tf", ":ToggleFormat<cr>", { desc = "Toggle format on save (buffer)" })
   end,
 }

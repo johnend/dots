@@ -8,7 +8,9 @@ return {
       return
     end
     wk.setup {
-      preset = "modern",
+      ---@type false | "classic" | "modern" | "helix"
+      preset = "classic",
+      ---@type number | fun(ctx : {keys: string, mode: string, plugin?: string}):number
       delay = 300,
       plugins = {
         marks = true,
@@ -34,10 +36,7 @@ return {
         group = icons.ui.Plus,
       },
       win = {
-        border = "rounded",
         padding = { 1, 1 },
-        wo = { winblend = 0 },
-        title = false,
       },
       layout = {
         spacing = 2,
@@ -46,28 +45,51 @@ return {
       show_keys = true,
     }
 
+    local keymaps = require "core.config.keymaps"
+    local buffers = keymaps.buffers
+    local diagnostics = keymaps.diagnostics
+    local general = keymaps.general
+    local git = keymaps.git
+    local harpoon = keymaps.harpoon
+    local lsp = keymaps.lsp
+    local neotest = keymaps.neotest
+    local neotree = keymaps.neotree
+    local plugins = keymaps.plugins
+    local splits = keymaps.splits
+    local telescope = keymaps.telescope
+    local toggle = keymaps.toggle
+
     -- Document existing
     wk.add {
-      { "<leader>c", group = "Code (LSP)" },
-      { "<leader>d", group = "Diagnostics" },
-      { "<leader>g", group = "Git" },
-      { "<leader>h", group = "Harpoon", icon = icons.misc.Hook },
-      { "<leader>l", group = "Lazy", icon = icons.misc.Lazy },
-      { "<leader>n", group = "NeoTree", icon = icons.ui.FileTree },
-      { "<leader>s", group = "Search" },
-      { "<leader>t", group = "Toggle" },
-      { "<leader>b", group = "Buffers" },
-      { "<leader>x", group = "Split", icon = icons.misc.Split },
+      ---------------------------------
+      buffers,
+      ---------------------------------
+      diagnostics,
+      ---------------------------------
+      neotest,
+      ---------------------------------
+      neotree,
+      ---------------------------------
+      general,
+      ---------------------------------
+      git,
+      ---------------------------------
+      harpoon,
+      ---------------------------------
+      lsp,
+      ---------------------------------
+      plugins,
+      ---------------------------------
+      splits,
+      ---------------------------------
+      telescope,
+      ---------------------------------
+      toggle,
+      ---------------------------------
       {
         mode = { "n", "v" },
         { "<leader>q", "<cmd>q<cr>", desc = "Quit" },
         { "<leader>w", "<cmd>w<cr>", desc = "Write", icon = icons.misc.Write },
-        {
-          "<leader>gg",
-          "<cmd> lua require 'core.plugins.devtools.toggleterm'.lazygit_toggle()<cr>",
-          desc = "LazyGit",
-          icon = icons.git.Octoface,
-        },
       },
     }
   end,

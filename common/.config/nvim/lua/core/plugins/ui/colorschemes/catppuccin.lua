@@ -67,6 +67,8 @@ return {
 
             -- Treesitter context
             TreesitterContextSeparator = { fg = colors.surface0 },
+
+            WhichKeyNormal = { bg = colors.mantle },
           }
         end,
       },

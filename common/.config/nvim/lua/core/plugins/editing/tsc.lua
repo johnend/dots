@@ -30,7 +30,5 @@ return {
       spinner = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" },
       pretty_errors = true,
     }
-
-    vim.keymap.set("n", "<leader>ct", ":TSC<CR>", { desc = "Check TypeScript types" })
   end,
 }

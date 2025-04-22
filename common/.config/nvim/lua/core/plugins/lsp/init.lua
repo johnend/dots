@@ -36,12 +36,6 @@ return {
         float = true,
       },
     }
-    vim.keymap.set(
-      "n",
-      "<leader>df",
-      ":lua vim.diagnostic.open_float(nil, {focus=false})<CR>",
-      { desc = "Show diagnostic popup" }
-    )
   end,
   lazy = true,
 }

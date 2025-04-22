@@ -68,6 +68,7 @@ return {
 
         -- Treesitter context
         TreesitterContextSeparator = { fg = "pine" },
+        WhichKeyNormal = { bg = colors.mantle },
       },
     }
     vim.cmd.colorscheme "rose-pine"
