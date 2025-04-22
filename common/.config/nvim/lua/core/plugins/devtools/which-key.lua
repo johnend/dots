@@ -53,6 +53,7 @@ return {
     local lsp = keymaps.lsp
     local neotree = keymaps.neotree
     local plugins = keymaps.plugins
+    local splits = keymaps.splits
     local telescope = keymaps.telescope
     local toggle = keymaps.toggle
 
@@ -73,11 +74,12 @@ return {
       ---------------------------------
       plugins,
       ---------------------------------
+      splits,
+      ---------------------------------
       telescope,
       ---------------------------------
       toggle,
       ---------------------------------
-      { "<leader>x", group = "Split", icon = icons.misc.Split },
       {
         mode = { "n", "v" },
         { "<leader>q", "<cmd>q<cr>", desc = "Quit" },
