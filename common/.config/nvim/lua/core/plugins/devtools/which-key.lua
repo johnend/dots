@@ -45,7 +45,7 @@ return {
       show_keys = true,
     }
 
-    local keymaps = require "core.config.keymaps"
+    local keymaps = require "core.config.wkmaps"
     local buffers = keymaps.buffers
     local diagnostics = keymaps.diagnostics
     local general = keymaps.general
