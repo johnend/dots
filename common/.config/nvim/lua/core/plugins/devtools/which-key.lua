@@ -50,6 +50,7 @@ return {
     local diagnostics = keymaps.diagnostics
     local general = keymaps.general
     local git = keymaps.git
+    local grug = keymaps.grug
     local harpoon = keymaps.harpoon
     local lsp = keymaps.lsp
     local neotest = keymaps.neotest
@@ -73,6 +74,8 @@ return {
       general,
       ---------------------------------
       git,
+      ---------------------------------
+      grug,
       ---------------------------------
       harpoon,
       ---------------------------------

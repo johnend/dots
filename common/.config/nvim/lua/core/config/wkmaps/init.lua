@@ -3,6 +3,7 @@ return {
   diagnostics = require(... .. ".diagnostics"),
   general = require(... .. ".general"),
   git = require(... .. ".git"),
+  grug = require(... .. ".grugfar"),
   harpoon = require(... .. ".harpoon"),
   lsp = require(... .. ".lsp"),
   neotest = require(... .. ".neotest"),
