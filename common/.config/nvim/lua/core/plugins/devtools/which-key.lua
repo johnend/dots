@@ -19,7 +19,7 @@ return {
         spelling = {
           enabled = true,
           suggestions = 20,
-        }, -- TODO determine if this is actually valuable?
+        }, -- TODO: determine if this is actually valuable?
         presets = {
           operators = true, -- adds help for operators like d, y...
           motions = true, -- adds help for motions

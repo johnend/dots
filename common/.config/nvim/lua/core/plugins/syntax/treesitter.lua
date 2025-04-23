@@ -62,6 +62,51 @@ return {
         query = "rainbow-delimiters",
         strategy = require("rainbow-delimiters").strategy.global,
       },
+      textobjects = {
+        select = {
+          enable = true,
+          lookahead = true,
+          keymaps = {
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+            ["ac"] = "@class.outer",
+            ["ic"] = "@class.inner",
+            ["aa"] = "@parameter.outer",
+            ["ia"] = "@parameter.inner",
+          },
+        },
+        move = {
+          enable = true,
+          set_jumps = true,
+          goto_next_start = {
+            ["nf"] = "@function.outer",
+            ["nc"] = "@class.outer",
+          },
+          goto_previous_start = {
+            ["pf"] = "@function.outer",
+            ["pc"] = "@class.outer",
+          },
+        },
+        swap = {
+          enable = true,
+          swap_next = {
+            ["<leader>rf"] = "@function.outer",
+            ["<leader>rm"] = "@method.outer",
+            ["<leader>rp"] = "@parameter.inner",
+            ["<leader>rb"] = "@block.outer",
+            ["<leader>rs"] = "@statement.outer",
+            ["<leader>ro"] = "@property.outer", -- object field
+          },
+          swap_previous = {
+            ["<leader>rF"] = "@function.outer",
+            ["<leader>rM"] = "@method.outer",
+            ["<leader>rP"] = "@parameter.inner",
+            ["<leader>rB"] = "@block.outer",
+            ["<leader>rS"] = "@statement.outer",
+            ["<leader>rO"] = "@property.outer",
+          },
+        },
+      },
     }
 
     ts.setup(opts)
