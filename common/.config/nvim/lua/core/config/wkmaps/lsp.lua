@@ -1,7 +1,7 @@
 return {
   { "<leader>l", group = "LSP" },
   { "<leader>lX", ":Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer diagnostics (Trouble)" },
-  { "<leader>la", ":lua require('actions-preview').code_actions<cr>", desc = "Code action" },
+  { "<leader>la", ":lua require('actions-preview').code_actions()<cr>", desc = "Code action" },
   { "<leader>ld", ":Telescope lsp_type_definitions<cr>", desc = "Type definition" },
   { "<leader>li", ":LspInfo<cr>", desc = "LSP info" },
   { "<leader>lv", ":Trouble loclist toggle<cr>", desc = "Location list (Trouble)" },

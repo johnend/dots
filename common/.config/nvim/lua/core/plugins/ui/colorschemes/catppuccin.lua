@@ -67,8 +67,7 @@ return {
 
             -- Treesitter context
             TreesitterContextSeparator = { fg = colors.surface0 },
-
-            WhichKeyNormal = { bg = colors.mantle },
+            FlashLabel = { fg = colors.green },
           }
         end,
       },

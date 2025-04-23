@@ -9,7 +9,7 @@ return {
     end
     wk.setup {
       ---@type false | "classic" | "modern" | "helix"
-      preset = "classic",
+      preset = "modern",
       ---@type number | fun(ctx : {keys: string, mode: string, plugin?: string}):number
       delay = 300,
       plugins = {
@@ -36,7 +36,10 @@ return {
         group = icons.ui.Plus,
       },
       win = {
+        border = "rounded",
         padding = { 1, 1 },
+        wo = { winblend = 0 },
+        title = false,
       },
       layout = {
         spacing = 2,

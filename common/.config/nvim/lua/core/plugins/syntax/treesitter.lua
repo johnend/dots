@@ -71,44 +71,39 @@ return {
             ["if"] = "@function.inner",
             ["ac"] = "@class.outer",
             ["ic"] = "@class.inner",
-            ["aa"] = "@parameter.outer",
-            ["ia"] = "@parameter.inner",
+            ["a,"] = "@parameter.outer",
+            ["i,"] = "@parameter.inner",
           },
         },
         move = {
           enable = true,
           set_jumps = true,
           goto_next_start = {
-            ["nf"] = "@function.outer",
-            ["nc"] = "@class.outer",
+            ["]f"] = "@function.outer",
+            ["]c"] = "@class.outer",
+            ["],"] = "@parameter.inner",
+          },
+          goto_next_end = {
+            ["]F"] = "@function.outer",
+            ["]C"] = "@class.outer",
           },
           goto_previous_start = {
-            ["pf"] = "@function.outer",
-            ["pc"] = "@class.outer",
+            ["[f"] = "@function.outer",
+            ["[c"] = "@class.outer",
+            ["[,"] = "@parameter.inner",
+          },
+          goto_previous_end = {
+            ["[F"] = "@function.outer",
+            ["[C"] = "@class.outer",
           },
         },
         swap = {
           enable = true,
-          swap_next = {
-            ["<leader>rf"] = "@function.outer",
-            ["<leader>rm"] = "@method.outer",
-            ["<leader>rp"] = "@parameter.inner",
-            ["<leader>rb"] = "@block.outer",
-            ["<leader>rs"] = "@statement.outer",
-            ["<leader>ro"] = "@property.outer", -- object field
-          },
-          swap_previous = {
-            ["<leader>rF"] = "@function.outer",
-            ["<leader>rM"] = "@method.outer",
-            ["<leader>rP"] = "@parameter.inner",
-            ["<leader>rB"] = "@block.outer",
-            ["<leader>rS"] = "@statement.outer",
-            ["<leader>rO"] = "@property.outer",
-          },
+          swap_next = { [">,"] = "@parameter.inner" },
+          swap_previous = { ["<,"] = "@parameter.inner" },
         },
       },
     }
-
     ts.setup(opts)
   end,
 }

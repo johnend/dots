@@ -1,66 +1,93 @@
+---@param global_flag string The name of the global toggle variable (without _G.)
+---@param toggle_action string|function Command to run
+---@param label string The thing you're toggling
+---@param invert_notify boolean? If true, reverses logic for on/off messages
+local function toggle_notify(global_flag, toggle_action, label, invert_notify)
+  local flag_name = "_" .. global_flag
+  _G[flag_name] = not _G[flag_name]
+
+  if type(toggle_action) == "string" then
+    vim.cmd(toggle_action)
+  elseif type(toggle_action) == "function" then
+    toggle_action()
+  end
+
+  local state = _G[flag_name] and "enabled" or "disabled"
+  if invert_notify then
+    state = _G[flag_name] and "disabled" or "enabled"
+  end
+
+  vim.notify(label .. " " .. state)
+end
+
 return {
   { "<leader>t", group = "Toggle" },
-  { "<leader>ta", "<cmd>ASToggle<cr>", desc = "AutoSave" },
-  { "<leader>tb", "<cmd>lua require('barbecue.ui').toggle()<cr>", desc = "Barbecue" },
-  { "<leader>tc", "<cmd>ColorizerToggle<cr>", desc = "Colorizer" },
   {
-    "<leader>tf",
-    ":ToggleFormat<cr>",
-    desc = "Format on save (buffer)",
+    "<leader>ta",
+
+    function()
+      toggle_notify("autosave_enabled", "ASToggle", "AutoSave", true)
+    end,
+    desc = "AutoSave",
   },
-  { "<leader>ti", ":IBLToggle<CR>", desc = "Indent line" },
+  {
+    "<leader>tb",
+    function()
+      toggle_notify("barbecue_enabled", require("barbecue.ui").toggle, "Barbecue")
+    end,
+    desc = "Barbecue",
+  },
+
+  {
+    "<leader>tc",
+    function()
+      toggle_notify("colorizer_enabled", "ColorizerToggle", "Colorizer", true)
+    end,
+    desc = "Toggle colorizer",
+  },
+  {
+    "<leader>ti",
+    function()
+      toggle_notify("ibl_enabled", "IBLToggle", "Indent blank line")
+    end,
+    desc = "Indent line",
+  },
   {
     "<leader>tl",
     function()
-      _G.cokeline_enabled = not _G.cokeline_enabled
-      vim.o.showtabline = _G.cokeline_enabled and 2 or 0
-      vim.notify("Cokeline " .. (_G.cokeline_enabled and "enabled" or "disabled"))
+      toggle_notify("cokeline_enabled", function()
+        ---@diagnostic disable-next-line: undefined-field
+        vim.o.showtabline = _G._cokeline_enabled and 2 or 0
+      end, "Cokeline Tabline")
     end,
-    desc = "Toggle Cokeline Tabline",
+    desc = "Cokeline Tabline",
   },
   {
     "<leader>to",
-    ":TSContextToggle<cr>",
+    function()
+      toggle_notify("tscontext_enabled", "TSContextToggle", "Treesitter context")
+    end,
     desc = "Treesitter context",
   },
   {
-    "<leader>tn",
+    "<leader>tm",
     function()
-      vim.wo.relativenumber = not vim.wo.relativenumber
+      toggle_notify("flash_search_enabled", require("flash").toggle, "Flash search", true)
     end,
-    desc = "Relative line numbers",
-  },
-  { "<leader>tp", ":lua require('precognition').toggle()<CR>", desc = "Precognition" },
-  {
-    "<leader>ts",
-    "<cmd>let &scrolloff=999-&scrolloff<CR>",
-    desc = "Scrolloff values",
-  },
-  { "<leader>tt", ":Twilight<CR>", desc = "Twilight" },
-  {
-    "<leader>tv",
-    function()
-      local cfg = vim.diagnostic.config().virtual_text
-      vim.diagnostic.config { virtual_text = not cfg }
-    end,
-    desc = "Virtual text (diagnostics)",
+    desc = "Flash search",
   },
   {
-    "<leader>th",
+    "<leader>tp",
     function()
-      local buf = vim.api.nvim_get_current_buf()
-      local clients = vim.lsp.get_clients { bufnr = buf }
-
-      for _, client in ipairs(clients) do
-        if client.server_capabilities.inlayHintProvider then
-          local enabled = vim.lsp.inlay_hint.is_enabled { bufnr = buf }
-          vim.lsp.inlay_hint.enable(not enabled, { bufnr = buf })
-          return
-        end
-      end
-
-      vim.notify("No attached LSP supports inlay hints", vim.log.levels.WARN)
+      toggle_notify("precognition_enabled", require("precognition").toggle, "Precognition", true)
     end,
-    desc = "Toggle Inlay Hints",
+    desc = "Precognition",
+  },
+  {
+    "<leader>tt",
+    function()
+      toggle_notify("twilight_enabled", "Twilight", "Twilight")
+    end,
+    desc = "Twilight",
   },
 }

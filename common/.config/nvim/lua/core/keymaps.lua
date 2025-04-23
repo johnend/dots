@@ -46,7 +46,7 @@ keymap("n", "n", "nzzzv", opts)
 keymap("n", "N", "nzzzv", opts)
 
 -- Use ESC to clear highlights
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", opts)
 
 -- Diagnostic keymaps
 -- TODO: the goto_prev and goto_next methods are deprecated will need something else
