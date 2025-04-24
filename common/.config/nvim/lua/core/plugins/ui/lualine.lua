@@ -20,6 +20,7 @@ return {
 
     lualine.setup {
       options = {
+        theme = "auto",
         -- rounded section separators one one side only
         section_separators = { left = "", right = "" },
         component_separators = { left = "", right = "" },

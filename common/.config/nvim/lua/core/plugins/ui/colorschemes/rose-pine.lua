@@ -37,40 +37,6 @@ return {
         NeoTreeIndentMarker = { fg = "overlay", bg = "" },
         NeoTreeWinSeparator = { fg = "#956dc5", bg = "" },
         NeoTreeRootName = { fg = "iris", bg = "" },
-
-        -- -- Rainbow delimeters
-        -- RainbowDelimiterRed = { fg = "love" },
-        -- RainbowDelimiterYellow = { fg = "gold" },
-        -- RainbowDelimiterBlue = { fg = "pine" },
-        -- RainbowDelimiterOrange = { fg = "rose" },
-        -- RainbowDelimiterGreen = { fg = "foam" },
-        -- RainbowDelimiterViolet = { fg = "iris" },
-        -- RainbowDelimiterCyan = { fg = "pine" },
-        --
-        -- -- Noice highlights
-        -- NoiceCmdlinePopupBorder = { fg = "iris" },
-        --
-        -- -- IBL highlights
-        -- IblIndent = { fg = colors.mantle },
-        -- RainbowRed = { bg = colors.transparent.red },
-        -- RainbowYellow = { bg = colors.transparent.yellow },
-        -- RainbowBlue = { bg = colors.transparent.blue },
-        -- RainbowOrange = { bg = colors.transparent.peach },
-        -- RainbowGreen = { bg = colors.transparent.green },
-        -- RainbowViolet = { bg = colors.transparent.mauve },
-        -- RainbowCyan = { bg = colors.transparent.sapphire },
-        --
-        -- -- Terminal (toggleterm)
-        -- TermCursor = { fg = "surface", bg = "#D20F39" },
-        --
-        -- -- Telescope
-        -- TelescopeBorder = { fg = "foam", bg = "" },
-        --
-        -- -- Treesitter context
-        -- TreesitterContextSeparator = { fg = "pine" },
-        --
-        -- -- Flash
-        -- FlashLabel = { fg = "foam" },
       },
     }
   end,
