@@ -65,3 +65,15 @@ autocommand("BufLeave", {
     require("neo-tree.sources.filesystem.commands").refresh(require("neo-tree.sources.manager").get_state "filesystem")
   end,
 })
+
+-- Override highlight groups globally
+autocommand({ "VimEnter", "ColorScheme" }, {
+  pattern = "*",
+  callback = function()
+    -- Link 'NeoTreeWinSeparator' to 'FloatBorder'
+    vim.cmd "highlight link NeoTreeWinSeparator FloatBorder"
+
+    -- Set 'FlashMatch' and 'FlashLabel' colors explicitly
+    vim.cmd "highlight FlashLabel guifg=#00fa9a guibg=#000000 gui=bold"
+  end,
+})
