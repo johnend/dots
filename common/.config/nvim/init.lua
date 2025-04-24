@@ -2,6 +2,7 @@
 -- Use global variable objects for colors and icons
 colors = require "core.config.colors"
 icons = require "core.config.icons"
+require "core.highlights"
 
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
@@ -62,7 +63,6 @@ local lazy_opts = {
 }
 
 require("lazy").setup(lazy_opts)
-
 require "core.keymaps"
 require "core.commands"
 require "core.options"

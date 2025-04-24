@@ -47,6 +47,8 @@ gvfs-mtp
 gvfs-nfs
 gvfs-smb
 imagemagick
+impala
+iwd
 jq
 json-c
 json-glib

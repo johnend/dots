@@ -2,7 +2,13 @@ return {
   { "<leader><leader>", "<cmd>Telescope buffers<cr>", desc = "Open files" },
   { "<leader>s", group = "Search" },
   { "<leader>sb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
-  { "<leader>sc", "<cmd>Telescope colorscheme<cr>", desc = "Colorschemes" },
+  {
+    "<leader>sc",
+    function()
+      require("colorscheme-persist").picker()
+    end,
+    desc = "Colorschemes",
+  },
   { "<leader>sd", "<cmd>Telescope diagnostics<cr>", desc = "Diagnostics" },
   { "<leader>sf", "<cmd>Telescope find_files<cr>", desc = "Files" },
   { "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Grep" },

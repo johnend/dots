@@ -84,6 +84,16 @@ return {
     desc = "Precognition",
   },
   {
+    "<leader>ts",
+    function()
+      toggle_notify("scrolloff_max", function()
+        -- Toggle scrolloff between 0 and 999
+        vim.wo.scrolloff = vim.wo.scrolloff == 999 and 8 or 999
+      end, "Scroll Off")
+    end,
+    desc = "Scrolloff values",
+  },
+  {
     "<leader>tt",
     function()
       toggle_notify("twilight_enabled", "Twilight", "Twilight")

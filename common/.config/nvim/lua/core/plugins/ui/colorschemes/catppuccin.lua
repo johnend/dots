@@ -40,38 +40,37 @@ return {
             NeoTreeWinSeparator = { fg = "#956dc5", bg = "" },
             NeoTreeRootName = { fg = colors.mauve, bg = "" },
 
-            -- Rainbow delimeters
-            RainbowDelimiterRed = { fg = colors.red },
-            RainbowDelimiterYellow = { fg = colors.yellow },
-            RainbowDelimiterBlue = { fg = colors.blue },
-            RainbowDelimiterOrange = { fg = colors.flamingo },
-            RainbowDelimiterGreen = { fg = colors.green },
-            RainbowDelimiterViolet = { fg = colors.mauve },
-            RainbowDelimiterCyan = { fg = colors.sapphire },
-
-            -- Noice highlights
-            NoiceCmdlinePopupBorder = { fg = colors.mauve },
-
-            -- IBL highlights
-            IblIndent = { fg = colors.mantle },
-            RainbowRed = { bg = colors.transparent.red },
-            RainbowYellow = { bg = colors.transparent.yellow },
-            RainbowBlue = { bg = colors.transparent.blue },
-            RainbowOrange = { bg = colors.transparent.peach },
-            RainbowGreen = { bg = colors.transparent.green },
-            RainbowViolet = { bg = colors.transparent.mauve },
-            RainbowCyan = { bg = colors.transparent.sapphire },
-
-            -- Terminal (toggleterm)
-            TermCursor = { fg = colors.mantle, bg = "#D20F39" },
-
-            -- Treesitter context
-            TreesitterContextSeparator = { fg = colors.surface0 },
-            FlashLabel = { fg = colors.green },
+            -- -- Rainbow delimeters
+            -- RainbowDelimiterRed = { fg = colors.red },
+            -- RainbowDelimiterYellow = { fg = colors.yellow },
+            -- RainbowDelimiterBlue = { fg = colors.blue },
+            -- RainbowDelimiterOrange = { fg = colors.flamingo },
+            -- RainbowDelimiterGreen = { fg = colors.green },
+            -- RainbowDelimiterViolet = { fg = colors.mauve },
+            -- RainbowDelimiterCyan = { fg = colors.sapphire },
+            --
+            -- -- Noice highlights
+            -- NoiceCmdlinePopupBorder = { fg = colors.mauve },
+            --
+            -- -- IBL highlights
+            -- IblIndent = { fg = colors.mantle },
+            -- RainbowRed = { bg = colors.transparent.red },
+            -- RainbowYellow = { bg = colors.transparent.yellow },
+            -- RainbowBlue = { bg = colors.transparent.blue },
+            -- RainbowOrange = { bg = colors.transparent.peach },
+            -- RainbowGreen = { bg = colors.transparent.green },
+            -- RainbowViolet = { bg = colors.transparent.mauve },
+            -- RainbowCyan = { bg = colors.transparent.sapphire },
+            --
+            -- -- Terminal (toggleterm)
+            -- TermCursor = { fg = colors.mantle, bg = "#D20F39" },
+            --
+            -- -- Treesitter context
+            -- TreesitterContextSeparator = { fg = colors.surface0 },
+            -- FlashLabel = { fg = colors.green },
           }
         end,
       },
     }
-    vim.cmd.colorscheme "catppuccin"
   end,
 }

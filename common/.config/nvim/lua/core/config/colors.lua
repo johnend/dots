@@ -38,20 +38,20 @@ local colors = {
   mantle = "#181825",
   crust = "#11111b",
   transparent = {
-    rosewater = "#23222A",
-    flamingo = "#232029",
-    pink = "#231F2B",
-    mauve = "#201D2D",
-    red = "#231B26",
-    maroon = "#231B26",
-    peach = "#241E24",
-    yellow = "#242227",
-    green = "#1D2226",
-    teal = "#1B222A",
-    sky = "#1B212C",
-    sapphire = "#19202C",
-    blue = "#1B1E2D",
-    lavender = "#1E1F2D",
+    rosewater = "#2D2A34", -- 5% brighter
+    flamingo = "#2D2933", -- 5% brighter
+    pink = "#2D263C", -- 5% brighter
+    mauve = "#2A1F39", -- 5% brighter
+    red = "#2D1F35", -- 5% brighter
+    maroon = "#2D1F35", -- 5% brighter
+    peach = "#2D2229", -- 5% brighter
+    yellow = "#2D2F31", -- 5% brighter
+    green = "#2A2F34", -- 5% brighter
+    teal = "#25303B", -- 5% brighter
+    sky = "#253344", -- 5% brighter
+    sapphire = "#212C3D", -- 5% brighter
+    blue = "#25314B", -- 5% brighter
+    lavender = "#2A2D43", -- 5% brighter
   },
 }
 
