@@ -3,13 +3,27 @@ return {
   event = "VimEnter",
   dependencies = {
     "MunifTanjim/nui.nvim",
-    { "rcarriga/nvim-notify", opts = { top_down = false } },
+    {
+      "rcarriga/nvim-notify",
+      config = function()
+        local status_ok, notify = pcall(require, "notify")
+        if not status_ok then
+          return
+        end
+
+        notify.setup {
+          top_down = false,
+          background_colour = "#000000",
+        }
+      end,
+    },
   },
   config = function()
     local status_ok, noice = pcall(require, "noice")
     if not status_ok then
       return
     end
+
     noice.setup {
       -- TODO: remove the routes once updates come through
       routes = {

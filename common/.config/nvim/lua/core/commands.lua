@@ -71,7 +71,11 @@ autocommand({ "VimEnter", "ColorScheme" }, {
   pattern = "*",
   callback = function()
     -- Link 'NeoTreeWinSeparator' to 'FloatBorder'
-    vim.cmd "highlight link NeoTreeWinSeparator FloatBorder"
+    if vim.g.colors_name == "roseprime" or "iceclimber" or "gyokuro" or "hojicha" then
+      vim.cmd "highlight NeoTreeWinSeparator guibg=none"
+    else
+      vim.cmd "highlight link NeoTreeWinSeparator FloatBorder"
+    end
 
     -- Set 'FlashMatch' and 'FlashLabel' colors explicitly
     vim.cmd "highlight FlashLabel guifg=#00fa9a guibg=#000000 gui=bold"

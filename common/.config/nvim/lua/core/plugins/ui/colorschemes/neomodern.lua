@@ -13,6 +13,8 @@ return {
       vim.api.nvim_set_hl(0, group, {})
     end
 
-    neomodern.setup {}
+    neomodern.setup {
+      plain_float = true,
+    }
   end,
 }

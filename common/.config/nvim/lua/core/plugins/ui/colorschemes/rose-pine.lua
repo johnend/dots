@@ -18,26 +18,6 @@ return {
       styles = {
         transparency = true,
       },
-
-      -- highlight_groups = {
-      --   CursorLine = { fg = "", bg = "surface" },
-      --   Folded = { fg = "muted", bg = "surface" },
-      --   WinSeparator = { fg = "#301e48", bg = "" },
-      --   VertSplit = { fg = "#301e48", bg = "" },
-      --   IncSearch = { fg = "surface", bg = "iris" },
-      --   FloatBorder = { fg = "iris", bg = "" },
-      --   NotifyBackground = { bg = "base" },
-      --   NeoTreeCursorLine = { fg = "", bg = "#1e1825" },
-      --   NeoTreeDirectoryIcon = { fg = "iris", bg = "" },
-      --   NeoTreeDirectoryName = { fg = "text", bg = "" },
-      --   NeoTreeFileName = { fg = "text", bg = "" },
-      --   NeoTreeFileNameOpened = { fg = "pine", bg = "iris" },
-      --   NeoTreeFloatBorder = { fg = "iris", bg = "" },
-      --   NeoTreeFloatTitle = { fg = "iris", bg = "" },
-      --   NeoTreeIndentMarker = { fg = "overlay", bg = "" },
-      --   NeoTreeWinSeparator = { fg = "#956dc5", bg = "" },
-      --   NeoTreeRootName = { fg = "iris", bg = "" },
-      -- },
     }
   end,
 }
