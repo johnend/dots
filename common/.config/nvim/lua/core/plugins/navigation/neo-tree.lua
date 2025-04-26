@@ -16,6 +16,7 @@ return {
 
     neotree.setup {
       close_if_last_window = true,
+      open_files_do_not_replace_types = { "terminal", "Trouble", "qf" },
       filesystem = {
         hijack_netrw_behavior = "disabled",
         use_libuv_file_watcher = true,

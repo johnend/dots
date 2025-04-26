@@ -69,6 +69,11 @@ return {
         path_display = { "smart" },
         color_devicons = true,
         set_env = { ["COLORTERM"] = "truecolor" },
+        mappings = {
+          n = {
+            ["<c-d>"] = require("telescope.actions").delete_buffer,
+          },
+        },
       },
       -- TODO: figure out how to change the layouts of the pickers (increased width for preview for example)
       pickers = {

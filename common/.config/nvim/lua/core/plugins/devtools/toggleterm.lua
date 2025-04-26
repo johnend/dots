@@ -1,6 +1,31 @@
+local M = {}
+
+function M.lazygit_toggle()
+  local Terminal = require("toggleterm.terminal").Terminal
+  if not M._lazygit then
+    M._lazygit = Terminal:new {
+      cmd = "lazygit",
+      hidden = true,
+      direction = "float",
+      on_open = function()
+        vim.cmd "startinsert"
+      end,
+      on_close = function()
+        vim.cmd "stopinsert"
+      end,
+      count = 99,
+      float_opts = {
+        border = "rounded",
+      },
+    }
+  end
+  M._lazygit:toggle()
+end
+
 return {
   "akinsho/toggleterm.nvim",
-  event = "VeryLazy",
+  version = "*", -- Always grab the latest stable version
+  event = "VeryLazy", -- Load lazily after startup
   cmd = {
     "ToggleTerm",
     "TermExec",
@@ -10,131 +35,101 @@ return {
     "ToggleTermSendVisualSelection",
   },
   config = function()
-    local status_ok, toggleterm = pcall(require, "toggleterm")
-    if not status_ok then
+    local ok, toggleterm = pcall(require, "toggleterm")
+    if not ok then
+      vim.notify("[toggleterm] failed to load", vim.log.levels.ERROR)
       return
     end
-    local execs = {
-      { nil, "<M-1>", "Horizontal Terminal", "horizontal", 0.3 },
-      { nil, "<M-2>", "Vertical Terminal", "vertical", 0.4 },
-      { nil, "<M-3>", "Float Terminal", "float", nil },
-      { nil, "<C-_>", "Float Terminal", "float", nil },
+
+    toggleterm.setup {
+      size = 20, -- Default size for terminals
+      open_mapping = [[<c-/>]], -- Default key to open main terminal
+      hide_numbers = true, -- Hide number column in terminals
+      shade_filetypes = {}, -- No extra shading for specific filetypes
+      shade_terminals = true,
+      shading_factor = 2, -- How dark terminals appear
+      start_in_insert = true, -- Start terminals in insert mode
+      insert_mappings = true, -- Allow open mapping during insert mode
+      persist_size = false, -- Don't save terminal sizes across sessions
+      direction = "float", -- Default terminal type
+      close_on_exit = true, -- Close terminal when process exits
+      shell = vim.o.shell, -- Use user's shell
+      float_opts = {
+        border = "rounded", -- Rounded border for floating terminals
+      },
+      winbar = {
+        enabled = true,
+        name_formatter = function(term)
+          return tostring(term.count)
+        end,
+      },
     }
 
+    -- Helper to get the current window's buffer size
     local function get_buf_size()
-      local cbuf = vim.api.nvim_get_current_buf()
-      local bufinfo = vim.tbl_filter(function(buf)
-        return buf.bufnr == cbuf
-      end, vim.fn.getwininfo(vim.api.nvim_get_current_win()))[1]
-      if bufinfo == nil then
+      local bufinfo = vim.fn.getwininfo(vim.api.nvim_get_current_win())[1]
+      if not bufinfo then
         return { width = -1, height = -1 }
       end
       return { width = bufinfo.width, height = bufinfo.height }
     end
 
-    local function get_dynamic_terminal_size(direction, size)
-      size = size
-      if direction ~= "float" and tostring(size):find(".", 1, true) then
-        size = math.min(size, 1.0)
-        local buf_sizes = get_buf_size()
-        local buf_size = direction == "horizontal" and buf_sizes.height or buf_sizes.width
-        return buf_size * size
-      else
-        return size
+    -- Calculate terminal size dynamically based on window dimensions
+    local function get_dynamic_size(direction, size)
+      if direction ~= "float" and type(size) == "number" and size <= 1.0 then
+        local buf = get_buf_size()
+        local dim = direction == "horizontal" and buf.height or buf.width
+        return math.floor(dim * size)
       end
+      return size
     end
 
-    local exec_toggle = function(opts)
+    -- Create and toggle a terminal instance
+    local function exec_toggle(opts)
       local Terminal = require("toggleterm.terminal").Terminal
-      local term = Terminal:new { cmd = opts.cmd, count = opts.count, direction = opts.direction }
-      term:toggle(opts.size, opts.direction)
+      local term = Terminal:new {
+        cmd = opts.cmd,
+        count = opts.count,
+        direction = opts.direction,
+      }
+      -- 💥 FIX: call opts.size() here so it's a number
+      term:toggle(opts.size(), opts.direction)
     end
 
-    local add_exec = function(opts)
-      local binary = opts.cmd:match "(%S+)"
-      if vim.fn.executable(binary) ~= 1 then
-        vim.notify("Skipping configuring executable " .. binary .. ". Please make sure it is installed properly.")
-        return
-      end
+    -- Define different terminal types with their keybindings
+    local terminals = {
+      { nil, "<C-;>", "Horizontal Terminal", "horizontal", 0.3 }, -- Horizontal at 30% height
+      { nil, "<C-.>", "Vertical Terminal", "vertical", 0.4 }, -- Vertical at 40% width
+      { nil, "<C-/>", "Float Terminal", "float", nil }, -- Floating, default size
+    }
+
+    -- Create keybindings for each terminal type
+    for i, term in ipairs(terminals) do
+      local opts = {
+        cmd = term[1] or vim.o.shell, -- Default to shell if no command
+        keymap = term[2],
+        label = term[3],
+        direction = term[4],
+        size = function()
+          return get_dynamic_size(term[4], term[5])
+        end,
+        count = i + 100, -- Ensure unique counts
+      }
 
       vim.keymap.set({ "n", "t" }, opts.keymap, function()
-        exec_toggle { cmd = opts.cmd, count = opts.count, direction = opts.direction, size = opts.size() }
+        exec_toggle(opts)
       end, { desc = opts.label, noremap = true, silent = true })
     end
 
-    for i, exec in pairs(execs) do
-      local direction = exec[4]
-
-      local opts = {
-        cmd = exec[1] or vim.o.shell,
-        keymap = exec[2],
-        label = exec[3],
-        count = i + 100,
-        direction = direction,
-        size = function()
-          return get_dynamic_terminal_size(direction, exec[5])
-        end,
-      }
-
-      add_exec(opts)
-    end
-
-    toggleterm.setup {
-      size = 20,
-      open_mapping = [[<c-/>]],
-      hide_numbers = true, -- hide the number column in toggleterm buffers
-      shade_filetypes = {},
-      shade_terminals = true,
-      shading_factor = 2, -- the degree by which to darken to terminal colour, default: 1 for dark backgrounds, 3 for light
-      start_in_insert = true,
-      insert_mappings = true, -- whether or not the open mapping applies in insert mode
-      persist_size = false,
-      direction = "float",
-      close_on_exit = true, -- close the terminal window when the process exits
-      shell = nil, -- change the default shell
-      float_opts = {
-        border = "rounded",
-      },
-      winbar = {
-        enabled = true,
-        name_formatter = function(term) --  term: Terminal
-          return term.count
-        end,
-      },
-    }
-    vim.cmd [[ augroup terminal_setup | au!
-      autocmd TermOpen * nnoremap <buffer><LeftRelease> <LeftRelease>i
-      autocmd TermEnter * startinsert!
-      augroup end ]]
-
-    vim.api.nvim_create_autocmd({ "TermEnter" }, {
-      pattern = { "*" },
+    -- Set terminal keymaps automatically when a terminal opens
+    vim.api.nvim_create_autocmd("TermOpen", {
+      pattern = "*",
       callback = function()
-        vim.cmd "startinsert"
-        _G.set_terminal_keymaps()
+        vim.cmd "startinsert!"
       end,
     })
+  end,
 
-    local opts = { noremap = true, silent = true }
-    function _G.set_terminal_keymaps()
-      vim.api.nvim_buf_set_keymap(0, "t", "<m-h>", [[<C-\><C-n><C-W>h]], opts)
-      vim.api.nvim_buf_set_keymap(0, "t", "<m-j>", [[<C-\><C-n><C-W>j]], opts)
-      vim.api.nvim_buf_set_keymap(0, "t", "<m-k>", [[<C-\><C-n><C-W>k]], opts)
-      vim.api.nvim_buf_set_keymap(0, "t", "<m-l>", [[<C-\><C-n><C-W>l]], opts)
-    end
-  end,
-  lazygit_toggle = function()
-    local Terminal = require("toggleterm.terminal").Terminal
-    local lazygit = Terminal:new {
-      cmd = "lazygit",
-      hidden = true,
-      direction = "float",
-      on_open = function(_)
-        vim.cmd "startinsert"
-      end,
-      onclose = function(_) end,
-      count = 99,
-    }
-    lazygit:toggle()
-  end,
+  -- 🔥 Expose LazyGit toggle properly via the module
+  lazygit_toggle = M.lazygit_toggle,
 }
