@@ -1,6 +1,6 @@
 return {
   "mfussenegger/nvim-dap",
-  event = { "VeryLazy" },
+  event = "VeryLazy",
 
   config = function()
     local status_ok, dap = pcall(require, "nvim-dap")

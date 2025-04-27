@@ -1,22 +1,24 @@
 return {
   "nvim-telescope/telescope.nvim",
-  event = "VeryLazy",
+  cmd = "Telescope",
   branch = "0.1.x",
   lazy = true,
-  cmd = "Telescope",
   dependencies = {
     "nvim-lua/plenary.nvim",
     {
       "nvim-telescope/telescope-fzf-native.nvim",
+      event = "VeryLazy",
       build = "make",
       cond = function()
         return vim.fn.executable "make" == 1
       end,
     },
-    { "nvim-telescope/telescope-project.nvim" },
-    { "nvim-telescope/telescope-ui-select.nvim" },
+    { "nvim-telescope/telescope-project.nvim", event = "VeryLazy" },
+    { "nvim-telescope/telescope-ui-select.nvim", event = "VeryLazy" },
+
     {
       "nvim-tree/nvim-web-devicons",
+      event = "VeryLazy",
       enabled = vim.g.have_nerd_font,
     },
   },
