@@ -62,7 +62,11 @@ autocommand("BufLeave", {
   pattern = { "*lazygit*" },
   group = vim.api.nvim_create_augroup("git_refresh_neotree", { clear = true }),
   callback = function()
-    require("neo-tree.sources.filesystem.commands").refresh(require("neo-tree.sources.manager").get_state "filesystem")
+    local manager = require "neo-tree.sources.manager"
+    local state = manager.get_state "filesystem"
+    if state and type(state.window) == "number" and vim.api.nvim_win_is_valid(state.window) then
+      require("neo-tree.sources.filesystem.commands").refresh(state)
+    end
   end,
 })
 

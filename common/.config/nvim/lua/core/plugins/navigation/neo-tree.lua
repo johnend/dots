@@ -6,7 +6,6 @@ return {
     "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim",
   },
-  event = "VeryLazy",
   cmd = { "Neotree show", "Neotree close", "Neotree toggle", "Neotree focus" },
   config = function()
     local status_ok, neotree = pcall(require, "neo-tree")
@@ -17,6 +16,7 @@ return {
     neotree.setup {
       close_if_last_window = true,
       open_files_do_not_replace_types = { "terminal", "Trouble", "qf" },
+      popup_border_style = "single",
       filesystem = {
         hijack_netrw_behavior = "disabled",
         use_libuv_file_watcher = true,
@@ -43,7 +43,8 @@ return {
         },
       },
       commands = {
-        system_open = function(state)
+        system_open = function()
+          local state = require("neo-tree.sources.manager").get_state "filesystem"
           local node = state.tree:get_node()
           local path = node:get_id()
 
@@ -54,19 +55,9 @@ return {
             vim.fn.jobstart({ "open", path }, { detach = true })
           elseif os == "Linux" then
             vim.fn.jobstart({ "xdg-open", path }, { detach = true })
-          else
-            local p
-            local lastSlashIndex = path:match "^.+()\\[^\\]*$" -- Match the last slash and everything before it
-            if lastSlashIndex then
-              p = path:sub(1, lastSlashIndex - 1) -- Extract substring before the last slash
-            else
-              p = path -- If no slash found, return original path
-            end
-            vim.cmd("silent !start explorer " .. p)
           end
         end,
       },
-      popup_border_style = "single",
       sources = {
         "filesystem",
         "git_status",
