@@ -47,6 +47,7 @@ M.options = {
 
 local water_bufnr = nil
 local last_buf = nil
+local gitsigns_available, gitsigns = pcall(require, "gitsigns")
 
 function M.setup(opts)
   M.options = vim.tbl_deep_extend("force", M.options or {}, opts or {})
@@ -117,6 +118,29 @@ local function format_last_modified(timestamp)
   end
 end
 
+local function get_git_status(bufnr)
+  if not gitsigns_available then
+    return nil
+  end
+  local status = vim.b[bufnr] and vim.b[bufnr].gitsigns_status_dict
+  if not status then
+    return nil
+  end
+
+  local parts = {}
+  if status.added and status.added > 0 then
+    table.insert(parts, string.format(" %d", status.added))
+  end
+  if status.changed and status.changed > 0 then
+    table.insert(parts, string.format(" %d", status.changed))
+  end
+  if status.removed and status.removed > 0 then
+    table.insert(parts, string.format(" %d", status.removed))
+  end
+
+  return #parts > 0 and table.concat(parts, " ") or nil
+end
+
 local function get_buffer_list()
   local buffers = {}
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
@@ -130,6 +154,8 @@ local function get_buffer_list()
       local readonly = vim.bo[buf].readonly
       local diagnostics = vim.diagnostic.count(buf)
       local last_used = vim.fn.getbufinfo(buf)[1].lastused or 0
+      local git_status = get_git_status(buf)
+
       table.insert(buffers, {
         bufnr = buf,
         name = formatted_name,
@@ -137,6 +163,7 @@ local function get_buffer_list()
         readonly = readonly,
         diagnostics = diagnostics,
         last_used = last_used,
+        git_status = git_status,
       })
     end
   end
@@ -159,35 +186,44 @@ local function get_buffer_list()
 end
 
 local function format_buffer_entry(buf)
-  local mods = ""
-  if M.options.use_nerd_icons then
-    if buf.modified then
-      mods = mods .. " "
-    end
-    if buf.readonly then
-      mods = mods .. " "
-    end
-  else
-    if M.options.show_modified and buf.modified then
-      mods = mods .. " [+]"
-    end
-    if M.options.show_readonly and buf.readonly then
-      mods = mods .. " [RO]"
-    end
-  end
+  local left = string.format("%d: %s", buf.bufnr, buf.name)
 
   if M.options.show_diagnostics and buf.diagnostics then
     local error_count = buf.diagnostics[vim.diagnostic.severity.ERROR] or 0
     local warn_count = buf.diagnostics[vim.diagnostic.severity.WARN] or 0
     if error_count > 0 then
-      mods = mods .. (error_count > 1 and string.format("  %d", error_count) or " ")
+      left = left .. (error_count > 1 and string.format("  %d", error_count) or " ")
     elseif warn_count > 0 then
-      mods = mods .. (warn_count > 1 and string.format("  %d", warn_count) or " ")
+      left = left .. (warn_count > 1 and string.format("  %d", warn_count) or " ")
     end
   end
 
-  local left = string.format("%d: %s%s", buf.bufnr, buf.name, mods)
-  local right = format_last_modified(buf.last_used)
+  local right = ""
+  if buf.git_status then
+    right = buf.git_status
+  else
+    if M.options.use_nerd_icons then
+      if buf.modified then
+        right = right .. " "
+      end
+      if buf.readonly then
+        right = right .. " "
+      end
+    else
+      if M.options.show_modified and buf.modified then
+        right = right .. " [+]"
+      end
+      if M.options.show_readonly and buf.readonly then
+        right = right .. " [RO]"
+      end
+    end
+  end
+
+  if right ~= "" then
+    right = " " .. right
+  end
+
+  right = right .. " " .. format_last_modified(buf.last_used)
 
   local width = vim.api.nvim_win_get_width(0)
   local safe_margin = 6
@@ -197,6 +233,7 @@ local function format_buffer_entry(buf)
 
   return left .. string.rep(" ", padding) .. right
 end
+
 local function open_water()
   last_buf = vim.api.nvim_get_current_buf()
 
