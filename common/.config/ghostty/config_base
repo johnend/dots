@@ -8,7 +8,7 @@ font-family = ""
 font-family = Recursive Mono Linear Static
 font-family = Symbols Nerd Font
 
-font-feature = dlig ss05 liga
+font-feature = dlig liga
 
 
 shell-integration = zsh
