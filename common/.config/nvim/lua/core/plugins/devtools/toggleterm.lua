@@ -22,6 +22,28 @@ function M.lazygit_toggle()
   M._lazygit:toggle()
 end
 
+function M.gh_dash_toggle()
+  local Terminal = require("toggleterm.terminal").Terminal
+  if not M._gh_dash then
+    M._gh_dash = Terminal:new {
+      cmd = "gh dash",
+      hidden = true,
+      direction = "float",
+      on_open = function()
+        vim.cmd "startinsert"
+      end,
+      on_close = function()
+        vim.cmd "stopinsert"
+      end,
+      count = 100,
+      float_opts = {
+        border = "rounded",
+      },
+    }
+  end
+  M._gh_dash:toggle()
+end
+
 return {
   "akinsho/toggleterm.nvim",
   version = "*", -- Always grab the latest stable version
@@ -132,4 +154,5 @@ return {
 
   -- 🔥 Expose LazyGit toggle properly via the module
   lazygit_toggle = M.lazygit_toggle,
+  gh_dash_toggle = M.gh_dash_toggle,
 }
