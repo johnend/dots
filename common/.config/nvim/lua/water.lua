@@ -9,6 +9,8 @@ local M = {}
 ---@field use_nerd_icons boolean
 ---@field path_display 'full_path' | 'short_path' | 'file_name' | fun(path: string): string
 ---@field keymaps table<string, string>
+---@field date_format 'dd/mm' | 'mm/dd'
+---@field time_format '24h' | '12h'
 
 M.sort_methods = {
   id = "id",
@@ -30,7 +32,9 @@ M.options = {
   highlight_cursorline = true,
   sort_buffers = M.sort_methods.last_modified,
   use_nerd_icons = true,
-  path_display = "short_path",
+  path_display = "full_path",
+  date_format = "dd/mm",
+  time_format = "24h",
   keymaps = {
     toggle = "_",
     open = "<CR>",
@@ -75,6 +79,41 @@ local function format_path(path)
     return vim.fn.fnamemodify(path, ":t")
   else
     return path
+  end
+end
+
+local function format_last_modified(timestamp)
+  if timestamp == 0 then
+    return ""
+  end
+  local now = os.time()
+  local today = os.date("*t", now)
+  local mod = os.date("*t", timestamp)
+
+  if today.year == mod.year and today.yday == mod.yday then
+    if M.options.time_format == "12h" then
+      return os.date("%I:%M %p", timestamp)
+    else
+      return os.date("%H:%M", timestamp)
+    end
+  elseif today.year == mod.year and today.yday - mod.yday == 1 then
+    if M.options.time_format == "12h" then
+      return "Yesterday at " .. os.date("%I:%M %p", timestamp)
+    else
+      return "Yesterday at " .. os.date("%H:%M", timestamp)
+    end
+  else
+    local date_str
+    if M.options.date_format == "dd/mm" then
+      date_str = os.date("%d/%m", timestamp)
+    else
+      date_str = os.date("%m/%d", timestamp)
+    end
+    if M.options.time_format == "12h" then
+      return string.format("%s at %s", date_str, os.date("%I:%M %p", timestamp))
+    else
+      return string.format("%s at %s", date_str, os.date("%H:%M", timestamp))
+    end
   end
 end
 
@@ -136,6 +175,7 @@ local function format_buffer_entry(buf)
       mods = mods .. " [RO]"
     end
   end
+
   if M.options.show_diagnostics and buf.diagnostics then
     local error_count = buf.diagnostics[vim.diagnostic.severity.ERROR] or 0
     local warn_count = buf.diagnostics[vim.diagnostic.severity.WARN] or 0
@@ -145,9 +185,18 @@ local function format_buffer_entry(buf)
       mods = mods .. (warn_count > 1 and string.format("  %d", warn_count) or " ")
     end
   end
-  return string.format("%d: %s%s", buf.bufnr, buf.name, mods)
-end
 
+  local left = string.format("%d: %s%s", buf.bufnr, buf.name, mods)
+  local right = format_last_modified(buf.last_used)
+
+  local width = vim.api.nvim_win_get_width(0)
+  local safe_margin = 6
+  local effective_width = width - safe_margin
+  local padding = effective_width - vim.fn.strdisplaywidth(left) - vim.fn.strdisplaywidth(right)
+  padding = padding > 2 and padding or 2
+
+  return left .. string.rep(" ", padding) .. right
+end
 local function open_water()
   last_buf = vim.api.nvim_get_current_buf()
 
@@ -182,35 +231,35 @@ local function open_water()
     buf,
     "n",
     maps.open,
-    ":lua require('water').open_selected_buffer()<CR>",
+    [[:lua require('water').open_selected_buffer()<CR>]],
     { nowait = true, noremap = true, silent = true }
   )
   vim.api.nvim_buf_set_keymap(
     buf,
     "n",
     maps.delete,
-    ":lua require('water').delete_selected_buffer()<CR>",
+    [[:lua require('water').delete_selected_buffer()<CR>]],
     { nowait = true, noremap = true, silent = true }
   )
   vim.api.nvim_buf_set_keymap(
     buf,
     "n",
     maps.split,
-    ":lua require('water').open_selected_buffer_split()<CR>",
+    [[:lua require('water').open_selected_buffer_split()<CR>]],
     { nowait = true, noremap = true, silent = true }
   )
   vim.api.nvim_buf_set_keymap(
     buf,
     "n",
     maps.vsplit,
-    ":lua require('water').open_selected_buffer_vsplit()<CR>",
+    [[:lua require('water').open_selected_buffer_vsplit()<CR>]],
     { nowait = true, noremap = true, silent = true }
   )
   vim.api.nvim_buf_set_keymap(
     buf,
     "n",
     maps.refresh,
-    ":lua require('water').refresh_water()<CR>",
+    [[:lua require('water').refresh_water()<CR>]],
     { nowait = true, noremap = true, silent = true }
   )
   vim.api.nvim_buf_set_keymap(buf, "n", maps.toggle, "<cmd>Water<CR>", { nowait = true, noremap = true, silent = true })
