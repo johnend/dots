@@ -65,7 +65,7 @@ return {
 
     toggleterm.setup {
       size = 20, -- Default size for terminals
-      open_mapping = [[<c-/>]], -- Default key to open main terminal
+      open_mapping = [[<c-_>]], -- Default key to open main terminal
       hide_numbers = true, -- Hide number column in terminals
       shade_filetypes = {}, -- No extra shading for specific filetypes
       shade_terminals = true,
@@ -86,73 +86,8 @@ return {
         end,
       },
     }
-
-    -- Helper to get the current window's buffer size
-    local function get_buf_size()
-      local bufinfo = vim.fn.getwininfo(vim.api.nvim_get_current_win())[1]
-      if not bufinfo then
-        return { width = -1, height = -1 }
-      end
-      return { width = bufinfo.width, height = bufinfo.height }
-    end
-
-    -- Calculate terminal size dynamically based on window dimensions
-    local function get_dynamic_size(direction, size)
-      if direction ~= "float" and type(size) == "number" and size <= 1.0 then
-        local buf = get_buf_size()
-        local dim = direction == "horizontal" and buf.height or buf.width
-        return math.floor(dim * size)
-      end
-      return size
-    end
-
-    -- Create and toggle a terminal instance
-    local function exec_toggle(opts)
-      local Terminal = require("toggleterm.terminal").Terminal
-      local term = Terminal:new {
-        cmd = opts.cmd,
-        count = opts.count,
-        direction = opts.direction,
-      }
-      -- 💥 FIX: call opts.size() here so it's a number
-      term:toggle(opts.size(), opts.direction)
-    end
-
-    -- Define different terminal types with their keybindings
-    local terminals = {
-      { nil, "<C-;>", "Horizontal Terminal", "horizontal", 0.3 }, -- Horizontal at 30% height
-      { nil, "<C-.>", "Vertical Terminal", "vertical", 0.4 }, -- Vertical at 40% width
-      { nil, "<C-/>", "Float Terminal", "float", nil }, -- Floating, default size
-    }
-
-    -- Create keybindings for each terminal type
-    for i, term in ipairs(terminals) do
-      local opts = {
-        cmd = term[1] or vim.o.shell, -- Default to shell if no command
-        keymap = term[2],
-        label = term[3],
-        direction = term[4],
-        size = function()
-          return get_dynamic_size(term[4], term[5])
-        end,
-        count = i + 100, -- Ensure unique counts
-      }
-
-      vim.keymap.set({ "n", "t" }, opts.keymap, function()
-        exec_toggle(opts)
-      end, { desc = opts.label, noremap = true, silent = true })
-    end
-
-    -- Set terminal keymaps automatically when a terminal opens
-    vim.api.nvim_create_autocmd("TermOpen", {
-      pattern = "*",
-      callback = function()
-        vim.cmd "startinsert!"
-      end,
-    })
   end,
 
-  -- 🔥 Expose LazyGit toggle properly via the module
   lazygit_toggle = M.lazygit_toggle,
   gh_dash_toggle = M.gh_dash_toggle,
 }
