@@ -1,3 +1,8 @@
+---@diagnostic disable-next-line: undefined-field
+local sysname = vim.loop.os_uname().sysname
+local is_mac = sysname == "Darwin"
+local is_linux = sysname == "Linux"
+
 return {
   "nvim-neo-tree/neo-tree.nvim",
   branch = "v3.x",
@@ -6,7 +11,7 @@ return {
     "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim",
   },
-  cmd = { "Neotree show", "Neotree close", "Neotree toggle", "Neotree focus" },
+  lazy = false,
   config = function()
     local status_ok, neotree = pcall(require, "neo-tree")
     if not status_ok then
@@ -16,7 +21,6 @@ return {
     neotree.setup {
       close_if_last_window = true,
       open_files_do_not_replace_types = { "terminal", "Trouble", "qf" },
-      popup_border_style = "single",
       filesystem = {
         hijack_netrw_behavior = "disabled",
         use_libuv_file_watcher = true,
@@ -48,16 +52,17 @@ return {
           local node = state.tree:get_node()
           local path = node:get_id()
 
-          ---@diagnostic disable-next-line: undefined-field
-          local os = vim.loop.os_uname().sysname
-
-          if os == "Darwin" then
+          if is_mac then
             vim.fn.jobstart({ "open", path }, { detach = true })
-          elseif os == "Linux" then
+          elseif is_linux == "Linux" then
             vim.fn.jobstart({ "xdg-open", path }, { detach = true })
+          else
+            local dir = vim.fn.fnamemodify(path, ":h")
+            vim.fn.jobstart({ "explorer, dir" }, { detach = true })
           end
         end,
       },
+      popup_border_style = "single",
       sources = {
         "filesystem",
         "git_status",
