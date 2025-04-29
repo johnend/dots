@@ -4,9 +4,25 @@ return {
   { "<leader>la", ":lua require('actions-preview').code_actions()<cr>", desc = "Code action" },
   { "<leader>ld", ":Telescope lsp_type_definitions<cr>", desc = "Type definition" },
   { "<leader>li", ":LspInfo<cr>", desc = "LSP info" },
-  { "<leader>lv", ":Trouble loclist toggle<cr>", desc = "Location list (Trouble)" },
-  { "<leader>ll", ":Trouble lsp toggle focus=false<cr>", desc = "LSP toggle (Trouble)" },
-  { "<leader>lq", ":Trouble qflist toggle<cr>", desc = "Quickfix list (Trouble)" },
+  { "<leader>ll", ":Trouble loclist toggle<cr>", desc = "Location list (Trouble)" },
+  { "<leader>lv", ":Trouble lsp toggle focus=false<cr>", desc = "LSP toggle (Trouble)" },
+  { "<leader>lq", ":Trouble qflist toggle <cr>", desc = "Quickfix list (Trouble)" },
+  {
+    "<leader>aq",
+    function()
+      local entry = {
+        filename = vim.fn.expand "%:p",
+        lnum = vim.fn.line ".",
+        col = vim.fn.col ".",
+        text = vim.fn.getline ".",
+      }
+
+      vim.fn.setqflist({ entry }, "a")
+      print("Added to quickfix: " .. entry.text)
+    end,
+    desc = "Append to qflist",
+    icon = icons.ui.List,
+  },
   {
     "<leader>lr",
     function()
