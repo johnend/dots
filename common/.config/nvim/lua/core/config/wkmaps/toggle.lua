@@ -20,6 +20,17 @@ local function toggle_notify(global_flag, toggle_action, label, invert_notify)
   vim.notify(label .. " " .. state)
 end
 
+-- Winbar --
+-- Toggle winbar per buffer (defaults to not visible)
+_G.toggle_winbar = function()
+  local current = vim.opt_local.winbar:get()
+  if current == "" then
+    vim.opt.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+  else
+    vim.opt.winbar = ""
+  end
+end
+
 return {
   { "<leader>t", group = "Toggle" },
   {
@@ -33,11 +44,10 @@ return {
   {
     "<leader>tb",
     function()
-      toggle_notify("barbecue_enabled", require("barbecue.ui").toggle, "Barbecue")
+      toggle_notify("winbar_enabled", toggle_winbar, "Winbar")
     end,
-    desc = "Barbecue",
+    desc = "Winbar",
   },
-
   {
     "<leader>tc",
     function()

@@ -7,7 +7,7 @@ return {
   harpoon = require(... .. ".harpoon"),
   lsp = require(... .. ".lsp"),
   neotest = require(... .. ".neotest"),
-  neotree = require(... .. ".neo-tree"),
+  navigation = require(... .. ".navigation"),
   plugins = require(... .. ".plugins"),
   splits = require(... .. ".splits"),
   telescope = require(... .. ".telescope"),

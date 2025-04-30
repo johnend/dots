@@ -57,7 +57,7 @@ return {
     local harpoon = keymaps.harpoon
     local lsp = keymaps.lsp
     local neotest = keymaps.neotest
-    local neotree = keymaps.neotree
+    local navigation = keymaps.navigation
     local plugins = keymaps.plugins
     local splits = keymaps.splits
     local telescope = keymaps.telescope
@@ -72,7 +72,7 @@ return {
       ---------------------------------
       neotest,
       ---------------------------------
-      neotree,
+      navigation,
       ---------------------------------
       general,
       ---------------------------------

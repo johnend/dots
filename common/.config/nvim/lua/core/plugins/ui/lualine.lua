@@ -50,6 +50,7 @@ return {
           components.lsp,
           {
             "filename",
+            path = 4,
             separator = { left = "" },
             symbols = { modified = icons.git.LineModified, readonly = icons.ui.Lock },
           },
