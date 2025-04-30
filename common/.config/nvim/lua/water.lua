@@ -49,8 +49,17 @@ local water_bufnr = nil
 local last_buf = nil
 local gitsigns_available, gitsigns = pcall(require, "gitsigns")
 
+local function define_highlights()
+  vim.api.nvim_set_hl(0, "WaterBufferID", { link = "@comment", default = true })
+  vim.api.nvim_set_hl(0, "WaterBufferName", { link = "@text", default = true })
+  vim.api.nvim_set_hl(0, "WaterDiagnosticError", { link = "DiagnosticError", default = true })
+  vim.api.nvim_set_hl(0, "WaterDiagnosticWarn", { link = "DiagnosticWarn", default = true })
+  vim.api.nvim_set_hl(0, "WaterTimestamp", { link = "@comment", default = true })
+end
+
 function M.setup(opts)
   M.options = vim.tbl_deep_extend("force", M.options or {}, opts or {})
+  define_highlights()
 
   vim.api.nvim_create_user_command("Water", function()
     require("water").toggle_water()
@@ -261,6 +270,84 @@ local function open_water()
   end
   vim.b.water_map = bufnr_map
 
+  local ns = vim.api.nvim_create_namespace "water"
+
+  for i, b in ipairs(buffers) do
+    local line_idx = i - 1
+    local line = lines[i]
+
+    local id_text = string.format("%d:", b.bufnr)
+    vim.api.nvim_buf_set_extmark(buf, ns, line_idx, 0, {
+      end_col = #id_text,
+      hl_group = "WaterBufferID",
+    })
+
+    local name_start = #id_text + 2
+    local name_end = name_start + #b.name
+    vim.api.nvim_buf_set_extmark(buf, ns, line_idx, name_start, {
+      end_col = name_end,
+      hl_group = "WaterBufferName",
+    })
+
+    if M.options.show_diagnostics and b.diagnostics then
+      local diag_start = name_end
+      local diag_group = nil
+      local error_count = b.diagnostics[vim.diagnostic.severity.ERROR] or 0
+      local warn_count = b.diagnostics[vim.diagnostic.severity.WARN] or 0
+
+      if error_count > 0 then
+        diag_group = "WaterDiagnosticError"
+      elseif warn_count > 0 then
+        diag_group = "WaterDiagnosticWarn"
+      end
+
+      if diag_group then
+        local diag_text = line:sub(diag_start + 1)
+        vim.api.nvim_buf_set_extmark(buf, ns, line_idx, diag_start, {
+          end_col = diag_start + vim.fn.strdisplaywidth(diag_text),
+          hl_group = diag_group,
+        })
+      end
+    end
+
+    local right = tostring(format_last_modified(b.last_used))
+    local right_start = string.find(line, right, 1, true)
+    if right_start then
+      vim.api.nvim_buf_set_extmark(buf, ns, line_idx, right_start - 1, {
+        end_col = right_start - 1 + #right,
+        hl_group = "WaterTimestamp",
+      })
+    end
+
+    if b.git_status or b.modified or b.readonly then
+      local git_text = b.git_status or (b.modified and "" or "") .. (b.readonly and " " or "")
+      if b.git_status then
+        for pattern, hl in pairs {
+          [" %d+"] = "GitSignsAdd",
+          [" %d+"] = "GitSignsChange",
+          [" %d+"] = "GitSignsDelete",
+        } do
+          for match in string.gmatch(git_text, pattern) do
+            local s = string.find(line, match, 1, true)
+            if s then
+              vim.api.nvim_buf_set_extmark(buf, ns, line_idx, s - 1, {
+                end_col = s - 1 + #match,
+                hl_group = hl,
+              })
+            end
+          end
+        end
+      else
+        local git_start = string.find(line, git_text, 1, true)
+        if git_start then
+          vim.api.nvim_buf_set_extmark(buf, ns, line_idx, git_start - 1, {
+            end_col = git_start - 1 + #git_text,
+            hl_group = "WaterGitStatus",
+          })
+        end
+      end
+    end
+  end
   water_bufnr = buf
 
   local maps = M.options.keymaps
