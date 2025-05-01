@@ -7,6 +7,7 @@ return {
   { "<leader>ll", ":Trouble loclist toggle<cr>", desc = "Location list (Trouble)" },
   { "<leader>lv", ":Trouble lsp toggle focus=false<cr>", desc = "LSP toggle (Trouble)" },
   { "<leader>lq", ":Trouble qflist toggle<cr>", desc = "Quickfix list (Trouble)" },
+  { "<leader>a", group = "Append to:" },
   {
     "<leader>aq",
     function()
@@ -18,9 +19,9 @@ return {
       }
 
       vim.fn.setqflist({ entry }, "a")
-      print("Added to quickfix: " .. entry.text)
+      print("Added to quickfix list: " .. entry.text)
     end,
-    desc = "Append to qflist",
+    desc = "Qflist",
     icon = icons.ui.List,
   },
   {
@@ -34,9 +35,9 @@ return {
       }
 
       vim.fn.setloclist(0, { entry }, "a")
-      print("Added to quickfix: " .. entry.text)
+      print("Added to location list: " .. entry.text)
     end,
-    desc = "Append to qflist",
+    desc = "Loclist",
     icon = icons.ui.List,
   },
   {
