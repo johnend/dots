@@ -180,7 +180,7 @@ function M.render(bufnr, opts)
       end
     end
 
-    local timestamp = buffers.format_last_modified(buf.last_used, opts)
+    local timestamp = tostring(buffers.format_last_modified(buf.last_used, opts))
     local ts_start = string.find(line, timestamp, 1, true)
     if ts_start and ts_start > 0 then
       local before = line:sub(1, ts_start - 1)
@@ -201,12 +201,16 @@ end
 function M.open(opts)
   state.last_buf = vim.api.nvim_get_current_buf()
   local bufnr = vim.api.nvim_create_buf(false, true)
+
   local winid = vim.api.nvim_get_current_win()
   state.water_winid = winid
 
-  vim.bo[bufnr].buftype = "nofile"
-  vim.bo[bufnr].bufhidden = "wipe"
-  vim.bo[bufnr].swapfile = false
+  vim.api.nvim_set_option_value("buftype", "nofile", { scope = "local", buf = bufnr })
+  vim.api.nvim_set_option_value("bufhidden", "wipe", { scope = "local", buf = bufnr })
+  vim.api.nvim_set_option_value("swapfile", false, { scope = "local", buf = bufnr })
+  vim.api.nvim_set_option_value("filetype", "water", { scope = "local", buf = bufnr })
+  vim.api.nvim_set_option_value("wrap", false, { scope = "local", win = winid })
+  vim.api.nvim_buf_set_name(bufnr, "water://")
 
   vim.api.nvim_set_current_buf(bufnr)
   state.water_bufnr = bufnr
