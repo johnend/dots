@@ -1,4 +1,3 @@
--- lua/water/ui/water.lua
 local state = require "water.state"
 local buffers = require "water.buffers"
 local config = require "water.config"
@@ -26,19 +25,19 @@ local function get_gutter_width()
 end
 
 function M.render(bufnr, opts)
-  if not bufnr or not vim.api.nvim_buf_is_valid(bufnr) or vim.bo[bufnr].buftype ~= "nofile" then
+  if not bufnr or not vim.api.nvim_buf_is_valid(bufnr) or vim.bo[bufnr].buftype ~= "nofile" or not state.options then
     return
   end
 
-  local is_visible = false
+  -- ensure the buffer is visible
+  local visible = false
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     if vim.api.nvim_win_get_buf(win) == bufnr then
-      is_visible = true
+      visible = true
       break
     end
   end
-
-  if not is_visible then
+  if not visible then
     return
   end
 
@@ -47,6 +46,7 @@ function M.render(bufnr, opts)
   local lines = {}
   local bufnr_map = {}
 
+  -- find the window width and gutter
   local win_width
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     if vim.api.nvim_win_get_buf(win) == bufnr then
@@ -54,13 +54,26 @@ function M.render(bufnr, opts)
       break
     end
   end
-
   if not win_width then
     return
   end
+
   local gutter = get_gutter_width()
   local available_width = win_width - gutter
 
+  -- HEADER SECTION
+  local title_left = "ID: Name"
+  local title_right = "Git Status  Last Used"
+  local t_l_w = vim.fn.strdisplaywidth(title_left)
+  local t_r_w = vim.fn.strdisplaywidth(title_right)
+  local t_pad = math.max(1, available_width - t_l_w - t_r_w)
+  local header_line = title_left .. string.rep(" ", t_pad) .. title_right
+
+  table.insert(lines, header_line) -- header titles
+  table.insert(lines, "") -- empty line
+  local HEADER_SIZE = 2
+
+  -- build lines for each buffer
   for i, b in ipairs(buffer_list) do
     local left = string.format("%d: %s", b.bufnr, b.name)
 
@@ -91,7 +104,7 @@ function M.render(bufnr, opts)
       end
     end
 
-    local timestamp = buffers.format_last_modified(b.last_used, opts)
+    local timestamp = tostring(buffers.format_last_modified(b.last_used, opts))
     right = right .. " " .. timestamp
 
     local left_width = vim.fn.strdisplaywidth(left)
@@ -100,25 +113,39 @@ function M.render(bufnr, opts)
 
     local line = left .. string.rep(" ", padding) .. right
     table.insert(lines, line)
-    bufnr_map[i] = b.bufnr
+    bufnr_map[#lines] = b.bufnr
   end
 
-  vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, {})
+  -- set buffer contents
   vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, lines)
   vim.b.water_map = bufnr_map
 
   local ns = vim.api.nvim_create_namespace "water"
 
-  for i, buf in ipairs(buffer_list) do
-    local line_idx = i - 1
-    local line = lines[i] or ""
+  -- highlight the header row using vim.highlight.range()
+  local header_width = vim.fn.strdisplaywidth(header_line)
+  vim.highlight.range(
+    bufnr,
+    ns,
+    "Title",
+    { 0, 0 }, -- start at row 0, col 0
+    { 0, header_width }, -- end at row 0, col header_width
+    {}
+  ) -- default options
 
+  -- set extmarks for each buffer line
+  for i, buf in ipairs(buffer_list) do
+    local line_idx = (i - 1) + HEADER_SIZE
+    local line = lines[i + HEADER_SIZE] or ""
+
+    -- Buffer ID extmark
     local id_text = string.format("%d:", buf.bufnr)
     pcall(vim.api.nvim_buf_set_extmark, bufnr, ns, line_idx, 0, {
       end_col = vim.str_utfindex(id_text, "utf-8"),
       hl_group = "WaterBufferID",
     })
 
+    -- Buffer name extmark
     local name_text = buf.name
     local name_start = vim.str_utfindex(id_text .. " ", "utf-8")
     local name_end = name_start + vim.str_utfindex(name_text, "utf-8")
@@ -127,36 +154,32 @@ function M.render(bufnr, opts)
       hl_group = "WaterBufferName",
     })
 
+    -- Diagnostics extmarks
     if opts.show_diagnostics and buf.diagnostics then
-      local diag_group = nil
-      local error_count = buf.diagnostics[vim.diagnostic.severity.ERROR] or 0
+      local diag_group
+      local err_count = buf.diagnostics[vim.diagnostic.severity.ERROR] or 0
       local warn_count = buf.diagnostics[vim.diagnostic.severity.WARN] or 0
-
-      if error_count > 0 then
+      if err_count > 0 then
         diag_group = "WaterDiagnosticError"
       elseif warn_count > 0 then
         diag_group = "WaterDiagnosticWarn"
       end
-
       if diag_group then
         local diag_text = line:match " %d+" or line:match " %d+" or line:match "" or line:match ""
         if diag_text then
           local s = string.find(line, diag_text, 1, true)
-          if s and s > 0 and s <= #line then
-            local before = line:sub(1, s - 1)
-            local start_col = vim.str_utfindex(before, "utf-8")
-            local end_col = start_col + vim.str_utfindex(diag_text, "utf-8")
-            if end_col > start_col then
-              pcall(vim.api.nvim_buf_set_extmark, bufnr, ns, line_idx, start_col, {
-                end_col = end_col,
-                hl_group = diag_group,
-              })
-            end
-          end
+          local before = line:sub(1, s - 1)
+          local start_col = vim.str_utfindex(before, "utf-8")
+          local end_col = start_col + vim.str_utfindex(diag_text, "utf-8")
+          pcall(vim.api.nvim_buf_set_extmark, bufnr, ns, line_idx, start_col, {
+            end_col = end_col,
+            hl_group = diag_group,
+          })
         end
       end
     end
 
+    -- Git status extmarks
     if buf.git_status then
       for pattern, hl in pairs {
         [" %d+"] = "GitSignsAdd",
@@ -165,28 +188,25 @@ function M.render(bufnr, opts)
       } do
         for match in string.gmatch(line, pattern) do
           local s = string.find(line, match, 1, true)
-          if s and s > 0 and s <= #line then
-            local before = line:sub(1, s - 1)
-            local start_col = vim.str_utfindex(before, "utf-8")
-            local end_col = start_col + vim.str_utfindex(match, "utf-8")
-            if end_col > start_col then
-              pcall(vim.api.nvim_buf_set_extmark, bufnr, ns, line_idx, start_col, {
-                end_col = end_col,
-                hl_group = hl,
-              })
-            end
-          end
+          local before = line:sub(1, s - 1)
+          local start_col = vim.str_utfindex(before, "utf-8")
+          local end_col = start_col + vim.str_utfindex(match, "utf-8")
+          pcall(vim.api.nvim_buf_set_extmark, bufnr, ns, line_idx, start_col, {
+            end_col = end_col,
+            hl_group = hl,
+          })
         end
       end
     end
 
-    local timestamp = tostring(buffers.format_last_modified(buf.last_used, opts))
-    local ts_start = string.find(line, timestamp, 1, true)
-    if ts_start and ts_start > 0 then
-      local before = line:sub(1, ts_start - 1)
-      local start_col = vim.str_utfindex(before, "utf-8")
-      local end_col = start_col + vim.str_utfindex(timestamp, "utf-8")
-      if end_col > start_col then
+    -- Timestamp extmark
+    do
+      local timestamp = tostring(buffers.format_last_modified(buf.last_used, opts))
+      local ts_start = string.find(line, timestamp, 1, true)
+      if ts_start and ts_start > 0 then
+        local before = line:sub(1, ts_start - 1)
+        local start_col = vim.str_utfindex(before, "utf-8")
+        local end_col = start_col + vim.str_utfindex(timestamp, "utf-8")
         pcall(vim.api.nvim_buf_set_extmark, bufnr, ns, line_idx, start_col, {
           end_col = end_col,
           hl_group = "WaterTimestamp",
@@ -201,10 +221,10 @@ end
 function M.open(opts)
   state.last_buf = vim.api.nvim_get_current_buf()
   local bufnr = vim.api.nvim_create_buf(false, true)
-
   local winid = vim.api.nvim_get_current_win()
   state.water_winid = winid
 
+  -- buffer metadata & window options
   vim.api.nvim_set_option_value("buftype", "nofile", { scope = "local", buf = bufnr })
   vim.api.nvim_set_option_value("bufhidden", "wipe", { scope = "local", buf = bufnr })
   vim.api.nvim_set_option_value("swapfile", false, { scope = "local", buf = bufnr })
@@ -212,6 +232,7 @@ function M.open(opts)
   vim.api.nvim_set_option_value("wrap", false, { scope = "local", win = winid })
   vim.api.nvim_buf_set_name(bufnr, "water://")
 
+  -- switch to our water buffer
   vim.api.nvim_set_current_buf(bufnr)
   state.water_bufnr = bufnr
   state.options = opts
@@ -247,7 +268,6 @@ function M.refresh()
         break
       end
     end
-
     if not visible then
       is_rendering = false
       return

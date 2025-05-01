@@ -33,8 +33,17 @@ function M.apply(bufnr, buffer_map, opts, reopen_cb)
         elseif fallback == "enew" then
           vim.cmd "enew"
         elseif fallback == "q" then
-          vim.cmd "q"
-        else
+          -- if there are unsaved changes in the current buffer, confirm first
+          local bufnr = vim.api.nvim_get_current_buf()
+          if vim.bo[bufnr].modified then
+            -- 1 = Yes, 2 = No
+            local choice = vim.fn.confirm("You have unsaved changes—quit anyway?", "&Yes\n&No", 2)
+            if choice == 1 then
+              vim.cmd "qa"
+            end
+          else
+            vim.cmd "qa"
+          end
           vim.notify("[Water] Invalid delete_last_buf_fallback option: " .. tostring(fallback), vim.log.levels.WARN)
         end
       else

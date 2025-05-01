@@ -11,9 +11,22 @@ function M.setup()
     group = aug,
     pattern = "water",
     callback = function()
-      -- 'wrap' is a window-local option, so target win=0 (the window where
-      -- this autocmd fired)
+      -- disable wrap
       vim.api.nvim_set_option_value("wrap", false, { scope = "local", win = 0 })
+
+      -- prevent cursor landing on header (first two lines)
+      local HEADER_SIZE = 2
+      vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+        group = aug,
+        buffer = 0, -- only in this water buffer
+        callback = function()
+          local row = vim.api.nvim_win_get_cursor(0)[1]
+          if row <= HEADER_SIZE then
+            -- jump down to first real data line
+            vim.api.nvim_win_set_cursor(0, { HEADER_SIZE + 1, 0 })
+          end
+        end,
+      })
     end,
   })
 
@@ -59,6 +72,19 @@ function M.setup()
           end, 20)
           break
         end
+      end
+    end,
+  })
+
+  -- in lua/water/autocmds.lua, inside M.setup():
+  vim.api.nvim_create_autocmd("BufWipeout", {
+    group = aug,
+    pattern = "*",
+    callback = function(e)
+      if vim.bo[e.buf].filetype == "water" then
+        local st = require "water.state"
+        st.water_bufnr = nil
+        st.water_winid = nil
       end
     end,
   })

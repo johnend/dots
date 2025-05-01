@@ -3,6 +3,7 @@
 ---@alias WaterTimeFormat "24h" | "12h"
 ---@alias WaterPathDisplay "full_path" | "short_path" | "file_name" | fun(path: string): string
 ---@alias WaterDeleteFallback "q" | "enew" | fun()
+---@alias WaterGitIcons { add: string, change: string, delete: string }
 
 ---@class WaterOptions
 ---Show if the buffer has been modified
@@ -16,13 +17,10 @@
 ---@field sort_buffers WaterBufferSort
 ---@field use_nerd_icons boolean
 ---@field path_display WaterPathDisplay "How much of the buffer path do you want to see?"
----Format the date, default is dd/mm
----If you prefer you can set it to mm/dd
 ---@field date_format WaterDateFormat
 ---@field time_format WaterTimeFormat
----Determine what happens when the last buffer is deleted.
----Defaults to quitting NeoVim
 ---@field delete_last_buf_fallback WaterDeleteFallback
+---@field git_icons WaterGitIcons  "Customize the symbols shown in the Git status column"
 ---@field keymaps table<string, string>
 
 local M = {}
@@ -39,6 +37,7 @@ M.defaults = {
   date_format = "dd/mm",
   time_format = "24h",
   delete_last_buf_fallback = "q",
+  git_icons = { add = "", change = "", delete = "" },
   keymaps = {
     toggle = "_",
     open_buffer = "<cr>",
