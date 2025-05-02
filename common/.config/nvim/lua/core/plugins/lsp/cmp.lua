@@ -109,6 +109,7 @@ return {
     }
 
     cmp.setup {
+      preselect = "None",
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
@@ -117,23 +118,23 @@ return {
       completion = { completeopt = "menu,menuone,noinsert" },
       mapping = {
         -- NOTE: move up and down completion list items
-        -- ["<C-p>"] = cmp.mapping.select_prev_item(),
-        ["<Up>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
+        ["<C-p>"] = cmp.mapping.select_prev_item(),
+        -- ["<Up>"] = cmp.mapping(function(fallback)
+        --   if cmp.visible() then
+        --     cmp.select_prev_item()
+        --   else
+        --     fallback()
+        --   end
+        -- end, { "i", "s" }),
 
-        -- ["<C-n>"] = cmp.mapping.select_next_item(),
-        ["<Down>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
+        ["<C-n>"] = cmp.mapping.select_next_item(),
+        -- ["<Down>"] = cmp.mapping(function(fallback)
+        --   if cmp.visible() then
+        --     cmp.select_next_item()
+        --   else
+        --     fallback()
+        --   end
+        -- end, { "i", "s" }),
 
         ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
         ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
