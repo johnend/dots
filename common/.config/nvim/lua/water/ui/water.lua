@@ -1,35 +1,43 @@
+-- lua/water/ui/water.lua
+---@class water.ui.water
+
+local M = {}
 local state = require "water.state"
 local buffers = require "water.buffers"
 local config = require "water.config"
 
-local M = {}
+---@type boolean Rendering in progress flag to debounce refreshes
+local is_rendering = false
 
+---Utility to calculate the gutter width (numbers, signs, folds).
+---@return number
 local function get_gutter_width()
-  local width = 0
-
+  local w = 0
   if vim.wo.number then
-    width = width + vim.wo.numberwidth
+    w = w + vim.wo.numberwidth
   end
-
   if vim.wo.signcolumn and vim.wo.signcolumn ~= "no" then
-    width = width + 2
+    w = w + 2
   end
-
   if tonumber(vim.wo.foldcolumn) then
-    width = width + tonumber(vim.wo.foldcolumn)
+    w = w + tonumber(vim.wo.foldcolumn)
   elseif vim.wo.foldcolumn ~= "0" then
-    width = width + 1
+    w = w + 1
   end
-
-  return width
+  return w
 end
 
+---Render the custom "water" buffer with header and buffer list.
+---@param bufnr number The buffer number to render into.
+---@param opts table|nil Optional rendering options (overrides state.options).
+---@return table|nil bufnr_map Mapping of rendered line indices to buffer numbers, or nil if render aborted.
 function M.render(bufnr, opts)
+  -- Validate buffer and state
   if not bufnr or not vim.api.nvim_buf_is_valid(bufnr) or vim.bo[bufnr].buftype ~= "nofile" or not state.options then
     return
   end
 
-  -- ensure the buffer is visible
+  -- Ensure the Water buffer is visible
   local visible = false
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     if vim.api.nvim_win_get_buf(win) == bufnr then
@@ -41,12 +49,13 @@ function M.render(bufnr, opts)
     return
   end
 
-  local opts = state.options or config.merge()
-  local buffer_list = buffers.get_buffers(opts)
+  -- Determine options and buffers
+  local settings = state.options or config.merge()
+  local buffer_list = buffers.get_buffers(settings)
   local lines = {}
   local bufnr_map = {}
 
-  -- find the window width and gutter
+  -- Find window width for this buffer
   local win_width
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     if vim.api.nvim_win_get_buf(win) == bufnr then
@@ -61,128 +70,104 @@ function M.render(bufnr, opts)
   local gutter = get_gutter_width()
   local available_width = win_width - gutter
 
-  -- HEADER SECTION
+  -- Build header
   local header_lines, HEADER_SIZE = buffers.build_header(available_width)
   vim.list_extend(lines, header_lines)
 
-  -- build lines for each buffer
-  for i, b in ipairs(buffer_list) do
-    local left = string.format("%d: %s", b.bufnr, b.name)
-
-    if opts.show_diagnostics and b.diagnostics then
-      local err = b.diagnostics[vim.diagnostic.severity.ERROR] or 0
-      local warn = b.diagnostics[vim.diagnostic.severity.WARN] or 0
-      if err > 0 then
-        left = left .. string.format("  %d", err)
-      elseif warn > 0 then
-        left = left .. string.format("  %d", warn)
-      end
+  -- Build buffer lines
+  for i, bufinfo in ipairs(buffer_list) do
+    local left = string.format("%d: %s", bufinfo.bufnr, bufinfo.name)
+    local diag_text = buffers.format_diagnostic_text(bufinfo, settings)
+    if diag_text ~= "" then
+      left = left .. " " .. diag_text
     end
+    local right = buffers.format_buffer_status(bufinfo, settings)
+    local ts = tostring(buffers.format_last_modified(bufinfo.last_used, settings))
+    right = right .. " " .. ts
 
-    local right = b.git_status or ""
-    if opts.use_nerd_icons then
-      if b.modified then
-        right = right .. " "
-      end
-      if b.readonly then
-        right = right .. " "
-      end
-    else
-      if opts.show_modified and b.modified then
-        right = right .. " [+]"
-      end
-      if opts.show_readonly and b.readonly then
-        right = right .. " [RO]"
-      end
-    end
+    local lw = vim.fn.strdisplaywidth(left)
+    local rw = vim.fn.strdisplaywidth(right)
+    local pad = math.max(1, available_width - lw - rw)
+    local line = left .. string.rep(" ", pad) .. right
 
-    local timestamp = tostring(buffers.format_last_modified(b.last_used, opts))
-    right = right .. " " .. timestamp
-
-    local left_width = vim.fn.strdisplaywidth(left)
-    local right_width = vim.fn.strdisplaywidth(right)
-    local padding = math.max(1, available_width - left_width - right_width)
-
-    local line = left .. string.rep(" ", padding) .. right
-    table.insert(lines, line)
-    bufnr_map[#lines] = b.bufnr
+    lines[#lines + 1] = line
+    bufnr_map[#lines] = bufinfo.bufnr
   end
 
-  -- set buffer contents
+  -- Write lines
   vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, lines)
   vim.b.water_map = bufnr_map
 
+  -- Highlighting and extmarks
   local ns = vim.api.nvim_create_namespace "water"
-
-  -- highlight the header row using vim.highlight.range()
-  for i, hl in ipairs(header_lines) do
-    local width = vim.fn.strdisplaywidth(hl)
-    vim.highlight.range(bufnr, ns, "Title", { i - 1, 0 }, { i - 1, width }, {})
+  -- Header highlight
+  for i, text in ipairs(header_lines) do
+    local wlen = vim.fn.strdisplaywidth(text)
+    vim.highlight.range(bufnr, ns, "Title", { i - 1, 0 }, { i - 1, wlen }, {})
   end
 
-  -- set extmarks for each buffer line
-  for i, buf in ipairs(buffer_list) do
-    local line_idx = (i - 1) + HEADER_SIZE
-    local line = lines[i + HEADER_SIZE] or ""
+  -- Extmarks for each line
+  for idx, bufinfo in ipairs(buffer_list) do
+    local row = (idx - 1) + HEADER_SIZE
+    local text = lines[row + 1] or ""
 
-    -- Buffer ID extmark
-    local id_text = string.format("%d:", buf.bufnr)
-    pcall(vim.api.nvim_buf_set_extmark, bufnr, ns, line_idx, 0, {
-      end_col = vim.str_utfindex(id_text, "utf-8"),
+    -- Buffer ID
+    local id_txt = string.format("%d:", bufinfo.bufnr)
+    pcall(vim.api.nvim_buf_set_extmark, bufnr, ns, row, 0, {
+      end_col = vim.str_utfindex(id_txt, "utf-8"),
       hl_group = "WaterBufferID",
     })
 
-    -- Buffer name extmark
-    local name_text = buf.name
-    local name_start = vim.str_utfindex(id_text .. " ", "utf-8")
-    local name_end = name_start + vim.str_utfindex(name_text, "utf-8")
-    pcall(vim.api.nvim_buf_set_extmark, bufnr, ns, line_idx, name_start, {
+    -- Buffer Name
+    local name_start = vim.str_utfindex(id_txt .. " ", "utf-8")
+    local name_end = name_start + vim.str_utfindex(bufinfo.name, "utf-8")
+    pcall(vim.api.nvim_buf_set_extmark, bufnr, ns, row, name_start, {
       end_col = name_end,
       hl_group = "WaterBufferName",
     })
 
-    -- Diagnostics extmarks
-    if opts.show_diagnostics and buf.diagnostics then
-      for pattern, hl in pairs(buffers.diagnostic_patterns(opts)) do
-        for match in line:gmatch(pattern) do
-          local s = line:find(match, 1, true)
-          local before = line:sub(1, s - 1)
-          local start_col = vim.str_utfindex(before, "utf-8")
-          local end_col = start_col + vim.str_utfindex(match, "utf-8")
-          pcall(vim.api.nvim_buf_set_extmark, bufnr, ns, line_idx, start_col, {
-            end_col = end_col,
+    -- Diagnostics
+    if settings.show_diagnostics and bufinfo.diagnostics then
+      for pat, hl in pairs(buffers.diagnostic_patterns(settings)) do
+        for match in text:gmatch(pat) do
+          local s = text:find(match, 1, true)
+          local before = text:sub(1, s - 1)
+          local sc = vim.str_utfindex(before, "utf-8")
+          local ec = sc + vim.str_utfindex(match, "utf-8")
+          pcall(vim.api.nvim_buf_set_extmark, bufnr, ns, row, sc, {
+            end_col = ec,
             hl_group = hl,
           })
         end
       end
     end
 
-    -- Git status extmarks
-    if buf.git_status then
-      for pattern, hl in pairs(buffers.git_patterns(opts)) do
-        for match in string.gmatch(line, pattern) do
-          local s = string.find(line, match, 1, true)
-          local before = line:sub(1, s - 1)
-          local start_col = vim.str_utfindex(before, "utf-8")
-          local end_col = start_col + vim.str_utfindex(match, "utf-8")
-          pcall(vim.api.nvim_buf_set_extmark, bufnr, ns, line_idx, start_col, {
-            end_col = end_col,
+    -- Git Status
+    if bufinfo.git_status then
+      for pat, hl in pairs(buffers.git_patterns(settings)) do
+        for match in text:gmatch(pat) do
+          local s = text:find(match, 1, true)
+          local before = text:sub(1, s - 1)
+          local sc = vim.str_utfindex(before, "utf-8")
+          local ec = sc + vim.str_utfindex(match, "utf-8")
+          pcall(vim.api.nvim_buf_set_extmark, bufnr, ns, row, sc, {
+            end_col = ec,
             hl_group = hl,
           })
         end
       end
     end
 
-    -- Timestamp extmark
+    -- Timestamp
     do
-      local timestamp = tostring(buffers.format_last_modified(buf.last_used, opts))
-      local ts_start = string.find(line, timestamp, 1, true)
-      if ts_start and ts_start > 0 then
-        local before = line:sub(1, ts_start - 1)
-        local start_col = vim.str_utfindex(before, "utf-8")
-        local end_col = start_col + vim.str_utfindex(timestamp, "utf-8")
-        pcall(vim.api.nvim_buf_set_extmark, bufnr, ns, line_idx, start_col, {
-          end_col = end_col,
+      local ts_txt = tostring(buffers.format_last_modified(bufinfo.last_used, settings))
+      local ts_pos = text:find(ts_txt, 1, true)
+      if ts_pos then
+        local before = text:sub(1, ts_pos - 1)
+        local sc = vim.str_utfindex(before, "utf-8")
+        local ec = sc + vim.str_utfindex(ts_txt, "utf-8")
+        pcall(vim.api.nvim_buf_set_extmark, bufnr, ns, row, sc, {
+          end_col = ec,
           hl_group = "WaterTimestamp",
         })
       end
@@ -192,13 +177,14 @@ function M.render(bufnr, opts)
   return bufnr_map
 end
 
+---Open a floating "water" buffer and set up keymaps.
+---@param opts table Rendering options to apply.
 function M.open(opts)
   state.last_buf = vim.api.nvim_get_current_buf()
   local bufnr = vim.api.nvim_create_buf(false, true)
   local winid = vim.api.nvim_get_current_win()
   state.water_winid = winid
 
-  -- buffer metadata & window options
   vim.api.nvim_set_option_value("buftype", "nofile", { scope = "local", buf = bufnr })
   vim.api.nvim_set_option_value("bufhidden", "wipe", { scope = "local", buf = bufnr })
   vim.api.nvim_set_option_value("swapfile", false, { scope = "local", buf = bufnr })
@@ -206,21 +192,17 @@ function M.open(opts)
   vim.api.nvim_set_option_value("wrap", false, { scope = "local", win = winid })
   vim.api.nvim_buf_set_name(bufnr, "water://")
 
-  -- switch to our water buffer
   vim.api.nvim_set_current_buf(bufnr)
   state.water_bufnr = bufnr
   state.options = opts
 
   local bufnr_map = M.render(bufnr, opts)
-
-  local keymaps = require "water.keymaps"
-  keymaps.apply(bufnr, bufnr_map or {}, opts, function()
+  require("water.keymaps").apply(bufnr, bufnr_map or {}, opts, function()
     vim.cmd "WaterRefresh"
   end)
 end
 
-local is_rendering = false
-
+---Refresh the water buffer if visible, debounced.
 function M.refresh()
   if is_rendering then
     return
@@ -228,21 +210,19 @@ function M.refresh()
   is_rendering = true
 
   vim.defer_fn(function()
-    local bufnr = state.water_bufnr
-    local opts = state.options
+    local bufnr, opts = state.water_bufnr, state.options
     if not bufnr or not vim.api.nvim_buf_is_valid(bufnr) or not opts then
       is_rendering = false
       return
     end
-
-    local visible = false
+    local vis = false
     for _, win in ipairs(vim.api.nvim_list_wins()) do
       if vim.api.nvim_win_get_buf(win) == bufnr then
-        visible = true
+        vis = true
         break
       end
     end
-    if not visible then
+    if not vis then
       is_rendering = false
       return
     end
@@ -252,12 +232,15 @@ function M.refresh()
   end, 50)
 end
 
+---Close the water buffer and return to previous buffer.
 function M.close()
   if state.last_buf and vim.api.nvim_buf_is_valid(state.last_buf) then
     vim.api.nvim_set_current_buf(state.last_buf)
   end
 end
 
+---Toggle the water buffer open/closed.
+---@param opts table Rendering options to apply when opening.
 function M.toggle(opts)
   local current = vim.api.nvim_get_current_buf()
   if state.water_bufnr and vim.api.nvim_buf_is_valid(state.water_bufnr) and current == state.water_bufnr then

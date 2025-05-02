@@ -1,4 +1,5 @@
 -- lua/water/init.lua
+---@class water
 
 -- 1) Wire up all Water autocmds
 require("water.autocmds").setup()
@@ -11,23 +12,26 @@ local help = require "water.ui.help"
 local state = require "water.state"
 
 local M = {}
+---@type boolean
 local has_setup_run = false
 
--- 3) Setup function: define commands, keymaps, and initialize state
+---Setup Water plugin: merge options, define highlights, commands, and keymaps.
+---@param opts table? User-provided configuration options.
 function M.setup(opts)
   if has_setup_run then
     return
   end
   has_setup_run = true
 
-  -- Merge user opts with defaults
+  -- Merge user opts with defaults and save to state
   M.options = config.merge(opts or {})
+  state.options = M.options
 
-  -- Define highlights and help
+  -- Define highlight groups and setup help docs
   highlights.define()
   help.setup(M.options)
 
-  -- User commands
+  -- Create user commands for toggling and refreshing the UI
   vim.api.nvim_create_user_command("Water", function()
     ui.toggle(M.options)
   end, { desc = "Toggle Water UI" })
@@ -36,11 +40,14 @@ function M.setup(opts)
     ui.refresh()
   end, { desc = "Refresh Water UI" })
 
-  -- Keymaps
+  -- Define keymap for toggling UI
   vim.keymap.set("n", M.options.keymaps.toggle, function()
     ui.toggle(M.options)
   end, {
     desc = "Toggle Water UI",
+    nowait = true,
+    noremap = true,
+    silent = true,
   })
 end
 
