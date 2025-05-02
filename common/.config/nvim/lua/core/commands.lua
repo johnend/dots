@@ -85,3 +85,13 @@ autocommand({ "VimEnter", "ColorScheme" }, {
     vim.cmd "highlight FlashLabel guifg=#00fa9a guibg=#000000 gui=bold"
   end,
 })
+-- Open Alpha after Lazy installs plugins
+autocommand("User", {
+  pattern = "LazyDone",
+  callback = function()
+    -- If no buffers are open, show alpha
+    if vim.fn.argc() == 0 and vim.fn.line2byte "$" == -1 then
+      require("alpha").start(true)
+    end
+  end,
+})
