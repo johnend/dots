@@ -27,7 +27,7 @@ return {
             return not vim.api.nvim_win_get_config(win).focusable
           end,
         },
-        trigger = "",
+        trigger = ".",
         max_length = false, ---@type number|false
       },
       jump = {
