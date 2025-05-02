@@ -59,7 +59,7 @@ return {
     FileStaged = "",
     FileUnmerged = "",
     FileUnstaged = "",
-    FileUntracked = "U",
+    FileUntracked = "",
     Diff = "",
     Repo = "",
     Octoface = "",
