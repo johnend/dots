@@ -110,4 +110,11 @@ return {
     end,
     desc = "Twilight",
   },
+  {
+    "<leader>tz",
+    function()
+      toggle_notify("focus_mode_enabled", "Focus", "Focus")
+    end,
+    desc = "Focus",
+  },
 }

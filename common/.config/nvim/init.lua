@@ -31,6 +31,7 @@ local lazy_opts = {
   -- Lazy options
   spec = {
     { import = "core.plugins" },
+    { import = "core.plugins._testing_ground" },
     { import = "core.plugins.utilities" },
     { import = "core.plugins.git" },
     { import = "core.plugins.editing" },
