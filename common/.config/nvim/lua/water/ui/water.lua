@@ -41,7 +41,7 @@ function M.render(bufnr, opts)
     return
   end
 
-  local opts = state.options
+  local opts = state.options or config.merge()
   local buffer_list = buffers.get_buffers(opts)
   local lines = {}
   local bufnr_map = {}
@@ -62,16 +62,8 @@ function M.render(bufnr, opts)
   local available_width = win_width - gutter
 
   -- HEADER SECTION
-  local title_left = "ID: Name"
-  local title_right = "Git Status  Last Used"
-  local t_l_w = vim.fn.strdisplaywidth(title_left)
-  local t_r_w = vim.fn.strdisplaywidth(title_right)
-  local t_pad = math.max(1, available_width - t_l_w - t_r_w)
-  local header_line = title_left .. string.rep(" ", t_pad) .. title_right
-
-  table.insert(lines, header_line) -- header titles
-  table.insert(lines, "") -- empty line
-  local HEADER_SIZE = 2
+  local header_lines, HEADER_SIZE = buffers.build_header(available_width)
+  vim.list_extend(lines, header_lines)
 
   -- build lines for each buffer
   for i, b in ipairs(buffer_list) do
@@ -123,15 +115,10 @@ function M.render(bufnr, opts)
   local ns = vim.api.nvim_create_namespace "water"
 
   -- highlight the header row using vim.highlight.range()
-  local header_width = vim.fn.strdisplaywidth(header_line)
-  vim.highlight.range(
-    bufnr,
-    ns,
-    "Title",
-    { 0, 0 }, -- start at row 0, col 0
-    { 0, header_width }, -- end at row 0, col header_width
-    {}
-  ) -- default options
+  for i, hl in ipairs(header_lines) do
+    local width = vim.fn.strdisplaywidth(hl)
+    vim.highlight.range(bufnr, ns, "Title", { i - 1, 0 }, { i - 1, width }, {})
+  end
 
   -- set extmarks for each buffer line
   for i, buf in ipairs(buffer_list) do
@@ -156,24 +143,15 @@ function M.render(bufnr, opts)
 
     -- Diagnostics extmarks
     if opts.show_diagnostics and buf.diagnostics then
-      local diag_group
-      local err_count = buf.diagnostics[vim.diagnostic.severity.ERROR] or 0
-      local warn_count = buf.diagnostics[vim.diagnostic.severity.WARN] or 0
-      if err_count > 0 then
-        diag_group = "WaterDiagnosticError"
-      elseif warn_count > 0 then
-        diag_group = "WaterDiagnosticWarn"
-      end
-      if diag_group then
-        local diag_text = line:match " %d+" or line:match " %d+" or line:match "" or line:match ""
-        if diag_text then
-          local s = string.find(line, diag_text, 1, true)
+      for pattern, hl in pairs(buffers.diagnostic_patterns(opts)) do
+        for match in line:gmatch(pattern) do
+          local s = line:find(match, 1, true)
           local before = line:sub(1, s - 1)
           local start_col = vim.str_utfindex(before, "utf-8")
-          local end_col = start_col + vim.str_utfindex(diag_text, "utf-8")
+          local end_col = start_col + vim.str_utfindex(match, "utf-8")
           pcall(vim.api.nvim_buf_set_extmark, bufnr, ns, line_idx, start_col, {
             end_col = end_col,
-            hl_group = diag_group,
+            hl_group = hl,
           })
         end
       end
@@ -181,11 +159,7 @@ function M.render(bufnr, opts)
 
     -- Git status extmarks
     if buf.git_status then
-      for pattern, hl in pairs {
-        [" %d+"] = "GitSignsAdd",
-        [" %d+"] = "GitSignsChange",
-        [" %d+"] = "GitSignsDelete",
-      } do
+      for pattern, hl in pairs(buffers.git_patterns(opts)) do
         for match in string.gmatch(line, pattern) do
           local s = string.find(line, match, 1, true)
           local before = line:sub(1, s - 1)

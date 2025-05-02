@@ -1,30 +1,22 @@
 -- lua/water/buffers.lua
 local M = {}
 local gitsigns_available, _gitsigns = pcall(require, "gitsigns")
+local state = require "water.state"
+local config = require "water.config"
 
-local function get_git_status(bufnr)
-  if not gitsigns_available then
-    return nil
-  end
-  local status = vim.b[bufnr] and vim.b[bufnr].gitsigns_status_dict
-  if not status then
-    return nil
-  end
-
-  local parts = {}
-  if status.added and status.added > 0 then
-    table.insert(parts, string.format(" %d", status.added))
-  end
-  if status.changed and status.changed > 0 then
-    table.insert(parts, string.format(" %d", status.changed))
-  end
-  if status.removed and status.removed > 0 then
-    table.insert(parts, string.format(" %d", status.removed))
-  end
-
-  return #parts > 0 and table.concat(parts, " ") or nil
+---------------------------------------
+--- Header section
+---------------------------------------
+function M.build_header(available_width)
+  local left = "ID: Name"
+  local right = "Git Status  Last Used"
+  local pad = math.max(1, available_width - vim.fn.strdisplaywidth(left) - vim.fn.strdisplaywidth(right))
+  return { left .. string.rep(" ", pad) .. right, "" }, 2
 end
 
+---------------------------------------
+--- Left sections
+---------------------------------------
 function M.format_path(path, method)
   if type(method) == "function" then
     return method(path)
@@ -40,6 +32,60 @@ function M.format_path(path, method)
     return vim.fn.fnamemodify(path, ":t")
   end
   return path
+end
+
+function M.diagnostic_patterns(opts)
+  local icons = opts.icons.diagnostics
+  local patmap = {}
+  if icons.err then
+    patmap[icons.err .. " %d+"] = "WaterDiagnosticError"
+    patmap[icons.err] = "WaterDiagnosticError"
+  end
+  if icons.warn then
+    patmap[icons.warn .. " %d+"] = "WaterDiagnosticWarn"
+    patmap[icons.warn] = "WaterDiagnosticWarn"
+  end
+  return patmap
+end
+
+---------------------------------------
+--- Right sections
+---------------------------------------
+local function get_git_status(bufnr)
+  if not gitsigns_available then
+    return nil
+  end
+  local status = vim.b[bufnr] and vim.b[bufnr].gitsigns_status_dict
+  if not status then
+    return nil
+  end
+
+  local opts = state.options or config.merge()
+  local icons = opts.icons
+  local parts = {}
+  if status.added and status.added > 0 then
+    table.insert(parts, string.format("%s %d", icons.git.added, status.added))
+  end
+  if status.changed and status.changed > 0 then
+    table.insert(parts, string.format("%s %d", icons.git.changed, status.changed))
+  end
+  if status.removed and status.removed > 0 then
+    table.insert(parts, string.format("%s %d", icons.git.removed, status.removed))
+  end
+  return #parts > 0 and table.concat(parts, " ") or nil
+end
+
+function M.git_patterns(opts)
+  local icons = opts.icons.git
+  local patmap = {
+    [icons.added .. " %d+"] = "GitSignsAdd",
+    [icons.changed .. " %d+"] = "GitSignsChange",
+    [icons.removed .. " %d+"] = "GitSignsDelete",
+  }
+  if icons.untracked then
+    patmap[icons.untracked .. " %d+"] = "GitSignsUntracked"
+  end
+  return patmap
 end
 
 function M.format_last_modified(timestamp, opts)
@@ -62,6 +108,9 @@ function M.format_last_modified(timestamp, opts)
   end
 end
 
+---------------------------------------
+--- Helpers
+---------------------------------------
 function M.get_buffers(opts)
   local buffers = {}
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do

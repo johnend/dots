@@ -42,12 +42,6 @@ function M.setup(opts)
   end, {
     desc = "Toggle Water UI",
   })
-
-  vim.keymap.set("n", M.options.keymaps.help, function()
-    help.open_help_window()
-  end, {
-    desc = "Open Water help window",
-  })
 end
 
 -- 4) Run setup immediately with default options

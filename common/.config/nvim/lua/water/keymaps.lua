@@ -74,6 +74,10 @@ function M.apply(bufnr, buffer_map, opts, reopen_cb)
   map(keymaps.refresh, function()
     require("water.ui.water").refresh()
   end)
+
+  map(keymaps.help, function()
+    require("water.ui.help").open_help_window()
+  end)
 end
 
 return M

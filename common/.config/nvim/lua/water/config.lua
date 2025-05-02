@@ -2,26 +2,25 @@
 ---@alias WaterDateFormat "dd/mm" | "mm/dd"
 ---@alias WaterTimeFormat "24h" | "12h"
 ---@alias WaterPathDisplay "full_path" | "short_path" | "file_name" | fun(path: string): string
----@alias WaterDeleteFallback "q" | "enew" | fun()
----@alias WaterGitIcons { add: string, change: string, delete: string }
+---@alias WaterDeleteFallback "q" | "enew" | fun():any
+---@alias WaterGitIcons { added: string, changed: string, removed: string, untracked: string }
+---@alias WaterDiagnosticIcons { err: string, warn: string }
+---@alias WaterIcons { git: WaterGitIcons, diagnostics: WaterDiagnosticIcons }
+---@alias WaterKeymaps { toggle: string, open_buffer: string, delete: string, split: string, vsplit: string, refresh: string, help: string }
 
 ---@class WaterOptions
----Show if the buffer has been modified
----@field show_modified boolean
----Show if a buffer is readonly
----@field show_readonly boolean
----Show buffer diagnostic in Water (defaults to true)
----@field show_diagnostics boolean
----@field highlight_cursorline boolean
----Determine how to sort buffers in Water
----@field sort_buffers WaterBufferSort
----@field use_nerd_icons boolean
----@field path_display WaterPathDisplay "How much of the buffer path do you want to see?"
----@field date_format WaterDateFormat
----@field time_format WaterTimeFormat
----@field delete_last_buf_fallback WaterDeleteFallback
----@field git_icons WaterGitIcons  "Customize the symbols shown in the Git status column"
----@field keymaps table<string, string>
+---@field show_modified boolean       Show if the buffer has been modified
+---@field show_readonly boolean       Show if a buffer is readonly
+---@field show_diagnostics boolean    Show buffer diagnostics in Water (defaults to true)
+---@field highlight_cursorline boolean Highlight the current line
+---@field sort_buffers WaterBufferSort Determine how to sort buffers in Water
+---@field use_nerd_icons boolean      Use Nerd Font icons for Git and diagnostics
+---@field path_display WaterPathDisplay How much of the buffer path to display
+---@field date_format WaterDateFormat Date display format
+---@field time_format WaterTimeFormat Time display format
+---@field delete_last_buf_fallback WaterDeleteFallback Fallback action when deleting the last buffer
+---@field icons WaterIcons           Customize the symbols shown in the Git and Diagnostics columns
+---@field keymaps WaterKeymaps       Custom key mappings for Water actions
 
 local M = {}
 
@@ -37,7 +36,10 @@ M.defaults = {
   date_format = "dd/mm",
   time_format = "24h",
   delete_last_buf_fallback = "q",
-  git_icons = { add = "", change = "", delete = "" },
+  icons = {
+    git = { added = "", changed = "", removed = "", untracked = "" },
+    diagnostics = { err = "", warn = "" },
+  },
   keymaps = {
     toggle = "_",
     open_buffer = "<cr>",
