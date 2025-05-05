@@ -86,12 +86,11 @@ autocommand({ "VimEnter", "ColorScheme" }, {
   end,
 })
 -- Open Alpha after Lazy installs plugins
-autocommand("User", {
-  pattern = "LazyDone",
+autocommand("VimEnter", {
   callback = function()
-    -- If no buffers are open, show alpha
-    if vim.fn.argc() == 0 and vim.fn.line2byte "$" == -1 then
-      require("alpha").start(true)
+    if vim.o.filetype == "lazy" then
+      vim.cmd.close()
+      vim.cmd "Alpha"
     end
   end,
 })

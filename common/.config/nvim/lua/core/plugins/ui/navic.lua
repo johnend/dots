@@ -34,6 +34,7 @@ return {
       },
       lsp = {
         auto_attach = true,
+        preference = { "vtsls", "graphql" },
       },
       highlight = true,
     }
