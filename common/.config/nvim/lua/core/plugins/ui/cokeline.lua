@@ -27,7 +27,7 @@ return {
     local bg_color = colors.crust
 
     cokeline.setup {
-      show_if_buffers_are_at_least = 1,
+      show_if_buffers_are_at_least = 2,
       mappings = {
         cycle_prev_next = true,
       },
