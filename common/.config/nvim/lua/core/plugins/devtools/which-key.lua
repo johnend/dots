@@ -54,7 +54,7 @@ return {
     local general = keymaps.general
     local git = keymaps.git
     local grug = keymaps.grug
-    local harpoon = keymaps.harpoon
+    local grapple = keymaps.grapple
     local lsp = keymaps.lsp
     local neotest = keymaps.neotest
     local navigation = keymaps.navigation
@@ -78,9 +78,9 @@ return {
       ---------------------------------
       git,
       ---------------------------------
-      grug,
+      grapple,
       ---------------------------------
-      harpoon,
+      grug,
       ---------------------------------
       lsp,
       ---------------------------------

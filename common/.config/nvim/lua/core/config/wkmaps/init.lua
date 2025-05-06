@@ -4,7 +4,7 @@ return {
   general = require(... .. ".general"),
   git = require(... .. ".git"),
   grug = require(... .. ".grugfar"),
-  harpoon = require(... .. ".harpoon"),
+  grapple = require(... .. ".grapple"),
   lsp = require(... .. ".lsp"),
   neotest = require(... .. ".neotest"),
   navigation = require(... .. ".navigation"),
