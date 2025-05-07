@@ -14,6 +14,7 @@ return {
         notify.setup {
           top_down = false,
           background_colour = "#000000",
+          merge_duplicates = true,
         }
       end,
     },
