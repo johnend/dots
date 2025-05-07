@@ -1,12 +1,73 @@
 return {
+  -------------------------------------
+  --- LSP
+  -------------------------------------
   { "<leader>l", group = "LSP" },
-  { "<leader>lX", ":Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer diagnostics (Trouble)" },
   { "<leader>la", ":lua require('actions-preview').code_actions()<cr>", desc = "Code action" },
   { "<leader>ld", ":Telescope lsp_type_definitions<cr>", desc = "Type definition" },
   { "<leader>li", ":LspInfo<cr>", desc = "LSP info" },
   { "<leader>ll", ":Trouble loclist toggle<cr>", desc = "Location list (Trouble)" },
   { "<leader>lv", ":Trouble lsp toggle focus=false<cr>", desc = "LSP toggle (Trouble)" },
   { "<leader>lq", ":Trouble qflist toggle<cr>", desc = "Quickfix list (Trouble)" },
+  {
+    "<leader>lr",
+    function()
+      vim.lsp.buf.rename()
+    end,
+    desc = "Rename",
+  },
+  { "<leader>ls", ":Trouble symbols toggle focus=true<cr>", desc = "Document symbols" },
+  {
+    "<leader>lt",
+    ":TSC<cr>",
+    desc = "Check TypeScript types",
+  },
+  { "<leader>lw", ":Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Workspace symbols" },
+  { "<leader>lR", ":LspRestart<cr>", desc = "Restart LSP Server" },
+  -------------------------------------
+  --- Diagnostics
+  -------------------------------------
+  { "<leader>ld", group = "Diagnostics" },
+  {
+    "<leader>lde",
+    function()
+      vim.diagnostic.open_float()
+    end,
+    desc = "Diagnostic error messages",
+  },
+  {
+    "<leader>ldq",
+    function()
+      vim.diagnostic.setloclist()
+    end,
+    desc = "Diagnostic quickfix list",
+  },
+  {
+    "<leader>ldf",
+    function()
+      vim.diagnostic.open_float(nil, { focus = false })
+    end,
+    desc = "Show diagnostic popup",
+  },
+  {
+    "<leader>ldn",
+    function()
+      vim.diagnostic.jump { count = 1 }
+    end,
+    desc = "Next diagnostic",
+  },
+  {
+    "<leader>ldp",
+    function()
+      vim.diagnostic.jump { count = -1 }
+    end,
+    desc = "Previous diagnostic",
+  },
+  { "<leader>ldX", ":Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer diagnostics (Trouble)" },
+  { "<leader>ldx", ":Trouble diagnostics toggle<CR>", desc = "Diagnostics (Trouble)" },
+  -------------------------------------
+  --- Quickfix
+  -------------------------------------
   { "<leader>a", group = "Append to:" },
   {
     "<leader>aq",
@@ -40,22 +101,6 @@ return {
     desc = "Loclist",
     icon = icons.ui.List,
   },
-  {
-    "<leader>lr",
-    function()
-      vim.lsp.buf.rename()
-    end,
-    desc = "Rename",
-  },
-  { "<leader>ls", ":Trouble symbols toggle focus=true<cr>", desc = "Document symbols" },
-  {
-    "<leader>lt",
-    ":TSC<cr>",
-    desc = "Check TypeScript types",
-  },
-  { "<leader>lw", ":Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Workspace symbols" },
-  { "<leader>lx", ":Trouble diagnostics toggle<CR>", desc = "Diagnostics (Trouble)" },
-  { "<leader>lR", ":LspRestart<cr>", desc = "Restart LSP Server" },
   {
     "K",
     function()

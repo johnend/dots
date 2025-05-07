@@ -1,6 +1,5 @@
 return {
   buffers = require(... .. ".buffers"),
-  diagnostics = require(... .. ".diagnostics"),
   general = require(... .. ".general"),
   git = require(... .. ".git"),
   grug = require(... .. ".grugfar"),

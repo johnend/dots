@@ -50,7 +50,6 @@ return {
 
     local keymaps = require "core.config.wkmaps"
     local buffers = keymaps.buffers
-    local diagnostics = keymaps.diagnostics
     local general = keymaps.general
     local git = keymaps.git
     local grug = keymaps.grug
@@ -67,8 +66,6 @@ return {
     wk.add {
       ---------------------------------
       buffers,
-      ---------------------------------
-      diagnostics,
       ---------------------------------
       neotest,
       ---------------------------------
