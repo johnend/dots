@@ -53,7 +53,7 @@ return {
     local glob_args = vim.tbl_map(function(pattern)
       return "--glob=!" .. pattern
     end, ignore_patterns)
-    local find_command = { "rg", "--files", "--hidden", "--no-ignore", "--sortr=modified" }
+    local find_command = { "rg", "--files", "--hidden", "--sortr=modified" }
     vim.list_extend(find_command, glob_args)
 
     telescope.setup {
@@ -142,9 +142,8 @@ return {
         },
       },
     }
-
-    telescope.load_extension "fzf"
-    telescope.load_extension "ui-select"
-    telescope.load_extension "project"
+    pcall(telescope.load_extension "fzf")
+    pcall(telescope.load_extension "ui-select")
+    pcall(telescope.load_extension "project")
   end,
 }
