@@ -59,6 +59,24 @@ return {
           ["vim.lsp.util.stylize_markdown"] = true,
           ["cmp.entry.get_documentation"] = true,
         },
+        hover = {
+          enabled = true,
+          silent = false,
+          view = nil,
+          opts = {
+            border = "rounded",
+            max_width = math.floor(vim.o.columns * 0.5),
+          },
+        },
+        signature = {
+          enabled = true,
+          auto_open = {
+            enabled = true,
+            trigger = true,
+            luasnip = true,
+            throttle = 50,
+          },
+        },
       },
 
       presets = {
