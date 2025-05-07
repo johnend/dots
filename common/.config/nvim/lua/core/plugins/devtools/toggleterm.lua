@@ -44,15 +44,6 @@ function M.gh_dash_toggle()
   M._gh_dash:toggle()
 end
 
-local uname = vim.loop.os_uname().sysname
-local open_mapping
-
-if uname == "Darwin" then
-  open_mapping = [[<c-_>]]
-else
-  open_mapping = [[<c-/>]]
-end
-
 return {
   "akinsho/toggleterm.nvim",
   version = "*", -- Always grab the latest stable version
@@ -74,7 +65,7 @@ return {
 
     toggleterm.setup {
       size = 20, -- Default size for terminals
-      open_mapping = open_mapping, -- Default key to open main terminal
+      open_mapping = [[<c-/>]], -- Default key to open main terminal
       hide_numbers = true, -- Hide number column in terminals
       shade_filetypes = {}, -- No extra shading for specific filetypes
       shade_terminals = true,
