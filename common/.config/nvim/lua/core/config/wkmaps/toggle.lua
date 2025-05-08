@@ -20,15 +20,18 @@ local function toggle_notify(global_flag, toggle_action, label, invert_notify)
   vim.notify(label .. " " .. state)
 end
 
--- Winbar --
--- Toggle winbar per buffer (defaults to not visible)
-_G.toggle_winbar = function()
-  local current = vim.opt_local.winbar:get()
-  if current == "" then
-    vim.opt.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+-- Dropbar --
+-- Toggle dropbar per buffer (defaults to not visible)
+local function toggle_dropbar()
+  vim.g.dropbar_enabled = not vim.g.dropbar_enabled
+  if vim.g.dropbar_enabled then
+    local win = vim.api.nvim_get_current_win()
+    require("dropbar.utils.bar").exec("update", { win = win })
   else
-    vim.opt.winbar = ""
+    vim.o.winbar = ""
   end
+  vim.cmd [[edit]]
+  vim.notify("Dropbar " .. (vim.g.dropbar_enabled and "enabled" or "disabled"))
 end
 
 return {
@@ -43,10 +46,8 @@ return {
   },
   {
     "<leader>tb",
-    function()
-      toggle_notify("winbar_enabled", toggle_winbar, "Winbar")
-    end,
-    desc = "Winbar",
+    toggle_dropbar,
+    desc = "Dropbar",
   },
   {
     "<leader>tc",

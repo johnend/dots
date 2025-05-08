@@ -17,6 +17,7 @@ return {
     end
 
     local components = require "core.config.lualine.components"
+    local ts_context = require "treesitter-context"
 
     lualine.setup {
       options = {
