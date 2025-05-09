@@ -12,7 +12,7 @@ return {
         end
 
         notify.setup {
-          top_down = false,
+          top_down = true,
           background_colour = "#000000",
           merge_duplicates = true,
         }

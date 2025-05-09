@@ -24,6 +24,7 @@ return {
             or vim.fn.win_gettype(win) ~= ""
             or vim.wo[win].winbar ~= ""
             or vim.bo[buf].ft == "help"
+            or vim.bo[buf].ft == "Alpha"
           then
             return false
           end

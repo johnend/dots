@@ -30,8 +30,11 @@ local function toggle_dropbar()
   else
     vim.o.winbar = ""
   end
-  vim.cmd [[edit]]
-  vim.notify("Dropbar " .. (vim.g.dropbar_enabled and "enabled" or "disabled"))
+
+  if vim.fn.expand "%" ~= "" then
+    vim.cmd [[edit]]
+    vim.notify("Dropbar " .. (vim.g.dropbar_enabled and "enabled" or "disabled"))
+  end
 end
 
 return {
