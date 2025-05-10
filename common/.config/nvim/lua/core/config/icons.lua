@@ -176,5 +176,6 @@ return {
     Split = "󰃻",
     Write = "",
     Plug = "",
+    Testtube = "󰙨",
   },
 }

@@ -2,12 +2,15 @@ return {
   -------------------------------------
   --- LSP
   -------------------------------------
-  { "<leader>l", group = "LSP" },
+  { "<leader>l", group = "LSP", icon = icons.ui.Code },
   { "<leader>la", ":lua require('actions-preview').code_actions()<cr>", desc = "Code action" },
-  { "<leader>ld", ":Telescope lsp_type_definitions<cr>", desc = "Type definition" },
+  {
+    "<leader>lc",
+    ":TSC<cr>",
+    desc = "Check TypeScript types",
+  },
   { "<leader>li", ":LspInfo<cr>", desc = "LSP info" },
   { "<leader>ll", ":Trouble loclist toggle<cr>", desc = "Location list (Trouble)" },
-  { "<leader>lv", ":Trouble lsp toggle focus=false<cr>", desc = "LSP toggle (Trouble)" },
   { "<leader>lq", ":Trouble qflist toggle<cr>", desc = "Quickfix list (Trouble)" },
   {
     "<leader>lr",
@@ -17,11 +20,8 @@ return {
     desc = "Rename",
   },
   { "<leader>ls", ":Trouble symbols toggle focus=true<cr>", desc = "Document symbols" },
-  {
-    "<leader>lt",
-    ":TSC<cr>",
-    desc = "Check TypeScript types",
-  },
+  { "<leader>lt", ":Telescope lsp_type_definitions<cr>", desc = "Type definition" },
+  { "<leader>lv", ":Trouble lsp toggle focus=false<cr>", desc = "LSP toggle (Trouble)" },
   { "<leader>lw", ":Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Workspace symbols" },
   { "<leader>lR", ":LspRestart<cr>", desc = "Restart LSP Server" },
   -------------------------------------
@@ -34,13 +34,6 @@ return {
       vim.diagnostic.open_float()
     end,
     desc = "Diagnostic error messages",
-  },
-  {
-    "<leader>ldq",
-    function()
-      vim.diagnostic.setloclist()
-    end,
-    desc = "Diagnostic quickfix list",
   },
   {
     "<leader>ldf",
@@ -63,12 +56,19 @@ return {
     end,
     desc = "Previous diagnostic",
   },
+  {
+    "<leader>ldq",
+    function()
+      vim.diagnostic.setloclist()
+    end,
+    desc = "Diagnostic quickfix list",
+  },
   { "<leader>ldX", ":Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer diagnostics (Trouble)" },
   { "<leader>ldx", ":Trouble diagnostics toggle<CR>", desc = "Diagnostics (Trouble)" },
   -------------------------------------
   --- Quickfix
   -------------------------------------
-  { "<leader>a", group = "Append to:" },
+  { "<leader>a", group = "Append to:", icon = icons.ui.List },
   {
     "<leader>aq",
     function()

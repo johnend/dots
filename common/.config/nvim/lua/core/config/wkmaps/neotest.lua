@@ -1,6 +1,6 @@
 return {
 
-  { "<leader>T", "", desc = "+Test" },
+  { "<leader>T", "", desc = "+Test", icon = icons.misc.Testtube },
   {
     "<leader>Ta",
     function()
