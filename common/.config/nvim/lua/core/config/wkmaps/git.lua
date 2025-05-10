@@ -17,4 +17,5 @@ return {
   { "<leader>gdo", ":DiffviewOpen<cr>", desc = "Open diffview" },
   { "<leader>gdc", ":DiffviewClose<cr>", desc = "Close diffview" },
   { "<leader>gdr", ":DiffviewRefresh<cr>", desc = "Refresh diffview" },
+  { "<leader>gx", ":lua Snacks.gitbrowse()<cr>", desc = "Open GitRepo" },
 }

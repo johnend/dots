@@ -41,9 +41,9 @@ return {
   { "<leader>t", group = "Toggle" },
   {
     "<leader>ta",
-
     function()
-      toggle_notify("autosave_enabled", "ASToggle", "AutoSave", true)
+      vim.g.autosave_enabled = not vim.g.autosave_enabled
+      vim.notify("AutoSave " .. (vim.g.autosave_enabled and "enabled" or "disabled"))
     end,
     desc = "AutoSave",
   },
@@ -110,15 +110,26 @@ return {
   {
     "<leader>tt",
     function()
-      toggle_notify("twilight_enabled", "Twilight", "Twilight")
+      vim.g.twilight_enabled = not vim.g.twilight_enabled
+
+      if vim.g.twilight_enabled then
+        Snacks.dim.enable()
+        vim.notify "Twilight enabled"
+      else
+        Snacks.dim.disable()
+        vim.notify "Twilight disabled"
+      end
     end,
     desc = "Twilight",
   },
+
   {
     "<leader>tz",
     function()
-      toggle_notify("focus_mode_enabled", "Focus", "Focus")
+      toggle_notify("zen_mode_enabled", function()
+        Snacks.zen()
+      end, "Zen")
     end,
-    desc = "Focus",
+    desc = "Zen",
   },
 }
