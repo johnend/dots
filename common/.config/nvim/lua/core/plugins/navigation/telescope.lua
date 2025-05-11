@@ -34,7 +34,7 @@ return {
     ---| "ivy"      # see `telescope.themes.get_ivy()`
     ---| "center"   # use the default telescope theme
 
-    local dropdown_config = { theme = "dropdown", layout_config = { width = 0.5, height = 0.2 } }
+    local dropdown_config = { theme = "dropdown", layout_config = { width = 0.8, height = 0.3 } }
     local ignore_patterns = {
       -- folders
       "^node_modules/",
@@ -65,9 +65,8 @@ return {
         initial_mode = "insert",
         selection_strategy = "reset",
         sorting_strategy = "descending",
-        layout_strategy = nil,
         layout_config = {},
-        file_ignore_patterns = {},
+        file_ignore_patterns = ignore_patterns,
         path_display = { "smart" },
         color_devicons = true,
         set_env = { ["COLORTERM"] = "truecolor" },
@@ -97,12 +96,10 @@ return {
           theme = dropdown_config.theme,
           sorting_strategy = nil,
           layout_config = dropdown_config.layout_config,
-          file_ignore_patterns = ignore_patterns,
           find_command = find_command,
           hidden = true,
         },
         live_grep = {
-          file_ignore_patterns = ignore_patterns,
           additional_args = function()
             return { "--hidden" }
           end,
