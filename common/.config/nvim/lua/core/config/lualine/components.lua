@@ -8,7 +8,7 @@ local active_progress = false
 
 -- Timer for animation
 ---@diagnostic disable-next-line: undefined-field
-local timer = vim.loop.new_timer()
+local timer = vim.uv.new_timer()
 timer:start(
   0,
   120,

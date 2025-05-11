@@ -1,5 +1,5 @@
 ---@diagnostic disable-next-line: undefined-field
-local sysname = vim.loop.os_uname().sysname
+local sysname = vim.uv.os_uname().sysname
 local is_mac = sysname == "Darwin"
 local is_linux = sysname == "Linux"
 
