@@ -11,7 +11,7 @@ return {
     "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim",
   },
-  lazy = false,
+  cmd = "Neotree",
   config = function()
     local status_ok, neotree = pcall(require, "neo-tree")
     if not status_ok then

@@ -13,6 +13,11 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "VimLeavePre" }, {
 
     local bufnr = event.buf
 
+    -- guard against trying to save unlisted buffers
+    if not vim.bo[bufnr].buflisted then
+      return
+    end
+
     -- Skip special, scratch, or unnamed buffers
     if vim.bo[bufnr].buftype ~= "" or vim.api.nvim_buf_get_name(bufnr) == "" then
       return

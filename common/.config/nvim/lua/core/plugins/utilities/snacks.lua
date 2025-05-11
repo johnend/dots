@@ -54,7 +54,7 @@ return {
       indent = { enabled = false }, -- replaces indent line
       layout = { enabled = false },
       lazygit = { enabled = false },
-      picker = { enabled = false }, -- actually really like this ui, replaces telescopes
+      picker = { enabled = false }, -- actually really like this ui, replaces telescope
       profiler = { enabled = false }, -- not sure if this even works, maybe? useful
       rename = { enabled = false },
       scope = { enabled = false },
