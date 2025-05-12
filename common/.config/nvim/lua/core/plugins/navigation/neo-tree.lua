@@ -74,7 +74,7 @@ return {
       },
       default_component_configs = {
         icon = {
-          default = icons.ui.Folder,
+          default = icons.ui.File,
           folder_closed = icons.ui.Folder,
           folder_open = icons.ui.FolderOpen,
           folder_empty = icons.ui.EmptyFolder,
