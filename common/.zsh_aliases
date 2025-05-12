@@ -23,8 +23,8 @@ alias "ls"="eza --icons"
 alias "la"="ls -la --show-symlinks"
 alias "ld"="ls -D"
 alias "lad"="ls -lDa --show-symlinks"
-alias "lt"="ls -T --level=4"
-alias "ltg"="ls -T --level=4 --git-ignore"
+alias "lt"="ls -T --level=4 --git-ignore"
+alias "ltg"="ls -T --level=2"
 alias "lat"="ls -Ta" # use with caution!
 
 # neovim
