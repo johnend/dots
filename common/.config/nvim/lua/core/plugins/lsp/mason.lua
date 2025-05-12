@@ -68,7 +68,7 @@ return {
               "pyright",
               "some-sass-language-server",
               "stylua",
-              -- "ts_ls", # this can be useful but is much slower than vtsls
+              -- "ts_ls", -- this can be useful but is much slower than vtsls
               "vtsls",
               "yaml-language-server",
               -------------------------
