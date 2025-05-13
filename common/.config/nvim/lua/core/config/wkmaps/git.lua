@@ -9,7 +9,7 @@ return {
   {
     "<leader>gh",
     "<cmd>lua require 'core.plugins.devtools.toggleterm'.gh_dash_toggle()<cr>",
-    desc = "LazyGit",
+    desc = "gh Dash",
     icon = icons.git.Octoface,
   },
   { "<leader>gb", ":Gitsigns toggle_current_line_blame<CR>", desc = "Git blame" },
