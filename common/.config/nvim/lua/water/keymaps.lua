@@ -100,6 +100,15 @@ function M.apply(bufnr, buffer_map, opts, reopen_cb)
   map(keymaps.help, function()
     require("water.ui.help").open_help_window()
   end)
+
+  -- Quit with <Esc> or q
+  map("q", function()
+    require("water.ui.water").close()
+  end)
+
+  map("<Esc>", function()
+    require("water.ui.water").close()
+  end)
 end
 
 return M
