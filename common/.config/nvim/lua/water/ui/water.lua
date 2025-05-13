@@ -5,6 +5,7 @@ local M = {}
 local state = require "water.state"
 local buffers = require "water.buffers"
 local config = require "water.config"
+local preview = require "water.ui.preview"
 
 ---@type boolean Rendering in progress flag to debounce refreshes
 local is_rendering = false
@@ -234,6 +235,10 @@ end
 
 ---Close the water buffer and return to previous buffer.
 function M.close()
+  if preview and preview.close then
+    preview.close()
+  end
+
   if state.last_buf and vim.api.nvim_buf_is_valid(state.last_buf) then
     vim.api.nvim_set_current_buf(state.last_buf)
   end

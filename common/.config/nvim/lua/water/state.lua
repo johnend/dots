@@ -10,6 +10,7 @@ local M = {
   last_buf = nil,
   water_winid = nil,
   options = nil,
+  preview_on_cursor = false,
 }
 
 return M

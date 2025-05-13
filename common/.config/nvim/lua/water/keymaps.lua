@@ -109,6 +109,11 @@ function M.apply(bufnr, buffer_map, opts, reopen_cb)
   map("<Esc>", function()
     require("water.ui.water").close()
   end)
+
+  -- Toggle preview
+  map("p", function()
+    require("water.ui.preview").toggle(buffer_map)
+  end)
 end
 
 return M
