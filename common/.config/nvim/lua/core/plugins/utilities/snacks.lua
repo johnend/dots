@@ -42,7 +42,11 @@ return {
         },
       }, -- replaces twilight - might as well replace because same author
       input = { enabled = true },
-      notifier = { enabled = true },
+      notifier = {
+        timeout = 2000,
+        style = "compact",
+        top_down = false,
+      },
       quickfile = { enabled = true },
       statuscolumn = { enabled = true },
       zen = { enabled = true },
