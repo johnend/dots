@@ -15,12 +15,28 @@ local config = require "water.config"
 ---@return string[] header_lines - Two-line header: labels and underline.
 ---@return number header_size - Number of lines in the header (always 2).
 function M.build_header(available_width)
-  local left = "ID: Name"
-  local right = "Git Status  Last Used"
-  -- Calculate padding between left and right segments
+  -- local left = "ID: Name"
+  -- local right = "Git Status  Last Used"
+  -- -- Calculate padding between left and right segments
+  -- local pad = math.max(1, available_width - vim.fn.strdisplaywidth(left) - vim.fn.strdisplaywidth(right))
+  -- -- Return header content and its height
+  -- return { left .. string.rep(" ", pad) .. right, "" }, 2
+
+  -- define columns
+  local id_col = string.format("%-4s", "ID:")
+  local name_col = string.format("%-30s", "Name")
+  local git_col = string.format("%-14s", "Git Status")
+  local last_col = string.format("%-9s", "Last Used")
+
+  -- build left/right halves
+  local left = id_col .. name_col
+  local right = git_col .. last_col
+
+  -- pad so right half is right aligned
   local pad = math.max(1, available_width - vim.fn.strdisplaywidth(left) - vim.fn.strdisplaywidth(right))
-  -- Return header content and its height
-  return { left .. string.rep(" ", pad) .. right, "" }, 2
+
+  local header = left .. string.rep(" ", pad) .. right
+  return { header, "" }, 2
 end
 
 ---------------------------------------
@@ -118,7 +134,7 @@ local function get_git_status(bufnr)
   if status.removed and status.removed > 0 then
     table.insert(parts, string.format("%s %d", icons.removed, status.removed))
   end
-  return #parts > 0 and table.concat(parts, " ") or nil
+  return #parts > 0 and table.concat(parts, " ") .. string.rep(" ", 7) or nil
 end
 
 ---Returns git icon patterns for highlighting.

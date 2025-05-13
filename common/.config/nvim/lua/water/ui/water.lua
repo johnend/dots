@@ -76,7 +76,7 @@ function M.render(bufnr, opts)
 
   -- Build buffer lines
   for i, bufinfo in ipairs(buffer_list) do
-    local left = string.format("%d: %s", bufinfo.bufnr, bufinfo.name)
+    local left = string.format("%-4s%s", tostring(bufinfo.bufnr) .. ":", bufinfo.name)
     local diag_text = buffers.format_diagnostic_text(bufinfo, settings)
     if diag_text ~= "" then
       left = left .. " " .. diag_text
