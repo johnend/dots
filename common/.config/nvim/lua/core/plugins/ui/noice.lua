@@ -3,21 +3,6 @@ return {
   event = "VimEnter",
   dependencies = {
     "MunifTanjim/nui.nvim",
-    {
-      "rcarriga/nvim-notify",
-      config = function()
-        local status_ok, notify = pcall(require, "notify")
-        if not status_ok then
-          return
-        end
-
-        notify.setup {
-          top_down = true,
-          background_colour = "#000000",
-          merge_duplicates = true,
-        }
-      end,
-    },
   },
   config = function()
     local status_ok, noice = pcall(require, "noice")
@@ -27,6 +12,7 @@ return {
 
     noice.setup {
       -- TODO: remove the routes once updates come through
+      -- Routes are filtering some things that aren't needed
       routes = {
         {
           filter = {
@@ -43,9 +29,13 @@ return {
           opts = { skip = true },
         },
       },
+      -- Global view behaviour
       views = {
-        notify = {
-          replace = true,
+        notify = { replace = true, merge = true },
+        mini = {
+          win_options = {
+            winblend = 0,
+          },
         },
       },
       lsp = {
@@ -53,7 +43,7 @@ return {
           enabled = true,
           format = "lsp_progress",
           format_done = "lsp_progress_done",
-          view = "notify",
+          view = "mini",
         },
         override = {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
