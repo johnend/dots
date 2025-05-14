@@ -1,3 +1,5 @@
+---@diagnostic disable: missing-fields
+
 return {
   "folke/trouble.nvim",
   event = "VeryLazy",
@@ -7,6 +9,7 @@ return {
       return
     end
 
+    -- TODO: there's probably a bunch of stuff in here that is worth configuring as well as the keymaps for it
     trouble.setup {
       auto_close = false, -- auto close when there are no items
       auto_open = false, -- auto open when there are items

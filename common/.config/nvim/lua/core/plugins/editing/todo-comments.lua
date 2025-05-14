@@ -25,5 +25,5 @@ return {
         multiline = false,
       },
     }
-  end
+  end,
 }
