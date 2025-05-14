@@ -58,7 +58,7 @@ vim.keymap.set("n", "]d", function()
 end, { desc = "Next diagnostic message" })
 
 -- INSERT --
-keymap("i", "jj", "<Esc>", opts)
+keymap("i", "kj", "<Esc>", opts)
 
 -- VISUAL --
 -- Stay in indent mode
