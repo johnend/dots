@@ -56,6 +56,8 @@ return {
     local find_command = { "rg", "--files", "--hidden", "--sortr=modified" }
     vim.list_extend(find_command, glob_args)
 
+    local actions = require "telescope.actions"
+
     telescope.setup {
       theme = "dropdown", ---@type telescope_themes
       defaults = {
@@ -71,8 +73,18 @@ return {
         color_devicons = true,
         set_env = { ["COLORTERM"] = "truecolor" },
         mappings = {
+          i = {
+            ["<c-q>"] = function(prompt_bufnr)
+              actions.smart_send_to_qflist(prompt_bufnr)
+              vim.cmd "Trouble quickfix"
+            end,
+          },
           n = {
-            ["<c-d>"] = require("telescope.actions").delete_buffer,
+            ["<c-d>"] = actions.delete_buffer,
+            ["<c-q>"] = function(prompt_bufnr)
+              actions.smart_send_to_qflist(prompt_bufnr)
+              vim.cmd "Trouble quickfix"
+            end,
           },
         },
       },
