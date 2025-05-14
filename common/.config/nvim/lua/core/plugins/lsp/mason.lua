@@ -2,7 +2,7 @@ local servers = require "core.plugins.lsp.configs.servers"
 return {
   {
     "williamboman/mason-lspconfig.nvim",
-    event = "VeryLazy",
+    event = "BufReadPre",
     config = function()
       local status_ok, masonlsp = pcall(require, "mason-lspconfig")
       if not status_ok then
@@ -19,6 +19,7 @@ return {
             local server = servers[server_name] or {}
 
             server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+
             require("lspconfig")[server_name].setup(server)
           end,
         },
@@ -26,6 +27,7 @@ return {
     end,
     dependencies = {
       "williamboman/mason.nvim",
+      cmd = { "Mason", "MasonInstall", "MasonUninstall" },
       config = function()
         local status_ok, mason = pcall(require, "mason")
         if not status_ok then
