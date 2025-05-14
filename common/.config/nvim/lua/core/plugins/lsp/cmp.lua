@@ -142,7 +142,7 @@ return {
         -- Accept currently selected item. If none selected, `select` first item.
         -- Set `select` to `false` to only confirm explicitly selected items.
         -- ["<CR>"] = cmp.mapping.confirm { select = true },
-        ["<C-s>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+        ["<C-c>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
         ["<C-y>"] = cmp.mapping.confirm { select = true }, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
 
         -- Move between cursor location after snippet completion
@@ -156,7 +156,7 @@ return {
             luasnip.jump(-1)
           end
         end, { "i", "s" }),
-        ["<C-c>"] = cmp.mapping {
+        ["<C-x>"] = cmp.mapping {
           i = cmp.mapping.abort(),
           c = cmp.mapping.close(),
         },
@@ -181,15 +181,6 @@ return {
         { name = "path" },
         { name = "buffer" },
         { name = "crates" },
-        -- {
-        --   name = "scss",
-        --   option = {
-        --     triggers = { "$" },
-        --     extension = ".scss",
-        --
-        --     folders = { "node_modules/@fanduel/formation-tokens/build/scss" },
-        --   },
-        -- },
       },
       window = {
         completion = cmp.config.window.bordered(),
@@ -202,20 +193,3 @@ return {
     }
   end,
 }
-
---[[ NOTE: these are some alternative keybindings ]]
--- "Super tab"
---   ["<Tab>"] = cmp.mapping(function(fallback)
---     if cmp.visible() then
---       cmp.select_next_item()
---     else
---       fallback()
---     end
---   end, { "i", "s" }),
---   ["<S-Tab>"] = cmp.mapping(function(fallback)
---     if cmp.visible() then
---       cmp.select_prev_item()
---     else
---       fallback()
---     end
---   end, { "i", "s" }),
