@@ -1,4 +1,4 @@
--- lua/water/ui/preview.lua
+-- lua/water/ui/preview.luapreview
 local api = vim.api
 local M = {}
 
@@ -51,7 +51,7 @@ function M.toggle(bufnr_map)
   api.nvim_set_option_value("filetype", vim.bo[target].filetype, { buf = buf })
 
   -- size & position: bottom-right, 40%×50%
-  local width = math.floor(vim.o.columns * 0.4)
+  local width = math.floor(vim.o.columns * 0.5)
   local height = math.floor(vim.o.lines * 0.5)
   local opts = {
     relative = "editor",
@@ -61,6 +61,8 @@ function M.toggle(bufnr_map)
     col = vim.o.columns - width - 2,
     style = "minimal",
     border = "rounded",
+    title = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(target), ":t"),
+    title_pos = "center",
   }
 
   preview_win = api.nvim_open_win(buf, false, opts)
@@ -74,6 +76,7 @@ function M.toggle(bufnr_map)
       M.update()
     end,
   })
+
   leave_autocmd = api.nvim_create_autocmd("BufLeave", {
     buffer = water_buf,
     callback = M.close,
@@ -103,6 +106,9 @@ function M.update()
   -- get the scratch buf and overwrite its lines
   local buf = api.nvim_win_get_buf(preview_win)
   api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+
+  local fname = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(target), ":t")
+  api.nvim_win_set_config(preview_win, { title = fname })
 
   -- ensure correct filetype for syntax highlight
   api.nvim_set_option_value("filetype", vim.bo[target].filetype, { buf = buf })
