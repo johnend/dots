@@ -9,7 +9,7 @@ return {
     end
     wk.setup {
       ---@type false | "classic" | "modern" | "helix"
-      preset = "modern",
+      preset = "helix",
       ---@type number | fun(ctx : {keys: string, mode: string, plugin?: string}):number
       delay = 300,
       plugins = {
