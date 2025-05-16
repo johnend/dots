@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 return {
   "folke/snacks.nvim",
   priority = 1000,
@@ -32,6 +33,11 @@ return {
         easing = "inOutQuad",
         fps = 120,
       },
+      styles = {
+        zen = {
+          backdrop = { transparent = true, blend = 21 },
+        },
+      },
       bigfile = { enabled = true },
       dim = {
         animate = {
@@ -49,7 +55,7 @@ return {
       },
       quickfile = { enabled = true },
       statuscolumn = { enabled = true },
-      zen = { enabled = true },
+      zen = { enable = true },
       -- Disabled
       dashboard = { enabled = false }, -- could replace alpha, but not sure if I care enough to be honest
       debug = { enabled = false },
