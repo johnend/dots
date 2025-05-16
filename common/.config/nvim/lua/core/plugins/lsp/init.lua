@@ -14,6 +14,7 @@ return {
     "b0o/schemastore.nvim",
   },
   config = function()
+    local schemastore = require "schemastore"
     -- 1) Define the servers we actually want, and any special settings
     local servers = {
       bashls = {},
@@ -26,12 +27,11 @@ return {
       helm_ls = {},
       html = {},
       jsonls = {
-        settings = {
-          json = {
-            schemas = require("schemastore").json.schemas(),
-            validate = { enable = true },
-          },
+        schemaStore = {
+          enable = false,
+          url = "",
         },
+        schemas = schemastore.json.schemas(),
       },
       lua_ls = {
         settings = {
@@ -52,7 +52,7 @@ return {
               enable = false,
               url = "",
             },
-            schemas = require("schemastore").yaml.schemas(),
+            schemas = schemastore.yaml.schemas(),
           },
         },
       },
@@ -87,6 +87,37 @@ return {
           require("lspconfig")[server_name].setup(opts)
         end,
       },
+    }
+
+    ------------------------------------------------
+
+    local sign_keys = {
+      Error = "Error",
+      Warning = "Warn",
+      Information = "Info",
+      Hint = "Hint",
+    }
+
+    for long, short in pairs(sign_keys) do
+      local icon = icons.diagnostics[long]
+      local hl = "DiagnosticSign" .. short
+      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+    end
+
+    -- diagnostics styling
+    vim.diagnostic.config {
+      severity_sort = true,
+      float = { border = "rounded", source = "if_many" },
+      underline = { severity = vim.diagnostic.severity.WARN },
+      signs = vim.g.have_nerd_font and {
+        text = {
+          [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
+          [vim.diagnostic.severity.WARN] = icons.diagnostics.Warning,
+          [vim.diagnostic.severity.INFO] = icons.diagnostics.Information,
+          [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
+        },
+      } or {},
+      virtual_text = nil,
     }
 
     -- 5) Finally, set up our LspAttach autocmd for keymaps & highlights
@@ -135,28 +166,6 @@ return {
             end,
           })
         end
-
-        -- diagnostics styling
-        vim.diagnostic.config {
-          severity_sort = true,
-          float = { border = "rounded", source = "if_many" },
-          underline = { severity = vim.diagnostic.severity.ERROR },
-          signs = vim.g.have_nerd_font and {
-            text = {
-              [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
-              [vim.diagnostic.severity.WARN] = icons.diagnostics.Warning,
-              [vim.diagnostic.severity.INFO] = icons.diagnostics.Information,
-              [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
-            },
-          } or {},
-          -- virtual_text = {
-          --   source = "if_many",
-          --   spacing = 2,
-          --   format = function(d)
-          --     return d.message
-          --   end,
-          -- },
-        }
       end,
     })
   end,
