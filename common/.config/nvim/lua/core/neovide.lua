@@ -47,7 +47,7 @@ end
 -- Neovide config options
 vim.g.neovide_cursor_animation_length = 0.210
 vim.g.neovide_cursor_animate_command_line = false
-vim.g.neovide_opacity = 0.4
+vim.g.neovide_opacity = 0.7
 vim.g.neovide_normal_opacity = 0.8
 --
 vim.g.neovide_floating_shadow = true
