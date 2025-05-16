@@ -94,3 +94,7 @@ require "core.commands"
 require "core.options"
 require "core.filetypes"
 require "water"
+
+if vim.g.neovide then
+  require "core.neovide"
+end

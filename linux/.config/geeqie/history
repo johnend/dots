@@ -1,0 +1,16 @@
+#History lists
+
+[image_list]
+"/home/johne/Pictures/Wallpapers/wallpaper.png"
+
+[shortcuts]
+"Home[path]/home/johne"
+"Desktop[path]/home/johne/Desktop"
+"Collections[path]/home/johne/.local/share/geeqie/collections"
+
+[path_list]
+"/home/johne"
+"/home/johne/Pictures/Wallpapers"
+"/home/johne/Pictures/Wallpapers/walls3"
+
+#end

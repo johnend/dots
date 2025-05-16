@@ -15,7 +15,6 @@ return {
 
     catppuccin.setup {
       flavour = "mocha",
-      transparent_background = true,
       styles = { -- Handles the styles of general hi groups (see: :h highlight-args):
       },
     }

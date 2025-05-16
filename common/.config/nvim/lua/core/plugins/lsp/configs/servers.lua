@@ -11,7 +11,8 @@
 
 local schemastore = require "schemastore"
 
-local servers = {
+local M = {},
+M.servers = {
   -----------------------------------------------------------------------------
   lua_ls = {
     settings = {
@@ -68,4 +69,4 @@ local servers = {
   },
 }
 
-return servers
+return M.servers

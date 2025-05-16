@@ -173,6 +173,7 @@ return {
     CircuitBoard = "",
     Hook = "󰛢",
     Lazy = "",
+    Mason = "󱌢",
     Split = "󰃻",
     Write = "",
     Plug = "",

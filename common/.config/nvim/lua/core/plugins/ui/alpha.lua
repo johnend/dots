@@ -28,7 +28,9 @@ return {
       ),
       button("r", icons.ui.History .. "  Recent files", ":Telescope oldfiles <CR>"),
       button("t", icons.ui.Text .. "  Find text", ":Telescope live_grep <CR>"),
-      button("c", icons.ui.Gear .. "  Config", ":e ~/.config/nvim/init.lua <CR>"),
+      button("c", icons.ui.Gear .. "  Config", ":cd ~/.config/nvim | e init.lua<CR>"),
+      button("l", icons.misc.Lazy .. "  Lazy", ":Lazy<CR>"),
+      button("m", icons.misc.Mason .. "  Mason", ":Mason<CR>"),
       button("q", icons.ui.SignOut .. "  Quit", ":qa<CR>"),
     }
 

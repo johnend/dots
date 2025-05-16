@@ -15,9 +15,6 @@ return {
 
     rose_pine.setup {
       variant = "main",
-      styles = {
-        transparency = true,
-      },
     }
   end,
 }

@@ -1,0 +1,43 @@
+backtraces_path = "/path/to/neovide_backtraces.log" # see below for the default platform specific location
+fork = false
+frame = "none"
+idle = true
+maximized = false
+mouse-cursor-icon = "arrow"
+no-multigrid = false
+srgb = false
+tabs = true
+theme = "auto"
+title-hidden = true
+vsync = true
+wsl = false
+scale_factor = 0.5
+refresh_rate = 144
+scroll_animation_length = 0.3
+no_idle = true
+
+# cursor VFX
+# cursor_vfx_mode = "torpedo"
+# cursor_vfx_particle_lifetime_ms = 200.0
+# cursor_vfx_particle_density = 15.0
+cursor_animate_command_line = false
+
+# zero padding (so Telescope floats align perfectly)
+padding_top = 0
+padding_bottom = 0
+padding_left = 0
+padding_right = 0
+
+[font]
+normal = [
+  "RecMonoLinear Nerd Font",
+] # Will use the bundled Fira Code Nerd Font by default
+italic = ["RecMonoCasual Nerd Font"]
+size = 14
+
+[box-drawing]
+# "font-glyph", "native" or "selected-native"
+mode = "font-glyph"
+
+[box-drawing.sizes]
+default = [2, 4] # Thin and thick values respectively, for all sizes

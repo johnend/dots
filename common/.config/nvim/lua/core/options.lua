@@ -74,7 +74,7 @@ local options = {
   -- sets cursor display to be different for visual (horizontal line) and insert (vertical line) modes
   guicursor = "v:hor20,i:ver30,n-v-c-i:blinkon500-blinkoff500",
   -- the font used in NON-TERMINAL neovim applications
-  guifont = "monospace:h17",
+  -- guifont = "monospace:h17",
 
   -- highlight all matches on previous search pattern
   hlsearch = true,
