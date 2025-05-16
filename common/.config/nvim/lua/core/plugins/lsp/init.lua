@@ -117,7 +117,7 @@ return {
           [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
         },
       } or {},
-      virtual_text = nil,
+      virtual_text = false,
     }
 
     -- 5) Finally, set up our LspAttach autocmd for keymaps & highlights
@@ -132,15 +132,22 @@ return {
         end
 
         -- your mappings…
-        map("grn", vim.lsp.buf.rename, "Rename")
-        map("gra", vim.lsp.buf.code_action, "Code Action", { "n", "x" })
-        map("gre", vim.diagnostic.open_float, "Open Diagnostic Float", { "n", "x" })
-        map("grr", require("telescope.builtin").lsp_references, "References")
-        map("gri", require("telescope.builtin").lsp_implementations, "Implementations")
-        map("grd", require("telescope.builtin").lsp_definitions, "Definitions")
-        map("grD", vim.lsp.buf.declaration, "Declaration")
         map("gO", require("telescope.builtin").lsp_document_symbols, "Document Symbols")
         map("gW", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace Symbols")
+        map("grD", vim.lsp.buf.declaration, "Declaration")
+        map("gra", require("actions-preview").code_actions, "Code Action")
+        map("grd", require("telescope.builtin").lsp_definitions, "Definitions")
+        map("gre", vim.diagnostic.open_float, "Open Diagnostic Float", { "n", "x" })
+        map("gri", require("telescope.builtin").lsp_implementations, "Implementations")
+        map("grj", function()
+          vim.diagnostic.jump { count = 1 }
+        end, "Next diagnostic", { "n", "x" })
+        map("grk", function()
+          vim.diagnostic.jump { count = -1 }
+        end, "Previous diagnostic", { "n", "x" })
+        map("grl", vim.diagnostic.setloclist, "Diagnostic loclist", { "n", "x" })
+        map("grn", vim.lsp.buf.rename, "Rename")
+        map("grr", require("telescope.builtin").lsp_references, "References")
         map("grt", require("telescope.builtin").lsp_type_definitions, "Type Definitions")
 
         -- highlight on CursorHold, clear on move

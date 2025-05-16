@@ -60,6 +60,21 @@ return {
     desc = "Toggle colorizer",
   },
   {
+    "<leader>td",
+    function()
+      toggle_notify("diagnostics_virtual_text_enabled", function()
+        vim.diagnostic.config {
+          virtual_text = _G._diagnostics_virtual_text_enabled and {
+            spacing = 2,
+            prefix = "●",
+            source = "if_many",
+          } or false,
+        }
+      end, "LSP Virtual Text")
+    end,
+    desc = "LSP Diagnostics Virtual Text",
+  },
+  {
     "<leader>ti",
     function()
       toggle_notify("ibl_enabled", "IBLToggle", "Indent blank line")
@@ -70,7 +85,6 @@ return {
     "<leader>tl",
     function()
       toggle_notify("cokeline_enabled", function()
-        ---@diagnostic disable-next-line: undefined-field
         vim.o.showtabline = _G._cokeline_enabled and 2 or 0
       end, "Cokeline Tabline")
     end,
