@@ -21,6 +21,7 @@ return {
         },
         "folke/lazydev.nvim",
         "onsails/lspkind.nvim",
+        "xzbdmw/colorful-menu.nvim",
       },
     },
   },
@@ -38,26 +39,42 @@ return {
       default = { "lsp", "path", "snippets", "buffer", "lazydev" },
       providers = {
         lsp = {
-          name = "lsp",
           enabled = true,
+          name = "LSP",
           module = "blink.cmp.sources.lsp",
-          min_keyword_length = 2,
+          score_offset = 100,
+        },
+        lazydev = {
+          enabled = true,
+          name = "LazyDev",
+          module = "lazydev.integrations.blink",
           score_offset = 90,
         },
+        snippets = {
+          enabled = true,
+          name = "LuaSnip",
+          max_items = 15,
+          min_keyword_length = 2,
+          module = "blink.cmp.sources.snippets",
+          score_offset = 80,
+        },
         path = {
+          enabled = true,
           name = "Path",
           module = "blink.cmp.sources.path",
-          score_offset = 25,
+          score_offset = 30,
           fallbacks = { "snippets", "buffer" },
           opts = {
             trailing_slash = false,
             label_trailing_slash = true,
           },
         },
-
-        lazydev = {
-          module = "lazydev.integrations.blink",
-          score_offset = 100,
+        buffers = {
+          enabled = true,
+          name = "Buffer",
+          max_items = 5,
+          module = "blink.cmp.sources.buffer",
+          score_offset = 10,
         },
       },
     },
@@ -67,24 +84,38 @@ return {
       preset = "default",
       ["<C-e>"] = {
         function(cmp)
-          cmp.show { providers = { "lsp", "snippets" } }
+          cmp.show { providers = { "lsp", "snippets", "buffers" } }
         end,
       },
+      ["<Up>"] = {},
+      ["<Down>"] = {},
       -- you can override individual keys here, too
     },
 
     appearance = {
       nerd_font_variant = "mono",
+      kind_icons = icons.kind,
     },
     completion = {
+      list = {
+        selection = {
+          preselect = false,
+          auto_insert = false,
+        },
+      },
       documentation = {
+        window = {
+          border = "rounded",
+          winhighlight = "FloatBorder:FloatBorder",
+        },
         auto_show = true,
         auto_show_delay_ms = 300,
       },
       menu = {
+        border = "rounded",
+        winhighlight = "FloatBorder:FloatBorder",
         -- Controls how the completion items are rendered on the popup window
         draw = {
-          treesitter = { "lsp" },
           -- Aligns the keyword you've typed to a component in the menu
           align_to = "label", -- or 'none' to disable, or 'cursor' to align to the cursor
           -- Left and right padding, optionally { left, right } for different padding on each side
@@ -94,18 +125,18 @@ return {
           -- Priority of the cursorline highlight, setting this to 0 will render it below other highlights
           cursorline_priority = 10000,
           -- Use treesitter to highlight the label text for the given list of sources
-          treesitter = {},
+          treesitter = { "lsp", "buffers" },
           -- treesitter = { 'lsp' }
 
           -- Components to render, grouped by column
-          columns = { { "kind_icon" }, { "label", "label_description", gap = 1 } },
-
+          columns = { { "kind_icon" }, { "label", "label_description", gap = 1 }, { "source_name" } },
           -- Definitions for possible components to render. Each defines:
           --   ellipsis: whether to add an ellipsis when truncating the text
           --   width: control the min, max and fill behavior of the component
           --   text function: will be called for each item
           --   highlight function: will be called only when the line appears on screen
           components = {
+
             kind_icon = {
               ellipsis = false,
               text = function(ctx)
@@ -131,26 +162,10 @@ return {
             label = {
               width = { fill = true, max = 60 },
               text = function(ctx)
-                return ctx.label .. ctx.label_detail
+                return require("colorful-menu").blink_components_text(ctx)
               end,
               highlight = function(ctx)
-                -- label and label details
-                local highlights = {
-                  { 0, #ctx.label, group = ctx.deprecated and "BlinkCmpLabelDeprecated" or "BlinkCmpLabel" },
-                }
-                if ctx.label_detail then
-                  table.insert(
-                    highlights,
-                    { #ctx.label, #ctx.label + #ctx.label_detail, group = "BlinkCmpLabelDetail" }
-                  )
-                end
-
-                -- characters matched on the label by the fuzzy matcher
-                for _, idx in ipairs(ctx.label_matched_indices) do
-                  table.insert(highlights, { idx, idx + 1, group = "BlinkCmpLabelMatch" })
-                end
-
-                return highlights
+                return require("colorful-menu").blink_components_highlight(ctx)
               end,
             },
 
@@ -185,13 +200,15 @@ return {
       preset = "luasnip",
     },
     fuzzy = {
-      implementation = "lua",
+      implementation = "prefer_rust_with_warning",
+      use_frecency = false,
     },
     signature = {
+      enabled = true,
       window = {
         border = "rounded",
+        winhighlight = "FloatBorder:FloatBorder",
       },
-      enabled = true,
     },
   },
   -- ensure Lazy.nvim actually calls the setup
