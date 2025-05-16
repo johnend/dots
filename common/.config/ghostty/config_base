@@ -4,10 +4,6 @@ background = 11111B
 cursor-color = D20F39
 adjust-cursor-thickness = 1
 
-font-family = Recursive Mono Linear Static
-font-family-italic = Recursive Mono Casual Static
-font-family = Symbols Nerd Font
-
 font-feature = dlig liga
 
 
@@ -15,6 +11,5 @@ shell-integration = zsh
 
 confirm-close-surface = false
 
-window-padding-y = 4,0
 
-
+window-padding-color = extend

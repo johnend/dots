@@ -3,4 +3,8 @@ config-file = ./config_base
 window-decoration = false
 font-size = 10
 
+font-family = RecMonoLinear Nerd Font
+font-family-italic = RecMonoCasual Nerd Font
+font-family = Symbols Nerd Font
+
 keybind=clear

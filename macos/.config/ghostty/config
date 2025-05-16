@@ -1,5 +1,9 @@
 config-file = ./config_base
 
 font-size = 14
+font-family = Recursive Mono Linear Static
+font-family-italic = Recursive Mono Casual Static
+font-family = Symbols Nerd Font
+
 macos-titlebar-style = hidden
 macos-option-as-alt = true
