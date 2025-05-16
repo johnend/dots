@@ -15,6 +15,10 @@ return {
 
     neomodern.setup {
       plain_float = true,
+      code_style = {
+        comments = "italic",
+        keywords = "italic",
+      },
     }
   end,
 }
