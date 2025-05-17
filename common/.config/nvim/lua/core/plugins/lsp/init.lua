@@ -132,8 +132,6 @@ return {
         end
 
         -- your mappings…
-        map("gO", require("telescope.builtin").lsp_document_symbols, "Document Symbols")
-        map("gW", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace Symbols")
         map("grD", vim.lsp.buf.declaration, "Declaration")
         map("gra", require("actions-preview").code_actions, "Code Action")
         map("grd", require("telescope.builtin").lsp_definitions, "Definitions")
@@ -148,7 +146,9 @@ return {
         map("grl", vim.diagnostic.setloclist, "Diagnostic loclist", { "n", "x" })
         map("grn", vim.lsp.buf.rename, "Rename")
         map("grr", require("telescope.builtin").lsp_references, "References")
+        map("grs", ":Trouble symbols toggle focus=true<cr>", "Document Symbols")
         map("grt", require("telescope.builtin").lsp_type_definitions, "Type Definitions")
+        map("grw", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace Symbols")
 
         -- highlight on CursorHold, clear on move
         local client = vim.lsp.get_client_by_id(event.data.client_id)

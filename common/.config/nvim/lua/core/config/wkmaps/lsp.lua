@@ -11,7 +11,6 @@ return {
   { "<leader>li", ":LspInfo<cr>", desc = "LSP info" },
   { "<leader>ll", ":Trouble loclist toggle<cr>", desc = "Location list (Trouble)" },
   { "<leader>lq", ":Trouble qflist toggle<cr>", desc = "Quickfix list (Trouble)" },
-  { "<leader>ls", ":Trouble symbols toggle focus=true<cr>", desc = "Document symbols" },
   { "<leader>lv", ":Trouble lsp toggle focus=false<cr>", desc = "LSP toggle (Trouble)" },
   { "<leader>lR", ":LspRestart<cr>", desc = "Restart LSP Server" },
   -------------------------------------
