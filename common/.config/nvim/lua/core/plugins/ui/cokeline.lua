@@ -4,7 +4,7 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons",
-    "stevearc/resession.nvim",
+    -- "stevearc/resession.nvim", -- for persistent sessions (optional)
   },
   config = function()
     local status_ok, cokeline = pcall(require, "cokeline")
