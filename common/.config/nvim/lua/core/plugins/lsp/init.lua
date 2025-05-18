@@ -27,11 +27,18 @@ return {
       helm_ls = {},
       html = {},
       jsonls = {
-        schemaStore = {
-          enable = false,
-          url = "",
+        settings = {
+          json = {
+            validate = { enable = true },
+            schemas = vim.list_extend({
+              {
+                desription = "Lua language server config file",
+                filematch = { ".luarc.json" },
+                url = "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/settings/schema.json",
+              },
+            }, schemastore.json.schemas()),
+          },
         },
-        schemas = schemastore.json.schemas(),
       },
       lua_ls = {
         settings = {
@@ -45,7 +52,9 @@ return {
       somesass_ls = {},
       terraformls = {},
       tflint = {},
-      vtsls = {
+      vtsls = {},
+      yamlls = {
+
         settings = {
           yaml = {
             schemaStore = {
@@ -56,7 +65,6 @@ return {
           },
         },
       },
-      yamlls = {},
       -- add other servers here, e.g. pyright = {}, tsserver = {}, etc.
     }
 
