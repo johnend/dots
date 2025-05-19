@@ -93,6 +93,7 @@ require "core.keymaps"
 require "core.commands"
 require "core.options"
 require "core.filetypes"
+require "core.overrides"
 require "water"
 
 if vim.g.neovide then
