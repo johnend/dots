@@ -3,11 +3,15 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     -- mason.nvim will be set up with opts = {}
-    { "mason-org/mason.nvim", opts = {
-      ui = {
-        border = "rounded",
+    {
+      "mason-org/mason.nvim",
+      cmd = { "Mason" },
+      opts = {
+        ui = {
+          border = "rounded",
+        },
       },
-    } },
+    },
     "mason-org/mason-lspconfig.nvim",
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     "saghen/blink.cmp",
