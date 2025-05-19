@@ -77,7 +77,15 @@ return {
   {
     "<leader>ti",
     function()
-      toggle_notify("ibl_enabled", "IBLToggle", "Indent blank line")
+      vim.g.indent_enabled = not vim.g.indent_enabled
+
+      if vim.g.indent_enabled then
+        Snacks.indent.enable()
+        vim.notify "Indent enabled"
+      else
+        Snacks.indent.disable()
+        vim.notify "Indent disabled"
+      end
     end,
     desc = "Indent line",
   },
