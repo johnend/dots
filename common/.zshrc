@@ -57,3 +57,6 @@ fi
 
 # 🤫
 [[ -f "$HOME/.zsh_secrets" ]] && source "$HOME/.zsh_secrets"
+
+# Added by Windsurf
+export PATH="/Users/john.enderby/.codeium/windsurf/bin:$PATH"
