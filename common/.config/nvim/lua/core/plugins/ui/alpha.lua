@@ -27,9 +27,9 @@ return {
         ":Telescope project project theme=dropdown layout_config={width=0.3, height=0.4}<CR>"
       ),
       button("r", icons.ui.History .. "  Recent files", ":Telescope oldfiles <CR>"),
-      button("t", icons.ui.Text .. "  Find text", ":Telescope live_grep <CR>"),
+      button("g", icons.ui.Text .. "  Grep text", ":Telescope live_grep <CR>"),
       button("c", icons.ui.Gear .. "  Config", ":cd ~/.config/nvim | e init.lua<CR>"),
-      button("l", icons.misc.Lazy .. "  Lazy", ":Lazy<CR>"),
+      button("p", icons.misc.Plug .. "  Plugins", ":Lazy<CR>"),
       button("m", icons.misc.Mason .. "  Mason", ":Mason<CR>"),
       button("q", icons.ui.SignOut .. "  Quit", ":qa<CR>"),
     }
