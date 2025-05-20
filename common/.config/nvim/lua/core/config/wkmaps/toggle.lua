@@ -144,7 +144,13 @@ return {
     end,
     desc = "Twilight",
   },
-
+  {
+    "<leader>tv",
+    function()
+      Snacks.image.hover()
+    end,
+    desc = "Zen",
+  },
   {
     "<leader>tz",
     function()

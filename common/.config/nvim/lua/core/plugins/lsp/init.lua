@@ -73,7 +73,7 @@ return {
     }
 
     local formatters = { "stylua", "prettier", "prettierd" }
-    -- local dap = { "js-debug-adapter", "codelldb" } -- table for formatters
+    -- local dap = { "js-debug-adapter", "codelldb" } -- table for daps
 
     -- 2) Turn Blink into LSP-capabilities for cmp
     local capabilities = require("blink.cmp").get_lsp_capabilities()

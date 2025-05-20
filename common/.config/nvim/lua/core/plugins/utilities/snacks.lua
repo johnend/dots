@@ -48,7 +48,13 @@ return {
         },
       }, -- replaces twilight - might as well replace because same author
       input = { enabled = true },
+      image = {
+        enabled = false,
+        doc = { float = true, inline = false, max_width = 80, max_height = 40 },
+        convert = { notify = false },
+      },
       notifier = {
+        enabled = true,
         timeout = 2000,
         style = "compact",
         top_down = false,
