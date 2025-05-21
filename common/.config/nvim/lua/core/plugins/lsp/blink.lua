@@ -69,7 +69,7 @@ return {
             label_trailing_slash = true,
           },
         },
-        buffers = {
+        buffer = {
           enabled = true,
           name = "Buffer",
           max_items = 5,
@@ -84,7 +84,7 @@ return {
       preset = "default",
       ["<C-e>"] = {
         function(cmp)
-          cmp.show { providers = { "lsp", "snippets", "buffers" } }
+          cmp.show { providers = { "lsp", "snippets", "buffer" } }
         end,
       },
       ["<Up>"] = {},

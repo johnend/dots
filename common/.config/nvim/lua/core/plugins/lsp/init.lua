@@ -34,9 +34,10 @@ return {
         settings = {
           json = {
             validate = { enable = true },
+            completion = { enable = true },
             schemas = vim.list_extend({
               {
-                desription = "Lua language server config file",
+                description = "Lua language server config file",
                 filematch = { ".luarc.json" },
                 url = "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/settings/schema.json",
               },
@@ -58,7 +59,6 @@ return {
       tflint = {},
       vtsls = {},
       yamlls = {
-
         settings = {
           yaml = {
             schemaStore = {
