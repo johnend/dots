@@ -3,6 +3,12 @@
 colors = require "core.config.colors"
 icons = require "core.config.icons"
 
+-- ensure Mason’s installers are on PATH so conform/other health-checks can see them
+local mason_bin = vim.fn.stdpath "data" .. "/mason/bin"
+if not string.find(vim.env.PATH, mason_bin, 1, true) then
+  vim.env.PATH = mason_bin .. ":" .. vim.env.PATH
+end
+
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_netrw = 1
