@@ -72,7 +72,18 @@ return {
         }
       end, "LSP Virtual Text")
     end,
-    desc = "LSP Diagnostics Virtual Text",
+    desc = "Diagnostics Virtual Text",
+  },
+  {
+    "<leader>th",
+    function()
+      toggle_notify("inlay_hints_enabled", function()
+        local bufnr = vim.api.nvim_get_current_buf()
+        local enabled = _G._inlay_hints_enabled
+        vim.lsp.inlay_hint.enable(enabled, { bufnr = bufnr })
+      end, "Inlay Hints")
+    end,
+    desc = "LSP Inlay Hints",
   },
   {
     "<leader>ti",
@@ -149,7 +160,7 @@ return {
     function()
       Snacks.image.hover()
     end,
-    desc = "Zen",
+    desc = "Preview image",
   },
   {
     "<leader>tz",
