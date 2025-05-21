@@ -60,3 +60,6 @@ fi
 
 # Added by Windsurf
 export PATH="/Users/john.enderby/.codeium/windsurf/bin:$PATH"
+
+# bun completions
+[ -s "/Users/john.enderby/.bun/_bun" ] && source "/Users/john.enderby/.bun/_bun"
