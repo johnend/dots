@@ -9,6 +9,20 @@ return {
     desc = "Run All Test Files",
   },
   {
+    "<leader>Tc",
+    function()
+      vim.cmd "CoverageToggle"
+    end,
+    desc = "Test Coverage",
+  },
+  {
+    "<leader>TC",
+    function()
+      vim.cmd "CoverageLoad"
+    end,
+    desc = "Test Coverage",
+  },
+  {
     "<leader>Tf",
     function()
       require("neotest").run.run(vim.fn.expand "%")

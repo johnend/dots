@@ -13,7 +13,6 @@ return {
       },
     },
     "mason-org/mason-lspconfig.nvim",
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
     "saghen/blink.cmp",
     "b0o/schemastore.nvim",
   },
@@ -26,7 +25,19 @@ return {
       css_variables = {},
       cssmodules_ls = {},
       emmet_language_server = {},
-      eslint = {},
+      eslint = {
+        setting = {
+          codeAction = {
+            disableRuleComment = {
+              enable = true,
+              location = "separateLine",
+            },
+            showDocumentation = {
+              enable = true,
+            },
+          },
+        },
+      },
       graphql = {},
       helm_ls = {},
       html = {},
@@ -83,9 +94,6 @@ return {
 
     vim.list_extend(ensure_tools, formatters) -- add stylua as a formatter
     -- vim.list_extend(ensure_tools, dap) -- uncomment to add dap tooling
-    require("mason-tool-installer").setup {
-      ensure_installed = ensure_tools,
-    }
 
     -- 4) Configure mason-lspconfig to install & wire up our LSPs
     require("mason-lspconfig").setup {

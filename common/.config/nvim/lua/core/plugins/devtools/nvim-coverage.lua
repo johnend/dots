@@ -12,15 +12,13 @@ return {
       auto_reload = true,
       commands = true,
       highlights = {
-        covered = { fg = colors.crust, bg = colors.green },
-        uncovered = { fg = colors.crust, bg = colors.red },
+        covered = { fg = colors.green },
+        uncovered = { fg = colors.red },
       },
-      signs = {
-        covered = { text = icons.ui.TestCovered },
-        uncovered = { text = icons.ui.TestUncovered },
-      },
+      -- signs = {
+      --   covered = { text = icons.ui.TestCovered },
+      --   uncovered = { text = icons.ui.TestUncovered },
+      -- },
     }
-
-    vim.keymap.set("n", "<leader>Tc", "<cmd>CoverageToggle<cr>", { desc = "Test Coverage" })
   end,
 }

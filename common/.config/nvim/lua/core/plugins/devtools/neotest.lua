@@ -23,8 +23,8 @@ return {
       adapters = {
         -- JEST
         require "neotest-jest" {
-          jestCommand = "yarn jest --",
-          jestConfigFile = "custom.jest.config.ts",
+          jestCommand = "npm run test --",
+          jestConfigFile = "jest.config.ts",
           env = { CI = true },
           cw = function()
             return vim.fn.getcwd()

@@ -122,7 +122,7 @@ local options = {
   showtabline = 0,
 
   -- always show the sign column, otherwise it would shift the text each time
-  signcolumn = "yes:1",
+  signcolumn = "yes",
 
   -- make indenting smarter again
   smartindent = true,
