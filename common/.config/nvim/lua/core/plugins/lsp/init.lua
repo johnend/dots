@@ -45,7 +45,6 @@ return {
         settings = {
           json = {
             validate = { enable = true },
-            completion = { enable = true },
             schemas = vim.list_extend({
               {
                 description = "Lua language server config file",
@@ -68,7 +67,17 @@ return {
       somesass_ls = {},
       terraformls = {},
       tflint = {},
-      vtsls = {},
+      vtsls = {
+        settings = {
+          typescript = {
+            preferences = {
+              includeCompletionsForModuleExports = true,
+              includeCompletionsForImportStatements = true,
+              importModuleSpecifier = "non-relative",
+            },
+          },
+        },
+      },
       yamlls = {
         settings = {
           yaml = {
