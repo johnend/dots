@@ -9,6 +9,12 @@ local active_progress = false
 -- Timer for animation
 ---@diagnostic disable-next-line: undefined-field
 local timer = vim.uv.new_timer()
+
+if not timer or type(timer.start) ~= "function" then
+  vim.notify("Failed to created uv timer", vim.log.levels.ERROR)
+  return
+end
+
 timer:start(
   0,
   120,
@@ -28,24 +34,103 @@ vim.api.nvim_create_autocmd("LspProgress", {
 })
 
 local function lsp_status()
-  local clients = vim.lsp.get_clients { bufnr = 0 }
+  -- hide LSP status in certain filetypes
+  local skip_filetypes = {
+    ["neo-tree"] = true,
+    ["alpha"] = true,
+    ["water"] = true,
+    -- add any others you’d like to skip
+  }
+
+  local ft = vim.bo.filetype
+  if skip_filetypes[ft] then
+    return ""
+  end
+
+  -- get all attached clients for this buffer
+  local clients = vim.lsp.get_clients { vim.api.nvim_get_current_buf() }
   if #clients == 0 then
     return "No LSP"
   end
 
-  local names = {}
-  for _, client in ipairs(clients) do
-    if client.name ~= "" then
-      table.insert(names, client.name)
+  -- filetype-specific priority lists
+  local filetype_prio = {
+    typescript = { "vtsls", "tsserver", "eslint" },
+    typescriptreact = { "vtsls", "tsserver", "eslint" },
+    javascript = { "tsserver", "eslint" },
+    javascriptreact = { "tsserver", "eslint" },
+    css = { "cssls", "css_variables", "cssmodules_ls" },
+    json = { "jsonls" },
+    -- add more overrides here as needed
+  }
+
+  -- global fallback priority
+  local global_prio = {
+    "bashls",
+    "cssls",
+    "css_variables",
+    "cssmodules_ls",
+    "emmet_language_server",
+    "eslint",
+    "graphql",
+    "helm_ls",
+    "html",
+    "jsonls",
+    "lua_ls",
+    "pyright",
+    "somesass_ls",
+    "terraformls",
+    "tflint",
+    "vtsls",
+    "yamlls",
+  }
+
+  -- pick the right master list
+  local ft = vim.bo.filetype
+  local prio = filetype_prio[ft] or global_prio
+
+  -- find the first attached client matching our priority
+  local chosen
+  for _, name in ipairs(prio) do
+    for _, c in ipairs(clients) do
+      if c.name == name then
+        chosen = name
+        break
+      end
+    end
+    if chosen then
+      break
     end
   end
 
-  local status = icons.ui.Gear .. " " .. table.concat(names, ", ")
-  if active_progress then
-    status = spinner_frames[spinner_index] .. " " .. status
+  -- fallback to the very first client
+  if not chosen then
+    chosen = clients[1].name
   end
 
-  return status
+  -- nerdfont icons per LSP
+  local icons = {
+    bashls = "",
+    cssls = "",
+    css_variables = "",
+    cssmodules_ls = "",
+    emmet_language_server = "󰅴",
+    eslint = "",
+    graphql = "",
+    helm_ls = "",
+    html = "",
+    jsonls = "",
+    lua_ls = "",
+    pyright = "",
+    somesass_ls = "󰟬",
+    terraformls = "",
+    tflint = "",
+    vtsls = "",
+    yamlls = "",
+  }
+
+  local icon = icons[chosen] or ""
+  return icon .. " " .. chosen
 end
 
 local function lsp_color()
@@ -65,7 +150,7 @@ M.lsp = {
   padding = { left = 1, right = 1 },
 }
 
-local mode = {
+M.mode = {
   function()
     return " " .. icons.ui.Target .. " "
   end,
@@ -83,7 +168,7 @@ local function diff_source()
   end
 end
 
-local diff = {
+M.diff = {
   "diff",
   symbols = {
     added = icons.git.LineAdded .. " ",
@@ -100,27 +185,27 @@ local diff = {
   cond = nil,
 }
 
-local branch = {
+M.branch = {
   "b:gitsigns_head",
   icon = icons.git.Branch,
   color = { gui = "bold" },
 }
 
-local filename = {
+M.filename = {
   "filename",
   icon = icons.ui.File,
   color = {},
   cond = nil,
 }
 
-local filetype = {
+M.filetype = {
   "filetype",
   colored = true,
   icon_only = false,
   padding = { left = 0, right = 0 },
 }
 
-local diagnostics = {
+M.diagnostics = {
   "diagnostics",
   sources = { "nvim_diagnostic" },
   symbols = {
@@ -131,7 +216,7 @@ local diagnostics = {
   },
 }
 
-local spaces = {
+M.spaces = {
   function()
     local shiftwidth = vim.api.nvim_get_option_value("shiftwidth", { buf = 0 })
     return icons.ui.Tab .. " " .. shiftwidth
@@ -139,12 +224,12 @@ local spaces = {
   padding = 1,
 }
 
-local location = {
+M.location = {
   "location",
   padding = { left = 0, right = 1 },
 }
 
-local progress = {
+M.progress = {
   "progress",
   fmt = function()
     return "%P/%L"
@@ -152,25 +237,11 @@ local progress = {
   padding = 1,
 }
 
-local searchcount = {
+M.searchcount = {
   "searchcount",
   icon = icons.ui.Search,
   color = {},
   cond = nil,
 }
 
-return {
-  mode = mode,
-  branch = branch,
-  diff = diff,
-  diagnostics = diagnostics,
-  filename = filename,
-  encoding = {},
-  fileformat = {},
-  filetype = filetype,
-  progress = progress,
-  location = location,
-  searchcount = searchcount,
-  spaces = spaces,
-  lsp = M.lsp,
-}
+return M

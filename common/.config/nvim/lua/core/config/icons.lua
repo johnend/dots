@@ -178,5 +178,6 @@ return {
     Write = "",
     Plug = "",
     Testtube = "󰙨",
+    NeoVim = "",
   },
 }
