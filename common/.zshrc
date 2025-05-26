@@ -58,8 +58,5 @@ fi
 # 🤫
 [[ -f "$HOME/.zsh_secrets" ]] && source "$HOME/.zsh_secrets"
 
-# Added by Windsurf
-export PATH="/Users/john.enderby/.codeium/windsurf/bin:$PATH"
-
 # bun completions
-[ -s "/Users/john.enderby/.bun/_bun" ] && source "/Users/john.enderby/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
