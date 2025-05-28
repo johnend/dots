@@ -11,6 +11,7 @@ alias gitconfig='nvim ~/.gitconfig'
 
 # tmux
 alias muxi='project=$(tmuxinator list | grep -v -e "projects:" -e "tmuxinator" | tr -s " " "\n" | fzf --header="Select a tmuxinator project:"); if [ -n "$project" ]; then tmuxinator start "$project"; fi'
+alias sf="tmux-sessionizer"
 
 # QoL
 alias ":q"="exit"
