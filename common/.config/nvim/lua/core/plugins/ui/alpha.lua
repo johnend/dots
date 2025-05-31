@@ -29,7 +29,7 @@ return {
       button("r", icons.ui.History .. "  Recent files", ":Telescope oldfiles <CR>"),
       button("g", icons.ui.Text .. "  Grep text", ":Telescope live_grep <CR>"),
       button("c", icons.ui.Gear .. "  Config", ":cd ~/.config/nvim | e init.lua<CR>"),
-      button("p", icons.misc.Plug .. "  Plugins", ":Lazy<CR>"),
+      button("l", icons.misc.Plug .. "  Plugins", ":Lazy<CR>"),
       button("m", icons.misc.Mason .. "  Mason", ":Mason<CR>"),
       button("q", icons.ui.SignOut .. "  Quit", ":qa<CR>"),
     }
