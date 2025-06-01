@@ -39,3 +39,9 @@ else
   export EDITOR="nvim"
 fi
 
+# if [ -z "$OP_SESSION_personal" ]; then
+#   export OP_SESSION_personal=$(op signin --raw)
+# fi
+# # Keys
+# export ANTHROPIC_API_KEY=$(op item get "Anthropic" --field credential --reveal --session="$OP_SESSION_personal")
+# export OPENAI_API_KEY=$(op item get "OpenAPI" --field credential --reveal --session="$OP_SESSION_personal")
