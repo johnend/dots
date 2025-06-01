@@ -64,6 +64,10 @@ local options = {
   -- convert tabs to spaces
   expandtab = true,
 
+  -- encoding
+  encoding = "utf-8",
+  fileencoding = "utf-8",
+
   -- fold settings
   foldmethod = "expr",
   foldexpr = "v:lua.vim.treesitter.foldexpr()",

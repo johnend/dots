@@ -2,7 +2,7 @@ return {
   {
     mode = { "n", "v" },
     {
-      "<leader>c",
+      "<leader>F",
       function()
         require("conform").format { async = true, lsp_fallback = true }
       end,

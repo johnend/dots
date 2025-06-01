@@ -179,5 +179,6 @@ return {
     Plug = "",
     Testtube = "󰙨",
     NeoVim = "",
+    CoPilot = "",
   },
 }

@@ -30,8 +30,11 @@ return {
     avante.setup {
       -- General settings
       suggestion = {
-        debounce = 1000, -- wait 1 s after you stop typing
+        debounce = 2000, -- wait 1 s after you stop typing
         throttle = 1500, -- no more than ~40 calls per minute
+      },
+      sidebar = {
+        show_input_hint = false,
       },
       log_level = "info", -- "debug", "info", "warn", "error"
 
@@ -126,10 +129,10 @@ return {
         -- Context management to optimize token usage
         auto_context = {
           enabled = true,
-          max_files = 3, -- Limit number of files in context
-          max_lines = 100, -- Limit lines per file in context
-          include_buffers = false,
-          include_cursor_position = false,
+          max_files = 2, -- Reduced from 3 to save tokens
+          max_lines = 60, -- Reduced from 100 to save tokens
+          include_buffers = false, -- Enable to get more relevant context
+          include_cursor_position = false, -- Enable to focus responses on current code
         },
 
         -- Optimize code actions for efficiency
@@ -145,26 +148,64 @@ return {
       },
     }
 
-    -- Create custom commands for common coding tasks to save tokens
-    vim.api.nvim_create_user_command("AvanteExplain", function()
-      -- Create a predefined prompt for code explanation
-      require("avante.api").ask("Explain this code concisely:", {
-        include_selection = true,
-      })
-    end, { desc = "Explain selected code concisely" })
+    -- Create custom commands for common coding tasks to save tokens with visual mode support
+    vim.api.nvim_create_user_command("AvanteExplain", function(opts)
+      local prompt = "Explain this code concisely:"
 
-    vim.api.nvim_create_user_command("AvanteRefactor", function()
-      -- Create a predefined prompt for code refactoring
-      require("avante.api").ask("Refactor this code to improve it (be concise, focus on changes):", {
-        include_selection = true,
-      })
-    end, { desc = "Refactor selected code efficiently" })
+      -- Handle range selection for visual mode
+      if opts.range > 0 then
+        require("avante.api").ask {
+          prompt = prompt,
+          range = { opts.line1, opts.line2 },
+        }
+      else
+        require("avante.api").ask {
+          prompt = prompt,
+          include_selection = true,
+        }
+      end
+    end, { desc = "Explain selected code concisely", range = true })
 
-    vim.api.nvim_create_user_command("AvanteDebug", function()
-      -- Create a predefined prompt for debugging
-      require("avante.api").ask("Debug this code and suggest fixes (be concise):", {
-        include_selection = true,
-      })
-    end, { desc = "Debug selected code efficiently" })
+    vim.api.nvim_create_user_command("AvanteRefactor", function(opts)
+      local prompt = "Refactor this code to improve it (be concise, focus on changes):"
+
+      -- Handle range selection for visual mode
+      if opts.range > 0 then
+        require("avante.api").ask {
+          prompt = prompt,
+          range = { opts.line1, opts.line2 },
+        }
+      else
+        require("avante.api").ask {
+          prompt = prompt,
+          include_selection = true,
+        }
+      end
+    end, { desc = "Refactor selected code efficiently", range = true })
+
+    vim.api.nvim_create_user_command("AvanteDebug", function(opts)
+      local prompt = "Debug this code and suggest fixes (be concise):"
+
+      -- Handle range selection for visual mode
+      if opts.range > 0 then
+        require("avante.api").ask {
+          prompt = prompt,
+          range = { opts.line1, opts.line2 },
+        }
+      else
+        require("avante.api").ask {
+          prompt = prompt,
+          include_selection = true,
+        }
+      end
+    end, { desc = "Debug selected code efficiently", range = true })
+
+    -- Add keymaps for easier access to custom commands
+    vim.keymap.set("n", "<leader>ae", ":AvanteExplain<CR>", { desc = "Explain code with Avante" })
+    vim.keymap.set("v", "<leader>ae", ":AvanteExplain<CR>", { desc = "Explain selected code with Avante" })
+    vim.keymap.set("n", "<leader>ar", ":AvanteRefactor<CR>", { desc = "Refactor code with Avante" })
+    vim.keymap.set("v", "<leader>ar", ":AvanteRefactor<CR>", { desc = "Refactor selected code with Avante" })
+    vim.keymap.set("n", "<leader>ad", ":AvanteDebug<CR>", { desc = "Debug code with Avante" })
+    vim.keymap.set("v", "<leader>ad", ":AvanteDebug<CR>", { desc = "Debug selected code with Avante" })
   end,
 }

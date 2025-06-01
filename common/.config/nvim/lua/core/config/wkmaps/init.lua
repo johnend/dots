@@ -1,5 +1,6 @@
 return {
   buffers = require(... .. ".buffers"),
+  copilot = require(... .. ".copilot"),
   general = require(... .. ".general"),
   git = require(... .. ".git"),
   grug = require(... .. ".grugfar"),
