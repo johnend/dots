@@ -1,5 +1,8 @@
-@import "./rose-pine.css";
+@import "./rose-pine.css"; /* Import theme variables */
 
+/* ========================
+   GLOBAL / BASE STYLES
+   ======================== */
 * {
   /* `otf-font-awesome` is required to be installed for icons */
   font-family:
@@ -8,37 +11,9 @@
   font-size: 14px;
 }
 
-/*Groups*/
-#menu,
-#datetime,
-#workspacegroup,
-#stats,
-#controls,
-#systray,
-#ncandpower {
-  border: 1px solid @overlay;
-  border-radius: 8px;
-  padding: 1px;
-  background: @base;
-}
-
-#datetime,
-#workspacegroup,
-#stats,
-#controls,
-#systray {
-  margin: 4px 0 6px 0;
-}
-
-#menu {
-  padding: 1px 8px;
-  margin: 4px 0 6px 8px;
-}
-
-#ncandpower {
-  margin: 4px 8px 6px 0;
-}
-
+/* ========================
+   WAYBAR WINDOW / BAR STYLES
+   ======================== */
 window#waybar {
   border-bottom: none;
   color: @foam;
@@ -71,6 +46,47 @@ window#waybar.chromium {
   border: none;
 }
 
+/* ========================
+   GROUP CONTAINER STYLES
+   ======================== */
+/* Common styling for all group containers */
+#menu,
+#datetime,
+#workspacegroup,
+#stats,
+#controls,
+#systray,
+#ncandpower {
+  border: 1px solid @overlay;
+  border-radius: 8px;
+  padding: 1px;
+  background: @base;
+}
+
+#systray {
+  padding: 1px 8px;
+}
+
+#datetime,
+#workspacegroup,
+#stats,
+#controls,
+#systray {
+  margin: 4px 0 6px 0;
+}
+
+#menu {
+  padding: 1px 8px;
+  margin: 4px 0 6px 8px;
+}
+
+#ncandpower {
+  margin: 4px 8px 6px 0;
+}
+
+/* ========================
+   BUTTON BASE STYLES
+   ======================== */
 button {
   /* Use box-shadow instead of border so the text isn't offset */
   box-shadow: inset 0 -2px transparent;
@@ -79,12 +95,14 @@ button {
   border-radius: 0;
 }
 
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 button:hover {
   background: none;
   /* box-shadow: inset 0 -2px @muted; */
 }
 
+/* ========================
+   WORKSPACE BUTTONS
+   ======================== */
 #workspaces button {
   padding: 0 4px;
   background-color: transparent;
@@ -104,13 +122,15 @@ button:hover {
   box-shadow: inset 0 -2px @rose;
 }
 
-/* #mode { */
-/*   background-color: #64727d; */
-/*   box-shadow: inset 0 -2px #ffffff; */
-/* } */
-
+/* ========================
+   CORE MODULE STYLES
+   ======================== */
+/* Clock, Battery, CPU, Memory, Disk, Temperature, Backlight, Network,
+   Pulseaudio, WirePlumber, Custom Media, Custom SwayNC, TrayR Mode,
+   Idle Inhibitor, Scratchpad, Power Profiles Daemon, Custom Spotify, MPD */
 #clock,
 #battery,
+#bluetooth,
 #cpu,
 #memory,
 #disk,
@@ -136,28 +156,66 @@ button:hover {
   color: @pine;
 }
 
+#custom-swaync:hover {
+  background-color: @overlay;
+  border-radius: 6px 0 0 6px;
+}
+
+#custom-power:hover {
+  background: @overlay;
+  border-radius: 0px 6px 6px 0;
+}
+
 #custom-spotify {
   color: @foam;
 }
+
 #window,
 #workspaces {
   margin: 0 4px;
 }
-
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > #workspaces {
-  margin-left: 0;
+/* ========================
+   CUSTOM SWAYNC
+   ======================== */
+#custom-swaync:hover {
+  color: @overlay;
+  border-radius: 6px 0 0 6px;
 }
 
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > #workspaces {
-  margin-right: 0;
+#custom-swaync.none {
+  color: @muted;
 }
 
+#custom-swaync.notification {
+  color: @foam;
+}
+
+#custom-swaync.dnd-none {
+  color: @muted;
+}
+
+#custom-swaync.dnd-notification {
+  color: @pine;
+}
+
+#custom-swaync.inhibited-none {
+  color: @muted;
+}
+
+#custom-swaync.inhibited-notification {
+  color: @pine;
+}
+
+/* ========================
+   CLOCK
+   ======================== */
 #clock {
   color: @gold;
 }
 
+/* ========================
+   BATTERY
+   ======================== */
 #battery {
 }
 
@@ -182,6 +240,28 @@ button:hover {
   animation-direction: alternate;
 }
 
+/* ========================
+   Bluetooth
+   ======================== */
+#bluetooth {
+  color: @pine;
+}
+
+#bluetooth.connected {
+  color: @foam;
+}
+
+#bluetooth.disconnected {
+  color: @love;
+}
+
+#bluetooth:hover {
+  background-color: @overlay;
+}
+
+/* ========================
+   POWER PROFILES DAEMON
+   ======================== */
 #power-profiles-daemon {
 }
 
@@ -197,10 +277,20 @@ button:hover {
   color: @gold;
 }
 
+#power-profiles-daemon:hover {
+  background: @overlay;
+}
+
+/* ========================
+   LABEL FOCUS
+   ======================== */
 label:focus {
   background-color: #000000;
 }
 
+/* ========================
+   CPU & MEMORY
+   ======================== */
 #cpu {
   color: @pine;
 }
@@ -209,6 +299,9 @@ label:focus {
   color: @foam;
 }
 
+/* ========================
+   BACKLIGHT & NETWORK
+   ======================== */
 #backlight {
   color: @gold;
 }
@@ -221,32 +314,30 @@ label:focus {
   background-color: @love;
 }
 
+#network:hover {
+  background-color: @overlay;
+  border-radius: 6px 0 0 6px;
+}
+
+/* ========================
+   PULSEAUDIO / VOLUME
+   ======================== */
 #pulseaudio {
   color: @iris;
 }
-/* you can set a style on hover for any module like this */
+
 #pulseaudio:hover {
   background-color: @overlay;
+  border-radius: 6px 0 0 6px;
 }
 
 #pulseaudio.muted {
   color: @love;
 }
 
-/* #custom-media { */
-/*   background-color: #66cc99; */
-/*   color: #2a5c45; */
-/*   min-width: 100px; */
-/* } */
-/**/
-/* #custom-media.custom-spotify { */
-/*   background-color: #66cc99; */
-/* } */
-/**/
-/* #custom-media.custom-vlc { */
-/*   background-color: #ffa000; */
-/* } */
-
+/* ========================
+   TEMPERATURE
+   ======================== */
 #temperature {
   color: @rose;
 }
@@ -255,9 +346,9 @@ label:focus {
   color: @love;
 }
 
-/*
-* TODO: Spotify needs a desktop entry update?
-*/
+/* ========================
+   TRAY ICONS
+   ======================== */
 #tray {
 }
 
@@ -270,6 +361,9 @@ label:focus {
   background-color: @love;
 }
 
+/* ========================
+   IDLE INHIBITOR
+   ======================== */
 #idle_inhibitor {
   color: @highlightHigh;
 }
@@ -278,43 +372,9 @@ label:focus {
   color: @gold;
 }
 
-/* #mpd { */
-/*   background-color: #66cc99; */
-/*   color: #2a5c45; */
-/* } */
-/**/
-/* #mpd.disconnected { */
-/*   background-color: #f53c3c; */
-/* } */
-/**/
-/* #mpd.stopped { */
-/*   background-color: #90b1b1; */
-/* } */
-/**/
-/* #mpd.paused { */
-/*   background-color: #51a37a; */
-/* } */
-
-#language {
-  color: @iris;
-}
-
-/* #keyboard-state { */
-/*   background: #97e1ad; */
-/*   color: #000000; */
-/*   padding: 0 0px; */
-/*   margin: 0 5px; */
-/*   min-width: 16px; */
-/* } */
-
-/* #keyboard-state > label { */
-/*   padding: 0 5px; */
-/* } */
-/**/
-/* #keyboard-state > label.locked { */
-/*   background: rgba(0, 0, 0, 0.2); */
-/* } */
-
+/* ========================
+   SCRATCHPAD
+   ======================== */
 #scratchpad {
   background-color: @surface;
 }
@@ -323,23 +383,48 @@ label:focus {
   background-color: transparent;
 }
 
-/* #privacy { */
-/*   padding: 0; */
-/* } */
-/**/
-/* #privacy-item { */
-/*   padding: 0 5px; */
-/*   color: white; */
-/* } */
-/**/
-/* #privacy-item.screenshare { */
-/*   background-color: #cf5700; */
-/* } */
-/**/
-/* #privacy-item.audio-in { */
-/*   background-color: #1ca000; */
-/* } */
-/**/
-/* #privacy-item.audio-out { */
-/*   background-color: #0069d4; */
-/* } */
+/* ========================
+   LANGUAGE INDICATOR
+   ======================== */
+#language {
+  color: @iris;
+}
+
+/* ========================
+   UNUSED / COMMENTED OUT EXAMPLES
+   ======================== */
+/* #mode {
+   background-color: #64727d;
+   box-shadow: inset 0 -2px #ffffff;
+} */
+
+/* #custom-media {
+   background-color: #66cc99;
+   color: #2a5c45;
+   min-width: 100px;
+} */
+
+/* #custom-media.custom-spotify {
+   background-color: #66cc99;
+} */
+
+/* #custom-media.custom-vlc {
+   background-color: #ffa000;
+} */
+
+/* #mpd {
+   background-color: #66cc99;
+   color: #2a5c45;
+} */
+
+/* #mpd.disconnected {
+   background-color: #f53c3c;
+} */
+
+/* #mpd.stopped {
+   background-color: #90b1b1;
+} */
+
+/* #mpd.paused {
+   background-color: #51a37a;
+} */

@@ -129,9 +129,9 @@
   // Selection
   //
   "modules-right": [
+    "group/systray",
     "group/stats",
     "group/controls",
-    // "group/systray",
     "group/ncandpower"
   ],
   // Groups
@@ -294,20 +294,21 @@
   "tray": {
     // "icon-size": 21,
     "spacing": 8,
+    "show-passive-items": true
   },
   // Notifications
   "custom/swaync": {
     "tooltip": false,
     "format": "{icon}",
     "format-icons": {
-      "notification": "<span foreground='#eb6f92'><sup></sup></span>",
-      "none": "",
-      "dnd-notification": "<span foreground='#eb6f92'><sup></sup></span>",
-      "dnd-none": "",
-      "inhibited-notification": "<span foreground='#eb6f92'><sup></sup></span>",
-      "inhibited-none": "",
-      "dnd-inhibited-notification": "<span foreground='#eb6f92'><sup></sup></span>",
-      "dnd-inhibited-none": ""
+      "notification": "",
+      "none": "",
+      "dnd-notification": "",
+      "dnd-none": "",
+      "inhibited-notification": "<span foreground='#eb6f92'><sup></sup></span>",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": "<span foreground='#eb6f92'><sup></sup></span>",
+      "dnd-inhibited-none": ""
     },
     "return-type": "json",
     "exec-if": "which swaync-client",
