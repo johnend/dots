@@ -1,7 +1,7 @@
 theme = mocha
 background = 11111B
 
-cursor-color = D20F39
+cursor-color = FF00AF 
 adjust-cursor-thickness = 1
 
 font-feature = dlig liga
