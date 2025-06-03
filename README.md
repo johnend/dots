@@ -1,58 +1,52 @@
 # Dotfiles
 
-Well hello 👋
+Hey there 👋
 
-Welcome to my dotfiles.
+Welcome to my dotfiles! These are set up to fit my workflow across both Mac and Linux. Feel free to explore, steal bits, and make them your own.
 
-{Linux Image Placeholder}
+---
 
-{MacOS Image Placeholder}
+### Linux (Sway)
 
-I have set these up to cater for my specific workflow and setups. I work on both
-Mac and Linux so there are some things here that have to be in separate
-directories in order for them to work properly on both machines.
+![image](https://github.com/user-attachments/assets/0b36b509-ab04-44a4-a9ed-5149191dc0f5)
 
-Tools you will probably need to install these:
+### MacOS
 
-- GNU Stow - great for if you are doing this sort of shenanigans. If you're not
-  using a tool like stow then you probably should be, especially if you spend
-  your life in the terminal using TUIs.
-- I like `zsh` and I like `ohmyzsh`, if you do too and you want to steal some of the
-  things I have here then feel free, however if you just want to roll your own
-  then there is a script `commmon/omz-install.sh` that will install some of my
-  favourite plugins and powerlevel10k (if you don't want all of them then that's
-  cool, just use it as a reference).
-- My Linux machine uses Sway. I moved from Hyprland mostly due to my old Mac not
-  liking it (probably due to it having an old Nvidia GPU), but honestly I prefer
-  it for day to day work. However I would, move back to Hyprland if my machine
-  could dealt with it (some of my previous Hyprland config files can stil be
-  found in the Linux directory for that reason).
-- If you're looking for my NeoVim setup then its all in `common/.config/nvim`,
-  and if you're desperate to steal the ascii I use in my Alpha dashboard it can be
-  found in there too.
+![image](https://github.com/user-attachments/assets/fcfe09b8-98c5-4e51-960d-3121b8d752d4)
 
-Some other things to think about:
+---
 
-The config files for certain applications (Alacritty and Ghostty, but maybe more
-in the future) are split across common and the specifc OS using imports in the
-specific OS's config file.
+I split configurations between macOS and Linux so everything works seamlessly on both machines. Below are some tools and notes to help you get started:
 
-This allows me to have some OS specific config options set (for example, due to
-Hyprland's scaling I have a different font size on Linux than on Mac).
+#### Tools You’ll Probably Want
 
-Otherwise go ham and see what you can borrow. Hopefully something I have here
-helps you out!
+- **GNU Stow**  
+  A lifesaver for managing dotfiles. If you spend any time in the terminal, you’ll appreciate how it keeps everything tidy. If you’re not already using Stow, give it a try!
 
-### Other things to note
+- **Zsh + Oh My Zsh**  
+  I’m a big fan of Zsh and Oh My Zsh, and you’ll find some of my favorite plugins and Powerlevel10k themes in here. If you want to grab my setup, there’s a script at `common/omz-install.sh` that installs everything for you. If you’d rather pick and choose, treat it like a reference.
 
-I have disabled the Emacs text based shortcuts due to them causing issues when
-typing and using a mod-tap with CTRL and Space on the same key. If you don't
-know what this means then don't worry about it, but if you do, then you might
-want to do the same.
+- **Sway (Linux)**  
+  My Linux machine runs Sway. I switched from Hyprland because my old Mac struggled with it (thanks, Nvidia GPU 🙄), but honestly, I prefer Sway for day-to-day use. If your rig can handle Hyprland, you’ll find my old Hyprland configs in the `linux/` directory.
 
-To disable them you can either use Karabiner elements (though this can have other
-unintentional side effects), or _create_ a file under `~/Library/KeyBindings/`
-called `DefaultKeyBinding.dict` and then insert the following:
+- **NeoVim**  
+  All my NeoVim goodies live in `common/.config/nvim`. If you’re looking for the ASCII art on my Alpha dashboard, that’s in there too.
+
+---
+
+#### How This Is Organized
+
+Some app configs (like Alacritty and Kitty) are split between `common/` and the OS-specific folder, using imports in the OS’s config file. This way, I can tweak things like font sizes (Hyprland scaling vs. macOS Retina) without duplicating everything.
+
+Dive in, mix and match, and see what works for you!
+
+---
+
+## Other Things to Note
+
+I’ve disabled the default Emacs-style text shortcuts on macOS because they conflicted with my mod-tap setup (CTRL + Space on the same key). If that doesn’t mean anything to you, feel free to ignore this. If it does, you might want to do the same.
+
+To disable these shortcuts, create a file at `~/Library/KeyBindings/DefaultKeyBinding.dict` with the following contents:
 
 ```jsonc
 {
@@ -83,6 +77,5 @@ called `DefaultKeyBinding.dict` and then insert the following:
   "\u0019" = noop; // Ctrl+Y – yank (paste)
   "\u001A" = noop; // Ctrl+Z – no default action
 }
-```
 
-I have them all disabled, but you might only want to disable a few.
+```
