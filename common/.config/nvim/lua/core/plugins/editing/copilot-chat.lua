@@ -1,5 +1,6 @@
 return {
   "CopilotC-Nvim/CopilotChat.nvim",
+  cmd = { "InsertEnter", "CopilotChat", "CopilotChatExplain" },
   dependencies = {
     "zbirenbaum/copilot.lua",
   },
