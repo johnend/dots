@@ -111,14 +111,15 @@
   //
   // Spotify
   "custom/spotify": {
-    "exec": "/usr/bin/python3 $HOME/.config/waybar/scripts/mediaplayer.py --player spotify",
+    "exec": "/usr/bin/python3 $HOME/.config/waybar/scripts/mediaplayer.py",
     "format": "󰓇 {}",
     "return-type": "json",
     "on-click": "playerctl play-pause",
     "on-click_right": "killall spotify",
     "smooth-scrolling-threshold": 10,
     "on-scroll-up": "playerctl next",
-    "on-scroll-down": "playerctl previous"
+    "on-scroll-down": "playerctl previous",
+    "max-length": 66
   },
   /////////////////////////////////////
   //
