@@ -65,7 +65,7 @@ return {
 
     toggleterm.setup {
       size = 20, -- Default size for terminals
-      open_mapping = [[<c-/>]], -- Default key to open main terminal
+      open_mapping = [[<c-\>]], -- Default key to open main terminal
       hide_numbers = true, -- Hide number column in terminals
       shade_filetypes = {}, -- No extra shading for specific filetypes
       shade_terminals = true,
