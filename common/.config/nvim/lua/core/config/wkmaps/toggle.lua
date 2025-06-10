@@ -123,13 +123,13 @@ return {
     end,
     desc = "Flash search",
   },
-  {
-    "<leader>tp",
-    function()
-      toggle_notify("precognition_enabled", require("precognition").toggle, "Precognition", true)
-    end,
-    desc = "Precognition",
-  },
+  -- {
+  --   "<leader>tp",
+  --   function()
+  --     toggle_notify("precognition_enabled", require("precognition").toggle, "Precognition", true)
+  --   end,
+  --   desc = "Precognition",
+  -- },
   {
     "<leader>ts",
     function()
