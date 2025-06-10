@@ -1,3 +1,36 @@
+local dedupe = function(ctx, items)
+  if not ctx.seen_labels then
+    ctx.seen_labels = ctx.seen_labels or {}
+  end
+
+  local unique = {}
+
+  for _, item in ipairs(items) do
+    if not ctx.seen_labels[item.label] then
+      ctx.seen_labels[item.label] = true
+      table.insert(unique, item)
+    end
+  end
+  return unique
+end
+
+local function sanitize(ctx, items)
+  for _, item in ipairs(items) do
+    if item.label then
+      item.label = item.label:gsub("\n", " ")
+    end
+    if item.label_description then
+      item.label_description = item.label_description:gsub("\n", " ")
+    end
+  end
+  return items
+end
+
+local function sanitize_and_dedupe(ctx, items)
+  items = sanitize(ctx, items)
+  return dedupe(ctx, items)
+end
+
 return {
   "saghen/blink.cmp",
   -- only load when we enter insert or cmdline
@@ -43,6 +76,7 @@ return {
           name = "LSP",
           module = "blink.cmp.sources.lsp",
           score_offset = 100,
+          transform_items = sanitize_and_dedupe,
         },
         lazydev = {
           enabled = true,
@@ -195,9 +229,6 @@ return {
           },
         },
       },
-    },
-    snippets = {
-      preset = "luasnip",
     },
     fuzzy = {
       implementation = "prefer_rust_with_warning",
