@@ -14,6 +14,7 @@ local dedupe = function(ctx, items)
   return unique
 end
 
+---@diagnostic disable-next-line: unused-local
 local function sanitize(ctx, items)
   for _, item in ipairs(items) do
     if item.label then
