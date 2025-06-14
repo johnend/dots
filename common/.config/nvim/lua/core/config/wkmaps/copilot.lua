@@ -41,7 +41,7 @@ return {
       function()
         vim.cmd "CopilotChatExplain"
       end,
-      desc = "Ask (Visual Selection)",
+      desc = "Explain (Visual Selection)",
     },
   },
 }
