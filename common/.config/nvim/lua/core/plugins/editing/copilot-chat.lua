@@ -11,6 +11,12 @@ return {
       return
     end
 
-    copilot_chat.setup {}
+    copilot_chat.setup {
+      highlight_headers = false,
+      separator = "",
+      question_header = "> [!IMPORTANT] User",
+      answer_header = "> [!COPILOT] Copilot",
+      error_header = "> [!ERROR] Error",
+    }
   end,
 }
