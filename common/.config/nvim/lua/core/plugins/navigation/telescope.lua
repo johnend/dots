@@ -69,7 +69,7 @@ return {
         sorting_strategy = "descending",
         layout_config = {},
         file_ignore_patterns = ignore_patterns,
-        path_display = { "smart" },
+        -- path_display = { "" },
         color_devicons = true,
         set_env = { ["COLORTERM"] = "truecolor" },
         mappings = {
