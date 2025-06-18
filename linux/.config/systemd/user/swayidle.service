@@ -10,10 +10,10 @@ ExecStart=/usr/bin/swayidle -w \
     resume 'sleep 2; brightnessctl set 100%' \
     timeout 600 'gtklock -d' \
     timeout 900 'swaymsg "output * dpms off"' \
-    resume 'sleep2; swaymsg "output * dpms on"' \
+    resume 'sleep 2; swaymsg "output * dpms on"' \
     before-sleep 'gtklock -d'
 Restart=always
 
 [Install]
-WantedBy=graphical-session.target
+WantedBy=default.target
 
