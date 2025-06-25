@@ -112,7 +112,7 @@
   // Spotify
   "custom/spotify": {
     "exec": "/usr/bin/python3 $HOME/.config/waybar/scripts/mediaplayer.py",
-    "format": "󰓇 {}",
+    "format": "{}",
     "return-type": "json",
     "on-click": "playerctl play-pause",
     "on-click_right": "killall spotify",
