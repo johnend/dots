@@ -45,6 +45,9 @@ key-mapping.preset = 'qwerty'
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 on-focus-changed = ['move-mouse window-lazy-center']
 
+# turn off hiding of apps with C-h (useful if you hit that keybind accidentally)
+automatically-unhide-macos-hidden-apps = true
+
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
 # Possible values:
 # - Constant:     gaps.outer.top = 8
