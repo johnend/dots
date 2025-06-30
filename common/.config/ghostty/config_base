@@ -11,5 +11,10 @@ shell-integration = zsh
 
 confirm-close-surface = false
 
+# custom-shader = shaders/cursor_blaze.glsl
+# custom-shader = shaders/cursor_blazeno_trail.glsl
+custom-shader = shaders/cursor_smear.glsl
+# custom-shader = shaders/cursor_smear_fade.glsl
+
 
 window-padding-color = extend
