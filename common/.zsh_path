@@ -12,7 +12,7 @@ export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # 4) Your local installs
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.npm-global/bin"
-export PATH="$PATH:$HOME/.fig/bin"
+export PATH="$PATH:$HOME/.cargo/bin"
 
 # ————————————————————————————————————————————————
 # macOS-only
