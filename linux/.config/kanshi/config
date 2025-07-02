@@ -1,0 +1,24 @@
+profile nomad {
+  output eDP-1 {
+    mode 2880x1800
+    scale 1.5
+  }
+}
+
+profile deskbound {
+  output eDP-1 {
+    mode 2880x1800
+    scale 1.5
+    position 0,0
+  }
+  output DP-3 {
+    mode 2560x1440
+    position 1920,0
+  }
+  output HDMI-A-1 {
+    mode 1920x1080
+    position 4479,0
+  }
+}
+
+
