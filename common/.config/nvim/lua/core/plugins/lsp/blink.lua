@@ -76,7 +76,7 @@ return {
           enabled = true,
           name = "LSP",
           module = "blink.cmp.sources.lsp",
-          score_offset = 100,
+          score_offset = 90,
           transform_items = sanitize_and_dedupe,
         },
         lazydev = {
@@ -91,7 +91,7 @@ return {
           max_items = 15,
           min_keyword_length = 2,
           module = "blink.cmp.sources.snippets",
-          score_offset = 80,
+          score_offset = 100,
         },
         path = {
           enabled = true,
