@@ -69,8 +69,10 @@ return {
       return true
     end,
 
+    snippets = { preset = "luasnip" },
+
     sources = {
-      default = { "lsp", "path", "snippets", "buffer", "lazydev" },
+      default = { "snippets", "lsp", "buffer", "lazydev" },
       providers = {
         lsp = {
           enabled = true,
@@ -83,7 +85,7 @@ return {
           enabled = true,
           name = "LazyDev",
           module = "lazydev.integrations.blink",
-          score_offset = 90,
+          score_offset = 70,
         },
         snippets = {
           enabled = true,
@@ -94,10 +96,10 @@ return {
           score_offset = 100,
         },
         path = {
-          enabled = true,
+          enabled = false,
           name = "Path",
           module = "blink.cmp.sources.path",
-          score_offset = 30,
+          score_offset = 50,
           fallbacks = { "snippets", "buffer" },
           opts = {
             trailing_slash = false,
@@ -107,9 +109,9 @@ return {
         buffer = {
           enabled = true,
           name = "Buffer",
-          max_items = 5,
+          max_items = 80,
           module = "blink.cmp.sources.buffer",
-          score_offset = 10,
+          score_offset = 2,
         },
       },
     },
@@ -119,7 +121,7 @@ return {
       preset = "default",
       ["<C-e>"] = {
         function(cmp)
-          cmp.show { providers = { "lsp", "snippets", "buffer" } }
+          cmp.show { providers = { "snippets", "lsp", "buffer" } }
         end,
       },
       ["<Up>"] = {},
