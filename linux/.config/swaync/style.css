@@ -139,7 +139,7 @@
   border-radius: 0.5rem;
   color: #e0def4;
   background-color: #1f1d2e;
-  border: 1px solid #6e6a86;
+  /* border: 1px solid #6e6a86; */
   padding: 0.5rem 0.65rem 0.5rem 0.5rem;
 }
 
@@ -314,7 +314,10 @@ trough {
 .widget-dnd > switch {
   border-radius: 0.5rem;
   background: #26233a;
-  border: 1px solid #6e6a86;
+}
+
+.widget-dnd > switch:checked {
+  color: #31748f;
 }
 
 .widget-dnd > switch:checked slider {
@@ -323,7 +326,7 @@ trough {
 
 .widget-dnd > switch slider {
   background: #6e6a86;
-  border-radius: 0.5rem;
+  border-radius: 0.33rem;
   margin: 0.25rem;
 }
 
