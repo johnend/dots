@@ -100,15 +100,15 @@ return {
     end,
     desc = "Indent line",
   },
-  {
-    "<leader>tl",
-    function()
-      toggle_notify("cokeline_enabled", function()
-        vim.o.showtabline = _G._cokeline_enabled and 2 or 0
-      end, "Cokeline Tabline")
-    end,
-    desc = "Cokeline Tabline",
-  },
+  -- {
+  --   "<leader>tl",
+  --   function()
+  --     toggle_notify("cokeline_enabled", function()
+  --       vim.o.showtabline = _G._cokeline_enabled and 2 or 0
+  --     end, "Cokeline Tabline")
+  --   end,
+  --   desc = "Cokeline Tabline",
+  -- },
   {
     "<leader>to",
     function()
