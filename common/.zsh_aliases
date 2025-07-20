@@ -20,7 +20,7 @@ alias ":q"="exit"
 alias "gg"="lazygit"
 
 # eza - much better ls
-alias "ls"="eza --icons"
+alias "ls"="eza --icons --group-directories-first"
 alias "la"="ls -la --show-symlinks"
 alias "ld"="ls -D"
 alias "lad"="ls -lDa --show-symlinks"
