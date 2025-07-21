@@ -4,6 +4,12 @@ background = 11111B
 cursor-color = FF00AF 
 adjust-cursor-thickness = 1
 
+# font-family = Recursive Mono Linear Static
+# font-family-italic = Recursive Mono Casual Static
+font-family = Monaspace Neon
+font-family-italic = Monaspace Radon
+font-family = Symbols Nerd Font
+
 font-feature = dlig liga
 
 
