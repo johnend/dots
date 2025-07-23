@@ -112,7 +112,7 @@ return {
   {
     "<leader>to",
     function()
-      toggle_notify("tscontext_enabled", "TSContextToggle", "Treesitter context")
+      toggle_notify("tscontext_enabled", "TSContext toggle", "Treesitter context")
     end,
     desc = "Treesitter context",
   },

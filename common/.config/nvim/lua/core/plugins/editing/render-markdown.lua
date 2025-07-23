@@ -7,6 +7,7 @@ return {
     end
 
     markdown.setup {
+      latex = { enabled = false },
       file_types = { "markdown", "copilot-chat" },
       completions = { blink = { enabled = true } },
       callout = {

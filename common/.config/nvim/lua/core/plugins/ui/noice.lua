@@ -31,7 +31,7 @@ return {
       },
       -- Global view behaviour
       views = {
-        notify = { replace = true, merge = true },
+        -- notify = { replace = true, merge = true },
         mini = {
           win_options = {
             winblend = 0,
