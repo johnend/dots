@@ -11,7 +11,6 @@ font-family-bold-italic = Monaspace Radon Semibold
 font-family = Symbols Nerd Font
 font-feature = dlig, liga, ss01, ss02, ss03, ss04, ss05, ss06, ss07, ss08, ss09, ss10
 
-
 shell-integration = zsh
 
 confirm-close-surface = false
