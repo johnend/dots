@@ -85,6 +85,7 @@ autocommand({ "VimEnter", "ColorScheme" }, {
     vim.cmd "highlight FlashLabel guifg=#00fa9a guibg=#000000 gui=bold"
   end,
 })
+
 -- Open Alpha after Lazy installs plugins
 autocommand("VimEnter", {
   callback = function()
