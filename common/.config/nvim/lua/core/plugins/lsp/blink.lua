@@ -72,7 +72,7 @@ return {
     snippets = { preset = "luasnip" },
 
     sources = {
-      default = { "snippets", "lsp", "buffer", "lazydev" },
+      default = { "snippets", "lsp", "path", "buffer", "lazydev" },
       providers = {
         lsp = {
           enabled = true,
@@ -96,7 +96,7 @@ return {
           score_offset = 100,
         },
         path = {
-          enabled = false,
+          enabled = true,
           name = "Path",
           module = "blink.cmp.sources.path",
           score_offset = 50,
@@ -121,7 +121,7 @@ return {
       preset = "default",
       ["<C-e>"] = {
         function(cmp)
-          cmp.show { providers = { "snippets", "lsp", "buffer" } }
+          cmp.show { providers = { "snippets", "lsp", "path", "buffer" } }
         end,
       },
       ["<Up>"] = {},
