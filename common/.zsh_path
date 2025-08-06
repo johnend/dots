@@ -4,7 +4,7 @@
 
 # 1) Your personal ~/bin
 # 2) `n`’s shims
-export PATH="$HOME/bin:$N_PREFIX/bin:$PATH"
+# export PATH="$HOME/bin:$N_PREFIX/bin:$PATH"
 
 # 3) System dirs
 export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"

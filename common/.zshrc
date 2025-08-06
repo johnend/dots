@@ -3,6 +3,8 @@ source "$HOME/.zsh_env"
 source "$HOME/.zsh_path"
 source "$HOME/.zsh_functions"
 
+source "$HOME/.asdf/plugins/java/set-java-home.zsh"
+
 # Enable powerlevel10k instant prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -41,7 +43,7 @@ command -v zoxide &> /dev/null && eval "$(zoxide init zsh)"
 command -v thefuck &> /dev/null && eval "$(thefuck --alias)"
 
 # jenv
-command -v jenv &> /dev/null && eval "$(jenv init -)"
+# command -v jenv &> /dev/null && eval "$(jenv init -)"
 
 # Netskope certs (mac-specific)
 if [[ "$OSTYPE" == darwin* && -f "$HOME/netskope/certs/nscacert_combined.pem" ]]; then
@@ -60,3 +62,13 @@ fi
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+# Netskope SSL Decryption Cert
+export REQUESTS_CA_BUNDLE=/opt/netskope/certs/nscacert_combined.pem
+export CURL_CA_BUNDLE=/opt/netskope/certs/nscacert_combined.pem
+export SSL_CERT_DIR=/opt/netskope/certs/nscacert_combined.pem
+export PIP_CERT=/opt/netskope/certs/nscacert_combined.pem
+export NODE_EXTRA_CA_CERTS=/opt/netskope/certs/nscacert_combined.pem
+export GIT_SSL_CAPATH=/opt/netskope/certs/nscacert_combined.pem
+export SSL_CERT_FILE=/opt/netskope/certs/nscacert_combined.pem
+export HTTPLIB2_CA_CERTS=/opt/netskope/certs/nscacert_combined.pem
+export DENO_TLS_CA_STORE=system

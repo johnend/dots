@@ -9,6 +9,8 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
 # Theme customisation for autosuggestion
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ca9ee6"
 
@@ -27,7 +29,7 @@ fi
 export ZSH_CUSTOM="$HOME/.oh-my-zsh/custom/"
 
 # Node.js (using n) global install prefix
-export N_PREFIX="$HOME/.n"
+# export N_PREFIX="$HOME/.n"
 
 # Cargo (Rust) - activate only if installed
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
