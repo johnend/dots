@@ -27,6 +27,7 @@ return {
       "graphql",
       "html",
       "hyprlang",
+      "java",
       "javascript",
       "json",
       "jsonc",
@@ -53,6 +54,7 @@ return {
 
     local opts = {
       ensure_installed = required_languages,
+      auto_install = true,
       highlight = {
         enable = true,
       },

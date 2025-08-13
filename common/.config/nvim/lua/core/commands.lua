@@ -95,3 +95,58 @@ autocommand("VimEnter", {
     end
   end,
 })
+
+-- Custom command to list attached LSPs
+vim.api.nvim_create_user_command("LspNames", function(opts)
+  local target = opts.args
+  local clients = vim.lsp.get_clients { bufnr = 0 }
+  local icon = ""
+  local output = {}
+
+  if vim.tbl_isempty(clients) then
+    vim.notify("󰍴  No LSP clients attached to this buffer", vim.log.levels.INFO, { title = "LSP Info" })
+    return
+  end
+
+  for _, client in pairs(clients) do
+    if target == "" or client.name:lower():match(target:lower()) then
+      local root_dir = client.config.root_dir or "?"
+      local capabilities = {}
+      local caps = client.server_capabilities or {}
+
+      if caps.hoverProvider then
+        table.insert(capabilities, "hover")
+      end
+      if caps.definitionProvider then
+        table.insert(capabilities, "definition")
+      end
+      if caps.referencesProvider then
+        table.insert(capabilities, "references")
+      end
+      if caps.documentFormattingProvider then
+        table.insert(capabilities, "formatting")
+      end
+      if caps.renameProvider then
+        table.insert(capabilities, "rename")
+      end
+      if caps.completionProvider then
+        table.insert(capabilities, "completion")
+      end
+
+      table.insert(
+        output,
+        string.format(
+          "%s  %s\n    root: %s\n    capabilities: %s",
+          icon,
+          client.name,
+          root_dir,
+          next(capabilities) and table.concat(capabilities, ", ") or "none"
+        )
+      )
+    end
+  end
+
+  vim.notify(table.concat(output, "\n\n"), vim.log.levels.INFO, { title = "LSP Info", timeout = 5000 })
+end, {
+  nargs = "?",
+})
