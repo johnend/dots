@@ -41,6 +41,26 @@ return {
       graphql = {},
       helm_ls = {},
       html = {},
+      jdtls = {
+        settings = {
+          java = {
+            configuration = {
+              runtimes = {
+                {
+                  name = "JavaSE-21",
+                  path = vim.fn.expand "~/.asdf/installs/java/corretto-21.0.6.7.1",
+                  default = true,
+                },
+                {
+                  name = "JavaSE-11",
+                  path = vim.fn.expand "~/.asdf/installs/java/temurin-11.0.22+7",
+                  default = false,
+                },
+              },
+            },
+          },
+        },
+      },
       jsonls = {
         settings = {
           json = {
