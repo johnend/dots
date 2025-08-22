@@ -20,7 +20,6 @@ return {
     dashboard.section.header.val = headers.king
     dashboard.section.buttons.val = {
       button("f", icons.ui.Files .. "  Find file", ":Telescope find_files <CR>"),
-      button("n", icons.ui.NewFile .. "  New file", ":ene <BAR> start insert <CR>"),
       button(
         "p",
         icons.git.Repo .. "  Find project",
