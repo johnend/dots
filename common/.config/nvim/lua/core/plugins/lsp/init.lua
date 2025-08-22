@@ -15,102 +15,11 @@ return {
     "mason-org/mason-lspconfig.nvim",
     "saghen/blink.cmp",
     "b0o/schemastore.nvim",
+    "mfussenegger/nvim-jdtls",
   },
   config = function()
-    local schemastore = require "schemastore"
+    local servers = require "core.config.lsp.servers"
     -- 1) Define the servers we actually want, and any special settings
-    local servers = {
-      bashls = {},
-      cssls = {},
-      css_variables = {},
-      cssmodules_ls = {},
-      emmet_language_server = {},
-      eslint = {
-        setting = {
-          codeAction = {
-            disableRuleComment = {
-              enable = true,
-              location = "separateLine",
-            },
-            showDocumentation = {
-              enable = true,
-            },
-          },
-        },
-      },
-      graphql = {},
-      helm_ls = {},
-      html = {},
-      jdtls = {
-        settings = {
-          java = {
-            configuration = {
-              runtimes = {
-                {
-                  name = "JavaSE-21",
-                  path = vim.fn.expand "~/.asdf/installs/java/corretto-21.0.6.7.1",
-                  default = true,
-                },
-                {
-                  name = "JavaSE-11",
-                  path = vim.fn.expand "~/.asdf/installs/java/temurin-11.0.22+7",
-                  default = false,
-                },
-              },
-            },
-          },
-        },
-      },
-      jsonls = {
-        settings = {
-          json = {
-            validate = { enable = true },
-            schemas = vim.list_extend({
-              {
-                description = "Lua language server config file",
-                filematch = { ".luarc.json" },
-                url = "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/settings/schema.json",
-              },
-            }, schemastore.json.schemas()),
-          },
-        },
-      },
-      lua_ls = {
-        settings = {
-          Lua = {
-            completion = { callSnippet = "Replace" },
-            diagnostics = { disable = { "missing-fields" } }, -- fix: use '=' not '-'
-          },
-        },
-      },
-      pyright = {},
-      somesass_ls = {},
-      terraformls = {},
-      tflint = {},
-      vtsls = {
-        settings = {
-          typescript = {
-            preferences = {
-              includeCompletionsForModuleExports = true,
-              includeCompletionsForImportStatements = true,
-              importModuleSpecifier = "non-relative",
-            },
-          },
-        },
-      },
-      yamlls = {
-        settings = {
-          yaml = {
-            schemaStore = {
-              enable = false,
-              url = "",
-            },
-            schemas = schemastore.yaml.schemas(),
-          },
-        },
-      },
-      -- add other servers here, e.g. pyright = {}, tsserver = {}, etc.
-    }
 
     local formatters = { "stylua", "prettier", "prettierd" }
     -- local dap = { "js-debug-adapter", "codelldb" } -- table for daps
@@ -121,14 +30,18 @@ return {
     -- 3) Ensure mason-tool-installer actually installs the right binaries
     local ensure_tools = vim.tbl_keys(servers) -- e.g. { "lua_ls" }
 
-    vim.list_extend(ensure_tools, formatters) -- add stylua as a formatter
+    vim.list_extend(ensure_tools, formatters)  -- add stylua as a formatter
     -- vim.list_extend(ensure_tools, dap) -- uncomment to add dap tooling
 
     -- 4) Configure mason-lspconfig to install & wire up our LSPs
     require("mason-lspconfig").setup {
       ensure_installed = vim.tbl_keys(servers),
       automatic_installation = true,
-      automatic_enable = true,
+      automatic_enable = {
+        exclude = {
+          -- "jdtls", -- Try letting mason-lspconfig handle jdtls automatically
+        },
+      },
       handlers = {
         -- default handler (will be called for each server_name)
         function(server_name)
