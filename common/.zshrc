@@ -47,13 +47,14 @@ command -v thefuck &> /dev/null && eval "$(thefuck --alias)"
 
 # Netskope certs (mac-specific)
 if [[ "$OSTYPE" == darwin* && -f "$HOME/netskope/certs/nscacert_combined.pem" ]]; then
-  export SSL_CERT_DIR="$HOME/netskope/certs"
-  export REQUESTS_CA_BUNDLE="$SSL_CERT_DIR/nscacert_combined.pem"
-  export CURL_CA_BUNDLE="$REQUESTS_CA_BUNDLE"
-  export SSL_CERT_FILE="$REQUESTS_CA_BUNDLE"
-  export NODE_EXTRA_CA_CERTS="$REQUESTS_CA_BUNDLE"
-  export GIT_SSL_CAPATH="$REQUESTS_CA_BUNDLE"
-  export PIP_CERT="$REQUESTS_CA_BUNDLE"
+  export REQUESTS_CA_BUNDLE=/opt/netskope/certs/nscacert_combined.pem
+  export CURL_CA_BUNDLE=/opt/netskope/certs/nscacert_combined.pem
+  export SSL_CERT_DIR=/opt/netskope/certs/nscacert_combined.pem
+  export PIP_CERT=/opt/netskope/certs/nscacert_combined.pem
+  export NODE_EXTRA_CA_CERTS=/opt/netskope/certs/nscacert_combined.pem
+  export GIT_SSL_CAPATH=/opt/netskope/certs/nscacert_combined.pem
+  export SSL_CERT_FILE=/opt/netskope/certs/nscacert_combined.pem
+  export HTTPLIB2_CA_CERTS=/opt/netskope/certs/nscacert_combined.pem
   export DENO_TLS_CA_STORE=system
 fi
 
@@ -62,13 +63,3 @@ fi
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
-# Netskope SSL Decryption Cert
-export REQUESTS_CA_BUNDLE=/opt/netskope/certs/nscacert_combined.pem
-export CURL_CA_BUNDLE=/opt/netskope/certs/nscacert_combined.pem
-export SSL_CERT_DIR=/opt/netskope/certs/nscacert_combined.pem
-export PIP_CERT=/opt/netskope/certs/nscacert_combined.pem
-export NODE_EXTRA_CA_CERTS=/opt/netskope/certs/nscacert_combined.pem
-export GIT_SSL_CAPATH=/opt/netskope/certs/nscacert_combined.pem
-export SSL_CERT_FILE=/opt/netskope/certs/nscacert_combined.pem
-export HTTPLIB2_CA_CERTS=/opt/netskope/certs/nscacert_combined.pem
-export DENO_TLS_CA_STORE=system
