@@ -58,7 +58,7 @@ return {
       "/Users/john.enderby/Developer/lsp/jdtls_data/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t"),
     },
     root_dir = function(startpath)
-      return vim.fs.dirname(vim.fs.find('.git', { path = startpath, upward = true })[1])
+      return vim.fs.dirname(vim.fs.find(".git", { path = startpath, upward = true })[1])
     end,
     settings = {
       java = {
@@ -186,6 +186,16 @@ return {
           includeCompletionsForModuleExports = true,
           includeCompletionsForImportStatements = true,
           importModuleSpecifier = "non-relative",
+          quotePreference = "auto", -- Automatically adjust quotes
+          allowTextChangesInNewFiles = true, -- Allow refactoring in new files
+          provideRefactorNotApplicableReason = true, -- Show why a refactor is unavailable
+        },
+        suggest = {
+          autoImports = true,
+          completeFunctionCalls = true,
+        },
+        tsconfig = {
+          enableProjectWideIntellisense = true, -- Ensure project-wide alias resolution
         },
       },
     },
