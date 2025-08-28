@@ -1,6 +1,6 @@
 return {
   buffers = require(... .. ".buffers"),
-  copilot = require(... .. ".copilot"),
+  ai = require(... .. ".ai"),
   general = require(... .. ".general"),
   git = require(... .. ".git"),
   grug = require(... .. ".grugfar"),

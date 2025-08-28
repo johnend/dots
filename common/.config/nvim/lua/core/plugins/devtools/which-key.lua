@@ -50,7 +50,7 @@ return {
 
     local keymaps = require "core.config.wkmaps"
     local buffers = keymaps.buffers
-    local copilot = keymaps.copilot
+    local ai = keymaps.ai
     local general = keymaps.general
     local git = keymaps.git
     local grug = keymaps.grug
@@ -68,7 +68,7 @@ return {
       ---------------------------------
       buffers,
       ---------------------------------
-      copilot,
+      ai,
       ---------------------------------
       neotest,
       ---------------------------------

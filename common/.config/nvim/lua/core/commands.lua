@@ -51,12 +51,12 @@ autocommand("VimResized", {
 })
 
 -- Disable completion in markdown and text
-autocommand("FileType", {
-  pattern = { "markdown", "text" },
-  callback = function()
-    vim.cmd "LspStop"
-  end,
-})
+-- autocommand("FileType", {
+--   pattern = { "markdown", "text" },
+--   callback = function()
+--     vim.cmd "LspStop"
+--   end,
+-- })
 
 autocommand("BufLeave", {
   pattern = { "*lazygit*" },
