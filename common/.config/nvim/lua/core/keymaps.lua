@@ -49,7 +49,6 @@ keymap("n", "N", "nzzzv", opts)
 vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", opts)
 
 -- Diagnostic keymaps
--- TODO: the goto_prev and goto_next methods are deprecated will need something else
 vim.keymap.set("n", "[d", function()
   vim.diagnostic.jump { count = 1 }
 end, { desc = "Previous diagnostic message" })

@@ -1,5 +1,7 @@
 return {
   "olimorris/codecompanion.nvim",
+  cmd = { "CodeCompanion", "CodeCompanionChat", "CodeCompanionAction" },
+  event = "VeryLazy",
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
@@ -7,7 +9,7 @@ return {
   opts = {
     -- NOTE: The log_level is in `opts.opts`
     opts = {
-      log_level = "DEBUG", -- or "TRACE"
+      log_level = "WARN", -- reduced logging overhead
     },
   },
 

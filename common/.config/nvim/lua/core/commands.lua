@@ -50,14 +50,6 @@ autocommand("VimResized", {
   end,
 })
 
--- Disable completion in markdown and text
--- autocommand("FileType", {
---   pattern = { "markdown", "text" },
---   callback = function()
---     vim.cmd "LspStop"
---   end,
--- })
-
 autocommand("BufLeave", {
   pattern = { "*lazygit*" },
   group = vim.api.nvim_create_augroup("git_refresh_neotree", { clear = true }),

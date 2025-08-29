@@ -15,7 +15,6 @@ return {
     "mason-org/mason-lspconfig.nvim",
     "saghen/blink.cmp",
     "b0o/schemastore.nvim",
-    "mfussenegger/nvim-jdtls",
   },
   config = function()
     local servers = require "core.config.lsp.servers"
@@ -30,7 +29,7 @@ return {
     -- 3) Ensure mason-tool-installer actually installs the right binaries
     local ensure_tools = vim.tbl_keys(servers) -- e.g. { "lua_ls" }
 
-    vim.list_extend(ensure_tools, formatters)  -- add stylua as a formatter
+    vim.list_extend(ensure_tools, formatters) -- add stylua as a formatter
     -- vim.list_extend(ensure_tools, dap) -- uncomment to add dap tooling
 
     -- 4) Configure mason-lspconfig to install & wire up our LSPs

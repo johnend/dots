@@ -1,6 +1,6 @@
 return {
   "OXY2DEV/markview.nvim",
-  lazy = false, -- Recommended
+  lazy = true, -- Recommended to be false
   opts = {
     preview = {
       filetypes = { "markdown", "codecompanion" }, -- If you decide to lazy-load anyway

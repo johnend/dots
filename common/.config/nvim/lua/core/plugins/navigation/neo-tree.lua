@@ -66,7 +66,6 @@ return {
       sources = {
         "filesystem",
         "git_status",
-        -- "document_symbols", -- maybe add this back in at some point?
       },
       source_selector = {
         winbar = true,

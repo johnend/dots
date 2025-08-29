@@ -1,6 +1,6 @@
 return {
   "folke/noice.nvim",
-  event = "VimEnter",
+  event = "VeryLazy",
   dependencies = {
     "MunifTanjim/nui.nvim",
   },
