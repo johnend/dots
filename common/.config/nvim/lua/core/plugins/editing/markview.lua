@@ -6,6 +6,7 @@ return {
       filetypes = { "markdown", "codecompanion" }, -- If you decide to lazy-load anyway
       ignore_buftypes = {},
     },
+    experimental = { check_rtp_message = false },
   },
 
   dependencies = {
@@ -14,12 +15,4 @@ return {
     -- Or if the parsers are in your $RUNTIMEPATH
     "nvim-tree/nvim-web-devicons",
   },
-  config = function()
-    local status_ok, markview = pcall(require, "markview")
-    if not status_ok then
-      return
-    end
-
-    markview.setup {}
-  end,
 }

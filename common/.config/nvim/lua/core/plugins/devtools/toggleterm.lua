@@ -1,5 +1,27 @@
 local M = {}
 
+local function focus_term(term)
+  if not term then
+    return false
+  end
+
+  if term.window and vim.api.nvim_win_is_valid(term.window) then
+    vim.api.nvim_set_current_win(term.window)
+    vim.cmd "startinsert"
+    return true
+  end
+
+  if type(term.bufnr) == "number" and term.bufnr > 0 then
+    local win = vim.fn.bufwinid(term.bufnr)
+    if win ~= -1 then
+      vim.api.nvim_set_current_win(win)
+      vim.cmd "startinsert"
+      return true
+    end
+  end
+  return false
+end
+
 function M.lazygit_toggle()
   local Terminal = require("toggleterm.terminal").Terminal
   if not M._lazygit then
@@ -19,7 +41,13 @@ function M.lazygit_toggle()
       },
     }
   end
-  M._lazygit:toggle()
+  if focus_term(M._lazygit) then
+    return
+  end
+  M._lazygit:open()
+  vim.schedule(function()
+    focus_term(M._lazygit)
+  end)
 end
 
 function M.gh_dash_toggle()
@@ -41,7 +69,13 @@ function M.gh_dash_toggle()
       },
     }
   end
-  M._gh_dash:toggle()
+  if focus_term(M._gh_dash) then
+    return
+  end
+  M._gh_dash:open()
+  vim.schedule(function()
+    focus_term(M._gh_dash)
+  end)
 end
 
 return {

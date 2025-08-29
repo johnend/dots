@@ -1,5 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+  branch = "main",
   event = "BufEnter",
   cmd = {
     "TSInstallFromGrammar",
@@ -9,6 +10,10 @@ return {
     "TSUpdateSync",
     "TSInstallInfo",
     "TSInstallSync",
+  },
+  dependencies = {
+    "HiPhish/rainbow-delimiters.nvim",
+    "nvim-treesitter/nvim-treesitter-textobjects",
   },
   config = function()
     local status_ok, ts = pcall(require, "nvim-treesitter.configs")
@@ -52,18 +57,13 @@ return {
       "yuck",
     }
 
-    local opts = {
+    ts.setup {
       ensure_installed = required_languages,
       auto_install = true,
       highlight = {
         enable = true,
       },
       indent = { enable = true, disable = {} },
-      rainbow = {
-        enable = true,
-        query = "rainbow-delimiters",
-        strategy = require("rainbow-delimiters").strategy.global,
-      },
       textobjects = {
         select = {
           enable = true,
@@ -106,6 +106,13 @@ return {
         },
       },
     }
-    ts.setup(opts)
+
+    vim.g.rainbow_delimeters = {
+      enable = true,
+      strategy = {
+        [""] = require("rainbow-delimiters").strategy.global,
+      },
+      query = { [""] = "rainbow-delimiters" },
+    }
   end,
 }
