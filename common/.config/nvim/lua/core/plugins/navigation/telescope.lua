@@ -62,7 +62,7 @@ return {
       theme = "dropdown", ---@type telescope_themes
       defaults = {
         prompt_prefix = " " .. icons.ui.Telescope .. "  ",
-        selection_caret = " " .. icons.ui.Forward .. "  ",
+        selection_caret = icons.ui.BoldLineLeft,
         entry_prefix = " ",
         initial_mode = "insert",
         selection_strategy = "reset",
@@ -90,6 +90,10 @@ return {
       },
       -- TODO: figure out how to change the layouts of the pickers (increased width for preview for example)
       pickers = {
+        codecompanion = {
+          theme = dropdown_config.theme,
+          layout_config = dropdown_config.layout_config,
+        },
         help_tags = {
           theme = dropdown_config.theme,
           layout_config = dropdown_config.layout_config,
