@@ -1,4 +1,5 @@
 return {
+  -- should be added as a dependency to treesitter or it will generate a warning
   "OXY2DEV/markview.nvim",
   lazy = false, -- Recommended
   opts = {

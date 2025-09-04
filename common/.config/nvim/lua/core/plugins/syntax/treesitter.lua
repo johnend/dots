@@ -10,6 +10,9 @@ return {
     "TSInstallInfo",
     "TSInstallSync",
   },
+  dependencies = {
+    "OXY2DEV/markview.nvim",
+  },
   config = function()
     local status_ok, ts = pcall(require, "nvim-treesitter.configs")
     if not status_ok then
