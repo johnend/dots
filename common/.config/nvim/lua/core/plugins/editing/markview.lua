@@ -1,28 +1,23 @@
 return {
-  -- should be added as a dependency to treesitter or it will generate a warning
   "OXY2DEV/markview.nvim",
-  lazy = false, -- Recommended
+  lazy = false,
+  priority = 49,
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+  },
+
   opts = {
     preview = {
-      filetypes = { "markdown", "codecompanion" }, -- If you decide to lazy-load anyway
-      ignore_buftypes = {},
+      filetypes = { "markdown", "md", "codecompanion" },
     },
   },
 
-  dependencies = {
-    -- You will not need this if you installed the
-    -- parsers manually
-    -- Or if the parsers are in your $RUNTIMEPATH
-    "nvim-tree/nvim-web-devicons",
-  },
   config = function()
     local status_ok, markview = pcall(require, "markview")
     if not status_ok then
       return
     end
 
-    markview.setup {
-      experimental = { check_rtp_message = false },
-    }
+    markview.setup {}
   end,
 }
