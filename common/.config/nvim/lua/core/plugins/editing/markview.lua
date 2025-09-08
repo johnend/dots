@@ -1,7 +1,6 @@
 return {
   "OXY2DEV/markview.nvim",
   lazy = false,
-  priority = 49,
   dependencies = {
     "nvim-tree/nvim-web-devicons",
   },
@@ -9,6 +8,9 @@ return {
   opts = {
     preview = {
       filetypes = { "markdown", "md", "codecompanion" },
+    },
+    experimental = {
+      check_rtp_message = false,
     },
   },
 
