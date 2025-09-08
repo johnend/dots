@@ -21,6 +21,8 @@ return {
       return
     end
 
-    markview.setup {}
+    markview.setup {
+      experimental = { check_rtp_message = false },
+    }
   end,
 }

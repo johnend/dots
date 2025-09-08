@@ -1,6 +1,8 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   event = "BufEnter",
+  branch = "main",
+  build = ":TSUpdate",
   cmd = {
     "TSInstallFromGrammar",
     "TSInstall",
@@ -12,9 +14,11 @@ return {
   },
   dependencies = {
     "OXY2DEV/markview.nvim",
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    "HiPhish/rainbow-delimiters.nvim",
   },
   config = function()
-    local status_ok, ts = pcall(require, "nvim-treesitter.configs")
+    local status_ok, ts = pcall(require, "nvim-treesitter.config")
     if not status_ok then
       return
     end
@@ -53,10 +57,12 @@ return {
       "vue",
       "yaml",
       "yuck",
+      "query",
     }
 
     local opts = {
       ensure_installed = required_languages,
+      sync_install = false,
       auto_install = true,
       highlight = {
         enable = true,

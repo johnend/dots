@@ -1,10 +1,11 @@
 return {
   "nvim-telescope/telescope.nvim",
   cmd = "Telescope",
-  branch = "0.1.x",
-  lazy = true,
+  branch = "master",
+  event = "VeryLazy",
   dependencies = {
     "nvim-lua/plenary.nvim",
+    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
     {
       "nvim-telescope/telescope-fzf-native.nvim",
       event = "VeryLazy",
