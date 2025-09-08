@@ -1,18 +1,8 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   lazy = false,
-  event = "BufEnter",
   branch = "main",
   build = ":TSUpdate",
-  cmd = {
-    "TSInstallFromGrammar",
-    "TSInstall",
-    "TSUninstall",
-    "TSUpdate",
-    "TSUpdateSync",
-    "TSInstallInfo",
-    "TSInstallSync",
-  },
   dependencies = {
     "OXY2DEV/markview.nvim",
     "nvim-treesitter/nvim-treesitter-textobjects",
@@ -23,8 +13,6 @@ return {
     if not status_ok then
       return
     end
-
-    require("nvim-treesitter.install").prefer_git = true
 
     local required_languages = {
       "bash",
@@ -61,8 +49,12 @@ return {
       "query",
     }
 
+    local install = require "nvim-treesitter.install"
+
+    install.prefer_git = true
+    install(required_languages)
+
     local opts = {
-      ensure_installed = required_languages,
       sync_install = false,
       auto_install = true,
       highlight = {
