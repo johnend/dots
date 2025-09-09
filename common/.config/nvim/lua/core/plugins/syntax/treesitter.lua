@@ -52,7 +52,7 @@ return {
     local install = require "nvim-treesitter.install"
 
     install.prefer_git = true
-    install(required_languages)
+    install.install(required_languages)
 
     local opts = {
       sync_install = false,

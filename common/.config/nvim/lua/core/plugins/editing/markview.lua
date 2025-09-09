@@ -9,6 +9,9 @@ return {
     preview = {
       filetypes = { "markdown", "md", "codecompanion" },
     },
+    experimental = {
+      check_rtp_message = false,
+    },
   },
 
   config = function()

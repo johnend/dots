@@ -49,4 +49,5 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 elif [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
-
+# Alternative NeoVim configs
+alias minvim='NVIM_APPNAME=minvim nvim' # LazyVim
