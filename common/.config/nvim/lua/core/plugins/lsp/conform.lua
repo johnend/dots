@@ -29,7 +29,9 @@ return {
         scss = { "prettierd", "prettier", stop_after_first = true },
         markdown = { "prettierd", "prettier", stop_after_first = true },
         graphql = { "prettierd", "prettier", stop_after_first = true },
-        terraform = { "terraform", "terraform", stop_after_first = true },
+        terraform = { "terraform_fmt" },
+        tf = { "terraform_fmt" },
+        ["terraform-vars"] = { "terraform_fmt" },
       },
     }
   end,
