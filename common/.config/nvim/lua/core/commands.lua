@@ -150,3 +150,80 @@ vim.api.nvim_create_user_command("LspNames", function(opts)
 end, {
   nargs = "?",
 })
+
+-- CodeCompanion progress using snacks
+local spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+local group = vim.api.nvim_create_augroup("CodeCompanionFidgetHooks", { clear = true })
+local icons = require "core.config.icons"
+
+vim.api.nvim_create_autocmd({ "User" }, {
+  pattern = "CodeCompanion*",
+  group = group,
+  callback = function(request)
+      if vim.endswith(request.match, "ContextChanged") then
+        return
+      end
+      if request.match == "CodeCompanionChatSubmitted" then
+        return
+      end
+
+    local function camel_to_sentence(str)
+      local s = str:gsub("(%u)", " %1"):gsub("^%s+", "")
+      return (s:sub(1, 1):upper() .. s:sub(2):lower())
+    end
+
+    local event_name = request.match:gsub("CodeCompanion", "")
+    local msg = "[CodeCompanion] " .. camel_to_sentence(event_name)
+    -- Icon mapping for CodeCompanion events
+    local event_icons = {
+      Started = icons.ui.BoldArrowRight,
+      Finished = icons.ui.Check,
+      Error = icons.diagnostics.Error,
+      Warning = icons.diagnostics.Warning,
+      Information = icons.diagnostics.Information,
+      Hint = icons.diagnostics.Hint,
+      Opened = icons.ui.FolderOpen,
+      Closed = icons.ui.Folder,
+      Cleared = icons.ui.Broom or icons.ui.BoldClose,
+      Created = icons.ui.NewFile,
+      ContextChanged = icons.ui.History,
+      Hidden = icons.ui.Ellipsis,
+      Visible = icons.ui.Eye or icons.ui.Circle,
+      Progress = icons.ui.Telescope,
+      Cancelled = icons.diagnostics.BoldError,
+      Timeout = icons.diagnostics.Warning,
+      Success = icons.ui.Check,
+      Failure = icons.diagnostics.Error,
+      TestCovered = icons.ui.TestCovered,
+      TestUncovered = icons.ui.TestUncovered,
+      RequestStreaming = icons.ui.Telescope,
+    }
+
+    vim.notify(msg, 2, {
+      timeout = 1000,
+      keep = function()
+        return not vim
+          .iter({ "Finished", "Opened", "Hidden", "Closed", "Cleared", "Created", "ContextChanged" })
+          :fold(false, function(acc, cond)
+            return acc or vim.endswith(request.match, cond)
+          end)
+      end,
+      id = "code_companion_status",
+      title = "Code Companion Status",
+      opts = function(notif)
+        local icon = ""
+        for event, event_icon in pairs(event_icons) do
+          if vim.endswith(request.match, event) then
+            icon = event_icon or ""
+            break
+          end
+        end
+        if vim.endswith(request.match, "Started") then
+          ---@diagnostic disable-next-line: undefined-field
+          icon = spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
+        end
+        notif.icon = icon
+      end,
+    })
+  end,
+})

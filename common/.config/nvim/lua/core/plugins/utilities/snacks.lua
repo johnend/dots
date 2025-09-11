@@ -56,7 +56,7 @@ return {
       notifier = {
         enabled = true,
         timeout = 2000,
-        style = "compact",
+        style = "minimal",
         top_down = false,
       },
       quickfile = { enabled = true },
