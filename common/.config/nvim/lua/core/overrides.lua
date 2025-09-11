@@ -22,3 +22,5 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     end
   end,
 })
+
+vim.api.nvim_set_hl(0, "Folded", { link = "Visual" })
