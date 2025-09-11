@@ -1,7 +1,7 @@
 return {
   "OXY2DEV/markview.nvim",
   lazy = false,
-  priorit = 49,
+  priority = 49,
   dependencies = {
     "nvim-tree/nvim-web-devicons",
   },

@@ -41,6 +41,9 @@ else
   export EDITOR="nvim"
 fi
 
+# NeoVim as Manpager
+export MANPAGER="nvim +Man!"
+
 # if [ -z "$OP_SESSION_personal" ]; then
 #   export OP_SESSION_personal=$(op signin --raw)
 # fi
