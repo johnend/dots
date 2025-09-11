@@ -11,6 +11,7 @@ vim.filetype.add {
     ["tsconfig.json"] = "jsonc",
     [".yamlfmt"] = "yaml",
     [".cfg"] = "cfg",
+    [".tfvars"] = "terraform",
   },
   pattern = {
     ["%.env%.[%w_.-]+"] = "sh",
