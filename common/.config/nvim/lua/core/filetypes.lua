@@ -5,13 +5,12 @@ vim.filetype.add {
     conf = "conf",
     env = "dotenv",
     rasi = "rasi",
+    cfg = "cfg",
+    tfvars = "terraform",
+    yamlfmt = "yaml",
   },
   filename = {
-    [".env"] = "dotenv",
     ["tsconfig.json"] = "jsonc",
-    [".yamlfmt"] = "yaml",
-    [".cfg"] = "cfg",
-    [".tfvars"] = "terraform",
   },
   pattern = {
     ["%.env%.[%w_.-]+"] = "sh",
