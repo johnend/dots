@@ -155,5 +155,6 @@ return {
     pcall(telescope.load_extension "fzf")
     pcall(telescope.load_extension "ui-select")
     pcall(telescope.load_extension "project")
+    pcall(telescope.load_extension "grapple")
   end,
 }

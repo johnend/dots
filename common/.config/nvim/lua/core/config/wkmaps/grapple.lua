@@ -1,5 +1,5 @@
 return {
-  { "<leader>h", group = "Harpoon", icon = icons.misc.Hook },
+  { "<leader>h", group = "Grapple", icon = icons.misc.Hook },
   {
     "<leader>hh",
     "<cmd>Grapple toggle<cr>",
@@ -15,35 +15,35 @@ return {
   {
     "<leader>ha",
     "<cmd>Grapple select index=1<cr>",
-    desc = "Harpoon 1",
+    desc = "Go to 1",
   },
 
   {
     "<leader>hs",
     "<cmd>Grapple select index=2<cr>",
-    desc = "Harpoon 2",
+    desc = "Go to 2",
   },
 
   {
     "<leader>hd",
     "<cmd>Grapple select index=3<cr>",
-    desc = "Harpoon 3",
+    desc = "Go to 3",
   },
 
   {
     "<leader>hf",
     "<cmd>Grapple select index=4<cr>",
-    desc = "Harpoon 4",
+    desc = "Go to 4",
   },
 
   {
-    "<C-S-N>",
+    "<leader>hn",
     "<cmd>Grapple cycle_tags next<cr>",
     desc = "Go to next tag",
   },
 
   {
-    "<C-S-P>",
+    "<leader>hp",
     "<cmd>Grapple cycle_tags prev<cr>",
     desc = "Go to previous tag",
   },
