@@ -90,7 +90,7 @@ return {
             -- Change type
             added = icons.git.LineAdded, -- or "✚", but this is redundant info if you use git_status_colors on the name
             modified = icons.git.LineModified, -- or "", but this is redundant info if you use git_status_colors on the name
-            deleted = icons.git.FileRemoved, -- this can only be used in the git_status source
+            deleted = icons.git.FileDeleted, -- this can only be used in the git_status source
             renamed = icons.git.FileRenamed, -- this can only be used in the git_status source
             -- Status type
             untracked = icons.git.FileUntracked,
