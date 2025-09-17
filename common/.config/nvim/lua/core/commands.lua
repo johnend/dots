@@ -1,10 +1,16 @@
--- Normal commands
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 
 local autocommand = vim.api.nvim_create_autocmd
+autocommand({ "CursorMoved", "CursorMovedI", "WinLeave", "BufLeave", "BufWinLeave" }, {
+  callback = function()
+    local win = vim.diagnostic.get_open_float and vim.diagnostic.get_open_float()
+    if win then
+      vim.diagnostic.close_float()
+    end
+  end,
+})
 
--- Auto-commands
 -- Highlight when yanking text
 autocommand("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
@@ -160,12 +166,12 @@ vim.api.nvim_create_autocmd({ "User" }, {
   pattern = "CodeCompanion*",
   group = group,
   callback = function(request)
-      if vim.endswith(request.match, "ContextChanged") then
-        return
-      end
-      if request.match == "CodeCompanionChatSubmitted" then
-        return
-      end
+    if vim.endswith(request.match, "ContextChanged") then
+      return
+    end
+    if request.match == "CodeCompanionChatSubmitted" then
+      return
+    end
 
     local function camel_to_sentence(str)
       local s = str:gsub("(%u)", " %1"):gsub("^%s+", "")
