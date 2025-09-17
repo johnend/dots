@@ -7,7 +7,7 @@ source <(fzf --zsh)
 
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS$'\n'"\
-  --color=fg:#a6adc8,fg+:#cdd6f4,bg:-1,bg+:#313244 \
+  --color=fg:#a6adc8,fg+:#cdd6f4,bg:-1,bg+:#232529 \
   --color=hl:#cba6f7,hl+:#94e2d5,info:#cba6f7,marker:#a6e3a1 \
   --color=prompt:#d7005f,spinner:#cba6f7,pointer:#cba6f7,header:#b4befe \
   --color=border:#313244,preview-fg:#cdd6f4,preview-label:#bac2de,label:#bac2de \
@@ -31,7 +31,7 @@ export FZF_ALT_C_OPTS="--preview 'eza -T {} | head -50'"
 
 zstyle ':fzf-tab:*' fzf-command fzf
 zstyle ':fzf-tab:*' fzf-flags \
-  --color=fg:#a6adc8,fg+:#cdd6f4,bg:-1,bg+:#313244 \
+  --color=fg:#a6adc8,fg+:#cdd6f4,bg:-1,bg+:#232529 \
   --color=hl:#cba6f7,hl+:#94e2d5,info:#cba6f7,marker:#a6e3a1 \
   --color=prompt:#d7005f,spinner:#cba6f7,pointer:#cba6f7,header:#b4befe \
   --color=border:#313244,preview-fg:#cdd6f4,preview-label:#bac2de,label:#bac2de \
