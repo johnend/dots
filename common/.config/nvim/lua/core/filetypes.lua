@@ -7,6 +7,7 @@ vim.filetype.add {
     rasi = "rasi",
     cfg = "cfg",
     tfvars = "terraform",
+    tf = "terraform",
     yamlfmt = "yaml",
   },
   filename = {
