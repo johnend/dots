@@ -209,10 +209,10 @@ vim.api.nvim_create_autocmd({ "User" }, {
       timeout = 1000,
       keep = function()
         return not vim
-          .iter({ "Finished", "Opened", "Hidden", "Closed", "Cleared", "Created", "ContextChanged" })
-          :fold(false, function(acc, cond)
-            return acc or vim.endswith(request.match, cond)
-          end)
+            .iter({ "Finished", "Opened", "Hidden", "Closed", "Cleared", "Created", "ContextChanged" })
+            :fold(false, function(acc, cond)
+              return acc or vim.endswith(request.match, cond)
+            end)
       end,
       id = "code_companion_status",
       title = "Code Companion Status",
@@ -231,5 +231,31 @@ vim.api.nvim_create_autocmd({ "User" }, {
         notif.icon = icon
       end,
     })
+  end,
+})
+
+-- CodeCompanion Markview Setup
+local codecompanion_group = vim.api.nvim_create_augroup("CodeCompanionMarkview", { clear = true })
+
+autocommand("FileType", {
+  group = codecompanion_group,
+  pattern = "codecompanion",
+  callback = function()
+    -- Set conceallevel for markview to work
+    vim.opt_local.conceallevel = 2
+    vim.opt_local.concealcursor = ""
+  end,
+})
+
+-- Alternative approach - also handle by buffer name if filetype detection isn't working
+autocommand("BufEnter", {
+  group = codecompanion_group,
+  pattern = "*",
+  callback = function()
+    local bufname = vim.api.nvim_buf_get_name(0)
+    if bufname:match("codecompanion") or vim.bo.filetype == "codecompanion" then
+      vim.opt_local.conceallevel = 2
+      vim.opt_local.concealcursor = ""
+    end
   end,
 })

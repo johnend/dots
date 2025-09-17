@@ -29,6 +29,13 @@ return {
         action_palette = {
           provider = "telescope",
         },
+        chat = {
+          -- Disable CodeCompanion's built-in formatting to allow markview to handle it
+          show_header_separator = false, -- This is the key setting!
+          show_references = false,
+          show_settings = false,
+          show_token_count = false,
+        },
       },
       strategies = {
         chat = {
