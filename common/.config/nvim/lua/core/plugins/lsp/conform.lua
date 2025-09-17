@@ -36,7 +36,7 @@ return {
     }
   end,
 
-  -- Register user command to enable/disable formatting
+  -- Register user commands to enable/disable formatting
   vim.api.nvim_create_user_command("FormatDisable", function(args)
     if args.bang then
       -- FormatDisable! will disable formatting just for this buffer
@@ -48,10 +48,38 @@ return {
     desc = "Disable autoformat-on-save",
     bang = true,
   }),
+
   vim.api.nvim_create_user_command("FormatEnable", function()
     vim.b.disable_autoformat = false
     vim.g.disable_autoformat = false
   end, {
     desc = "Re-enable autoformat-on-save",
+  }),
+
+  vim.api.nvim_create_user_command("FormatToggle", function()
+    local buf_disabled = vim.b.disable_autoformat
+    local global_disabled = vim.g.disable_autoformat
+
+    if buf_disabled or global_disabled then
+      vim.b.disable_autoformat = false
+      vim.g.disable_autoformat = false
+      vim.notify("Format on save enabled", 2, {
+        timeout = 1000,
+        id = "auto_format_status",
+        title = "Conform Status",
+        icon = icons.diagnostics.Information,
+      })
+    else
+      vim.b.disable_autoformat = true
+      vim.g.disable_autoformat = true
+      vim.notify("Format on save disabled", 4, {
+        timeout = 1000,
+        id = "auto_format_status",
+        title = "Conform Status",
+        icon = icons.diagnostics.BoldError,
+      })
+    end
+  end, {
+    desc = "Toggle autoformat-on-save with notification",
   }),
 }

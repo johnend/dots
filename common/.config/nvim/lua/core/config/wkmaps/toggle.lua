@@ -75,6 +75,11 @@ return {
     desc = "Diagnostics Virtual Text",
   },
   {
+    "<leader>tf",
+    "<cmd>FormatToggle<cr>",
+    desc = "Format on save",
+  },
+  {
     "<leader>th",
     function()
       toggle_notify("inlay_hints_enabled", function()
