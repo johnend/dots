@@ -233,10 +233,6 @@ return {
         },
       },
     },
-    fuzzy = {
-      implementation = "prefer_rust_with_warning",
-      use_frecency = false,
-    },
     signature = {
       enabled = true,
       window = {
