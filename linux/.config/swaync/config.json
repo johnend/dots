@@ -7,11 +7,10 @@
   "layer-shell": true,
   "control-center-layer": "top",
   "control-center-width": 400,
-  "control-center-height": 800,
+  "control-center-height": -1,
   "notification-2fa-action": true,
   "notification-inline-replies": false,
   "notification-window-width": 400,
-  "notification-icon-size": 40,
   "notification-body-image-height": 100,
   "notification-body-image-width": 200,
   "timeout": 8,
@@ -23,6 +22,7 @@
   "transition-time": 200,
   "hide-on-clear": false,
   "hide-on-action": true,
+  "text-empty": "󱅾   No notifications\nGo have some food\n\n\n\n\n\n",
   "script-fail-notify": true,
   "widgets": [
     "title",
@@ -45,9 +45,9 @@
       "max-lines": 1,
       "text": " "
     },
-    "mpris": {
-      "image-size": 96,
-      "image-radius": 0
+    "mpris": {},
+    "notifications": {
+      "vexpand": true
     },
     "buttons-grid": {
       "actions": [

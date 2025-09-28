@@ -14,7 +14,7 @@
 .floating-notifications.background .notification-row .notification-background {
   background-color: #191724;
   color: #e0def4;
-  border: 1px solid @rose;
+  border: 1px solid var(--rose);
   padding: 0 0.5rem;
 }
 
@@ -70,8 +70,8 @@
   > *
   .notification-action {
   margin: 0.5rem 0 0 0;
-  color: @base;
-  background-color: @pine;
+  color: var(--base);
+  background-color: var(--pine);
 }
 
 .floating-notifications.background
@@ -81,8 +81,8 @@
   > *:last-child
   > *
   .notification-action:hover {
-  background-color: @rose;
-  color: @base;
+  background-color: var(--rose);
+  color: var(--base);
 }
 
 .floating-notifications.background
@@ -93,7 +93,7 @@
   > *
   .notification-action:active {
   background-color: #6e6a86;
-  color: @text;
+  color: var(--text);
 }
 
 .floating-notifications.background
@@ -127,7 +127,7 @@
   background-color: #191724;
   color: #e0def4;
   padding: 1rem;
-  border: 1px solid @rose;
+  border: 1px solid var(--rose);
 }
 
 .control-center .widget-title {
@@ -204,8 +204,8 @@
   .notification
   .notification-content
   .time {
-  color: @base;
-  background: @rose;
+  color: var(--base);
+  background: var(--rose);
   border-radius: 2px;
   margin: 0.5rem 0.5rem 0 0;
   padding: 0 0.5rem;
@@ -229,8 +229,8 @@
   > *
   .notification-action {
   margin: 0.5rem 0 0 0;
-  color: @base;
-  background-color: @pine;
+  color: var(--base);
+  background-color: var(--pine);
 }
 
 .control-center
@@ -240,8 +240,8 @@
   > *:last-child
   > *
   .notification-action:hover {
-  background-color: @rose;
-  color: @base;
+  background-color: var(--rose);
+  color: var(--base);
 }
 
 .control-center
@@ -252,7 +252,7 @@
   > *
   .notification-action:active {
   background-color: #6e6a86;
-  color: @text;
+  color: var(--text);
 }
 
 .control-center .notification-row .notification-background .close-button {
@@ -264,7 +264,7 @@
 }
 
 .control-center .notification-row .notification-background .close-button:hover {
-  color: @subtle;
+  color: var(--subtle);
 }
 
 .control-center
@@ -333,8 +333,8 @@ trough {
 .widget-buttons-grid {
   padding: 6px 2px;
   border-radius: 4px;
-  background: @overlay;
-  margin: 0 0 0.25rem 0;
+  background: var(--overlay);
+  margin: 0 0 0.5rem 0;
 }
 
 .widget-buttons-grid > flowbox > flowboxchild > button {
@@ -345,7 +345,7 @@ trough {
 }
 
 .widget-buttons-grid > flowbox > flowboxchild > button:hover {
-  background: @surface;
+  background: var(--surface);
 }
 .widget-mpris .widget-mpris-player {
   background: #26233a;
@@ -354,20 +354,20 @@ trough {
 
 .widget-mpris > box > button {
   border-radius: 20px;
-  background: @surface;
+  background: var(--surface);
   border-radius: 20px;
   padding: 2px;
 }
 
 .widget-mpris button {
-  background: @active;
+  background: var(--active);
   border-radius: 20px;
   padding: 2px;
   margin: 0 0 8px 0;
 }
 
 .widget-mpris button:hover {
-  background: @hover;
+  background: var(--hover);
 }
 
 .widget-mpris-album-art {
