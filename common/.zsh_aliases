@@ -51,3 +51,6 @@ fi
 
 # Alternative NeoVim configs
 alias minvim='NVIM_APPNAME=minvim nvim' # LazyVim
+
+# Update Homebrew when using VPN
+alias brew-update-clean='/usr/bin/env -i HOME="$HOME" PATH="/opt/homebrew/bin:/usr/bin:/bin" HOMEBREW_FORCE_BREWED_CURL=1 CURL_SSL_BACKEND=secure-transport brew update --verbose'
