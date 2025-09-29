@@ -209,10 +209,10 @@ vim.api.nvim_create_autocmd({ "User" }, {
       timeout = 1000,
       keep = function()
         return not vim
-            .iter({ "Finished", "Opened", "Hidden", "Closed", "Cleared", "Created", "ContextChanged" })
-            :fold(false, function(acc, cond)
-              return acc or vim.endswith(request.match, cond)
-            end)
+          .iter({ "Finished", "Done", "Opened", "Hidden", "Closed", "Cleared", "Created", "ContextChanged" })
+          :fold(false, function(acc, cond)
+            return acc or vim.endswith(request.match, cond)
+          end)
       end,
       id = "code_companion_status",
       title = "Code Companion Status",
@@ -253,7 +253,7 @@ autocommand("BufEnter", {
   pattern = "*",
   callback = function()
     local bufname = vim.api.nvim_buf_get_name(0)
-    if bufname:match("codecompanion") or vim.bo.filetype == "codecompanion" then
+    if bufname:match "codecompanion" or vim.bo.filetype == "codecompanion" then
       vim.opt_local.conceallevel = 2
       vim.opt_local.concealcursor = ""
     end
