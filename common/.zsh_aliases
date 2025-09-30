@@ -10,7 +10,8 @@ alias gitforce='git add . && git commit --amend --no-edit --no-verify && git pus
 alias gitconfig='nvim ~/.gitconfig'
 
 # tmux
-alias muxi='project=$(tmuxinator list | grep -v -e "projects:" -e "tmuxinator" | tr -s " " "\n" | fzf --header="Select a tmuxinator project:"); if [ -n "$project" ]; then tmuxinator start "$project"; fi'
+# no longer using tmuxinator in preference to tmux-sessionizer and sessionx
+# alias muxi='project=$(tmuxinator list | grep -v -e "projects:" -e "tmuxinator" | tr -s " " "\n" | fzf --header="Select a tmuxinator project:"); if [ -n "$project" ]; then tmuxinator start "$project"; fi'
 alias sesh="tmux-sessionizer"
 
 # QoL
