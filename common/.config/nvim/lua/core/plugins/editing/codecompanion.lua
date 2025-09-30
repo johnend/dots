@@ -12,37 +12,36 @@ return {
     "nvim-treesitter/nvim-treesitter",
   },
   opts = {
+    display = {
+      action_palette = {
+        provider = "telescope",
+      },
+      chat = {
+        -- Disable CodeCompanion's built-in formatting to allow markview to handle it
+        show_header_separator = false, -- This is the key setting!
+        show_references = false,
+        show_settings = false,
+        show_token_count = false,
+      },
+    },
+    strategies = {
+      chat = {
+        name = "copilot",
+        model = "gpt-4.1",
+      },
+    },
     -- NOTE: The log_level is in `opts.opts`
     opts = {
       log_level = "DEBUG", -- or "TRACE"
     },
   },
 
-  config = function()
+  config = function(_, opts)
     local status_ok, codecompanion = pcall(require, "codecompanion")
     if not status_ok then
       return
     end
 
-    codecompanion.setup {
-      display = {
-        action_palette = {
-          provider = "telescope",
-        },
-        chat = {
-          -- Disable CodeCompanion's built-in formatting to allow markview to handle it
-          show_header_separator = false, -- This is the key setting!
-          show_references = false,
-          show_settings = false,
-          show_token_count = false,
-        },
-      },
-      strategies = {
-        chat = {
-          name = "copilot",
-          model = "gpt-4.1",
-        },
-      },
-    }
+    codecompanion.setup(opts)
   end,
 }
