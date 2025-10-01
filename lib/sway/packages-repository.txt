@@ -1,118 +1,245 @@
-1password
-cbonsai
-kanata
-mbpfan-git
-rose-pine-cursor
-rose-pine-gtk-theme
-ruby-xdg
-spicetify-cli
-spotify
-swayosd-git
-tmuxinator
-vesktop
-adobe-source-code-pro-fonts
-aerc
-alacritty
-alsa-utils
+# =====================================
+# SWAY DESKTOP ENVIRONMENT PACKAGES
+# =====================================
+
+# Core Wayland/Sway components
+sway
+waybar
+rofi-wayland
 autotiling
-bat
-blueman
-bluez
-brightnessctl
-btop
-cantarell-fonts
-egl-wayland
-engrampa
-eza
-fastfetch
-fd
-firefox-developer-edition
-fzf
-gc
-gcc
-geeqie
-ghostty
-github-cli
-gnome-font-viewer
-gnome-themes-extra
-go
+swayidle
+swaync
+swayosd-git
+gtklock
+kanshi
+
+# Screenshot and clipboard tools
+grim
+slurp
+wl-clipboard
+
+# Authentication and session management
+polkit-gnome
 greetd
 greetd-agreety
-grim
-gtk-lock
+
+# Audio and media control
+pipewire
+pipewire-pulse
+pipewire-alsa
+wireplumber
+playerctl
+brightnessctl
+alsa-utils
+power-profiles-daemon
+
+# Network and Bluetooth
+networkmanager
+bluez
+bluez-utils
+blueman
+
+# =====================================
+# APPLICATIONS
+# =====================================
+
+# Terminal and shell
+ghostty-git
+alacritty
+zsh
+
+# File management
+nemo
+engrampa
+ffmpegthumbnailer
+tumbler
 gvfs
 gvfs-afc
 gvfs-gphoto2
 gvfs-mtp
 gvfs-nfs
 gvfs-smb
-imagemagick
-impala
-iwd
-jq
-json-c
-json-glib
-jsoncpp
-julia
+
+# Web browser
+firefox-developer-edition
+
+# Communication
+vesktop
+beeper-v4-bin
+aerc
+obsidian
+localsend
+
+# Media and entertainment
+spotify
+spicetify-cli
+spotify_player
+clapper
+
+# Password management
+1password
+1password-cli
+
+# System monitoring and control
+pavucontrol
+btop
+fastfetch
+geeqie
+qalculate-gtk
+neovide
+
+# Input management
+input-remapper-git
+
+# Wallpaper management
+swww
+
+# =====================================
+# DEVELOPMENT TOOLS
+# =====================================
+
+# Editor and development
+neovim
+lazygit
+github-cli
+k9s
+docker
 kicad
 kicad-library
 kicad-library-3d
-lazygit
-lua
-luajit
-luarocks
-nemo
-neovim
-networkmanager
+meld
+
+# Programming languages and tools
 nodejs
-noto-fonts
-noto-fonts-emoji
-noto-fonts-extra
-nwg-displays
-nwg-hello
-nwg-look
-pavucontrol
-perl
-php
-pipewire
-pipewire-pulse
-playerctl
-polkit
-polkit-gnome
 python
 python-pip
 python-pynvim
-qalculate-gtk
-ripgrep
-rofi-emoji
-rofi-wayland
+python-gobject
 ruby
 rubygems
-slurp
-spicetify-cli
+go
+lua
+luajit
+luarocks
+php
+composer
+julia
+deno
+rustup
+
+# Version management
+asdf-vm
+
+# Build tools and utilities
+base-devel
+git
 stow
-sway
-swayidle
-swaync
-swww
-sysstat
-thefuck
-thunderbird
-tldr
 tmux
-treesitter
-ttf-nerd-fonts-symbols
-ttf-nerd-fonts-symbols-common
-ttf-opensans
-ttf-recursive-nerd
-wayabr
-wayland-protocols
-wl-clipboard
-xclip
-xdg-desktop-portal-wlr
-xorg-wayland
+
+# =====================================
+# COMMAND LINE UTILITIES
+# =====================================
+
+# Modern replacements for core tools
+bat
+eza
+fd
+ripgrep
+fzf
+zoxide
+thefuck
+git-delta
+
+# System utilities
+jq
+imagemagick
+libnotify
+curl
+wget
+unzip
+zip
+tar
+unrar
+openssh
+less
+systemd-sysvcompat
+which
+xdg-user-dirs
+xdg-utils
+rsync
+plocate
+pv
+tldr
 yazi
+
+# Document viewing
 zathura
 zathura-pdf-mupdf
-zoxida
-zsh
+
+# =====================================
+# FONTS AND THEMES
+# =====================================
+
+# Fonts
+ttf-nerd-fonts-symbols
+ttf-nerd-fonts-symbols-common
+ttf-recursive-nerd
+ttf-opensans
+ttf-dejavu
+otf-monaspace
+noto-fonts
+noto-fonts-emoji
+noto-fonts-extra
+cantarell-fonts
+
+# Themes and appearance
+rose-pine-cursor
+rose-pine-gtk-theme
+adwaita-icon-theme
+hicolor-icon-theme
+nwg-look
+gnome-themes-extra
+
+# =====================================
+# SYSTEM INTEGRATION
+# =====================================
+
+# Wayland protocols and desktop portal
+wayland-protocols
+xdg-desktop-portal-wlr
+egl-wayland
+
+# Legacy X11 support
+xclip
+xorg-xwayland
+
+# =====================================
+# ZSH CONFIGURATION DEPENDENCIES
+# =====================================
+
+# ZSH plugins (will be installed via oh-my-zsh)
+zsh-autosuggestions
+zsh-syntax-highlighting
+
+# FZF integration
+fzf
+
+# =====================================
+# OPTIONAL/HARDWARE SPECIFIC
+# =====================================
+
+# Hardware-specific (MacBook)
+mbpfan-git
+
+# Additional development tools
+tmuxinator
+ruby-xdg
+
+# Fun terminal tools
+cbonsai
+
+# Keyboard firmware (optional)
+# qmk
+
+# Alternative keyboard layout engine
+kanata
