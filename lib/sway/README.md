@@ -242,7 +242,7 @@ If you encounter issues:
 
 ---
 
-**Transform your Linux installation into a modern, beautiful, and productive desktop environment with a single command!** 🌊✨
+**Sway happy!** 🌊✨
 
-_This installer has been tested on EndeavourOS and should work on any Arch-based distribution._
+_This installer has been tested on EndeavourOS and_ should _work on any Arch-based distribution._
 
