@@ -1,0 +1,3 @@
+[[keymaps]]
+command = "Shuffle"
+key_sequence = "C-x"
