@@ -193,16 +193,25 @@ M.branch = {
 
 M.filename = {
   "filename",
-  icon = icons.ui.File,
+  path = 4,
+  separator = { left = "" },
+  symbols = { modified = icons.git.LineModified, readonly = icons.ui.Lock },
   color = {},
   cond = nil,
+  fmt = function(str)
+    if vim.bo.filetype == "codecompanion" then
+      return "CodeCompanion" .. " " .. icons.misc.Brain
+    end
+
+    return str
+  end,
 }
 
 M.filetype = {
   "filetype",
   colored = true,
-  icon_only = false,
-  padding = { left = 0, right = 0 },
+  icon_only = true,
+  separator = { left = "", right = "" },
 }
 
 M.diagnostics = {

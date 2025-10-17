@@ -49,13 +49,8 @@ return {
         lualine_x = {
           components.diagnostics,
           components.lsp,
-          {
-            "filename",
-            path = 4,
-            separator = { left = "" },
-            symbols = { modified = icons.git.LineModified, readonly = icons.ui.Lock },
-          },
-          { "filetype", icon_only = true, separator = { right = "" } },
+          components.filename,
+          components.filetype,
           components.spaces,
         },
         lualine_y = { components.location },
