@@ -1,8 +1,5 @@
 .stow-local-ignore
 
-# aerc ignores
-linux/.config/aerc/accounts.conf
-
 # btop
 common/.config/btop/btop.log
 
