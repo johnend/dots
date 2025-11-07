@@ -1,4 +1,6 @@
 config-file = ./config_base
 
+async-backend = epoll
+
 window-decoration = false
 font-size = 10
