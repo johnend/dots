@@ -14,7 +14,7 @@ fi
 export ZSH="$HOME/.oh-my-zsh"
 export ZSH_CUSTOM="$ZSH/custom"
 ZSH_THEME="powerlevel10k/powerlevel10k"
-plugins=(zsh-vi-mode fzf-tab gh git zsh-autosuggestions command-not-found colored-man-pages)
+plugins=(asdf zsh-vi-mode fzf-tab gh git zsh-autosuggestions command-not-found colored-man-pages)
 
 source "$ZSH/oh-my-zsh.sh"
 
