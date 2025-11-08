@@ -9,7 +9,7 @@ rofi-wayland
 autotiling
 swayidle
 swaync
-swayosd-git
+swayosd
 gtklock
 kanshi
 
