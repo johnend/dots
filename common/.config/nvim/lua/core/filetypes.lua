@@ -14,7 +14,7 @@ vim.filetype.add {
     ["tsconfig.json"] = "jsonc",
   },
   pattern = {
-    ["%.env%.[%w_.-]+"] = "sh",
+    ["%.env%.[%w_.-]+"] = "dosini",
     [".*/kitty/.*%.conf"] = "bash",
     [".*%.rc"] = "bash",
     [".*/hypr/.*%.conf"] = "hyprlang",
