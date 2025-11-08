@@ -2,6 +2,7 @@ return {
   -------------------------------------
   --- LSP
   -------------------------------------
+  { "gr", group = "LSP go to", icon = icons.ui.Code },
   { "<leader>l", group = "LSP", icon = icons.ui.Code },
   {
     "<leader>lc",

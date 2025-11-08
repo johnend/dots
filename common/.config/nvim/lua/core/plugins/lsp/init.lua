@@ -30,7 +30,7 @@ return {
     -- 3) Ensure mason-tool-installer actually installs the right binaries
     local ensure_tools = vim.tbl_keys(servers) -- e.g. { "lua_ls" }
 
-    vim.list_extend(ensure_tools, formatters)  -- add stylua as a formatter
+    vim.list_extend(ensure_tools, formatters) -- add stylua as a formatter
     -- vim.list_extend(ensure_tools, dap) -- uncomment to add dap tooling
 
     -- 4) Configure mason-lspconfig to install & wire up our LSPs
@@ -90,7 +90,7 @@ return {
         -- helper for buffer-local mappings
         local function map(keys, func, desc, mode)
           mode = mode or "n"
-          vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+          vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = desc })
         end
 
         -- your mappings…
