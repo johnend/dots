@@ -3,7 +3,7 @@
 vim.filetype.add {
   extension = {
     conf = "conf",
-    env = "dotenv",
+    env = "sh",
     rasi = "rasi",
     cfg = "cfg",
     tfvars = "terraform",
@@ -14,7 +14,7 @@ vim.filetype.add {
     ["tsconfig.json"] = "jsonc",
   },
   pattern = {
-    ["%.env%.[%w_.-]+"] = "dosini",
+    ["%.env%.[%w_.-]+"] = "sh",
     [".*/kitty/.*%.conf"] = "bash",
     [".*%.rc"] = "bash",
     [".*/hypr/.*%.conf"] = "hyprlang",
