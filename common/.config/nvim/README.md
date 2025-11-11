@@ -11,8 +11,7 @@ This is my NeoVim config. There are many like it, but this one is mine.
 I mostly work on the FrontEnd writing TypeScript (in React), and CSS. This
 config is optimised for my use cases, so you mileage **_will_** vary 🛻.
 
-Feel free to leave a comment if you're browsing and find an issue, or something
-t# dots/common/.config/nvim
+Feel free to leave a comment if you're browsing and find an issue, or something.
 
 #### Keymaps
 
