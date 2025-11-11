@@ -59,7 +59,7 @@ local options = {
 
   colorcolumn = "120",
   -- highlight the current line
-  cursorline = true,
+  -- cursorline = true,
 
   -- convert tabs to spaces
   expandtab = true,
