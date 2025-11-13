@@ -2,3 +2,4 @@ nodejs 24.4.1
 java corretto-21.0.6.7.1
 ruby 3.4.5
 zig 0.15.2
+golang 1.25.0
