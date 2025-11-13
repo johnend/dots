@@ -1,5 +1,5 @@
 theme = "dracula"
-client_id = "65b708073fc0480ea92a077233ca87bd"
+client_id = "8ca400ba978d4111a40f4a99ce0f6ee7"
 client_port = 8080
 login_redirect_uri = "http://127.0.0.1:8989/login"
 playback_format = """
@@ -19,7 +19,7 @@ progress_bar_type = "Rectangle"
 cover_img_length = 9
 cover_img_width = 5
 cover_img_scale = 1.0
-enable_media_control = false
+enable_media_control = true
 enable_streaming = "Always"
 enable_notify = true
 enable_cover_image_cache = true
