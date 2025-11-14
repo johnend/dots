@@ -56,7 +56,7 @@ below.
 ### color
 
 - [xzbdmw/colorful-menu.nvim](https://dotfyle.com/plugins/xzbdmw/colorful-menu.nvim)
-- [NvChad/nvim-colorizer.lua](https://dotfyle.com/plugins/NvChad/nvim-colorizer.lua)
+- [catgoose/nvim-colorizer.lua](https://dotfyle.com/plugins/catgoose/nvim-colorizer.lua)
 - [folke/twilight.nvim](https://dotfyle.com/plugins/folke/twilight.nvim)
 
 ### colorscheme
