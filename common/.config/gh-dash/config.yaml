@@ -1,0 +1,73 @@
+# yaml-language-server: $schema=https://gh-dash.dev/schema.json
+
+defaults:
+  issuesLimit: 20
+  prApproveComment: LGTM
+  layout:
+    prs:
+      repoName:
+        grow: true,
+        width: 10
+        hidden: false
+      base:
+        hidden: true
+  preview:
+    open: true
+    width: 70
+  prsLimit: 20
+  refetchIntervalMinutes: 5
+  view: prs
+prSections:
+  - title: "My Pull Requests"
+    filters: "is:open author:@me"
+  - title: "Needs My Review"
+    filters: "is:open review-requested:@me"
+  - title: "Involved"
+    filters: "is:open involves:@me -author:@me"
+  - title: "All Open"
+    filters: "is:open"
+
+issuesSections:
+  - title: "My Issues"
+    filters: "is:open author:@me"
+  - title: "Assigned"
+    filters: "is:open assignee:@me"
+  - title: "Involved"
+    filters: "is:open involves:@me -author:@me"
+
+pager:
+  diff: delta
+showAuthorIcons: true
+smartFilteringAtLaunch: true
+
+theme:
+  ui:
+    sectionsShowCount: true
+    table:
+      compact: false
+  colors:
+    text:
+      primary: "#E2E1ED"
+      secondary: "#666CA6"
+      inverted: "#242347"
+      faint: "#B0B3BF"
+      warning: "#E0AF68"
+      success: "#3DF294"
+    background:
+      selected: "#1B1B33"
+    border:
+      primary: "#383B5B"
+      secondary: "#39386B"
+      faint: "#2B2B40"
+repoPaths:
+  fanduel/*: ~/Developer/fanduel/*
+  fanduel/account_e2e_cypress: ~/Developer/fanduel/raccoons/account_e2e_cypress
+  fanduel/adminweb: ~/Developer/fanduel/raccoons/adminweb
+  fanduel/aw-dynamic-web: ~/Developer/fanduel/raccoons/aw-dynamic-web
+  fanduel/fd-lambda-shorturl: ~/Developer/fanduel/raccoons/fd-lambda-shorturl
+  fanduel/raf-app: ~/Developer/fanduel/raccoons/raf-app
+  fanduel/refer-a-friend-db-notifications: ~/Developer/fanduel/raccoons/refer-a-friend-db-notifications
+  fanduel/refer-a-friend-db-stream: ~/Developer/fanduel/raccoons/refer-a-friend-db-stream
+  fanduel/refer-a-friend-db: ~/Developer/fanduel/raccoons/refer-a-friend-db
+  fanduel/refer-a-friend-service: ~/Developer/fanduel/raccoons/refer-a-friend-service
+  johnend/dots: ~/Developer/personal/dots
