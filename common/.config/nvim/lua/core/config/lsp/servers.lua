@@ -185,7 +185,7 @@ return {
         preferences = {
           includeCompletionsForModuleExports = true,
           includeCompletionsForImportStatements = true,
-          importModuleSpecifier = "non-relative",
+          importModuleSpecifierPreference = "non-relative",
           quotePreference = "auto", -- Automatically adjust quotes
           allowTextChangesInNewFiles = true, -- Allow refactoring in new files
           provideRefactorNotApplicableReason = true, -- Show why a refactor is unavailable
@@ -193,9 +193,20 @@ return {
         suggest = {
           autoImports = true,
           completeFunctionCalls = true,
+          paths = true,
         },
-        tsconfig = {
-          enableProjectWideIntellisense = true, -- Ensure project-wide alias resolution
+      },
+      javascript = {
+        preferences = {
+          includeCompletionsForModuleExports = true,
+          includeCompletionsForImportStatements = true,
+          importModuleSpecifierPreference = "non-relative",
+          quotePreference = "auto", -- Automatically adjust quotes
+        },
+        suggest = {
+          autoImports = true,
+          completeFunctionCalls = true,
+          paths = true,
         },
       },
     },
