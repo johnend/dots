@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg viewBox="0 0 50 50"
+ xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.2" baseProfile="tiny">
+<title>Qt SVG Document</title>
+<desc>Generated with Qt</desc>
+<defs>
+</defs>
+<g fill="none" stroke="black" stroke-width="1" fill-rule="evenodd" stroke-linecap="square" stroke-linejoin="bevel" >
+
+<g fill="#a6e3a1" fill-opacity="1" stroke="none" transform="matrix(0.714286,0,0,0.714286,-67.8571,-795.371)"
+font-family="Noto Sans" font-size="10" font-weight="400" font-style="normal" 
+>
+<circle cx="130" cy="1148.52" r="35"/>
+</g>
+
+<g fill="#1e1e2e" fill-opacity="1" stroke="none" transform="matrix(0.714286,0,0,0.714286,-67.8571,-795.371)"
+font-family="Noto Sans" font-size="10" font-weight="400" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="nonzero" d="M148.797,1167.72 C148.177,1168.34 146.476,1168.58 145.663,1168.51 L135.871,1168.51 C134.177,1168.35 133.129,1168.03 133.129,1163.42 L133.129,1166.16 C133.129,1165.37 133.157,1161.85 135.871,1161.85 L143.705,1161.85 L143.705,1155.2 C143.755,1153.5 145.271,1151.68 146.838,1151.68 C148.537,1151.68 150.017,1153.5 149.972,1155.2 L149.972,1165.37 C149.95,1166.19 149.58,1166.94 148.797,1167.72 "/>
+</g>
+
+<g fill="#1e1e2e" fill-opacity="1" stroke="none" transform="matrix(0.714286,0,0,0.714286,-67.8571,-795.371)"
+font-family="Noto Sans" font-size="10" font-weight="400" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="nonzero" d="M111.147,1167.72 C111.767,1168.34 113.468,1168.58 114.281,1168.51 L124.072,1168.51 C125.766,1168.35 126.814,1168.03 126.814,1163.42 L126.814,1166.16 C126.814,1165.37 126.786,1161.85 124.072,1161.85 L116.239,1161.85 L116.239,1155.2 C116.189,1153.5 114.672,1151.68 113.106,1151.68 C111.407,1151.68 109.927,1153.5 109.973,1155.2 L109.973,1165.37 C109.994,1166.19 110.364,1166.94 111.147,1167.72 "/>
+</g>
+
+<g fill="#1e1e2e" fill-opacity="1" stroke="none" transform="matrix(0.714286,0,0,0.714286,-67.8571,-795.371)"
+font-family="Noto Sans" font-size="10" font-weight="400" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="nonzero" d="M148.795,1129.32 C148.176,1128.7 146.475,1128.45 145.662,1128.53 L135.871,1128.53 C134.177,1128.69 133.129,1129.01 133.129,1133.62 L133.129,1130.88 C133.129,1131.66 133.157,1135.19 135.871,1135.19 L143.704,1135.19 L143.704,1141.84 C143.754,1143.54 145.271,1145.36 146.837,1145.36 C148.536,1145.36 150.016,1143.54 149.97,1141.84 L149.97,1131.66 C149.949,1130.85 149.579,1130.1 148.795,1129.32 "/>
+</g>
+
+<g fill="#1e1e2e" fill-opacity="1" stroke="none" transform="matrix(0.714286,0,0,0.714286,-67.8571,-795.371)"
+font-family="Noto Sans" font-size="10" font-weight="400" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="nonzero" d="M111.147,1129.32 C111.767,1128.7 113.468,1128.45 114.281,1128.53 L124.072,1128.53 C125.766,1128.69 126.814,1129.01 126.814,1133.62 L126.814,1130.88 C126.814,1131.67 126.786,1135.19 124.072,1135.19 L116.239,1135.19 L116.239,1141.84 C116.189,1143.54 114.672,1145.36 113.106,1145.36 C111.407,1145.36 109.927,1143.54 109.973,1141.84 L109.973,1131.67 C109.994,1130.85 110.364,1130.1 111.147,1129.32 "/>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="Noto Sans" font-size="10" font-weight="400" font-style="normal" 
+>
+</g>
+</g>
+</svg>
