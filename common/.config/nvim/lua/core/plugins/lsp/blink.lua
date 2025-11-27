@@ -51,6 +51,11 @@ return {
           "rafamadriz/friendly-snippets",
           config = function()
             require("luasnip.loaders.from_vscode").lazy_load()
+            -- Extend javascript/typescript filetypes to include jsdoc/tsdoc snippets
+            require("luasnip").filetype_extend("javascript", { "jsdoc" })
+            require("luasnip").filetype_extend("javascriptreact", { "jsdoc" })
+            require("luasnip").filetype_extend("typescript", { "jsdoc", "tsdoc" })
+            require("luasnip").filetype_extend("typescriptreact", { "jsdoc", "tsdoc" })
           end,
         },
         "folke/lazydev.nvim",
