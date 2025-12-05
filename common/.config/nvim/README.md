@@ -31,13 +31,13 @@ See the full dots for more.
 However if you just want to try my config out you can clone the full repo:
 
 ```sh
-git clone git@github.com:johnend/dots ~/.config/johnend/dots
+git clone git@github.com:johnend/dots ~/your_directory/johnend/dots
 ```
 
 Open Neovim with my config:
 
 ```sh
-NVIM_APPNAME=johnend/dots/common/.config/nvim nvim
+NVIM_APPNAME=~/your_directory/nvim nvim
 ```
 
 ## Plugins
@@ -56,13 +56,15 @@ below.
 
 - [Bekaboo/dropbar.nvim](https://dotfyle.com/plugins/Bekaboo/dropbar.nvim)
 - [Bekaboo/deadcolumn.nvim](https://dotfyle.com/plugins/Bekaboo/deadcolumn.nvim)
-- [SmiteshP/nvim-navic](https://dotfyle.com/plugins/SmiteshP/nvim-navic) - unused in favour of dropbar
+- [SmiteshP/nvim-navic](https://dotfyle.com/plugins/SmiteshP/nvim-navic) -
+  unused in favour of dropbar
 
 ### color
 
 - [xzbdmw/colorful-menu.nvim](https://dotfyle.com/plugins/xzbdmw/colorful-menu.nvim)
 - [catgoose/nvim-colorizer.lua](https://dotfyle.com/plugins/catgoose/nvim-colorizer.lua)
-- [folke/twilight.nvim](https://dotfyle.com/plugins/folke/twilight.nvim) - unused
+- [folke/twilight.nvim](https://dotfyle.com/plugins/folke/twilight.nvim) -
+  unused
 
 ### colorscheme
 
@@ -91,8 +93,10 @@ below.
 
 ### debugging
 
-- [mfussenegger/nvim-dap](https://dotfyle.com/plugins/mfussenegger/nvim-dap) - unused
-- [miroshQa/debugmaster.nvim](https://dotfyle.com/plugins/miroshQa/debugmaster.nvim) - unused
+- [mfussenegger/nvim-dap](https://dotfyle.com/plugins/mfussenegger/nvim-dap) -
+  unused
+- [miroshQa/debugmaster.nvim](https://dotfyle.com/plugins/miroshQa/debugmaster.nvim) -
+  unused
 
 ### diagnostics
 
@@ -137,7 +141,8 @@ below.
 
 ### indent
 
-- [lukas-reineke/indent-blankline.nvim](https://dotfyle.com/plugins/lukas-reineke/indent-blankline.nvim) - unused
+- [lukas-reineke/indent-blankline.nvim](https://dotfyle.com/plugins/lukas-reineke/indent-blankline.nvim) -
+  unused
 
 ### keybinding
 
@@ -148,7 +153,8 @@ below.
 - [neovim/nvim-lspconfig](https://dotfyle.com/plugins/neovim/nvim-lspconfig)
 - [aznhe21/actions-preview.nvim](https://dotfyle.com/plugins/aznhe21/actions-preview.nvim)
 - [kosayoda/nvim-lightbulb](https://dotfyle.com/plugins/kosayoda/nvim-lightbulb)
-- [SmiteshP/nvim-navbuddy](https://dotfyle.com/plugins/SmiteshP/nvim-navbuddy) - unused in favour of Dropbar and Trouble.
+- [SmiteshP/nvim-navbuddy](https://dotfyle.com/plugins/SmiteshP/nvim-navbuddy) -
+  unused in favour of Dropbar and Trouble.
 - [onsails/lspkind.nvim](https://dotfyle.com/plugins/onsails/lspkind.nvim)
 - [mrcjkb/rustaceanvim](https://dotfyle.com/plugins/mrcjkb/rustaceanvim)
 - [b0o/schemastore.nvim](https://dotfyle.com/plugins/b0o/schemastore.nvim)
@@ -157,16 +163,19 @@ below.
 
 - [OXY2DEV/markview.nvim](https://dotfyle.com/plugins/OXY2DEV/markview.nvim)
 - [toppair/peek.nvim](https://dotfyle.com/plugins/toppair/peek.nvim)
-- [MeanderingProgrammer/render-markdown.nvim](https://dotfyle.com/plugins/MeanderingProgrammer/render-markdown.nvim) - unused
+- [MeanderingProgrammer/render-markdown.nvim](https://dotfyle.com/plugins/MeanderingProgrammer/render-markdown.nvim) -
+  unused
 
 ### marks
 
 - [cbochs/grapple.nvim](https://dotfyle.com/plugins/cbochs/grapple.nvim)
-- [ThePrimeagen/harpoon](https://dotfyle.com/plugins/ThePrimeagen/harpoon) - unused in favour of the above
+- [ThePrimeagen/harpoon](https://dotfyle.com/plugins/ThePrimeagen/harpoon) -
+  unused in favour of the above
 
 ### motion
 
-- [tris203/precognition.nvim](https://dotfyle.com/plugins/tris203/precognition.nvim) - unused
+- [tris203/precognition.nvim](https://dotfyle.com/plugins/tris203/precognition.nvim) -
+  unused
 - [folke/flash.nvim](https://dotfyle.com/plugins/folke/flash.nvim)
 
 ### nvim-dev
@@ -198,7 +207,8 @@ below.
 
 ### session
 
-- [stevearc/resession.nvim](https://dotfyle.com/plugins/stevearc/resession.nvim) - unused, but an optional dependency for cokeline
+- [stevearc/resession.nvim](https://dotfyle.com/plugins/stevearc/resession.nvim) -
+  unused, but an optional dependency for cokeline
 
 ### snippet
 
@@ -220,7 +230,8 @@ below.
 
 ### tabline
 
-- [willothy/nvim-cokeline](https://dotfyle.com/plugins/willothy/nvim-cokeline) - unused
+- [willothy/nvim-cokeline](https://dotfyle.com/plugins/willothy/nvim-cokeline) -
+  unused
 
 ### terminal-integration
 
