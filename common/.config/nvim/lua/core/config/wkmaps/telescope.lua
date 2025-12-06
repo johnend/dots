@@ -22,7 +22,7 @@ return {
   {
     "<leader>sp",
     "<cmd>Telescope project project theme=dropdown layout_config={width=0.5, height=0.4}<cr>",
-    desc = "Diagnostics",
+    desc = "Projects",
   },
   { "<leader>sr", "<cmd>Telescope resume<cr>", desc = "Resume project" },
   { "<leader>ss", "<cmd>Telescope builtin<cr>", desc = "Builtin pickers" },
