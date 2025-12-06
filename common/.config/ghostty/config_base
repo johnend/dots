@@ -1,4 +1,6 @@
-theme = mocha
+theme = Rose Pine
+
+background = 121315
 
 cursor-color = FF00AF 
 adjust-cursor-thickness = 1
