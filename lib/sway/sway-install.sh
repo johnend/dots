@@ -283,7 +283,7 @@ show_post_install_instructions() {
     log "   Navigate to your dotfiles directory and run:"
     log "   ${GREEN}cd ~/Developer/dots${NC}"
     log "   ${GREEN}stow -t ~ common${NC}"
-    log "   ${GREEN}stow -t ~ linux${NC}"
+    log "   ${GREEN}stow -t ~ linux/sway${NC}"
     echo
     log "${YELLOW}3. MANUAL THEME INSTALLATION${NC}"
     log "   Some themes require manual installation. See:"

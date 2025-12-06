@@ -196,7 +196,7 @@ main() {
     fi
     
     if [ ! -f "$HOME/.config/sway/config" ]; then
-        log_warning "Stow your dotfiles: stow -t ~ common && stow -t ~ linux"
+        log_warning "Stow your dotfiles: stow -t ~ common && stow -t ~ linux/sway"
     fi
     
     if [ -z "${WAYLAND_DISPLAY:-}" ]; then
