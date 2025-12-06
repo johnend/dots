@@ -31,13 +31,13 @@ See the full dots for more.
 However if you just want to try my config out you can clone the full repo:
 
 ```sh
-git clone git@github.com:johnend/dots ~/.config/johnend/dots
+git clone git@github.com:johnend/dots ~/your_directory/johnend/dots
 ```
 
 Open Neovim with my config:
 
 ```sh
-NVIM_APPNAME=johnend/dots/common/.config/nvim nvim
+NVIM_APPNAME=~/your_directory/nvim nvim
 ```
 
 ## Plugins
@@ -45,6 +45,12 @@ NVIM_APPNAME=johnend/dots/common/.config/nvim nvim
 Some of these plugins aren't used in my config, but my settings for them can be
 found in `lua/core/extra`. Those that are unused are highlighted in the list
 below.
+
+### ai
+
+- [olimorris/codecompanion.nvim](https://dotfyle.com/plugins/olimorris/codecompanion.nvim)
+- [zbirenbaum/copilot.lua](https://dotfyle.com/plugins/zbirenbaum/copilot.lua)
+- [yetone/avante.nvim](https://dotfyle.com/plugins/yetone/avante.nvim) - unused
 
 ### bars-and-lines
 
@@ -57,16 +63,19 @@ below.
 
 - [xzbdmw/colorful-menu.nvim](https://dotfyle.com/plugins/xzbdmw/colorful-menu.nvim)
 - [catgoose/nvim-colorizer.lua](https://dotfyle.com/plugins/catgoose/nvim-colorizer.lua)
-- [folke/twilight.nvim](https://dotfyle.com/plugins/folke/twilight.nvim)
+- [folke/twilight.nvim](https://dotfyle.com/plugins/folke/twilight.nvim) -
+  unused
 
 ### colorscheme
 
 - [rebelot/kanagawa.nvim](https://dotfyle.com/plugins/rebelot/kanagawa.nvim)
-- [cdmill/neomodern.nvim](https://github.com/cdmill/neomodern.nvim)
+- [cdmill/neomodern.nvim](https://dotfyle.com/plugins/cdmill/neomodern.nvim)
 - [EdenEast/nightfox.nvim](https://dotfyle.com/plugins/EdenEast/nightfox.nvim)
 - [catppuccin/nvim](https://dotfyle.com/plugins/catppuccin/nvim)
 - [rose-pine/neovim](https://dotfyle.com/plugins/rose-pine/neovim)
 - [folke/tokyonight.nvim](https://dotfyle.com/plugins/folke/tokyonight.nvim)
+- [zenbones-theme/zenbones.nvim](https://dotfyle.com/plugins/zenbones-theme/zenbones.nvim)
+- [propet/colorscheme-persist.nvim](https://dotfyle.com/plugins/propet/colorscheme-persist.nvim)
 
 ### comment
 
@@ -77,10 +86,6 @@ below.
 ### completion
 
 - [saghen/blink.cmp](https://dotfyle.com/plugins/Saghen/blink.cmp)
-- [zbirenbaum/copilot.lua](https://dotfyle.com/plugins/zbirenbaum/copilot.lua) -
-  unused actually not 100% sure if this is the best AI plugin to use anymore.
-  Regardless I prefer using the app directly rather than having AI tools
-  embedded in my editor.
 
 ### cursorline
 
@@ -105,6 +110,9 @@ below.
 - [nvim-treesitter/nvim-treesitter-context](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-context)
 - [folke/snacks.nvim](https://dotfyle.com/plugins/folke/snacks.nvim)
 - [windwp/nvim-autopairs](https://dotfyle.com/plugins/windwp/nvim-autopairs)
+- [tpope/vim-surround](https://dotfyle.com/plugins/tpope/vim-surround)
+- [gpanders/nvim-parinfer](https://dotfyle.com/plugins/gpanders/nvim-parinfer)
+- [tpope/vim-sleuth](https://dotfyle.com/plugins/tpope/vim-sleuth)
 
 ### file-explorer
 
@@ -118,6 +126,8 @@ below.
 ### fuzzy-finder
 
 - [nvim-telescope/telescope.nvim](https://dotfyle.com/plugins/nvim-telescope/telescope.nvim)
+- [nvim-telescope/telescope-fzf-native.nvim](https://dotfyle.com/plugins/nvim-telescope/telescope-fzf-native.nvim)
+- [nvim-telescope/telescope-ui-select.nvim](https://dotfyle.com/plugins/nvim-telescope/telescope-ui-select.nvim)
 
 ### git
 
@@ -131,7 +141,8 @@ below.
 
 ### indent
 
-- [lukas-reineke/indent-blankline.nvim](https://dotfyle.com/plugins/lukas-reineke/indent-blankline.nvim)
+- [lukas-reineke/indent-blankline.nvim](https://dotfyle.com/plugins/lukas-reineke/indent-blankline.nvim) -
+  unused
 
 ### keybinding
 
@@ -146,11 +157,14 @@ below.
   unused in favour of Dropbar and Trouble.
 - [onsails/lspkind.nvim](https://dotfyle.com/plugins/onsails/lspkind.nvim)
 - [mrcjkb/rustaceanvim](https://dotfyle.com/plugins/mrcjkb/rustaceanvim)
+- [b0o/schemastore.nvim](https://dotfyle.com/plugins/b0o/schemastore.nvim)
 
 ### markdown-and-latex
 
 - [OXY2DEV/markview.nvim](https://dotfyle.com/plugins/OXY2DEV/markview.nvim)
 - [toppair/peek.nvim](https://dotfyle.com/plugins/toppair/peek.nvim)
+- [MeanderingProgrammer/render-markdown.nvim](https://dotfyle.com/plugins/MeanderingProgrammer/render-markdown.nvim) -
+  unused
 
 ### marks
 
@@ -160,7 +174,8 @@ below.
 
 ### motion
 
-- [tris203/precognition.nvim](https://dotfyle.com/plugins/tris203/precognition.nvim)
+- [tris203/precognition.nvim](https://dotfyle.com/plugins/tris203/precognition.nvim) -
+  unused
 - [folke/flash.nvim](https://dotfyle.com/plugins/folke/flash.nvim)
 
 ### nvim-dev
@@ -169,6 +184,7 @@ below.
 - [nvim-lua/plenary.nvim](https://dotfyle.com/plugins/nvim-lua/plenary.nvim)
 - [folke/lazydev.nvim](https://dotfyle.com/plugins/folke/lazydev.nvim)
 - [nvim-lua/popup.nvim](https://dotfyle.com/plugins/nvim-lua/popup.nvim)
+- [rktjmp/lush.nvim](https://dotfyle.com/plugins/rktjmp/lush.nvim)
 
 ### plugin-manager
 
@@ -177,10 +193,13 @@ below.
 ### programming-languages-support
 
 - [dmmulroy/tsc.nvim](https://dotfyle.com/plugins/dmmulroy/tsc.nvim)
+- [saecki/crates.nvim](https://dotfyle.com/plugins/saecki/crates.nvim)
+- [codethread/qmk.nvim](https://dotfyle.com/plugins/codethread/qmk.nvim)
 
 ### project
 
 - [nvim-telescope/telescope-project.nvim](https://dotfyle.com/plugins/nvim-telescope/telescope-project.nvim)
+- [dundalek/bloat.nvim](https://dotfyle.com/plugins/dundalek/bloat.nvim)
 
 ### search
 
@@ -188,8 +207,8 @@ below.
 
 ### session
 
-- [stevearc/resession.nvim](https://dotfyle.com/plugins/stevearc/resession.nvim)
-  - unused, but an optional depedency for cokeline (uncomment to install)
+- [stevearc/resession.nvim](https://dotfyle.com/plugins/stevearc/resession.nvim) -
+  unused, but an optional dependency for cokeline
 
 ### snippet
 
@@ -211,7 +230,8 @@ below.
 
 ### tabline
 
-- [willothy/nvim-cokeline](https://dotfyle.com/plugins/willothy/nvim-cokeline)
+- [willothy/nvim-cokeline](https://dotfyle.com/plugins/willothy/nvim-cokeline) -
+  unused
 
 ### terminal-integration
 
@@ -228,8 +248,21 @@ below.
 
 ## Language Servers
 
+- bashls
+- cssls
+- css_variables
+- cssmodules_ls
+- emmet_language_server
+- eslint
 - graphql
+- helm_ls
 - html
+- jdtls
+- jsonls
 - lua_ls
+- pyright
+- somesass_ls
+- terraformls
+- tflint
+- vtsls
 - yamlls
-- vtsls and a bunch of others

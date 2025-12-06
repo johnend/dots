@@ -218,6 +218,10 @@ if.app-id = 'org.mozilla.firefoxdeveloperedition'
 run = 'move-node-to-workspace E'
 
 [[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+run = 'move-node-to-workspace E'
+
+[[on-window-detected]]
 if.app-id = 'md.Obsidian'
 run = 'move-node-to-workspace C'
 
