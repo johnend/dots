@@ -15,6 +15,11 @@ return {
 
     rose_pine.setup {
       variant = "main",
+      extend_background_behind_borders = false,
+      highlight_groups = {
+        NeoTreeDirectoryName = { fg = "rose" },
+        NeoTreeDirectoryIcon = { fg = "rose" },
+      },
     }
   end,
 }
