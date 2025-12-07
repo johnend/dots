@@ -22,7 +22,7 @@ source "$ZSH/oh-my-zsh.sh"
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
-setopt extended_history share_history hist_expire_dups_first hist_ignore_dups hist_verify
+[[ -f "$HOME/.zsh_setopt" ]] && source "$HOME/.zsh_setopt"
 
 # Aliases
 source "$HOME/.zsh_aliases"

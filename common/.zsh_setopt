@@ -1,0 +1,59 @@
+#--------------------------------------
+# History
+#--------------------------------------
+
+# Save timestamps and command duration into history
+setopt EXTENDED_HISTORY
+
+# Import new commands from history file, and cause typed commands to be added to history file
+setopt SHARE_HISTORY
+
+# Expires duplicates of commands before single instances
+setopt HIST_EXPIRE_DUPS_FIRST
+
+# Don't add duplicate commands to history
+setopt HIST_IGNORE_DUPS
+
+# Don't execute history expanded lines directly
+setopt HIST_VERIFY
+
+# Strip extra spaces before saving commands to history
+setopt HIST_REDUCE_BLANKS
+
+# Don't save commands that start with a space (good for secrets/noisy one-offs)
+setopt HIST_IGNORE_SPACE
+
+# Don't write duplicate commands to the history file
+setopt HIST_SAVE_NO_DUPS
+
+#--------------------------------------
+# General
+#--------------------------------------
+
+# Disable terminal bell
+setopt NO_BEEP
+
+# Allow inline comments in interactive commands (everything after # is ignored)
+setopt INTERACTIVE_COMMENTS
+
+# Automatically push directories onto the stack when using `cd`
+setopt AUTO_PUSHD
+
+# Don't store duplicate entries in the directory stack
+setopt PUSHD_IGNORE_DUPS
+
+# Don't print the directory stack after each pushd/cd
+setopt PUSHD_SILENT
+
+# Avoid XON/XOFF flow control so Ctrl+S/Ctrl+Q don't freeze the terminal
+setopt NO_FLOW_CONTROL
+
+#--------------------------------------
+# Globbing & completion
+#--------------------------------------
+
+# Enable extended globbing (e.g. ^pattern to exclude matches)
+setopt EXTENDED_GLOB
+
+# Allow completion to work in the middle of a word
+setopt COMPLETE_IN_WORD
