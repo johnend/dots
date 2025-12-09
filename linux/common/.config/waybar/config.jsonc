@@ -183,7 +183,9 @@
   // Network
   "network": {
     "format-wifi": "  {signalStrength}%",
-    "on-click": "nm-connection-editor"
+    "on-click": "nm-connection-editor",
+    "tooltip": true,
+    "tooltip-format": "  {signalStrength}% {essid}"
   },
   // Bluetooth
   "bluetooth": {
