@@ -63,3 +63,6 @@ fi
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# Security
+[[ -f "$HOME/.zsh_certs" ]] && source "$HOME/.zsh_certs"

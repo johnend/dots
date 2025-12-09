@@ -44,6 +44,11 @@ fi
 # NeoVim as Manpager
 export MANPAGER="nvim +Man!"
 
+# Zoxide
+#
+# exclude dirs are separated with a colon inside the quotes like PATH
+_ZO_EXCLUDE_DIRS="$HOME/.local/share/nvim/jdtls-workspace/*"
+
 # if [ -z "$OP_SESSION_personal" ]; then
 #   export OP_SESSION_personal=$(op signin --raw)
 # fi
