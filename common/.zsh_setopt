@@ -57,3 +57,6 @@ setopt EXTENDED_GLOB
 
 # Allow completion to work in the middle of a word
 setopt COMPLETE_IN_WORD
+
+# When completing from the middle of a word, move cursor to the end
+setopt ALWAYS_TO_END
