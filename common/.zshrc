@@ -25,6 +25,8 @@ plugins=(
   fzf-tab
   gh
   git
+  gradle
+  yarn
   zsh-autosuggestions
   zsh-vi-mode
 )

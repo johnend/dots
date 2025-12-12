@@ -28,23 +28,35 @@ function compile_qmk() {
 # Yarn and NPM script runner with fzf
 #######################################
 function run() {
-  if cat package.json > /dev/null 2>&1; then
-    scripts=$(cat package.json | jq .scripts | sed '1d;$d' | fzf --height 40%)
-
+  # Detect and run scripts for JS/TS and Python projects
+  if [[ -f package.json ]]; then
+    scripts=$(jq -r '.scripts | to_entries[] | "\(.key): \(.value)"' package.json | fzf --height 40%)
     if [[ -n $scripts ]]; then
-      script_name=$(echo $scripts | awk -F ': ' '{gsub(/"/, "", $1); print $1}' | awk '{$1=$1};1')
-      if cat yarn.lock > /dev/null 2>&1; then
-        print -s "yarn run "$script_name;
+      script_name=$(echo $scripts | awk -F ':' '{print $1}' | xargs)
+      if [[ -f yarn.lock ]]; then
+        print -s "yarn run $script_name"
         yarn run $script_name
-      elif cat package.lock > /dev/null 2>&1; then
-        print -s "npm run "$script_name;
+      elif [[ -f package-lock.json ]]; then
+        print -s "npm run $script_name"
         npm run $script_name
+      elif [[ -f pnpm-lock.yaml ]]; then
+        print -s "pnpm run $script_name"
+        pnpm run $script_name
+      elif [[ -f bun.lockb ]]; then
+        print -s "bun run $script_name"
+        bun run $script_name
+      elif [[ -f deno.json || -f deno.jsonc ]]; then
+        print -s "deno task $script_name"
+        deno task $script_name
+      else
+        echo "No recognized JS/TS package manager lockfile found."
       fi
     else
-      echo "🚨 Error: Nothing to run"
+      echo "Nothing selected. Exiting 👋"
     fi
+
   else
-    echo "🚨 Error: could not find package.json"
+    echo "🚨 Error: could not find package.json or pyproject.toml"
   fi
 }
 
@@ -91,22 +103,22 @@ function brzf() {
   done
 
   case "$cmd" in
-    uninstall)
-      local choice
-      choice=$(brew list | fzf --height=40% --prompt="❌ brzf: Uninstall > ")
-      [[ -n "$choice" ]] && echo "🧼 Uninstalling $choice..." && brew uninstall "$choice" || echo "❌ No package selected."
-      ;;
+      uninstall)
+        local choice
+choice=$(brew list | fzf --ansi --height=40% --prompt="❌ brzf: Uninstall > " --preview 'echo {}')
+          [[ -n "$choice" ]] && echo "🧼 Uninstalling $choice..." && brew uninstall "$choice" || echo "❌ No package selected."
+        ;;
 
-    cask)
-      local choice
-      choice=$(brew search --casks "$arg" | fzf --height=40% --prompt="🖥️ brzf: Cask > ")
-      [[ -n "$choice" ]] && echo "📦 Installing cask: $choice..." && brew install --cask "$choice" || echo "❌ No cask selected."
-      ;;
+      cask)
+        local choice
+choice=$(brew search --casks --desc "$arg" 2>&1 | grep -v 'Warning: Use `--eval-all`' | awk '{printf "\033[1m%s\033[0m \033[2m%s\033[0m\n", $1, substr($0, index($0,$2))}' | fzf --ansi --height=40% --prompt="🖥️ brzf: Cask > ")
+            [[ -n "$choice" ]] && pkg=$(echo "$choice" | awk '{print $1}' | sed 's/:$//') && echo "📦 Installing cask: $pkg..." && brew install --cask "$pkg" || echo "❌ No cask selected."
+        ;;
 
-    *)
-      local choice
-      choice=$(brew search "$arg" | fzf --height=40% --prompt="🍺 brzf: Install > ")
-      [[ -n "$choice" ]] && echo "🔧 Installing $choice..." && brew install "$choice" || echo "❌ No package selected."
-      ;;
+      *)
+        local choice
+choice=$(brew search --desc "$arg" 2>&1 | grep -v 'Warning: Use `--eval-all`' | awk '{printf "\033[1m%s\033[0m \033[2m%s\033[0m\n", $1, substr($0, index($0,$2))}' | fzf --ansi --height=40% --prompt="🍺 brzf: Install > ")
+            [[ -n "$choice" ]] && pkg=$(echo "$choice" | awk '{print $1}' | sed 's/:$//') && echo "🔧 Installing $pkg..." && brew install "$pkg" || echo "❌ No package selected."
+        ;;
   esac
 }
