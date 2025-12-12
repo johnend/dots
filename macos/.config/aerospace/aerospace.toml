@@ -174,10 +174,6 @@ shift-equal = 'resize smart +50'
 
 # Assign workspaces to monitors
 [workspace-to-monitor-force-assignment]
-1 = 'main'
-2 = 'retina'
-3 = 'dell'
-4 = 'xg258'
 W = 'retina' # wife (messages)
 S = 'retina' # spotify
 X = 'retina' # placeholder
@@ -220,10 +216,6 @@ run = 'move-node-to-workspace E'
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
 run = 'move-node-to-workspace E'
-
-[[on-window-detected]]
-if.app-id = 'md.Obsidian'
-run = 'move-node-to-workspace C'
 
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
