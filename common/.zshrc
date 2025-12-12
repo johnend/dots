@@ -13,8 +13,21 @@ fi
 # oh-my-zsh core
 export ZSH="$HOME/.oh-my-zsh"
 export ZSH_CUSTOM="$ZSH/custom"
+
 ZSH_THEME="powerlevel10k/powerlevel10k"
-plugins=(asdf zsh-vi-mode fzf-tab gh git zsh-autosuggestions command-not-found colored-man-pages)
+
+# TODO: Some things to look at for plugins:
+# tmux, zsh-syntax-highlighting, zsh-completions
+plugins=(
+  asdf
+  colored-man-pages
+  command-not-found
+  fzf-tab
+  gh
+  git
+  zsh-autosuggestions
+  zsh-vi-mode
+)
 
 source "$ZSH/oh-my-zsh.sh"
 
