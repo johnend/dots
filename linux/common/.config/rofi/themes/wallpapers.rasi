@@ -1,0 +1,129 @@
+* {
+    base: #191724;
+    surface: #1f1d2e;
+    overlay: #26233a;
+    muted: #6e6a86;
+    text: #e0def4;
+    subtle: #908caa;
+
+    love: #eb6f92;
+    gold: #f6c177;
+    rose: #ebbcba;
+    pine: #31748f;
+    foam: #9ccfd8;
+    iris: #c4a7e7;
+
+    highlightLow: #21202e;
+    highlightMed: #403d52;
+    highlightHigh: #524f67;
+    width: 80%;
+}
+
+element-text, element-icon , mode-switcher {
+    background-color: inherit;
+    text-color:       inherit;
+}
+
+window {
+    border: 1px;
+    border-color: @rose;
+    background-color: @base;
+    border-radius: 8px;
+}
+
+mainbox {
+    background-color: @base;
+}
+
+inputbar {
+    children: [prompt,entry];
+    background-color: @base;
+    border: 0 0 1px 0;
+    border-color: @overlay;
+    padding: 8px;
+}
+
+prompt {
+    background-color: @base;
+    text-color: @foam;
+    border-radius: 2px;
+    padding: 8px 20px 8px 8px;
+    vertical-align: 0.5;
+    horizontal-align: 0.5;
+    border: 0 1px 0 0;
+    border-color: @overlay;
+}
+
+textbox-prompt-colon {
+    expand: false;
+    str: ":";
+}
+
+entry {
+    text-color: @text;
+    margin: 8px 0 0 16px;
+    background-color: @base;
+    cursor-color: @iris;
+}
+
+listview {
+    background-color: @base;
+    columns: 5;
+    lines: 1;
+    padding: 8px;
+}
+
+element {
+    background-color: @base;
+    text-color: @muted;
+    margin: 0 8px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    orientation: vertical;
+}
+
+element-text {
+    padding: 8px;
+}
+
+element-icon {
+    size: 240px;
+}
+
+element selected {
+    background-color:  @pine;
+    text-color: @text;
+    border: 1px;
+    border-color: @foam;
+}
+
+mode-switcher {
+    spacing: 0;
+}
+
+button {
+    background-color: @base;
+    text-color: @text;
+    vertical-align: 0.5; 
+    horizontal-align: 0.5;
+    padding: 5px 0 3px 0;
+    border: 1px 0 0 0;
+    border-color: @overlay;
+}
+
+button selected {
+  background-color: @rose;
+  text-color: @base;
+}
+
+message {
+    padding: 8px 0;
+    background-color: @base;
+}
+
+textbox {
+    padding: 0 20px;
+    text-color: @foam;
+    background-color: @base;
+}
+
