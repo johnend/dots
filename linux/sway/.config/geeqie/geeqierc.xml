@@ -385,8 +385,8 @@
 
         main_window.x = "0" 
         main_window.y = "0" 
-        main_window.w = "1904" 
-        main_window.h = "1145" 
+        main_window.w = "946" 
+        main_window.h = "566" 
         main_window.maximized = "false" 
         main_window.hdivider_pos = "427" 
         main_window.vdivider_pos = "409" 
