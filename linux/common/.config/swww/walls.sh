@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR=$HOME/Pictures/Wallpapers/walls1
+DIR=$HOME/Pictures/walls
 
 WALLS=($(ls "${DIR}"))
 
