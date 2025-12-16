@@ -15,7 +15,7 @@ return {
     "mason-org/mason-lspconfig.nvim",
     "saghen/blink.cmp",
     "b0o/schemastore.nvim",
-    "mfussenegger/nvim-jdtls",
+    "mfussenegger/nvim-jdtls", -- Java LSP extensions
   },
   config = function()
     local servers = require "core.config.lsp.servers"
@@ -37,14 +37,14 @@ return {
     require("mason-lspconfig").setup {
       ensure_installed = vim.tbl_keys(servers),
       automatic_installation = true,
-      automatic_enable = {
-        exclude = {
-          -- "jdtls", -- Try letting mason-lspconfig handle jdtls automatically
-        },
-      },
+      automatic_enable = true,
       handlers = {
         -- default handler (will be called for each server_name)
         function(server_name)
+          -- Skip jdtls - it's handled by nvim-jdtls via ftplugin/java.lua
+          if server_name == 'jdtls' then
+            return
+          end
           local opts = vim.tbl_deep_extend("force", { capabilities = capabilities }, servers[server_name] or {})
           require("lspconfig")[server_name].setup(opts)
         end,
