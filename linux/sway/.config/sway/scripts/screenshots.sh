@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 # Determine screenshot type based on argument
 case "$1" in
   fullscreen)
@@ -29,37 +31,28 @@ case "$1" in
     ;;
 esac
 
-# Show notification with options
-notify-send "Screenshot Taken" "$file" -i "$file"
-  # --action="delete=delete" \
-  # --action="open=open"
+# Get the directory containing the screenshot
+screenshot_dir=$(dirname "$file")
 
-# # Store the filename in /tmp for reference
-# echo "$file" > /tmp/last_screenshot
+# Show notification with action buttons and handle response
+action=$(notify-send "Screenshot Taken" "$file" \
+  -i "$file" \
+  --action="delete=Delete" \
+  --action="open=Open Folder")
 
-# action_index=$(swaync-client -a)
-# echo "Action index output: $action_index" >> ~/swaync_debug.log
-# case "$action_index" in
-#   "0")
-#     action="open"
-#     ;;
-#   "1")
-#     action="delete"
-#     ;;
-#   "*")
-#     action="unknown"
-#     ;;
-# esac
-# echo "Action being processed: $action"
-#
-# case "$action" in
-#   "open")
-#     nemo "$file"
-#     ;;
-#   "delete")
-#     rm "$file" && notify-send "Screenshot deleted" "$file"
-#     ;;
-#   *)
-#     notify-send "Action error" "Unknown action: $action"
-#     ;;
-# esac
+# Handle the selected action
+case "$action" in
+  delete)
+    if rm "$file"; then
+      notify-send "Screenshot Deleted" "File removed successfully"
+    else
+      notify-send "Error" "Failed to delete screenshot"
+    fi
+    ;;
+  open)
+    nemo "$screenshot_dir"
+    ;;
+  *)
+    # No action taken (notification dismissed or timed out)
+    ;;
+esac
