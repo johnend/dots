@@ -15,119 +15,77 @@
    Floating Notifications
    ============================================ */
 
-.floating-notifications.background .notification-row {
+.notification-row {
   margin: 4px;
 }
 
 /* Notification background container */
-.floating-notifications.background .notification-row .notification-background {
+.notification-background {
   background-color: var(--base);
   color: var(--text);
   border: 1px solid var(--muted);
 }
 
 /* Base notification styling */
-.floating-notifications.background
-  .notification-row
-  .notification-background
-  .notification {
+.notification {
   border-radius: none;
-  padding: 0 0.5rem;
 }
 
 /* Notification priority indicators - left border colors */
-.floating-notifications.background
-  .notification-row
-  .notification-background
-  .notification.low {
+.notification.low {
   border-left: 3px solid var(--foam);
 }
 
-.floating-notifications.background
-  .notification-row
-  .notification-background
-  .notification.normal {
+.notification.normal {
   border-left: 3px solid var(--rose);
 }
 
-.floating-notifications.background
-  .notification-row
-  .notification-background
-  .notification.critical {
+.notification.critical {
   border-left: 3px solid var(--love);
 }
 
 /* Notification text content */
-.floating-notifications.background
-  .notification-row
-  .notification-background
-  .notification
-  .notification-content
-  .summary {
-  margin: 0.5rem 0 0.125rem 0.5rem;
+.notification-content .summary {
+  margin: 0.5rem 0 0.25rem 0.5rem;
   color: var(--text);
   font-weight: bold;
 }
 
-.floating-notifications.background
-  .notification-row
-  .notification-background
-  .notification
-  .notification-content
-  .body {
+.notification-content .body {
   margin: 0.125rem 0 0.5rem 0.5rem;
   color: var(--subtle);
 }
 
 /* Action buttons container */
-.floating-notifications.background
-  .notification-row
-  .notification-background
-  .notification
-  > *:last-child
-  > * {
+.notification > *:last-child > * {
   min-height: 2rem;
+  margin-top: 4px;
 }
 
 /* Default action button styling - used for normal actions (e.g., "Open Folder") */
-.floating-notifications.background
-  .notification-row
-  .notification-background
-  .notification
-  > *:last-child
-  > *
-  .notification-action {
-  padding: 0.5rem 1rem;
-  min-height: 2rem;
-  color: var(--base);
-  background-color: var(--pine);
+.notification-action > button {
+  padding: 0.125rem 0.5rem;
+  color: var(--muted);
+  background-color: var(--surface);
   border: none;
 }
 
-.floating-notifications.background
-  .notification-row
-  .notification-background
-  .notification
-  > *:last-child
-  > *
-  .notification-action:hover {
-  background-color: var(--foam);
+.notification-action > button > label {
+  font-size: 0.9rem;
+}
+
+.notification-action > button:hover {
+  background-color: var(--rose);
   color: var(--base);
 }
 
-.floating-notifications.background
-  .notification-row
-  .notification-background
-  .notification
-  > *:last-child
-  > *
-  .notification-action:active {
+.notification-action > button:active {
   background-color: var(--muted);
   color: var(--text);
 }
 
-/* First action button - destructive actions (e.g., "Delete") styled with --love */
-.floating-notifications.background
+/* TODO: First action button - destructive actions (e.g., "Delete") styled with --love */
+/* .floating-notifications.background
   .notification-row
   .notification-background
   .notification
@@ -158,31 +116,21 @@
   .notification-action:first-child:active {
   background-color: var(--muted);
   color: var(--text);
-}
+} */
 
 /* Notification dismiss/close button */
-.floating-notifications.background
-  .notification-row
-  .notification-background
-  .close-button {
+.close-button {
   margin: 0.5rem;
   padding: 0.25rem;
-  /* border-radius: 0.5rem; */
   color: var(--text);
   background-color: var(--love);
 }
 
-.floating-notifications.background
-  .notification-row
-  .notification-background
-  .close-button:hover {
+.close-button:hover {
   color: var(--base);
 }
 
-.floating-notifications.background
-  .notification-row
-  .notification-background
-  .close-button:active {
+.close-button:active {
   background-color: var(--rose);
 }
 
@@ -209,7 +157,6 @@
   border-radius: 0.5rem;
   color: var(--text);
   background-color: var(--surface);
-  /* border: 1px solid var(--muted); */
   padding: 0.5rem 0.65rem 0.5rem 0.5rem;
 }
 
@@ -221,70 +168,7 @@
   background-color: var(--muted);
 }
 
-/* Control center notification background */
-.control-center .notification-row .notification-background {
-  margin: 0.5rem 0;
-  background-color: var(--surface);
-  color: var(--text);
-  border: none;
-}
-
-/* Base notification in control center */
-.control-center .notification-row .notification-background .notification {
-  padding: 0 0 0 0.5rem;
-  /* border-radius: 0.5rem; */
-  border: 1px solid var(--muted);
-}
-
-/* Notification priority indicators - left border colors */
-.control-center .notification-row .notification-background .notification.low {
-  border-left: 3px solid var(--foam);
-}
-
-.control-center
-  .notification-row
-  .notification-background
-  .notification.normal {
-  border-left: 3px solid var(--rose);
-}
-
-.control-center
-  .notification-row
-  .notification-background
-  .notification.critical {
-  border-left: 3px solid var(--love);
-}
-
 /* Control center notification text content */
-.control-center
-  .notification-row
-  .notification-background
-  .notification
-  .notification-content {
-  color: var(--text);
-}
-
-.control-center
-  .notification-row
-  .notification-background
-  .notification
-  .notification-content
-  .summary {
-  margin: 0.5rem 0 0.125rem 0.5rem;
-  color: var(--text);
-  font-weight: bold;
-}
-
-.control-center
-  .notification-row
-  .notification-background
-  .notification
-  .notification-content
-  .body {
-  margin: 0.125rem 0 0.25rem 0.5rem;
-  color: var(--subtle);
-}
-
 .control-center
   .notification-row
   .notification-background
@@ -299,133 +183,23 @@
   font-size: 0.75rem;
 }
 
-/* Action buttons container */
-.control-center
-  .notification-row
-  .notification-background
-  .notification
-  > *:last-child
-  > * {
-  min-height: 2rem;
-}
-
-/* Default action button styling - used for normal actions (e.g., "Open Folder") */
-.control-center
-  .notification-row
-  .notification-background
-  .notification
-  > *:last-child
-  > *
-  .notification-action {
-  margin: 0.5rem 0.25rem 0.5rem 0;
-  padding: 0.5rem 1rem;
-  min-height: 2rem;
-  color: var(--base);
-  background-color: var(--pine);
-  border: none;
-}
-
-.control-center
-  .notification-row
-  .notification-background
-  .notification
-  > *:last-child
-  > *
-  .notification-action:hover {
-  background-color: var(--foam);
-  color: var(--base);
-}
-
-.control-center
-  .notification-row
-  .notification-background
-  .notification
-  > *:last-child
-  > *
-  .notification-action:active {
-  background-color: var(--muted);
-  color: var(--text);
-}
-
-/* First action button - destructive actions (e.g., "Delete") styled with --love */
-.control-center
-  .notification-row
-  .notification-background
-  .notification
-  > *:last-child
-  > *
-  .notification-action:first-child {
-  background-color: var(--love);
-  color: var(--base);
-}
-
-.control-center
-  .notification-row
-  .notification-background
-  .notification
-  > *:last-child
-  > *
-  .notification-action:first-child:hover {
-  background-color: var(--rose);
-  color: var(--base);
-}
-
-.control-center
-  .notification-row
-  .notification-background
-  .notification
-  > *:last-child
-  > *
-  .notification-action:first-child:active {
-  background-color: var(--muted);
-  color: var(--text);
-}
-
-/* Control center notification dismiss/close button */
-.control-center .notification-row .notification-background .close-button {
-  margin: 0.5rem;
-  padding: 0.25rem;
-  border-radius: 0.5rem;
-  color: var(--text);
-  background-color: var(--love);
-}
-
-.control-center .notification-row .notification-background .close-button:hover {
-  color: var(--subtle);
-}
-
-.control-center
-  .notification-row
-  .notification-background
-  .close-button:active {
-  background-color: var(--rose);
-}
-
 /* ============================================
    Progress Bars
    ============================================ */
 
-progressbar,
-progress,
-trough {
-  border-radius: 0.5rem;
+trough highlight {
+  background: var(--rose);
 }
 
-.notification.critical progress {
-  background-color: var(--love);
-}
-
-.notification.low progress,
-.notification.normal progress {
-  background-color: var(--foam);
-}
-
-trough {
+scale trough {
+  margin: 0 1rem;
   background-color: var(--surface);
+  min-height: 8px;
+  min-width: 70px;
 }
 
-.control-center trough {
-  background-color: var(--muted);
+slider {
+  background-color: var(--text);
 }
 
 /* ============================================
@@ -443,26 +217,26 @@ trough {
 }
 
 .widget-dnd {
-  color: #908caa;
+  color: var(--muted);
 }
 
 .widget-dnd > switch {
   border-radius: 0.5rem;
-  background: #26233a;
+  background: var(--overlay);
 }
 
 .widget-dnd > switch:checked {
-  color: #31748f;
-}
-
-.widget-dnd > switch:checked slider {
-  background: #31748f;
+  background: var(--pine);
 }
 
 .widget-dnd > switch slider {
-  background: #6e6a86;
-  border-radius: 0.33rem;
-  margin: 0.25rem;
+  background: var(--text);
+  border-radius: 0.5rem;
+  margin: 0.1975rem;
+}
+
+.widget-dnd > switch:checked slider {
+  background: var(--foam);
 }
 
 /* ============================================
@@ -520,9 +294,9 @@ trough {
   opacity: 0.25;
 }
 
-/* .widget-mpris-album-art { */
-/*   display: none; */
-/* } */
+.widget-mpris-album-art {
+  -gtk-icon-size: 40px;
+}
 
 .widget-mpris-title {
   font-weight: 700;
