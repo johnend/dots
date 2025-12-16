@@ -22,7 +22,7 @@
   "transition-time": 200,
   "hide-on-clear": false,
   "hide-on-action": true,
-  "text-empty": "󱅾   No notifications\nGo have some food\n\n\n\n\n\n",
+  "text-empty": "󱅾   No notifications\n\n\n\n\n",
   "script-fail-notify": true,
   "widgets": [
     "title",
