@@ -8,7 +8,8 @@
 "/home/johne/Pictures/misc/186308089-da43bf63-0524-4eb0-93fc-0829f48096da.png"
 "/home/johne/Pictures/Wallpapers/wave_off_Kanagawa_in_van_gogh_style_catppuccin_ai.jpg"
 "/home/johne/Pictures/family.png"
-"/home/johne/Pictures/walls/anime-fight-with-dragon.png"
+"/home/johne/Pictures/walls/rotation/firewatch_sunset.png"
+"/home/johne/Pictures/walls/random_door.jpg"
 
 [shortcuts]
 "Home[path]/home/johne"
@@ -16,7 +17,6 @@
 "Collections[path]/home/johne/.local/share/geeqie/collections"
 
 [path_list]
-"/home/johne/Pictures/Wallpapers/walls2"
 "/home/johne/Pictures/Wallpapers/walls3"
 "/home/johne/Pictures/transparent"
 "/home/johne/Pictures/Screenshots"
@@ -24,6 +24,7 @@
 "/home/johne/Pictures/ascii"
 "/home/johne/Pictures/Wallpapers"
 "/home/johne/Pictures"
+"/home/johne/Pictures/walls/rotation"
 "/home/johne"
 "/home/johne/Pictures/walls"
 

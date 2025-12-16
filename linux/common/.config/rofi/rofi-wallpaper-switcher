@@ -1,0 +1,141 @@
+#!/usr/bin/bash
+set -euo pipefail
+
+WALL_DIR="${WALL_DIR:-$HOME/Pictures/walls}"
+CACHE_DIR="${CACHE_DIR:-${XDG_CACHE_HOME:-$HOME/.cache}/rofi-wallpapers}"
+THUMB_W="${THUMB_W:-400}"
+THUMB_H="${THUMB_H:-225}"
+DEFAULT_TRANSITION_ARGS=(--transition-type any --transition-duration 3 --resize crop)
+if [[ -n "${SWWW_TRANSITION_ARGS:-}" ]]; then
+  IFS=' ' read -r -a TRANSITION_ARGS <<< "${SWWW_TRANSITION_ARGS}"
+else
+  TRANSITION_ARGS=("${DEFAULT_TRANSITION_ARGS[@]}")
+fi
+
+DEPENDENCIES=(swww magick)
+
+log() { printf '%s\n' "$*" >&2; }
+debug() {
+  mkdir -p "$CACHE_DIR"
+  printf '%s\n' "$*" >> "$CACHE_DIR/wallpaper-switcher.log"
+}
+die() {
+  log "Error: $*"
+  debug "ERROR: $*"
+  exit 1
+}
+
+check_deps() {
+  for dep in "${DEPENDENCIES[@]}"; do
+    command -v "$dep" >/dev/null 2>&1 || die "Missing dependency: $dep"
+  done
+}
+
+collect_wallpapers() {
+  local -n _out=$1
+  [[ -d "$WALL_DIR" ]] || die "Wallpaper directory not found: $WALL_DIR"
+  mapfile -t _out < <(
+    find "$WALL_DIR" -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \) |
+      sort -f
+  )
+  ((${#_out[@]})) || die "No wallpapers found in $WALL_DIR"
+}
+
+thumb_path_for() {
+  local src="$1"
+  local key
+  key="$(printf '%s' "$src" | sha1sum | cut -d' ' -f1)"
+  printf '%s/%s.png' "$CACHE_DIR" "$key"
+}
+
+ensure_thumb() {
+  local src="$1" thumb="$2"
+  local tmp="${thumb}.tmp"
+
+  if [[ ! -f "$thumb" || "$src" -nt "$thumb" ]]; then
+    mkdir -p "$CACHE_DIR"
+    if ! magick "$src" -auto-orient -resize "${THUMB_W}x${THUMB_H}^" \
+      -gravity center -extent "${THUMB_W}x${THUMB_H}" "$tmp"; then
+      return 1
+    fi
+    mv "$tmp" "$thumb"
+  fi
+}
+
+start_swww_daemon() {
+  if ! pgrep -x swww-daemon >/dev/null 2>&1; then
+    swww-daemon >/dev/null 2>&1 &
+    sleep 0.4
+  fi
+}
+
+apply_wallpaper() {
+  local path="$1"
+  start_swww_daemon
+  swww img "$path" "${TRANSITION_ARGS[@]}"
+}
+
+print_menu() {
+  declare -n _labels=$1
+  declare -n _thumbs=$2
+  declare -n _infos=$3
+  printf '\0no-custom\x1ftrue\n'
+  printf '\0prompt\x1fWallpapers\n'
+  for label in "${_labels[@]}"; do
+    printf '%s\0icon\x1f%s\0info\x1f%s\n' "$label" "${_thumbs[$label]}" "${_infos[$label]}"
+  done
+}
+
+main() {
+  check_deps
+  declare -a entries labels
+  collect_wallpapers entries
+
+  declare -A paths thumbs infos
+  for src in "${entries[@]}"; do
+    local base label thumb
+    base="$(basename "$src")"
+    label=${base%.*}
+
+    thumb="$(thumb_path_for "$src")"
+    if ensure_thumb "$src" "$thumb"; then
+      paths["$label"]="$src"
+      thumbs["$label"]=$thumb
+      infos["$label"]="$src"
+      labels+=("$label")
+    fi
+  done
+
+  ((${#labels[@]})) || die "No thumbnails generated; check ImageMagick output"
+
+  local ret="${ROFI_RETV:-0}"
+  local selection=""
+
+  if (($# > 0)); then
+    selection="$*"
+  elif [[ "$ret" -ne 0 ]]; then
+    IFS= read -r selection || selection=""
+  else
+    print_menu labels thumbs infos
+    debug "menu emitted (ret=$ret)"
+    exit 0
+  fi
+
+  local raw_selection="$selection"
+  selection="${selection%%$'\x1f'*}"
+
+  local chosen="${ROFI_INFO:-}"
+  if [[ -z "$chosen" && -n "$selection" ]]; then
+    chosen="${paths["$selection"]:-}"
+  fi
+
+  printf -v raw_dump '%q' "$raw_selection"
+  printf -v sel_dump '%q' "$selection"
+  printf -v info_dump '%q' "${ROFI_INFO:-}"
+  debug "ret=$ret argc=$# args='$*' raw=$raw_dump trimmed=$sel_dump info=$info_dump chosen='${chosen:-}'"
+
+  [[ -n "$chosen" ]] || die "Unknown selection: '$selection' (ret=${ROFI_RETV:-unset} args=$# info='${ROFI_INFO:-}')"
+  apply_wallpaper "$chosen"
+}
+
+main "$@"
