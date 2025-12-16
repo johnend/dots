@@ -91,10 +91,10 @@ element-icon {
 }
 
 element selected {
-    background-color:  @pine;
+    background-color:  @surface;
     text-color: @text;
     border: 1px;
-    border-color: @foam;
+    border-color: @rose;
 }
 
 mode-switcher {
