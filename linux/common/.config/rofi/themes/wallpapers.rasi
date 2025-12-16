@@ -71,6 +71,7 @@ listview {
     columns: 5;
     lines: 1;
     padding: 8px;
+    fixed-columns: true;
 }
 
 element {
