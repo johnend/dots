@@ -78,13 +78,8 @@ element {
     background-color: @base;
     text-color: @muted;
     margin: 0 8px;
-    padding: 4px 8px;
     border-radius: 4px;
     orientation: vertical;
-}
-
-element-text {
-    padding: 8px;
 }
 
 element-icon {
@@ -95,7 +90,17 @@ element selected {
     background-color:  @surface;
     text-color: @text;
     border: 1px;
-    border-color: @rose;
+    border-color: @muted;
+}
+
+element-text {
+    padding: 8px;
+    background-color: @base;
+    color: @muted;
+}
+
+element-text selected {
+    color: @rose;
 }
 
 mode-switcher {
@@ -107,14 +112,14 @@ button {
     text-color: @text;
     vertical-align: 0.5; 
     horizontal-align: 0.5;
-    padding: 5px 0 3px 0;
+    padding: 4px 0 8px 0;
     border: 1px 0 0 0;
     border-color: @overlay;
 }
 
 button selected {
-  background-color: @rose;
-  text-color: @base;
+  background-color: @base;
+  text-color: @muted;
 }
 
 message {
