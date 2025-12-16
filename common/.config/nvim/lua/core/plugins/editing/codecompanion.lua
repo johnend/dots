@@ -12,6 +12,8 @@ return {
     "nvim-treesitter/nvim-treesitter",
   },
   opts = {
+    system_prompt = require "core.config.codecompanion.system_prompt",
+    tools_prompt = require "core.config.codecompanion.tools_prompt",
     display = {
       action_palette = {
         provider = "telescope",
@@ -26,13 +28,16 @@ return {
     },
     interactions = {
       chat = {
-        adapter = "copilot",
-        model = "gpt-4.1", -- Fixed: was "gpt-5.2" which doesn't exist
+        name = "copilot",
+        model = "claude-sonnet-4.5",
       },
     },
     -- NOTE: The log_level is in `opts.opts`
     opts = {
       log_level = "DEBUG", -- or "TRACE"
+      send_code = true,
+      use_default_actions = true,
+      use_default_prompt_library = true,
     },
   },
 
