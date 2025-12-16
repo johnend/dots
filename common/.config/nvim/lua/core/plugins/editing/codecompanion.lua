@@ -24,10 +24,10 @@ return {
         show_token_count = false,
       },
     },
-    strategies = {
+    interactions = {
       chat = {
-        name = "copilot",
-        model = "gpt-4.1",
+        adapter = "copilot",
+        model = "gpt-4.1", -- Fixed: was "gpt-5.2" which doesn't exist
       },
     },
     -- NOTE: The log_level is in `opts.opts`
