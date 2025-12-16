@@ -1,5 +1,9 @@
 @import "./theme/rose-pine.css";
 
+/* ============================================
+   Global Styles
+   ============================================ */
+
 * {
   all: unset;
   font-family: Ububtu Nerd Font;
@@ -7,16 +11,22 @@
   font-size: 1rem;
 }
 
+/* ============================================
+   Floating Notifications
+   ============================================ */
+
 .floating-notifications.background .notification-row {
   margin: 4px;
 }
 
+/* Notification background container */
 .floating-notifications.background .notification-row .notification-background {
   background-color: var(--base);
   color: var(--text);
   border: 1px solid var(--muted);
 }
 
+/* Base notification styling */
 .floating-notifications.background
   .notification-row
   .notification-background
@@ -25,6 +35,7 @@
   padding: 0 0.5rem;
 }
 
+/* Notification priority indicators - left border colors */
 .floating-notifications.background
   .notification-row
   .notification-background
@@ -46,6 +57,7 @@
   border-left: 3px solid var(--love);
 }
 
+/* Notification text content */
 .floating-notifications.background
   .notification-row
   .notification-background
@@ -67,15 +79,17 @@
   color: var(--subtle);
 }
 
+/* Action buttons container */
 .floating-notifications.background
   .notification-row
   .notification-background
   .notification
   > *:last-child
   > * {
-  min-height: 3rem;
+  min-height: 2rem;
 }
 
+/* Default action button styling - used for normal actions (e.g., "Open Folder") */
 .floating-notifications.background
   .notification-row
   .notification-background
@@ -83,9 +97,11 @@
   > *:last-child
   > *
   .notification-action {
-  margin: 0.5rem 0 0 0;
+  padding: 0.5rem 1rem;
+  min-height: 2rem;
   color: var(--base);
   background-color: var(--pine);
+  border: none;
 }
 
 .floating-notifications.background
@@ -95,7 +111,7 @@
   > *:last-child
   > *
   .notification-action:hover {
-  background-color: var(--rose);
+  background-color: var(--foam);
   color: var(--base);
 }
 
@@ -110,6 +126,41 @@
   color: var(--text);
 }
 
+/* First action button - destructive actions (e.g., "Delete") styled with --love */
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .notification
+  > *:last-child
+  > *
+  .notification-action:first-child {
+  background-color: var(--love);
+  color: var(--base);
+}
+
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .notification
+  > *:last-child
+  > *
+  .notification-action:first-child:hover {
+  background-color: var(--rose);
+  color: var(--base);
+}
+
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .notification
+  > *:last-child
+  > *
+  .notification-action:first-child:active {
+  background-color: var(--muted);
+  color: var(--text);
+}
+
+/* Notification dismiss/close button */
 .floating-notifications.background
   .notification-row
   .notification-background
@@ -135,6 +186,10 @@
   background-color: var(--rose);
 }
 
+/* ============================================
+   Control Center (Notification Panel)
+   ============================================ */
+
 .control-center {
   border-radius: 0.5rem;
   margin: 0.25rem;
@@ -144,6 +199,7 @@
   border: 1px solid var(--rose);
 }
 
+/* Control center header and title */
 .control-center .widget-title {
   color: var(--rose);
   font-weight: bold;
@@ -165,6 +221,7 @@
   background-color: var(--muted);
 }
 
+/* Control center notification background */
 .control-center .notification-row .notification-background {
   margin: 0.5rem 0;
   background-color: var(--surface);
@@ -172,12 +229,14 @@
   border: none;
 }
 
+/* Base notification in control center */
 .control-center .notification-row .notification-background .notification {
   padding: 0 0 0 0.5rem;
   /* border-radius: 0.5rem; */
   border: 1px solid var(--muted);
 }
 
+/* Notification priority indicators - left border colors */
 .control-center .notification-row .notification-background .notification.low {
   border-left: 3px solid var(--foam);
 }
@@ -196,6 +255,7 @@
   border-left: 3px solid var(--love);
 }
 
+/* Control center notification text content */
 .control-center
   .notification-row
   .notification-background
@@ -239,15 +299,17 @@
   font-size: 0.75rem;
 }
 
+/* Action buttons container */
 .control-center
   .notification-row
   .notification-background
   .notification
   > *:last-child
   > * {
-  min-height: 3rem;
+  min-height: 2rem;
 }
 
+/* Default action button styling - used for normal actions (e.g., "Open Folder") */
 .control-center
   .notification-row
   .notification-background
@@ -255,9 +317,12 @@
   > *:last-child
   > *
   .notification-action {
-  margin: 0.5rem 0 0 0;
+  margin: 0.5rem 0.25rem 0.5rem 0;
+  padding: 0.5rem 1rem;
+  min-height: 2rem;
   color: var(--base);
   background-color: var(--pine);
+  border: none;
 }
 
 .control-center
@@ -267,7 +332,7 @@
   > *:last-child
   > *
   .notification-action:hover {
-  background-color: var(--rose);
+  background-color: var(--foam);
   color: var(--base);
 }
 
@@ -282,6 +347,41 @@
   color: var(--text);
 }
 
+/* First action button - destructive actions (e.g., "Delete") styled with --love */
+.control-center
+  .notification-row
+  .notification-background
+  .notification
+  > *:last-child
+  > *
+  .notification-action:first-child {
+  background-color: var(--love);
+  color: var(--base);
+}
+
+.control-center
+  .notification-row
+  .notification-background
+  .notification
+  > *:last-child
+  > *
+  .notification-action:first-child:hover {
+  background-color: var(--rose);
+  color: var(--base);
+}
+
+.control-center
+  .notification-row
+  .notification-background
+  .notification
+  > *:last-child
+  > *
+  .notification-action:first-child:active {
+  background-color: var(--muted);
+  color: var(--text);
+}
+
+/* Control center notification dismiss/close button */
 .control-center .notification-row .notification-background .close-button {
   margin: 0.5rem;
   padding: 0.25rem;
@@ -300,6 +400,10 @@
   .close-button:active {
   background-color: var(--rose);
 }
+
+/* ============================================
+   Progress Bars
+   ============================================ */
 
 progressbar,
 progress,
@@ -323,6 +427,10 @@ trough {
 .control-center trough {
   background-color: var(--muted);
 }
+
+/* ============================================
+   Do Not Disturb Widget
+   ============================================ */
 
 .control-center-dnd {
   margin: 1rem 0;
@@ -357,6 +465,10 @@ trough {
   margin: 0.25rem;
 }
 
+/* ============================================
+   Buttons Grid Widget
+   ============================================ */
+
 .widget-buttons-grid {
   padding: 6px 2px;
   border-radius: 4px;
@@ -374,6 +486,10 @@ trough {
 .widget-buttons-grid > flowbox > flowboxchild > button:hover {
   background: var(--surface);
 }
+
+/* ============================================
+   MPRIS Media Player Widget
+   ============================================ */
 
 .widget-mpris .widget-mpris-player {
   background: #26233a;
