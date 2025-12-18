@@ -40,6 +40,8 @@ gh-create() {
 # spotfiy player
 alias "spt"="spotify_player"
 
+# opencode
+alias "oc"="opencode"
 
 # Linux specific aliases
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
@@ -55,3 +57,35 @@ alias minvim='NVIM_APPNAME=minvim nvim' # LazyVim
 
 # Update Homebrew when using VPN
 alias brew-update-clean='/usr/bin/env -i HOME="$HOME" PATH="/opt/homebrew/bin:/usr/bin:/bin" HOMEBREW_FORCE_BREWED_CURL=1 CURL_SSL_BACKEND=secure-transport brew update --verbose'
+
+# Posting aliases
+postingraf() {
+  local env_dir="$HOME/Developer/fanduel/raccoons/raf-service-env"
+  local selected_env=$(find "$env_dir" -type f -name "*.env" | while read -r file; do
+    local basename=$(basename "$file")
+    local display_name=""
+    local truncated_path="${file#*fanduel/}"
+    
+    if [[ "$basename" == cas.* ]]; then
+      local env_name="${basename#cas.}"
+      env_name="${env_name%.env}"
+      display_name="Casino - $env_name"
+    elif [[ "$basename" == ms.* ]]; then
+      local env_name="${basename#ms.}"
+      env_name="${env_name%.env}"
+      display_name="Mohegan Sun - $env_name"
+    elif [[ "$basename" == sbk.* ]]; then
+      local env_name="${basename#sbk.}"
+      env_name="${env_name%.env}"
+      display_name="Sportsbook - $env_name"
+    else
+      display_name="$basename"
+    fi
+    
+    printf "%s \033[90mfanduel/%s\033[0m\t%s\n" "$display_name" "$truncated_path" "$file"
+  done | sort | fzf --header="Select an environment config:" --with-nth=1 --delimiter='\t' --ansi | cut -f2)
+  
+  if [ -n "$selected_env" ]; then
+    posting --env "$selected_env"
+  fi
+}
