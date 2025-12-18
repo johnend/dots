@@ -77,20 +77,25 @@ return {
     snippets = { preset = "luasnip" },
 
     sources = {
-      default = { "snippets", "lsp", "path", "buffer", "lazydev" },
+      default = { "lsp", "path", "snippets", "buffer" },
+      -- Per-filetype source configuration
+      per_filetype = {
+        lua = { "lsp", "path", "snippets", "lazydev", "buffer" },
+      },
       providers = {
         lsp = {
           enabled = true,
           name = "LSP",
           module = "blink.cmp.sources.lsp",
-          score_offset = 90,
+          score_offset = 100, -- Prioritize LSP completions
           transform_items = sanitize_and_dedupe,
         },
         lazydev = {
           enabled = true,
           name = "LazyDev",
           module = "lazydev.integrations.blink",
-          score_offset = 70,
+          score_offset = 100, -- Equal to LSP for Lua files
+          fallbacks = { "lsp" }, -- Fall back to LSP if lazydev returns nothing
         },
         snippets = {
           enabled = true,
@@ -98,14 +103,13 @@ return {
           max_items = 15,
           min_keyword_length = 2,
           module = "blink.cmp.sources.snippets",
-          score_offset = 100,
+          score_offset = -3, -- Lower priority, appears below LSP/path
         },
         path = {
           enabled = true,
           name = "Path",
           module = "blink.cmp.sources.path",
-          score_offset = 50,
-          fallbacks = { "snippets", "buffer" },
+          score_offset = 50, -- High priority for paths
           opts = {
             trailing_slash = false,
             label_trailing_slash = true,
@@ -116,22 +120,22 @@ return {
           name = "Buffer",
           max_items = 80,
           module = "blink.cmp.sources.buffer",
-          score_offset = 2,
+          score_offset = -3, -- Low priority fallback
         },
       },
     },
 
     keymap = {
-      -- use the built-in preset; see docs for other presets :contentReference[oaicite:0]{index=0}
       preset = "default",
-      ["<C-e>"] = {
+      -- Manual completion trigger (easy with space-hold-as-ctrl)
+      ["<C-l>"] = {
         function(cmp)
-          cmp.show { providers = { "snippets", "lsp", "path", "buffer" } }
+          cmp.show { providers = { "lsp", "path", "snippets", "buffer" } }
         end,
       },
+      -- Disable arrow keys in completion menu
       ["<Up>"] = {},
       ["<Down>"] = {},
-      -- you can override individual keys here, too
     },
 
     appearance = {
@@ -139,6 +143,12 @@ return {
       kind_icons = icons.kind,
     },
     completion = {
+      trigger = {
+        -- Show completions after accepting and backspacing (useful for paths)
+        show_on_backspace_after_accept = true,
+        -- Show completions after entering insert mode and backspacing
+        show_on_backspace_after_insert_enter = true,
+      },
       list = {
         selection = {
           preselect = true,
@@ -146,12 +156,11 @@ return {
         },
       },
       documentation = {
+        auto_show = false, -- Only show with <C-k> keymap
         window = {
           border = "rounded",
           winhighlight = "FloatBorder:FloatBorder",
         },
-        auto_show = true,
-        auto_show_delay_ms = 300,
       },
       menu = {
         border = "rounded",
@@ -244,6 +253,12 @@ return {
         border = "rounded",
         winhighlight = "FloatBorder:FloatBorder",
       },
+    },
+
+    -- Cmdline completion
+    cmdline = {
+      enabled = true,
+      keymap = { preset = "cmdline" },
     },
   },
   -- ensure Lazy.nvim actually calls the setup
