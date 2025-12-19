@@ -16,7 +16,7 @@ vim.g.loaded_netrwPlugin = 1
 
 vim.keymap.set("", "<Space>", "<Nop>", { noremap = true, silent = true })
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.maplocalleader = ","
 
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 ---@diagnostic disable-next-line: undefined-field
