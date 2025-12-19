@@ -95,7 +95,6 @@ return {
           name = "LazyDev",
           module = "lazydev.integrations.blink",
           score_offset = 100, -- Equal to LSP for Lua files
-          fallbacks = { "lsp" }, -- Fall back to LSP if lazydev returns nothing
         },
         snippets = {
           enabled = true,
