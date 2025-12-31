@@ -31,7 +31,9 @@ wireplumber
 playerctl
 brightnessctl
 alsa-utils
-power-profiles-daemon
+tlp
+tlp-pd
+tlp-rdw
 
 # Network and Bluetooth
 networkmanager

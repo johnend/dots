@@ -14,26 +14,26 @@
 # - Provides post-installation instructions
 # =============================================================================
 
-set -euo pipefail  # Exit on error, undefined vars, pipe failures
+set -euo pipefail # Exit on error, undefined vars, pipe failures
 
 # Parse command line arguments
 DRY_RUN=false
 while [[ $# -gt 0 ]]; do
     case $1 in
-        --dry-run)
-            DRY_RUN=true
-            shift
-            ;;
-        -h|--help)
-            echo "Usage: $0 [--dry-run] [--help]"
-            echo "  --dry-run    Show what would be done without actually doing it"
-            echo "  --help       Show this help message"
-            exit 0
-            ;;
-        *)
-            echo "Unknown option: $1"
-            exit 1
-            ;;
+    --dry-run)
+        DRY_RUN=true
+        shift
+        ;;
+    -h | --help)
+        echo "Usage: $0 [--dry-run] [--help]"
+        echo "  --dry-run    Show what would be done without actually doing it"
+        echo "  --help       Show this help message"
+        exit 0
+        ;;
+    *)
+        echo "Unknown option: $1"
+        exit 1
+        ;;
     esac
 done
 
@@ -97,19 +97,19 @@ package_exists() {
 install_packages() {
     local packages=("$@")
     local failed_packages=()
-    
+
     log_info "Installing ${#packages[@]} packages..."
-    
+
     if [ "$DRY_RUN" = true ]; then
         log_dry_run "Would install the following packages:"
         printf '  - %s\n' "${packages[@]}" | tee -a "$LOG_FILE"
         return 0
     fi
-    
+
     # Try to install all packages first
     if ! yay -S --noconfirm --needed --disable-download-timeout "${packages[@]}" 2>&1 | tee -a "$LOG_FILE"; then
         log_warning "Bulk installation failed. Trying individual package installation..."
-        
+
         # Install packages individually to identify failures
         for package in "${packages[@]}"; do
             log_info "Installing: $package"
@@ -123,7 +123,7 @@ install_packages() {
     else
         log_success "All packages installed successfully"
     fi
-    
+
     if [ ${#failed_packages[@]} -gt 0 ]; then
         log_warning "The following packages failed to install:"
         printf '%s\n' "${failed_packages[@]}" | tee -a "$LOG_FILE"
@@ -133,17 +133,17 @@ install_packages() {
 # Function to setup oh-my-zsh
 setup_oh_my_zsh() {
     log_info "Setting up oh-my-zsh..."
-    
+
     if [ "$DRY_RUN" = true ]; then
         log_dry_run "Would setup oh-my-zsh and plugins:"
         log_dry_run "  - Install oh-my-zsh if not present"
         log_dry_run "  - Install powerlevel10k theme"
         log_dry_run "  - Install zsh-autosuggestions plugin"
-        log_dry_run "  - Install zsh-syntax-highlighting plugin" 
+        log_dry_run "  - Install zsh-syntax-highlighting plugin"
         log_dry_run "  - Install fzf-tab plugin"
         return 0
     fi
-    
+
     if [ ! -d "$USER_HOME/.oh-my-zsh" ]; then
         log_info "Installing oh-my-zsh..."
         sudo -u "$ACTUAL_USER" sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
@@ -151,7 +151,7 @@ setup_oh_my_zsh() {
     else
         log_info "oh-my-zsh already installed"
     fi
-    
+
     # Install powerlevel10k theme
     local p10k_dir="$USER_HOME/.oh-my-zsh/custom/themes/powerlevel10k"
     if [ ! -d "$p10k_dir" ]; then
@@ -161,10 +161,10 @@ setup_oh_my_zsh() {
     else
         log_info "powerlevel10k already installed"
     fi
-    
+
     # Install zsh plugins
     local plugins_dir="$USER_HOME/.oh-my-zsh/custom/plugins"
-    
+
     if [ ! -d "$plugins_dir/zsh-autosuggestions" ]; then
         log_info "Installing zsh-autosuggestions..."
         sudo -u "$ACTUAL_USER" git clone https://github.com/zsh-users/zsh-autosuggestions "$plugins_dir/zsh-autosuggestions"
@@ -172,7 +172,7 @@ setup_oh_my_zsh() {
     else
         log_info "zsh-autosuggestions already installed"
     fi
-    
+
     if [ ! -d "$plugins_dir/zsh-syntax-highlighting" ]; then
         log_info "Installing zsh-syntax-highlighting..."
         sudo -u "$ACTUAL_USER" git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$plugins_dir/zsh-syntax-highlighting"
@@ -180,7 +180,7 @@ setup_oh_my_zsh() {
     else
         log_info "zsh-syntax-highlighting already installed"
     fi
-    
+
     if [ ! -d "$plugins_dir/fzf-tab" ]; then
         log_info "Installing fzf-tab..."
         sudo -u "$ACTUAL_USER" git clone https://github.com/Aloxaf/fzf-tab "$plugins_dir/fzf-tab"
@@ -193,7 +193,7 @@ setup_oh_my_zsh() {
 # Function to create necessary directories
 create_directories() {
     log_info "Creating necessary directories..."
-    
+
     if [ "$DRY_RUN" = true ]; then
         log_dry_run "Would create the following directories:"
         log_dry_run "  - $USER_HOME/Pictures/Screenshots"
@@ -203,7 +203,7 @@ create_directories() {
         log_dry_run "  - $USER_HOME/.local/share/themes"
         return 0
     fi
-    
+
     local dirs=(
         "$USER_HOME/Pictures/Screenshots"
         "$USER_HOME/.config/systemd/user"
@@ -211,7 +211,7 @@ create_directories() {
         "$USER_HOME/.local/share/icons"
         "$USER_HOME/.local/share/themes"
     )
-    
+
     for dir in "${dirs[@]}"; do
         if [ ! -d "$dir" ]; then
             sudo -u "$ACTUAL_USER" mkdir -p "$dir"
@@ -225,7 +225,7 @@ create_directories() {
 # Function to enable system services
 enable_services() {
     log_info "Enabling system services..."
-    
+
     if [ "$DRY_RUN" = true ]; then
         log_dry_run "Would enable the following services:"
         log_dry_run "  - greetd.service"
@@ -235,7 +235,7 @@ enable_services() {
         log_dry_run "Would add $ACTUAL_USER to docker group"
         return 0
     fi
-    
+
     # Enable greetd
     if systemctl is-enabled greetd.service &>/dev/null; then
         log_info "greetd.service already enabled"
@@ -243,7 +243,7 @@ enable_services() {
         systemctl enable greetd.service
         log_success "Enabled greetd.service"
     fi
-    
+
     # Enable NetworkManager
     if systemctl is-enabled NetworkManager.service &>/dev/null; then
         log_info "NetworkManager.service already enabled"
@@ -251,7 +251,7 @@ enable_services() {
         systemctl enable NetworkManager.service
         log_success "Enabled NetworkManager.service"
     fi
-    
+
     # Enable bluetooth
     if systemctl is-enabled bluetooth.service &>/dev/null; then
         log_info "bluetooth.service already enabled"
@@ -259,7 +259,7 @@ enable_services() {
         systemctl enable bluetooth.service
         log_success "Enabled bluetooth.service"
     fi
-    
+
     # Enable docker (if user wants it)
     if systemctl is-enabled docker.service &>/dev/null; then
         log_info "docker.service already enabled"
@@ -313,46 +313,46 @@ main() {
     log "${PURPLE}║                     for EndeavourOS/Arch                     ║${NC}"
     log "${PURPLE}╚══════════════════════════════════════════════════════════════╝${NC}"
     echo
-    
+
     log_info "Starting installation for user: $ACTUAL_USER"
     log_info "User home directory: $USER_HOME"
     log_info "Installation log: $LOG_FILE"
     echo
-    
+
     # Check if packages file exists
     if [ ! -f "$PACKAGES_FILE" ]; then
         log_error "Packages file not found: $PACKAGES_FILE"
         exit 1
     fi
-    
+
     # Read packages from file (excluding comments and empty lines)
     mapfile -t packages < <(grep -v '^#' "$PACKAGES_FILE" | grep -v '^$')
     log_info "Found ${#packages[@]} packages to install"
-    
+
     # Update system first
     log_info "Updating system packages..."
     if [ "$DRY_RUN" = true ]; then
         log_dry_run "Would update system with: yay -Syu --noconfirm"
     else
-    if ! yay -Syu --noconfirm 2>&1 | tee -a "$LOG_FILE"; then
-        log_warning "System update had issues, continuing..."
-    else
-        log_success "System updated successfully"
+        if ! yay -Syu --noconfirm 2>&1 | tee -a "$LOG_FILE"; then
+            log_warning "System update had issues, continuing..."
+        else
+            log_success "System updated successfully"
+        fi
     fi
-    fi
-    
+
     # Install packages
     install_packages "${packages[@]}"
-    
+
     # Setup oh-my-zsh
     setup_oh_my_zsh
-    
+
     # Create directories
     create_directories
-    
+
     # Enable services
     enable_services
-    
+
     # Show post-installation instructions
     echo
     show_post_install_instructions
