@@ -1,0 +1,13 @@
+[General]
+loginMode=emptySession
+
+[LegacySession: saved at previous logout]
+count=0
+
+[Session: saved at previous logout]
+clientId1=10dec8d361000173490634600000011340004
+count=1
+program1=/usr/bin/firewall-applet
+restartCommand1=/usr/bin/firewall-applet,-session,10dec8d361000173490634600000011340004_1734913891_656471,-name,firewall-applet
+restartStyleHint1=0
+userId1=johne

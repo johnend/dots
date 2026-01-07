@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="32"
+   height="32"
+   version="1.1"
+   id="svg12"
+   sodipodi:docname="konv_message.svg"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <style
+     id="current-color-scheme"
+     type="text/css">.ColorScheme { color:#eff0f1; }
+</style>
+  <metadata
+     id="metadata18">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs16" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1000"
+     id="namedview14"
+     showgrid="false"
+     inkscape:zoom="9.8125"
+     inkscape:cx="35.363057"
+     inkscape:cy="19.210191"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg12"
+     inkscape:document-rotation="0"
+     inkscape:showpageshadow="2"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:lockguides="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid1194"
+       originx="0"
+       originy="0" />
+  </sodipodi:namedview>
+  <g
+     id="konv_message">
+    <rect
+       style="opacity:0.00100002"
+       width="32"
+       height="32"
+       x="0"
+       y="0"
+       id="rect7" />
+    <path
+       d="M 16,27.999999 12,23 H 3.927868 C 2.826229,23 2,21.868612 2,20.817517 V 5.839416 C 2,4.788321 2.826229,4 3.927868,4 H 28.072133 C 29.173768,4 30,4.788321 30,5.839416 V 20.817517 C 30,21.868612 29.173475,23.025406 28.072133,23 H 20 Z M 3.927868,5 C 3.652459,5 3,5 3,5.839416 V 20.918 C 3,21.180774 3.382824,22 3.927868,22 H 6 12.740987 v 0 H 27.980329 C 28.595321,22 29,21.180774 29,20.918 V 5.839416 C 29,5 28.255402,5 27.98,5 Z"
+       id="path2-367"
+       style="fill:currentColor;fill-opacity:1;stroke-width:1"
+       sodipodi:nodetypes="ccssssssssccsssscccsssss"
+       class="ColorScheme-Text  ColorScheme" />
+    <path
+       id="path8-9"
+       d="M 24.5,11 A 2.4999996,2.4999855 0 0 0 22,13.499999 2.4999996,2.4999855 0 0 0 24.5,16 2.4999996,2.4999855 0 0 0 27,13.499999 2.4999996,2.4999855 0 0 0 24.5,11 Z"
+       style="fill:currentColor;fill-opacity:1;stroke:none;stroke-width:1"
+       inkscape:connector-curvature="0"
+       class="ColorScheme-Text  ColorScheme" />
+    <path
+       id="path8-9-3"
+       d="M 16,11 A 2.4999996,2.4999855 0 0 0 13.5,13.499999 2.4999996,2.4999855 0 0 0 16,16 2.4999996,2.4999855 0 0 0 18.5,13.499999 2.4999996,2.4999855 0 0 0 16,11 Z"
+       style="fill:currentColor;fill-opacity:1;stroke:none;stroke-width:1"
+       inkscape:connector-curvature="0"
+       class="ColorScheme-Text  ColorScheme" />
+    <path
+       id="path8-9-6"
+       d="M 7.5000001,11 A 2.4999996,2.4999855 0 0 0 5,13.499999 2.4999996,2.4999855 0 0 0 7.5000001,16 2.4999996,2.4999855 0 0 0 10,13.499999 2.4999996,2.4999855 0 0 0 7.5000001,11 Z"
+       style="fill:currentColor;fill-opacity:1;stroke:none;stroke-width:1"
+       inkscape:connector-curvature="0"
+       class="ColorScheme-Text  ColorScheme" />
+  </g>
+  <g
+     id="22-22-konv_message"
+     transform="translate(32,10)">
+    <rect
+       style="opacity:0.00100002"
+       width="22"
+       height="22"
+       x="0"
+       y="0"
+       id="rect2" />
+    <path
+       fill="none"
+       stroke-width="0.998289"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       d="m 18.500857,5.4424315 v 8.1937225 c 0,0.520965 -0.462709,0.874422 -1.032919,0.857425 h -4.268937 l -2.131,3.007329 -1.6000005,-3.007329 -4.935938,-4.48e-4 c -0.570465,-5.2e-5 -1.032918,-0.436826 -1.032918,-0.957791 V 5.4424315 c 0,-0.520962 0.462453,-0.943287 1.032918,-0.943287 H 17.467937 c 0.570465,0 1.032919,0.422325 1.03292,0.943287 z"
+       id="path2-5"
+       style="stroke:currentColor;stroke-opacity:1"
+       sodipodi:nodetypes="ssscccssssss"
+       class="ColorScheme-Text  ColorScheme" />
+    <path
+       id="path8-9-7"
+       d="m 15.000001,8.9999995 a 0.99999962,0.99999438 0 0 0 -1,0.9999995 0.99999962,0.99999438 0 0 0 1,1 0.99999962,0.99999438 0 0 0 1,-1 0.99999962,0.99999438 0 0 0 -1,-0.9999995 z"
+       style="fill:currentColor;fill-opacity:1;stroke:none;stroke-width:1"
+       inkscape:connector-curvature="0"
+       class="ColorScheme-Text  ColorScheme" />
+    <path
+       id="path8-9-3-5"
+       d="m 11.000001,8.9999995 a 0.99999962,0.99999438 0 0 0 -1,0.9999995 0.99999962,0.99999438 0 0 0 1,1 0.99999962,0.99999438 0 0 0 1,-1 0.99999962,0.99999438 0 0 0 -1,-0.9999995 z"
+       style="fill:currentColor;fill-opacity:1;stroke:none;stroke-width:1"
+       inkscape:connector-curvature="0"
+       class="ColorScheme-Text  ColorScheme" />
+    <path
+       id="path8-9-6-3"
+       d="m 7.0000005,8.9999995 a 0.99999962,0.99999438 0 0 0 -1,0.9999995 0.99999962,0.99999438 0 0 0 1,1 0.99999962,0.99999438 0 0 0 1,-1 0.99999962,0.99999438 0 0 0 -1,-0.9999995 z"
+       style="fill:currentColor;fill-opacity:1;stroke:none;stroke-width:1"
+       inkscape:connector-curvature="0"
+       class="ColorScheme-Text  ColorScheme" />
+  </g>
+</svg>

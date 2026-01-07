@@ -1,0 +1,239 @@
+[ColorEffects:Disabled]
+ChangeSelectionColor=
+Color=30, 30, 46
+ColorAmount=0.30000000000000004
+ColorEffect=2
+ContrastAmount=0.1
+ContrastEffect=0
+Enable=
+IntensityAmount=-1
+IntensityEffect=0
+
+[ColorEffects:Inactive]
+ChangeSelectionColor=true
+Color=30, 30, 46
+ColorAmount=0.5
+ColorEffect=3
+ContrastAmount=0
+ContrastEffect=0
+Enable=true
+IntensityAmount=0
+IntensityEffect=0
+
+[Colors:Button]
+BackgroundAlternate=156,131,193
+BackgroundNormal=49, 50, 68
+DecorationFocus=203,166,247
+DecorationHover=203,166,247
+ForegroundActive=203,166,247
+ForegroundInactive=166, 173, 200
+ForegroundLink=203,166,247
+ForegroundNegative=243, 139, 168
+ForegroundNeutral=249, 226, 175
+ForegroundNormal=205, 214, 244
+ForegroundPositive=166, 227, 161
+ForegroundVisited=203, 166, 247
+
+[Colors:Complementary]
+BackgroundAlternate=17, 17, 27
+BackgroundNormal=24, 24, 37
+DecorationFocus=203,166,247
+DecorationHover=203,166,247
+ForegroundActive=203,166,247
+ForegroundInactive=166, 173, 200
+ForegroundLink=203,166,247
+ForegroundNegative=243, 139, 168
+ForegroundNeutral=249, 226, 175
+ForegroundNormal=205, 214, 244
+ForegroundPositive=166, 227, 161
+ForegroundVisited=203, 166, 247
+
+[Colors:Header]
+BackgroundAlternate=17, 17, 27
+BackgroundNormal=24, 24, 37
+DecorationFocus=203,166,247
+DecorationHover=203,166,247
+ForegroundActive=203,166,247
+ForegroundInactive=166, 173, 200
+ForegroundLink=203,166,247
+ForegroundNegative=243, 139, 168
+ForegroundNeutral=249, 226, 175
+ForegroundNormal=205, 214, 244
+ForegroundPositive=166, 227, 161
+ForegroundVisited=203, 166, 247
+
+[Colors:Selection]
+BackgroundAlternate=151,125,186
+BackgroundNormal=151,125,186
+DecorationFocus=203,166,247
+DecorationHover=203,166,247
+ForegroundActive=203,166,247
+ForegroundInactive=0,0,0
+ForegroundLink=173,95,243
+ForegroundNegative=243, 139, 168
+ForegroundNeutral=249, 226, 175
+ForegroundNormal=0,0,0
+ForegroundPositive=166, 227, 161
+ForegroundVisited=203, 166, 247
+
+[Colors:Tooltip]
+BackgroundAlternate=27,25,35
+BackgroundNormal=30, 30, 46
+DecorationFocus=203,166,247
+DecorationHover=203,166,247
+ForegroundActive=203,166,247
+ForegroundInactive=166, 173, 200
+ForegroundLink=203,166,247
+ForegroundNegative=243, 139, 168
+ForegroundNeutral=249, 226, 175
+ForegroundNormal=205, 214, 244
+ForegroundPositive=166, 227, 161
+ForegroundVisited=203, 166, 247
+
+[Colors:View]
+BackgroundAlternate=24, 24, 37
+BackgroundNormal=30, 30, 46
+DecorationFocus=203,166,247
+DecorationHover=203,166,247
+ForegroundActive=203,166,247
+ForegroundInactive=166, 173, 200
+ForegroundLink=203,166,247
+ForegroundNegative=243, 139, 168
+ForegroundNeutral=249, 226, 175
+ForegroundNormal=205, 214, 244
+ForegroundPositive=166, 227, 161
+ForegroundVisited=203, 166, 247
+
+[Colors:Window]
+BackgroundAlternate=17, 17, 27
+BackgroundNormal=24, 24, 37
+DecorationFocus=203,166,247
+DecorationHover=203,166,247
+ForegroundActive=203,166,247
+ForegroundInactive=166, 173, 200
+ForegroundLink=203,166,247
+ForegroundNegative=243, 139, 168
+ForegroundNeutral=249, 226, 175
+ForegroundNormal=205, 214, 244
+ForegroundPositive=166, 227, 161
+ForegroundVisited=203, 166, 247
+
+[General]
+AccentColor=203,166,247
+ColorScheme=CatppuccinMochaFlamingo
+ColorSchemeHash=6c37b13729b9f3b13aef5b6670b0a0f29a5e8096
+LastUsedCustomAccentColor=203,166,247
+TerminalApplication=ghostty
+TerminalService=com.mitchellh.ghostty.desktop
+XftHintStyle=hintslight
+XftSubPixel=rgb
+fixed=Rec Mono Linear,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+font=UbuntuSans Nerd Font Propo,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+menuFont=UbuntuSans NFP,10,-1,5,600,0,0,0,0,0,0,0,0,0,0,1,Regular
+smallestReadableFont=UbuntuSans NFP,8,-1,5,600,0,0,0,0,0,0,0,0,0,0,1,Regular
+toolBarFont=UbuntuSans NFP,10,-1,5,600,0,0,0,0,0,0,0,0,0,0,1,Regular
+
+[Icons]
+Theme=Tela-dracula-dark
+
+[KDE]
+LookAndFeelPackage=com.endeavouros.breezedarkeos.desktop
+widgetStyle=kvantum-dark
+
+[KFileDialog Settings]
+Allow Expansion=false
+Automatically select filename extension=true
+Breadcrumb Navigation=true
+Decoration position=2
+Show Full Path=false
+Show Inline Previews=true
+Show Preview=false
+Show Speedbar=true
+Show hidden files=false
+Sort by=Name
+Sort directories first=true
+Sort hidden files last=false
+Sort reversed=false
+Speedbar Width=140
+View Style=Simple
+
+[KScreen]
+ScreenScaleFactors=HDMI-A-1=1;DP-1=1;
+XwaylandClientsScale=false
+
+[PreviewSettings]
+EnableRemoteFolderThumbnail=false
+MaximumRemoteSize=0
+
+[Shortcuts]
+Activate Next Tab=
+Activate Previous Tab=
+ActualSize=
+AddBookmark=
+Back=
+BackwardWord=
+Begin=
+BeginningOfLine=
+Close=
+Copy=
+CreateFolder=
+Cut=
+DeleteFile=
+DeleteWordBack=
+DeleteWordForward=
+Deselect=
+DocumentBack=
+DocumentForward=
+End=
+EndOfLine=
+Find=
+FindNext=
+FindPrev=
+Forward=
+ForwardWord=
+FullScreen=
+GotoLine=
+Help=
+Home=
+KeyBindings=
+MoveToTrash=
+New=
+Next=
+NextCompletion=
+Open=
+OpenContextMenu=
+OpenMainMenu=
+Paste=
+Paste Selection=
+Preferences=
+PrevCompletion=
+Print=
+Prior=
+Quit=
+Redo=
+Reload=
+RenameFile=
+Replace=
+RotateDown=
+RotateUp=
+Save=
+SaveAs=
+SelectAll=
+ShowHideHiddenFiles=
+ShowMenubar=
+SubstringCompletion=
+TextCompletion=
+Undo=
+Up=
+WhatsThis=
+ZoomIn=
+ZoomOut=
+
+[WM]
+activeBackground=30,30,46
+activeBlend=205,214,244
+activeFont=UbuntuSans NFP,10,-1,5,600,0,0,0,0,0,0,0,0,0,0,1,Regular
+activeForeground=205,214,244
+inactiveBackground=17,17,27
+inactiveBlend=166,173,200
+inactiveForeground=166,173,200
