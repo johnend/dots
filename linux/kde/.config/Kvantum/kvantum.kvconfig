@@ -1,2 +1,5 @@
 [General]
 theme=rose-pine-rose
+
+[Applications]
+Default=ghostty

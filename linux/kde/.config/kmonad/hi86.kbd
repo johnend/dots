@@ -1,0 +1,27 @@
+(defcfg
+  input (device-file "/dev/input/by-id/usb-BY_Tech_Gaming_Keyboard-event-kbd")
+  output (uinput-sink "kmonad")
+  fallthrough true)
+
+
+(defsrc
+ esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  prnt   slck  pause
+ grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc   ins   home
+ tab  q    w    e    r    t    y    u    i    o    p    [    ]    \      del   end
+ caps a    s    d    f    g    h    j    k    l    ;    '    ret         pgup  pgdn
+ lsft z    x    c    v    b    n    m    ,    .    /    rsft           up
+ lctl lmet lalt           spc            ralt rmet rctl      left down rght)
+
+
+(defalias
+  hyper (tap-hold 200 esc C-A-M-lsft)
+  meh (tap-hold 200 tab C-A-lsft))
+
+
+(deflayer base
+ esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  prnt   slck  pause
+ grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc   ins   home
+ @meh  q    w    e    r    t    y    u    i    o    p    [    ]    \     del   end
+ @hyper a    s    d    f    g    h    j    k    l    ;    '    ret       pgup  pgdn
+ lsft z    x    c    v    b    n    m    ,    .    /    rsft           up
+ lctl lmet lalt           spc            ralt rmet rctl      left down rght)

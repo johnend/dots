@@ -1,6 +1,7 @@
 [Layout]
+DisplayNames=
 LayoutList=us
-Model=applealu_iso
+Model=pc105
 ResetOldOptions=true
 Use=true
-VariantList=mac
+VariantList=
