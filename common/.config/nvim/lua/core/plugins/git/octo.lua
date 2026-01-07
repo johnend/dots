@@ -27,11 +27,6 @@ return {
       desc = "List GitHub Notifications",
     },
     {
-      "<leader>gor",
-      "<cmd>Octo review<cr>",
-      desc = "Review PR",
-    },
-    {
       "<leader>gos",
       function()
         require("octo.utils").create_base_search_command { include_current_repo = true }
