@@ -30,9 +30,11 @@ padding_right = 0
 
 [font]
 normal = [
-  "RecMonoLinear Nerd Font",
+  "Monaspace Neon", "Symbols Nerd Font"
 ] # Will use the bundled Fira Code Nerd Font by default
-italic = ["RecMonoCasual Nerd Font"]
+bold = ["Monaspace Neon Semibold", "Symbols Nerd Font"]
+italic = ["Monaspace Radon", "Symbols Nerd Font"]
+bold_italic = ["Monaspace Radon Semibold", "Symbols Nerd Font"]
 size = 14
 
 [box-drawing]
