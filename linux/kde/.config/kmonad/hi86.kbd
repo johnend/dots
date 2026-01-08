@@ -14,8 +14,8 @@
 
 
 (defalias
-  hyper (tap-hold 200 esc C-A-M-lsft)
-  meh (tap-hold 200 tab C-A-lsft))
+  hyper (tap-hold 200 tab C-A-M-lsft)
+  meh (tap-hold 200 esc C-A-lsft))
 
 
 (deflayer base
@@ -24,4 +24,4 @@
  @meh  q    w    e    r    t    y    u    i    o    p    [    ]    \     del   end
  @hyper a    s    d    f    g    h    j    k    l    ;    '    ret       pgup  pgdn
  lsft z    x    c    v    b    n    m    ,    .    /    rsft           up
- lctl lmet lalt           spc            ralt rmet rctl      left down rght)
+ lctl lalt lmet           spc            rmet ralt rctl      left down rght)
