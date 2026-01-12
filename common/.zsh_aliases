@@ -89,3 +89,7 @@ postingraf() {
     posting --env "$selected_env"
   fi
 }
+
+# Duckypad configs and such
+alias duckyconfig="DUCKYPAD_UI_SCALE=1 python3 ~/Developer/duckyPad-Configurator/src/duckypad_config.py"
+alias duckyprofiles="DUCKYPAD_UI_SCALE=1 python3 ~/Developer/duckyPad-Profile-Autoswitcher/src/duckypad_autoprofile.py"
