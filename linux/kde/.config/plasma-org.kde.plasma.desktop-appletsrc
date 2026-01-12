@@ -81,7 +81,7 @@ immutability=1
 plugin=org.kde.plasma.clipboard
 
 [Containments][159][Applets][162][Applets][168][Configuration]
-PreloadWeight=70
+PreloadWeight=75
 
 [Containments][159][Applets][162][Applets][169][Configuration]
 PreloadWeight=42
@@ -109,6 +109,9 @@ plugin=org.kde.kscreen
 immutability=1
 plugin=org.kde.plasma.devicenotifier
 
+[Containments][159][Applets][162][Applets][174][Configuration]
+PreloadWeight=100
+
 [Containments][159][Applets][162][Applets][175]
 immutability=1
 plugin=org.kde.plasma.battery
@@ -128,7 +131,7 @@ immutability=1
 plugin=org.kde.plasma.bluetooth
 
 [Containments][159][Applets][162][Applets][177][Configuration]
-PreloadWeight=0
+PreloadWeight=15
 
 [Containments][159][Applets][162][Applets][178]
 immutability=1
@@ -142,7 +145,7 @@ immutability=1
 plugin=org.kde.plasma.weather
 
 [Containments][159][Applets][162][Applets][182][Configuration]
-PreloadWeight=58
+PreloadWeight=63
 
 [Containments][159][Applets][162][Applets][182][Configuration][ConfigDialog]
 DialogHeight=540
@@ -235,6 +238,8 @@ wrapPage=true
 AppletOrder=180;179;192;161;162;160;188
 
 [Containments][187]
+ItemGeometries-1920x1080=
+ItemGeometriesHorizontal=
 activityId=b88cde43-b310-4485-9af7-10b0cd1c876e
 formfactor=0
 immutability=1
@@ -248,7 +253,7 @@ DialogHeight=630
 DialogWidth=810
 
 [Containments][187][Wallpaper][org.kde.image][General]
-Image=/home/johne/Pictures/walls/japanese_future_city.jpg
+Image=/home/johne/Pictures/walls/fantasy_fishing_city_port.png
 SlidePaths=/usr/share/wallpapers/
 
 [Containments][87]
@@ -273,7 +278,7 @@ DialogWidth=720
 positions={"1920x1080":[]}
 
 [Containments][87][Wallpaper][org.kde.image][General]
-Image=/home/johne/Pictures/walls/japanese_future_city.jpg
+Image=/home/johne/Pictures/walls/fantasy_fishing_city_port.png
 SlidePaths=/usr/share/wallpapers/
 
 [Containments][88]
