@@ -199,6 +199,7 @@ rose-pine-cursor
 rose-pine-gtk-theme
 adwaita-icon-theme
 hicolor-icon-theme
+tela-icon-theme
 nwg-look
 gnome-themes-extra
 
