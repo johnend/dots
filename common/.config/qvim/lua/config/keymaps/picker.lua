@@ -1,0 +1,36 @@
+return {
+  { "<leader><leader>", ":lua Snacks.picker.buffers() <cr>", desc = "Open files" },
+  { "<leader>s", group = "Search" },
+  { "<leader>sb", ":lua Snacks.picker.buffers() <cr>", desc = "Buffers" },
+  {
+    "<leader>sc",
+    ":lua Snacks.picker.colorschemes() <cr>",
+    desc = "Colorschemes",
+  },
+  { "<leader>sd", ":lua Snacks.picker.diagnostics() <cr>", desc = "Diagnostics" },
+  { "<leader>sf", ":lua Snacks.picker.files() <cr>", desc = "Files" },
+  { "<leader>sg", ":lua Snacks.picker.grep() <cr>", desc = "Grep" },
+  { "<leader>sh", ":lua Snacks.picker.help() <cr>", desc = "Help" },
+  { "<leader>sk", ":lua Snacks.picker.keymaps() <cr>", desc = "Keymaps" },
+  {
+    "<leader>sn",
+    ":lua Snacks.picker({cwd = vim.fn.stdpath 'config')",
+    desc = "Neovim config files",
+  },
+  -- {
+  --   "<leader>sp",
+  --   "<cmd>Telescope project project theme=dropdown layout_config={width=0.5, height=0.4}<cr>",
+  --   desc = "Projects",
+  -- },
+  -- { "<leader>sr", "<cmd>Telescope resume<cr>", desc = "Resume project" },
+  { "<leader>ss", ":lua Snacks.picker() <cr>", desc = "Builtin pickers" },
+  {
+    "<leader>st",
+    ":lua Snacks.picker.todo_comments() <cr>",
+    desc = "TODOs",
+  },
+  { "<leader>sv", ":lua Snacks.picker.git_files() <cr>", desc = "Git files" },
+  { "<leader>sw", ":lua Snacks.picker.grep_word() <cr>", desc = "Current word" },
+  { "<leader>sx", ":lua Snacks.picker.commands() <cr>", desc = "Commands" },
+  { "<leader>s.", ":lua Snacks.picker.recent() <cr>", desc = "Recent files" },
+}
