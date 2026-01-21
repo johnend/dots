@@ -20,23 +20,6 @@ local function toggle_notify(global_flag, toggle_action, label, invert_notify)
   vim.notify(label .. " " .. state)
 end
 
--- Dropbar --
--- Toggle dropbar per buffer (defaults to not visible)
-local function toggle_dropbar()
-  vim.g.dropbar_enabled = not vim.g.dropbar_enabled
-  if vim.g.dropbar_enabled then
-    local win = vim.api.nvim_get_current_win()
-    require("dropbar.utils.bar").exec("update", { win = win })
-  else
-    vim.o.winbar = ""
-  end
-
-  if vim.fn.expand "%" ~= "" then
-    vim.cmd [[edit]]
-    vim.notify("Dropbar " .. (vim.g.dropbar_enabled and "enabled" or "disabled"))
-  end
-end
-
 return {
   { "<leader>t", group = "Toggle" },
   {
@@ -46,11 +29,6 @@ return {
       vim.notify("AutoSave " .. (vim.g.autosave_enabled and "enabled" or "disabled"))
     end,
     desc = "AutoSave",
-  },
-  {
-    "<leader>tb",
-    toggle_dropbar,
-    desc = "Dropbar",
   },
   {
     "<leader>tc",
@@ -105,15 +83,6 @@ return {
     end,
     desc = "Indent line",
   },
-  -- {
-  --   "<leader>tl",
-  --   function()
-  --     toggle_notify("cokeline_enabled", function()
-  --       vim.o.showtabline = _G._cokeline_enabled and 2 or 0
-  --     end, "Cokeline Tabline")
-  --   end,
-  --   desc = "Cokeline Tabline",
-  -- },
   {
     "<leader>to",
     function()
@@ -128,13 +97,6 @@ return {
     end,
     desc = "Flash search",
   },
-  -- {
-  --   "<leader>tp",
-  --   function()
-  --     toggle_notify("precognition_enabled", require("precognition").toggle, "Precognition", true)
-  --   end,
-  --   desc = "Precognition",
-  -- },
   {
     "<leader>ts",
     function()

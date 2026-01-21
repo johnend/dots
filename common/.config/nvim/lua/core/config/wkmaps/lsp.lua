@@ -4,17 +4,12 @@ return {
   -------------------------------------
   { "gr", group = "LSP go to", icon = icons.ui.Code },
   { "<leader>l", group = "LSP", icon = icons.ui.Code },
-  {
-    "<leader>lc",
-    ":TSC<cr>",
-    desc = "Check TypeScript types",
-  },
   { "<leader>li", ":LspInfo<cr>", desc = "LSP info" },
   { "<leader>ll", ":Trouble loclist toggle<cr>", desc = "Location list" },
   { "<leader>lq", ":Trouble qflist toggle<cr>", desc = "Quickfix list" },
   { "<leader>lv", ":Trouble lsp toggle focus=false<cr>", desc = "LSP toggle" },
   -- TODO: need to create a picker that passes LSP name to LspRestart
-  { "<leader>lr", ":LspRestart<cr>", desc = "Restart LSP Server" },
+  -- { "<leader>lr", ":LspRestart<cr>", desc = "Restart LSP Server" },
   {
     "<leader>ls",
     ":Trouble symbols<cr>",
@@ -29,9 +24,8 @@ return {
   -------------------------------------
   --- Quickfix
   -------------------------------------
-  { "<leader>a", group = "Append to:", icon = icons.ui.List },
   {
-    "<leader>aq",
+    "<leader>lQ",
     function()
       local entry = {
         filename = vim.fn.expand "%:p",
@@ -43,11 +37,11 @@ return {
       vim.fn.setqflist({ entry }, "a")
       print("Added to quickfix list: " .. entry.text)
     end,
-    desc = "Qflist",
+    desc = "Add to qflist",
     icon = icons.ui.List,
   },
   {
-    "<leader>al",
+    "<leader>lL",
     function()
       local entry = {
         filename = vim.fn.expand "%:p",
@@ -59,7 +53,7 @@ return {
       vim.fn.setloclist(0, { entry }, "a")
       print("Added to location list: " .. entry.text)
     end,
-    desc = "Loclist",
+    desc = "Add to loclist",
     icon = icons.ui.List,
   },
   {

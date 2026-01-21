@@ -18,37 +18,46 @@ return {
     "mfussenegger/nvim-jdtls", -- Java LSP extensions
   },
   config = function()
+    --------------------------------------
+    --- Setup servers and capabilities ---
+    --------------------------------------
     local servers = require "core.config.lsp.servers"
-    -- 1) Define the servers we actually want, and any special settings
-
     local formatters = { "stylua", "prettier", "prettierd" }
-    -- local dap = { "js-debug-adapter", "codelldb" } -- table for daps
-
-    -- 2) Turn Blink into LSP-capabilities for cmp
+    -- local dap = {"js-debug-adapter", "codelldb"} -- uncomment to include daps
     local capabilities = require("blink.cmp").get_lsp_capabilities()
+    local ensure_tools = vim.tbl_keys(servers)
 
-    -- 3) Ensure mason-tool-installer actually installs the right binaries
-    local ensure_tools = vim.tbl_keys(servers) -- e.g. { "lua_ls" }
+    vim.list_extend(ensure_tools, formatters)
 
-    vim.list_extend(ensure_tools, formatters) -- add stylua as a formatter
-    -- vim.list_extend(ensure_tools, dap) -- uncomment to add dap tooling
+    -- Configure all servers BEFORE mason-lspconfig auto-enables them
+    for server_name, server_config in pairs(servers) do
+      local opts = vim.tbl_deep_extend("force", { capabilities = capabilities }, server_config)
+      vim.lsp.config(server_name, opts)
+    end
 
-    -- 4) Configure mason-lspconfig to install & wire up our LSPs
+    -- Let mason-lspconfig automatically enable installed servers
     require("mason-lspconfig").setup {
       ensure_installed = vim.tbl_keys(servers),
       automatic_installation = true,
       automatic_enable = true,
-      handlers = {
-        -- default handler (will be called for each server_name)
-        function(server_name)
-          local opts = vim.tbl_deep_extend("force", { capabilities = capabilities }, servers[server_name] or {})
-          require("lspconfig")[server_name].setup(opts)
-        end,
-      },
     }
 
-    ------------------------------------------------
+    ------------------------------------------------------
+    --- Ensure formatters are installed via Mason API ---
+    ------------------------------------------------------
+    local mason_registry = require "mason-registry"
+    for _, formatter in ipairs(formatters) do
+      local package_name = formatter
+      if not mason_registry.is_installed(package_name) then
+        vim.notify("Installing " .. package_name .. " via Mason", vim.log.levels.INFO)
+        local package = mason_registry.get_package(package_name)
+        package:install()
+      end
+    end
 
+    -----------------------------------------------
+    --- Use nicer looking icons for diagnostics ---
+    -----------------------------------------------
     local sign_keys = {
       Error = "Error",
       Warning = "Warn",
