@@ -8,7 +8,7 @@ return {
       return
     end
     ts_autotag.setup {
-      filetypes = { "html", "xml", "javascriptreact", "typescriptreact", },
+      filetypes = { "html", "xml", "javascriptreact", "typescriptreact" },
     }
   end,
 }

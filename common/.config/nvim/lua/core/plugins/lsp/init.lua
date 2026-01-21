@@ -41,10 +41,6 @@ return {
       handlers = {
         -- default handler (will be called for each server_name)
         function(server_name)
-          -- Skip jdtls - it's handled by nvim-jdtls via ftplugin/java.lua
-          if server_name == 'jdtls' then
-            return
-          end
           local opts = vim.tbl_deep_extend("force", { capabilities = capabilities }, servers[server_name] or {})
           require("lspconfig")[server_name].setup(opts)
         end,
