@@ -1,9 +1,9 @@
 # Settings files open in NeoVim
-alias zshrc="nvim ~/.zshrc"
-alias npmrc="nvim ~/.npmrc"
-alias sshconfig="nvim ~/.ssh"
-alias ohmyzsh="nvim ~/.oh-my-zsh"
-alias alacrittysettings="nvim ~/.config/alacritty"
+alias zshrc="v ~/.zshrc"
+alias npmrc="v ~/.npmrc"
+alias sshconfig="v ~/.ssh"
+alias ohmyzsh="v ~/.oh-my-zsh"
+alias alacrittysettings="v ~/.config/alacritty"
 
 # git aliases
 alias gitforce='git add . && git commit --amend --no-edit --no-verify && git push -f'
@@ -53,8 +53,9 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 # Alternative NeoVim configs
-alias mv="nvim --clean"
-alias v="NVIM_APPNAME=qvim nvim"
+alias cvim="nvim --clean"
+alias qvim="NVIM_APPNAME=qvim nvim"
+alias v="qvim"
 
 # Update Homebrew when using VPN
 alias brew-update-clean='/usr/bin/env -i HOME="$HOME" PATH="/opt/homebrew/bin:/usr/bin:/bin" HOMEBREW_FORCE_BREWED_CURL=1 CURL_SSL_BACKEND=secure-transport brew update --verbose'
