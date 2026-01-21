@@ -27,17 +27,31 @@ return {
 
     vim.list_extend(ensure_tools, formatters)
 
+    -- Configure all servers BEFORE mason-lspconfig auto-enables them
+    for server_name, server_config in pairs(servers) do
+      local opts = vim.tbl_deep_extend("force", { capabilities = capabilities }, server_config)
+      vim.lsp.config(server_name, opts)
+    end
+
+    -- Let mason-lspconfig automatically enable installed servers
     require("mason-lspconfig").setup {
       ensure_installed = vim.tbl_keys(servers),
       automatic_installation = true,
       automatic_enable = true,
-      handlers = {
-        function(server_name)
-          local opts = vim.tbl_deep_extend("force", { capabilities = capabilities }, servers[server_name] or {})
-          require("lspconfig")[server_name].setup(opts)
-        end,
-      },
     }
+
+    ------------------------------------------------------
+    --- Ensure formatters are installed via Mason API ---
+    ------------------------------------------------------
+    local mason_registry = require "mason-registry"
+    for _, formatter in ipairs(formatters) do
+      local package_name = formatter
+      if not mason_registry.is_installed(package_name) then
+        vim.notify("Installing " .. package_name .. " via Mason", vim.log.levels.INFO)
+        local package = mason_registry.get_package(package_name)
+        package:install()
+      end
+    end
 
     -----------------------------------------------
     --- Use nicer looking icons for diagnostics ---

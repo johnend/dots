@@ -132,6 +132,17 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "VimLeavePre" }, {
       return
     end
 
+    -- only save if buffer has unsaved changes (is dirty)
+    if not vim.bo[bufnr].modified then
+      return
+    end
+
+    -- don't try to save buffers without a file name
+    local bufname = vim.api.nvim_buf_get_name(bufnr)
+    if bufname == "" then
+      return
+    end
+
     local ok, conform = pcall(require, "conform")
     if ok then
       conform.format { bufnr = bufnr, lsp_fallback = true, timeout_ms = 500 }

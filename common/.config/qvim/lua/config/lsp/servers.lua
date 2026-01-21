@@ -23,9 +23,9 @@ return {
   helm_ls = {},
   html = {},
   jsonls = {
+    filetypes = { "json", "jsonc" },
     settings = {
       json = {
-        validate = { enable = true },
         schemas = vim.list_extend({
           {
             description = "Lua language server config file",
@@ -33,6 +33,7 @@ return {
             url = "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/settings/schema.json",
           },
         }, schemastore.json.schemas()),
+        validate = { enable = true },
       },
     },
   },

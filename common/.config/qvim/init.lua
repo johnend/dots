@@ -2,6 +2,10 @@ Colors = require "config.colors"
 Icons = require "config.icons"
 UI = require "config.ui"
 
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_python3_provider = 0
+
 local theme_file = vim.fn.stdpath "config" .. "/theme.json"
 local colorscheme = "default"
 

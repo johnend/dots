@@ -23,6 +23,7 @@ return {
         },
       },
     },
+    explorer = { enabled = true },
     indent = require "config.snacks.indent",
     input = { enabled = true },
     image = require "config.snacks.image",
