@@ -6,9 +6,19 @@ return {
   dependencies = "rktjmp/lush.nvim",
   lazy = false,
   priority = 1000,
-  -- you can set set configuration options here
-  -- config = function()
-  --     vim.g.zenbones_darken_comments = 45
-  --     vim.cmd.colorscheme('zenbones')
-  -- end
+  config = function()
+    -- Update to use Comment for dim mode in Snacks rather than DiagnosticUnnecessary
+    -- Otherwise the contrast between dimmed text and highlighted text is poor
+    vim.api.nvim_create_autocmd("ColorScheme", {
+      pattern = "*bones",
+      callback = function()
+        local comment_hl = vim.api.nvim_get_hl(0, { name = "Comment" })
+        vim.api.nvim_set_hl(0, "SnacksDim", {
+          fg = comment_hl.fg,
+          bg = comment_hl.bg,
+          italic = false,
+        })
+      end,
+    })
+  end,
 }

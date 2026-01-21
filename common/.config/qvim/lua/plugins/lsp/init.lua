@@ -2,7 +2,15 @@ return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
-    { "mason-org/mason.nvim", cmd = { "Mason" }, opts = { ui = { border = UI.border } } },
+    {
+      "mason-org/mason.nvim",
+      cmd = { "Mason" },
+      opts = {
+        ui = {
+          border = UI.border,
+        },
+      },
+    },
     "mason-org/mason-lspconfig.nvim",
     "saghen/blink.cmp",
     "b0o/schemastore.nvim",
@@ -75,6 +83,33 @@ return {
         end
 
         --- Add LSP keymaps here
+        map("grD", vim.lsp.buf.declaration, "Declaration")
+        map("gra", require("actions-preview").code_actions, "Code Action")
+        map("grd", function()
+          Snacks.picker.lsp_definitions()
+        end, "Definitions")
+        map("gre", vim.diagnostic.open_float, "Open Diagnostec Float", { "n", "x" })
+        map("gri", function()
+          Snacks.picker.lsp_implementations()
+        end, "Implementations")
+        map("grj", function()
+          vim.diagnostic.jump { count = 1 }
+        end, "Next diagnostic", { "n", "x" })
+        map("grk", function()
+          vim.diagnostic.jump { count = -1 }
+        end, "Previous diagnostic", { "n", "x" })
+        map("grl", vim.diagnostic.setloclist, "Diagnostic loclist", { "n", "x" })
+        map("grn", vim.lsp.buf.rename, "Rename")
+        map("grr", function()
+          Snacks.picker.lsp_references()
+        end, "References")
+        map("grs", ":Trouble symbols toggle focus=true<cr>", "Document Symbols")
+        map("grt", function()
+          Snacks.picker.lsp_type_definitions()
+        end, "Type Definitions")
+        map("grw", function()
+          Snacks.picker.lsp_workspace_symbols()
+        end, "Workspace Symbols")
 
         ----------------------------------------------
         --- Highlight on CursorHold, clear on move ---

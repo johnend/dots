@@ -22,9 +22,9 @@ vim.filetype.add {
 }
 
 -- custom filetype icons
--- require("nvim-web-devicons").set_icon {
---   ["cfg"] = {
---     icon = "",
---     name = "Configuration",
---   },
--- }
+require("nvim-web-devicons").set_icon {
+  ["cfg"] = {
+    icon = "",
+    name = "Configuration",
+  },
+}

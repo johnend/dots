@@ -6,11 +6,11 @@ return {
   picker = require(... .. ".picker"),
   explorer = require(... .. ".explorer"),
   toggle = require(... .. ".toggle"),
+  git = require(... .. ".git"),
+  grapple = require(... .. ".grapple"),
+  lsp = require(... .. ".lsp"),
 
   --ai = require(... .. ".ai"),
-  --git = require(... .. ".git"),
   --grug = require(... .. ".grugfar"),
-  --grapple = require(... .. ".grapple"),
-  --lsp = require(... .. ".lsp"),
   --neotest = require(... .. ".neotest"),
 }

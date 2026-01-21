@@ -26,9 +26,12 @@ local plugin_specs = {
   { import = "plugins.editing" },
   { import = "plugins.syntax" },
   { import = "plugins.lsp" },
+  { import = "plugins.git" },
   { import = "plugins.ui" },
   { import = "plugins.utils" },
   { import = "plugins.colorschemes" },
+  { import = "plugins.snacks" },
+  { import = "plugins.navigation" },
 }
 
 -- Setup lazy.nvim
@@ -37,7 +40,7 @@ require("lazy").setup {
   ui = { border = UI.border },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
-  install = { colorscheme = { "habamax" } },
+  install = { colorscheme = { "duckbones" } },
   -- automatically check for plugin updates
   checker = { enabled = true },
 }

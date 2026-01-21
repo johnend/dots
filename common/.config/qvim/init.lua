@@ -28,6 +28,8 @@ end, 10)
 require "core.options"
 require "core.autocmds"
 require "core.keymaps"
-require "core.filetypes"
 
 require "config.lazy"
+
+-- Lazy required before filetypes as it needs a dependency
+require "core.filetypes"

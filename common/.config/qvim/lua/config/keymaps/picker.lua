@@ -17,12 +17,6 @@ return {
     ":lua Snacks.picker({cwd = vim.fn.stdpath 'config')",
     desc = "Neovim config files",
   },
-  -- {
-  --   "<leader>sp",
-  --   "<cmd>Telescope project project theme=dropdown layout_config={width=0.5, height=0.4}<cr>",
-  --   desc = "Projects",
-  -- },
-  -- { "<leader>sr", "<cmd>Telescope resume<cr>", desc = "Resume project" },
   { "<leader>ss", ":lua Snacks.picker() <cr>", desc = "Builtin pickers" },
   {
     "<leader>st",
@@ -32,5 +26,5 @@ return {
   { "<leader>sv", ":lua Snacks.picker.git_files() <cr>", desc = "Git files" },
   { "<leader>sw", ":lua Snacks.picker.grep_word() <cr>", desc = "Current word" },
   { "<leader>sx", ":lua Snacks.picker.commands() <cr>", desc = "Commands" },
-  { "<leader>s.", ":lua Snacks.picker.recent() <cr>", desc = "Recent files" },
+  { "<leader>sr", ":lua Snacks.picker.recent() <cr>", desc = "Recent files" },
 }

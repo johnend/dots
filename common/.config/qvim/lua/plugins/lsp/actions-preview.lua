@@ -13,6 +13,7 @@ return {
       highlight_command = {
         hl.delta "delta --side-by-side",
       },
+      backend = { "snacks" },
       diff = { ignore_whitespace = true },
     }
   end,

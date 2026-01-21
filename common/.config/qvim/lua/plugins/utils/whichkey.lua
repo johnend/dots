@@ -56,13 +56,13 @@ return {
     local picker = keymaps.picker
     local explorer = keymaps.explorer
     local toggle = keymaps.toggle
+    local git = keymaps.git
+    local grapple = keymaps.grapple
+    local lsp = keymaps.lsp
 
     -- TODO: update/include these when ready
     -- local ai = keymaps.ai
-    -- local git = keymaps.git
     -- local grug = keymaps.grug
-    -- local grapple = keymaps.grapple
-    -- local lsp = keymaps.lsp
     -- local neotest = keymaps.neotest
 
     -- Document existing
@@ -78,13 +78,13 @@ return {
       ---------------------------------
       general,
       ---------------------------------
-      -- git,
+      git,
       ---------------------------------
-      -- grapple,
+      grapple,
       ---------------------------------
       -- grug,
       ---------------------------------
-      -- lsp,
+      lsp,
       ---------------------------------
       plugins,
       ---------------------------------
