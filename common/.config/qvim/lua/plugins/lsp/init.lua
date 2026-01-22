@@ -20,12 +20,16 @@ return {
     --- Setup servers and capabilities ---
     --------------------------------------
     local servers = require "config.lsp.servers"
-    local formatters = { "stylua", "prettier", "prettierd" }
+    local tools = {
+      -- formatters
+      "stylua",
+      "prettier",
+      "prettierd",
+      -- linters
+      "eslint_d",
+    }
     -- local dap = {"js-debug-adapter", "codelldb"} -- uncomment to include daps
     local capabilities = require("blink.cmp").get_lsp_capabilities()
-    local ensure_tools = vim.tbl_keys(servers)
-
-    vim.list_extend(ensure_tools, formatters)
 
     -- Configure all servers BEFORE mason-lspconfig auto-enables them
     for server_name, server_config in pairs(servers) do
@@ -44,11 +48,12 @@ return {
     --- Ensure formatters are installed via Mason API ---
     ------------------------------------------------------
     local mason_registry = require "mason-registry"
-    for _, formatter in ipairs(formatters) do
-      local package_name = formatter
-      if not mason_registry.is_installed(package_name) then
-        vim.notify("Installing " .. package_name .. " via Mason", vim.log.levels.INFO)
-        local package = mason_registry.get_package(package_name)
+    for _, tool in ipairs(tools) do
+      if not mason_registry.has_package(tool) then
+        vim.notify(("Mason package %s not found; skipping."):format(tool), vim.log.levels.WARN)
+      elseif not mason_registry.is_installed(tool) then
+        vim.notify("Installing " .. tool .. " via Mason", vim.log.levels.INFO)
+        local package = mason_registry.get_package(tool)
         package:install()
       end
     end
