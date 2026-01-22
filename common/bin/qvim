@@ -1,0 +1,5 @@
+#!/bin/sh
+# qvim - OpenCode-compatible wrapper for Neovim with NVIM_APPNAME=qvim
+# This allows qvim to work as EDITOR for programs that spawn editors
+
+NVIM_APPNAME=qvim exec nvim "$@"

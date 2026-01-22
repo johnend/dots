@@ -44,7 +44,7 @@ return {
       },
       sections = {
         lualine_a = { components.mode, macro_recording },
-        lualine_b = { components.branch },
+        lualine_b = { components.repo, components.branch },
         lualine_c = { components.diff, components.searchcount },
         lualine_x = {
           components.diagnostics,

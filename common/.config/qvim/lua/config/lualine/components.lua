@@ -185,6 +185,18 @@ M.diff = {
   cond = nil,
 }
 
+M.repo = {
+  function()
+    local gitsigns = vim.b.gitsigns_status_dict
+    if gitsigns and gitsigns.root then
+      return vim.fn.fnamemodify(gitsigns.root, ":t")
+    end
+    return ""
+  end,
+  icon = Icons.git.Repo,
+  color = { gui = "bold" },
+}
+
 M.branch = {
   "b:gitsigns_head",
   icon = Icons.git.Branch,
