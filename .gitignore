@@ -24,3 +24,4 @@ tmux-client-*.log
 linux/.config/spicetify
 linux/.config/thefuck/__pycache__/settings.cpython-313.pyc
 linux/common/.config/thefuck/__pycache__/settings.cpython-313.pyc
+linux/common/.config/thefuck/__pycache__/settings.cpython-314.pyc
