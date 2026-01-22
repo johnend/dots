@@ -1,0 +1,27 @@
+(defcfg 
+  input (device-file "/dev/input/by-id/usb-Apple_Inc._Apple_Internal_Keyboard___Trackpad-event-kbd")
+  output (uinput-sink "kmonad")
+  fallthrough true)
+
+
+(defsrc
+ esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12     
+ grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc   
+ tab  q    w    e    r    t    y    u    i    o    p    [    ]    \      
+ caps a    s    d    f    g    h    j    k    l    ;    '    ret         
+ lsft z    x    c    v    b    n    m    ,    .    /    rsft       up
+ fn lctl lalt lmet           spc            rmet ralt           left down rght)
+
+
+(defalias
+  hyper (tap-hold 200 tab C-A-M-lsft)
+  meh (tap-hold 200 esc C-A-lsft))
+
+
+(deflayer base
+ esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12     
+ grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc   
+ @meh  q    w    e    r    t    y    u    i    o    p    [    ]    \     
+ @hyper a    s    d    f    g    h    j    k    l    ;    '    ret       
+ lsft z    x    c    v    b    n    m    ,    .    /    rsft        up
+ fn lctl lalt lmet           spc            rmet ralt            left down rght)
