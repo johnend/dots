@@ -1,9 +1,15 @@
-# Load env vars and system config
-source "$HOME/.zsh_env"
-source "$HOME/.zsh_path"
-source "$HOME/.zsh_functions"
+# ————————————————————————————————————————————————
+# Deduplicate PATH automatically (zsh unique array)
+# ————————————————————————————————————————————————
+# This must be at the very top to ensure PATH stays unique throughout initialization
+typeset -U PATH path
 
-source "$HOME/.asdf/plugins/java/set-java-home.zsh"
+# Load env vars and system config
+[[ -f "$HOME/.zsh_path" ]] && source "$HOME/.zsh_path"
+[[ -f "$HOME/.zsh_functions" ]] && source "$HOME/.zsh_functions"
+
+# asdf Java plugin (optional, only if Java is installed)
+[[ -f "$HOME/.asdf/plugins/java/set-java-home.zsh" ]] && source "$HOME/.asdf/plugins/java/set-java-home.zsh"
 
 # Enable powerlevel10k instant prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -40,10 +46,10 @@ SAVEHIST=1000000
 [[ -f "$HOME/.zsh_setopt" ]] && source "$HOME/.zsh_setopt"
 
 # Aliases
-source "$HOME/.zsh_aliases"
+[[ -f "$HOME/.zsh_aliases" ]] && source "$HOME/.zsh_aliases"
 
 # FZF
-source "$HOME/.zsh_fzf"
+[[ -f "$HOME/.zsh_fzf" ]] && source "$HOME/.zsh_fzf"
 
 # Powerlevel10k prompt
 [[ -f "$HOME/.p10k.zsh" ]] && source "$HOME/.p10k.zsh"

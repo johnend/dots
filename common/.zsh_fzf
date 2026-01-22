@@ -1,8 +1,14 @@
-# fzf
+# fzf - Fuzzy finder configuration
+#
+# The `fzf --zsh` command (line 6) already loads keybindings and completions,
+# so we don't need to source them manually below (unless using an older fzf version).
+
+# Add fzf to PATH if installed via Homebrew (macOS)
 if [[ ! "$PATH" == */opt/homebrew/opt/fzf/bin* ]]; then
   PATH="${PATH:+${PATH}:}/opt/homebrew/opt/fzf/bin"
 fi
 
+# Load fzf shell integration (includes keybindings and completion)
 source <(fzf --zsh)
 
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
@@ -39,13 +45,3 @@ zstyle ':fzf-tab:*' fzf-flags \
   '--border=rounded' '--border-label=' '--preview-window=border-rounded' '--prompt=> ' \
   '--marker=>' '--pointer=◆' '--separator=─' '--scrollbar=│' \
   '--layout=reverse' '--info=right'
-# fzf keybindings
-
-
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  source /usr/share/fzf/key-bindings.zsh
-  source /usr/share/fzf/completion.zsh
-elif [[ "$OSTYPE" == "darwin" ]]; then
-  source "$(brew --prefix)/opt/fzf/shell/keybindings.zsh"
-  source "$(brew --prefix)/opt/fzf/shell/completion.zsh"
-fi

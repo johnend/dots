@@ -2,23 +2,28 @@
 # Core paths (in this order of priority)
 # ————————————————————————————————————————————————
 
-# 1) Your personal ~/bin
-# 2) `n`’s shims
-# export PATH="$HOME/bin:$N_PREFIX/bin:$PATH"
+# 1) Your personal ~/bin (for custom scripts like qvim)
+export PATH="$HOME/bin:$PATH"
 
-# 3) System dirs
-export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-
-# 4) Your local installs
+# 2) Your local installs
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.npm-global/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
+
+# 3) Ensure basic system paths exist (Linux fallback - macOS handles via /etc/zprofile)
+# Only add if not already in PATH (idempotent)
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  [[ ":$PATH:" != *":/usr/local/bin:"* ]] && export PATH="$PATH:/usr/local/bin"
+  [[ ":$PATH:" != *":/usr/bin:"* ]] && export PATH="$PATH:/usr/bin"
+  [[ ":$PATH:" != *":/bin:"* ]] && export PATH="$PATH:/bin"
+  [[ ":$PATH:" != *":/usr/sbin:"* ]] && export PATH="$PATH:/usr/sbin"
+  [[ ":$PATH:" != *":/sbin:"* ]] && export PATH="$PATH:/sbin"
+fi
 
 # ————————————————————————————————————————————————
 # macOS-only
 # ————————————————————————————————————————————————
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  export PATH="$PATH:/opt/homebrew/bin:/opt/homebrew/sbin"
   export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
   export PATH="$PATH:$HOME/Library/Python/3.9/bin"
   export PATH="$PATH:$HOME/.rd/bin"   # Rancher Desktop
@@ -36,8 +41,12 @@ fi
 # ————————————————————————————————————————————————
 # Language/toolchain-specific
 # ————————————————————————————————————————————————
-export PATH="$PATH:/usr/local/go/bin"
 export PATH="$PATH:$HOME/.bun/bin"
+
+# Go (Linux needs explicit path, macOS gets it from /etc/paths.d/go)
+if [[ "$OSTYPE" == "linux-gnu"* ]] && [[ -d "/usr/local/go/bin" ]]; then
+  [[ ":$PATH:" != *":/usr/local/go/bin:"* ]] && export PATH="$PATH:/usr/local/go/bin"
+fi
 
 # Homebrew-or-Linuxbrew Python (put this right at the front if it exists)
 if command -v brew &>/dev/null; then
