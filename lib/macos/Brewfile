@@ -10,87 +10,171 @@ tap "osx-cross/arm"
 tap "osx-cross/avr"
 tap "qmk/qmk"
 tap "sst/tap"
+
+# =====================================
+# SYSTEM LIBRARIES & DEPENDENCIES
+# =====================================
 brew "xz"
 brew "openssl@3"
-brew "asdf"
-brew "automake"
-brew "bat"
-brew "btop"
-brew "cmake"
-brew "colima"
 brew "readline"
 brew "sqlite"
+brew "zlib"
+
+# =====================================
+# VERSION MANAGEMENT
+# =====================================
+# mise - unified version manager for node, python, ruby, go, etc.
+brew "mise"
+
+# =====================================
+# SHELL & PROMPT
+# =====================================
+brew "starship"
+
+# =====================================
+# DEVELOPMENT TOOLS
+# =====================================
+
+## Editors
+brew "neovim"
+brew "emacs"
+brew "nano"
+brew "nanorc"
+
+## Git tools
+brew "gh"
+brew "lazygit"
+brew "git-delta"
+
+## Build tools
+brew "automake"
+brew "cmake"
+brew "make"
+brew "gcc"
+
+## Container & Kubernetes
+brew "docker"
+brew "docker-credential-helper"
+brew "colima"
+brew "kubernetes-cli"
+brew "helm"
+brew "lazydocker"
+brew "minikube"
+brew "derailed/k9s/k9s"
+
+## Infrastructure as Code
+brew "hashicorp/tap/terraform"
+
+## Cloud CLI tools
+brew "common-fate/granted/granted"
+
+## Programming languages
 brew "php"
 brew "composer"
 brew "deno"
-brew "docker"
-brew "docker-credential-helper"
+brew "julia"
+brew "openjdk@21"
+
+## Language tools
+brew "luarocks"
+brew "stylua"
+brew "tree-sitter-cli"
+
+# =====================================
+# COMMAND LINE UTILITIES
+# =====================================
+
+## Modern replacements
+brew "bat"
+brew "eza"
+brew "fd"
+brew "ripgrep"
+brew "fzf"
+brew "zoxide"
+brew "thefuck"
+
+## File management
+brew "stow"
+brew "tree"
+brew "yazi"
+brew "rsync"
+
+## System utilities
+brew "btop"
+brew "fastfetch"
+brew "watchman"
+brew "pv"
+brew "tldr"
+
+## Compression & archives
+brew "sevenzip"
+brew "unrar"
+
+## Text processing & search
+brew "jq"
+brew "grep"
+brew "sed"
+
+## Media & images
+brew "imagemagick"
+brew "ghostscript"
+brew "poppler"
+brew "ffmpegthumbnailer"
+
+## Document processing
+brew "pandoc"
+brew "tectonic"
+brew "mermaid-cli"
+
+## Network tools
+brew "curl"
+brew "wget"
+brew "mkcert"
 brew "unbound"
 brew "gnutls"
-brew "emacs"
-brew "eza"
-brew "fastfetch"
-brew "fd"
-brew "ffmpegthumbnailer"
-brew "fzf"
-brew "gcc"
-brew "gh"
-brew "ghostscript"
-brew "git-delta"
-brew "helm"
-brew "icu4c@76"
-brew "imagemagick"
-brew "jenv"
-brew "jpeg"
-brew "jq"
-brew "julia"
-brew "kubernetes-cli"
-brew "lazydocker"
-brew "lazygit"
-brew "libmagic"
-brew "luarocks"
-brew "make"
-brew "mermaid-cli"
-brew "minikube"
-brew "mkcert"
-brew "zlib"
-brew "mysql-client"
-brew "mysql@8.0"
-brew "n"
-brew "nano"
-brew "nanorc"
-brew "neovim"
-brew "openjdk@21"
-brew "pandoc"
-brew "pipx"
-brew "poppler"
-brew "postgresql@14"
-brew "pyenv"
-brew "pyenv-virtualenv"
-brew "qemu"
-brew "ripgrep"
-brew "sevenzip"
-brew "spotify_player"
-brew "stow"
-brew "stylua"
-brew "tcl-tk"
-brew "tectonic"
-brew "thefuck"
+
+## Terminal & tmux
 brew "tmux"
 brew "tmuxinator"
-brew "tree"
-brew "tree-sitter-cli"
-brew "watchman"
-brew "wget"
-brew "yazi"
-brew "zoxide"
-brew "common-fate/granted/granted"
-brew "derailed/k9s/k9s"
-brew "felixkratz/formulae/borders"
-brew "hashicorp/tap/terraform"
-brew "jesseduffield/lazygit/lazygit"
+
+## Python tooling (beyond mise)
+brew "pipx"
+
+## Database clients
+brew "mysql-client"
+brew "mysql@8.0"
+brew "postgresql@14"
+
+## Libraries
+brew "libmagic"
+brew "icu4c@76"
+brew "jpeg"
+brew "tcl-tk"
+
+# =====================================
+# SPOTIFY
+# =====================================
+brew "spotify_player"
+
+# =====================================
+# QMK FIRMWARE
+# =====================================
 brew "qmk/qmk/qmk"
+brew "qemu"
+
+# =====================================
+# MACOS SPECIFIC TOOLS
+# =====================================
+brew "felixkratz/formulae/borders"
+
+# =====================================
+# OPENCODE (AI ASSISTANT)
+# =====================================
 brew "sst/tap/opencode"
+
+# =====================================
+# CASKS (GUI APPLICATIONS)
+# =====================================
 cask "1password-cli"
 cask "aerospace"
 cask "alacritty"
@@ -100,6 +184,10 @@ cask "openlens"
 cask "qmk-toolbox"
 cask "rancher"
 cask "wezterm"
+
+# =====================================
+# VSCODE EXTENSIONS
+# =====================================
 vscode "aaron-bond.better-comments"
 vscode "adpyke.codesnap"
 vscode "alefragnani.project-manager"
@@ -208,4 +296,8 @@ vscode "yzhang.markdown-all-in-one"
 vscode "zainchen.json"
 vscode "zignd.html-css-class-completion"
 vscode "ziyasal.vscode-open-in-github"
+
+# =====================================
+# GO PACKAGES
+# =====================================
 go "github.com/bootdotdev/bootdev"
