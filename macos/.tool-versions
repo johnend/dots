@@ -1,5 +1,5 @@
-nodejs 22.15.0
-java corretto-21.0.6.7.1
-ruby 2.7.4
-zig 0.15.2
+nodejs 24
+java   corretto-21.0.6.7.1
+ruby   2.7.4
+zig    0.15.2
 python 3.14.2
