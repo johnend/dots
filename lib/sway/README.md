@@ -15,18 +15,22 @@ A complete desktop environment featuring:
 - **Media applications** - Music, video, and image viewers
 - **Rose Pine theme** - Beautiful, consistent theming throughout
 - **Oh-My-Zsh** - Enhanced shell experience with plugins
-- **149+ carefully curated packages**
+- **Starship prompt** - Fast, customizable shell prompt
+- **mise** - Unified version manager for Node, Python, Ruby, Go, etc.
+- **200+ carefully curated packages**
 
 ## 📁 What's Included
 
-| File                      | Purpose                                                    |
-| ------------------------- | ---------------------------------------------------------- |
-| `sway-install.sh`         | Main installation script with comprehensive error handling |
-| `packages-repository.txt` | Complete list of 149+ packages for the desktop environment |
-| `manual-installs.md`      | Guide for components requiring manual installation         |
-| `update-packages.sh`      | Maintenance tool to keep package lists current             |
-| `validate-environment.sh` | Health checker for troubleshooting installations           |
-| `README.md`               | This documentation                                         |
+| File                      | Purpose                                                              |
+| ------------------------- | -------------------------------------------------------------------- |
+| `sway-install.sh`         | Main installation script with comprehensive error handling           |
+| `packages-repository.txt` | Complete list of 200+ packages for the desktop environment           |
+| `manual-installs.md`      | Guide for components requiring manual installation                   |
+| `audit-packages.sh`       | Auditing tool to compare installed vs. listed packages              |
+| `validate-environment.sh` | Health checker for troubleshooting installations                     |
+| `README.md`               | This documentation                                                   |
+
+**Note:** The installer calls `../../common/install.sh` first, which sets up oh-my-zsh, Starship prompt, mise version manager, Tmux Plugin Manager, and bat cache.
 
 ## 🚀 Quick Installation
 
@@ -121,10 +125,11 @@ A complete desktop environment featuring:
 
 ### Development Environment
 
-- **Languages**: Node.js, Python, Go, Rust, Ruby, PHP, Julia
-- **Tools**: Docker, Git, GitHub CLI, Lazygit
+- **Languages**: Node.js, Python, Go, Rust, Ruby, PHP, Julia, Deno, Java
+- **Tools**: Docker, Kubernetes (kubectl, k9s, helm), Terraform, Git, GitHub CLI, Lazygit
 - **Editors**: Neovim, Neovide (GUI Neovim)
-- **Version management**: ASDF for multiple language versions
+- **Version management**: mise for multiple language versions
+- **Formatters/Linters**: stylua, prettier, shellcheck, shfmt
 - **Electronics**: KiCad with component libraries
 
 ### Command Line Tools
@@ -170,8 +175,11 @@ See `manual-installs.md` for detailed instructions.
 ### Keep Your System Current
 
 ```bash
-# Update package list based on your current system
-./update-packages.sh
+# Update all packages (recommended)
+yay -Syu
+
+# Audit package list vs. installed packages
+./audit-packages.sh
 
 # Validate system health
 ./validate-environment.sh
@@ -179,6 +187,8 @@ See `manual-installs.md` for detailed instructions.
 # Check specific components
 ./validate-environment.sh | grep -E "(✗|!)"
 ```
+
+**Note:** For regular system updates, use `yay -Syu`. The `audit-packages.sh` script is for auditing and maintaining the package list, not for routine updates.
 
 ### Troubleshooting
 
@@ -196,7 +206,7 @@ This installer is designed to be adaptable. To customize for your needs:
 
 1. **Modify package list**: Edit `packages-repository.txt`
 2. **Test changes**: Use `--dry-run` mode
-3. **Update maintenance tools**: Run `update-packages.sh`
+3. **Audit package list**: Run `audit-packages.sh`
 4. **Validate modifications**: Use `validate-environment.sh`
 
 ### Adding New Packages

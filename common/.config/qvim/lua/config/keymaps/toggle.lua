@@ -33,6 +33,6 @@ return {
     end,
     desc = "Scrolloff",
   },
-  { "<leader>ti", ":lua Snacks.image.hover() <cr>", icon = Icons.misc.Image, desc = "Zen" },
+  { "<leader>ti", ":lua Snacks.image.hover() <cr>", icon = Icons.misc.Image, desc = "Image" },
   { "<leader>tz", ":lua Snacks.zen() <cr>", icon = Icons.misc.Meditate, desc = "Zen" },
 }

@@ -48,6 +48,8 @@ NC='\033[0m' # No Color
 
 # Script directory
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOTS_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+COMMON_INSTALL="$DOTS_ROOT/common/install.sh"
 PACKAGES_FILE="$SCRIPT_DIR/packages-repository.txt"
 MANUAL_INSTALLS_FILE="$SCRIPT_DIR/manual-installs.md"
 
@@ -130,63 +132,31 @@ install_packages() {
     fi
 }
 
-# Function to setup oh-my-zsh
-setup_oh_my_zsh() {
-    log_info "Setting up oh-my-zsh..."
+# Function to run common installation script
+run_common_install() {
+    log_info "Running common installation script..."
 
     if [ "$DRY_RUN" = true ]; then
-        log_dry_run "Would setup oh-my-zsh and plugins:"
-        log_dry_run "  - Install oh-my-zsh if not present"
-        log_dry_run "  - Install powerlevel10k theme"
-        log_dry_run "  - Install zsh-autosuggestions plugin"
-        log_dry_run "  - Install zsh-syntax-highlighting plugin"
-        log_dry_run "  - Install fzf-tab plugin"
+        log_dry_run "Would run common/install.sh to setup:"
+        log_dry_run "  - oh-my-zsh and plugins"
+        log_dry_run "  - Starship prompt"
+        log_dry_run "  - mise version manager"
+        log_dry_run "  - TPM (Tmux Plugin Manager)"
+        log_dry_run "  - bat cache rebuild"
         return 0
     fi
 
-    if [ ! -d "$USER_HOME/.oh-my-zsh" ]; then
-        log_info "Installing oh-my-zsh..."
-        sudo -u "$ACTUAL_USER" sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-        log_success "oh-my-zsh installed"
-    else
-        log_info "oh-my-zsh already installed"
+    if [ ! -f "$COMMON_INSTALL" ]; then
+        log_error "Common install script not found: $COMMON_INSTALL"
+        exit 1
     fi
 
-    # Install powerlevel10k theme
-    local p10k_dir="$USER_HOME/.oh-my-zsh/custom/themes/powerlevel10k"
-    if [ ! -d "$p10k_dir" ]; then
-        log_info "Installing powerlevel10k theme..."
-        sudo -u "$ACTUAL_USER" git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$p10k_dir"
-        log_success "powerlevel10k installed"
+    log_info "Executing: $COMMON_INSTALL"
+    if sudo -u "$ACTUAL_USER" bash "$COMMON_INSTALL" 2>&1 | tee -a "$LOG_FILE"; then
+        log_success "Common installation completed"
     else
-        log_info "powerlevel10k already installed"
-    fi
-
-    # Install zsh plugins
-    local plugins_dir="$USER_HOME/.oh-my-zsh/custom/plugins"
-
-    if [ ! -d "$plugins_dir/zsh-autosuggestions" ]; then
-        log_info "Installing zsh-autosuggestions..."
-        sudo -u "$ACTUAL_USER" git clone https://github.com/zsh-users/zsh-autosuggestions "$plugins_dir/zsh-autosuggestions"
-        log_success "zsh-autosuggestions installed"
-    else
-        log_info "zsh-autosuggestions already installed"
-    fi
-
-    if [ ! -d "$plugins_dir/zsh-syntax-highlighting" ]; then
-        log_info "Installing zsh-syntax-highlighting..."
-        sudo -u "$ACTUAL_USER" git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$plugins_dir/zsh-syntax-highlighting"
-        log_success "zsh-syntax-highlighting installed"
-    else
-        log_info "zsh-syntax-highlighting already installed"
-    fi
-
-    if [ ! -d "$plugins_dir/fzf-tab" ]; then
-        log_info "Installing fzf-tab..."
-        sudo -u "$ACTUAL_USER" git clone https://github.com/Aloxaf/fzf-tab "$plugins_dir/fzf-tab"
-        log_success "fzf-tab installed"
-    else
-        log_info "fzf-tab already installed"
+        log_error "Common installation failed"
+        exit 1
     fi
 }
 
@@ -293,10 +263,15 @@ show_post_install_instructions() {
     log "   Edit /etc/greetd/config.toml to set up your login manager"
     echo
     log "${YELLOW}5. TMUX PLUGIN MANAGER${NC}"
+    log "   TPM was installed by common/install.sh"
     log "   Open tmux and press ${GREEN}Prefix + I${NC} to install plugins"
     echo
     log "${YELLOW}6. NEOVIM SETUP${NC}"
     log "   Run ${GREEN}nvim${NC} and let it install plugins automatically"
+    echo
+    log "${YELLOW}7. MISE VERSION MANAGER${NC}"
+    log "   mise was installed by common/install.sh"
+    log "   Install language versions with: ${GREEN}mise install${NC}"
     echo
     log "${CYAN}=== USEFUL COMMANDS ===${NC}"
     log "View installation log: ${GREEN}less $LOG_FILE${NC}"
@@ -341,11 +316,11 @@ main() {
         fi
     fi
 
+    # Run common installation first (oh-my-zsh, starship, mise, tpm, bat)
+    run_common_install
+
     # Install packages
     install_packages "${packages[@]}"
-
-    # Setup oh-my-zsh
-    setup_oh_my_zsh
 
     # Create directories
     create_directories

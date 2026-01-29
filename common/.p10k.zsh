@@ -50,13 +50,13 @@
     command_execution_time  # duration of the last command
     background_jobs         # presence of background jobs
     direnv                  # direnv status (https://direnv.net/)
-    asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
+    # asdf                  # asdf version manager (disabled - using mise instead)
     virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
     anaconda                # conda environment (https://conda.io/)
-    pyenv                   # python environment (https://github.com/pyenv/pyenv)
-    goenv                   # go environment (https://github.com/syndbg/goenv)
-    nodenv                  # node.js version from nodenv (https://github.com/nodenv/nodenv)
-    nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
+    pyenv                   # python environment (works with mise)
+    goenv                   # go environment (works with mise)
+    nodenv                  # node.js version (works with mise)
+    # nvm                   # node.js version from nvm (redundant with nodenv)
     nodeenv                 # node.js environment (https://github.com/ekalinin/nodeenv)
     # node_version          # node.js version
     # go_version            # go version (https://golang.org)
@@ -974,12 +974,14 @@
   # Pyenv color.
   typeset -g POWERLEVEL9K_PYENV_FOREGROUND=37
   # Hide python version if it doesn't come from one of these sources.
+  # For mise: must include 'local' and 'global' or segment won't show
   typeset -g POWERLEVEL9K_PYENV_SOURCES=(shell local global)
   # If set to false, hide python version if it's the same as global:
   # $(pyenv version-name) == $(pyenv global).
-  typeset -g POWERLEVEL9K_PYENV_PROMPT_ALWAYS_SHOW=false
+  # With mise, set to true to always see your active python version
+  typeset -g POWERLEVEL9K_PYENV_PROMPT_ALWAYS_SHOW=true
   # If set to false, hide python version if it's equal to "system".
-  typeset -g POWERLEVEL9K_PYENV_SHOW_SYSTEM=true
+  typeset -g POWERLEVEL9K_PYENV_SHOW_SYSTEM=false
 
   # Pyenv segment format. The following parameters are available within the expansion.
   #
@@ -1013,12 +1015,14 @@
   # Nodenv color.
   typeset -g POWERLEVEL9K_NODENV_FOREGROUND=70
   # Hide node version if it doesn't come from one of these sources.
+  # For mise: must include 'local' and 'global' or segment won't show
   typeset -g POWERLEVEL9K_NODENV_SOURCES=(shell local global)
   # If set to false, hide node version if it's the same as global:
   # $(nodenv version-name) == $(nodenv global).
-  typeset -g POWERLEVEL9K_NODENV_PROMPT_ALWAYS_SHOW=false
+  # With mise, set to true to always see your active node version
+  typeset -g POWERLEVEL9K_NODENV_PROMPT_ALWAYS_SHOW=true
   # If set to false, hide node version if it's equal to "system".
-  typeset -g POWERLEVEL9K_NODENV_SHOW_SYSTEM=true
+  typeset -g POWERLEVEL9K_NODENV_SHOW_SYSTEM=false
   # Custom icon.
   # typeset -g POWERLEVEL9K_NODENV_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
@@ -1115,12 +1119,14 @@
   # Rbenv color.
   typeset -g POWERLEVEL9K_RBENV_FOREGROUND=168
   # Hide ruby version if it doesn't come from one of these sources.
+  # For mise: must include 'local' and 'global' or segment won't show
   typeset -g POWERLEVEL9K_RBENV_SOURCES=(shell local global)
   # If set to false, hide ruby version if it's the same as global:
   # $(rbenv version-name) == $(rbenv global).
-  typeset -g POWERLEVEL9K_RBENV_PROMPT_ALWAYS_SHOW=false
+  # With mise, set to true to always see your active ruby version
+  typeset -g POWERLEVEL9K_RBENV_PROMPT_ALWAYS_SHOW=true
   # If set to false, hide ruby version if it's equal to "system".
-  typeset -g POWERLEVEL9K_RBENV_SHOW_SYSTEM=true
+  typeset -g POWERLEVEL9K_RBENV_SHOW_SYSTEM=false
   # Custom icon.
   # typeset -g POWERLEVEL9K_RBENV_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
@@ -1157,12 +1163,14 @@
   # Java color.
   typeset -g POWERLEVEL9K_JENV_FOREGROUND=32
   # Hide java version if it doesn't come from one of these sources.
+  # For mise: must include 'local' and 'global' or segment won't show
   typeset -g POWERLEVEL9K_JENV_SOURCES=(shell local global)
   # If set to false, hide java version if it's the same as global:
   # $(jenv version-name) == $(jenv global).
-  typeset -g POWERLEVEL9K_JENV_PROMPT_ALWAYS_SHOW=false
+  # With mise, set to true to always see your active java version
+  typeset -g POWERLEVEL9K_JENV_PROMPT_ALWAYS_SHOW=true
   # If set to false, hide java version if it's equal to "system".
-  typeset -g POWERLEVEL9K_JENV_SHOW_SYSTEM=true
+  typeset -g POWERLEVEL9K_JENV_SHOW_SYSTEM=false
   # Custom icon.
   # typeset -g POWERLEVEL9K_JENV_VISUAL_IDENTIFIER_EXPANSION='⭐'
 

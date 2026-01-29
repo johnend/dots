@@ -1,0 +1,13 @@
+[settings]
+experimental = true
+
+# Legacy version file support - enables mise to read version files from other version managers
+# This allows mise to respect .python-version, .node-version, .ruby-version, .java-version, etc.
+idiomatic_version_file_enable_tools = ["node", "python", "ruby", "java"]
+
+# Disable task loading globally to prevent "no tasks defined" errors
+# Tasks can still be used in specific directories by creating mise.toml with [tasks]
+task_disable_paths = ["/"]
+
+[tools]
+yarn = "1.22"

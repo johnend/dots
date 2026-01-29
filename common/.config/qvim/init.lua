@@ -1,6 +1,20 @@
-Colors = require "config.colors"
-Icons = require "config.icons"
-UI = require "config.ui"
+-- Safeguard: Catch any critical errors during startup and continue loading
+local function safe_require(module)
+  local ok, result = pcall(require, module)
+  if not ok then
+    -- Show full error in messages, not just notification
+    local err_msg = string.format("Failed to load %s:\n%s", module, result)
+    vim.schedule(function()
+      vim.notify(err_msg, vim.log.levels.ERROR, { title = "Config Error" })
+    end)
+    return nil
+  end
+  return result
+end
+
+Colors = safe_require "config.colors" or {}
+Icons = safe_require "config.icons" or {}
+UI = safe_require "config.ui" or { border = "rounded" }
 
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
@@ -29,11 +43,11 @@ vim.defer_fn(function()
   end
 end, 10)
 
-require "core.options"
-require "core.autocmds"
-require "core.keymaps"
+safe_require "core.options"
+safe_require "core.autocmds"
+safe_require "core.keymaps"
 
-require "config.lazy"
+safe_require "config.lazy"
 
 -- Lazy required before filetypes as it needs a dependency
-require "core.filetypes"
+safe_require "core.filetypes"

@@ -1,10 +1,14 @@
 #!/bin/bash
 
 # =============================================================================
-# Package List Updater
+# Package List Auditor
 # =============================================================================
-# This script helps maintain the sway package list by comparing it with
-# currently installed packages and suggesting updates.
+# This script audits the sway package list by comparing it with currently
+# installed packages. It identifies discrepancies and helps maintain an
+# accurate package list.
+#
+# Note: For regular updates, use 'yay -Syu' instead. This script is for
+# auditing and analyzing the package list, not for routine system updates.
 # =============================================================================
 
 set -euo pipefail
@@ -20,7 +24,7 @@ NC='\033[0m'
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PACKAGES_FILE="$SCRIPT_DIR/packages-repository.txt"
-TEMP_DIR="/tmp/sway-package-update-$$"
+TEMP_DIR="/tmp/sway-package-audit-$$"
 
 log() {
     echo -e "$1"
@@ -164,7 +168,7 @@ backup_current_list() {
 # Main function
 main() {
     log "${PURPLE}╔══════════════════════════════════════════════════════════════╗${NC}"
-    log "${PURPLE}║                  Package List Updater                       ║${NC}"
+    log "${PURPLE}║                  Package List Auditor                       ║${NC}"
     log "${PURPLE}║               Sway Desktop Environment                      ║${NC}"
     log "${PURPLE}╚══════════════════════════════════════════════════════════════╝${NC}"
     echo
@@ -211,17 +215,20 @@ main() {
 
 # Show help
 if [[ "${1:-}" == "--help" ]] || [[ "${1:-}" == "-h" ]]; then
-    echo "Package List Updater"
+    echo "Package List Auditor"
     echo "Usage: $0"
     echo
-    echo "This script analyzes your current sway package list and suggests updates based on"
-    echo "currently installed packages. It helps keep the package list current and complete."
+    echo "This script audits your sway package list by comparing it with currently"
+    echo "installed packages. It helps identify discrepancies and maintain an accurate"
+    echo "package list."
+    echo
+    echo "Note: For regular system updates, use 'yay -Syu' instead."
     echo
     echo "The script will:"
     echo "  - Compare package list with installed packages"
     echo "  - Identify missing or extra packages"
     echo "  - Check for outdated package names"
-    echo "  - Generate updated package list suggestions"
+    echo "  - Generate suggested package list updates"
     exit 0
 fi
 
