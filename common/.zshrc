@@ -104,6 +104,11 @@ if command -v starship &> /dev/null; then
   eval "$(starship init zsh)"
 fi
 
+# mise (development tool version manager)
+if command -v mise &>/dev/null; then
+  eval "$(mise activate zsh --shims --no-hook-env)"
+fi
+
 # Envman
 [[ -s "$HOME/.config/envman/load.sh" ]] && source "$HOME/.config/envman/load.sh"
 

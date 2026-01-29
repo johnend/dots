@@ -23,6 +23,9 @@ export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.npm-global/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
 
+# mise shims (available for all shells)
+export PATH="$HOME/.local/share/mise/shims:$PATH"
+
 # Bun
 export PATH="$PATH:$HOME/.bun/bin"
 
@@ -149,10 +152,3 @@ fi
 # ════════════════════════════════════════════════════════════════════════════════
 # DEVELOPMENT TOOLS
 # ════════════════════════════════════════════════════════════════════════════════
-
-# ────────────────────────────────────────────────────────────────────────────────
-# mise (development tool version manager)
-# ────────────────────────────────────────────────────────────────────────────────
-if command -v mise &>/dev/null; then
-  eval "$(mise activate zsh)"
-fi
