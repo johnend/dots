@@ -1,0 +1,14 @@
+# ————————————————————————————————————————————————————
+# Shell Completions
+# ————————————————————————————————————————————————————
+
+# AWS CLI
+if command -v aws_completer &> /dev/null; then
+  complete -C aws_completer aws
+fi
+
+# Terraform
+if command -v terraform &> /dev/null; then
+  autoload -U +X bashcompinit && bashcompinit
+  complete -o nospace -C $(which terraform) terraform
+fi
