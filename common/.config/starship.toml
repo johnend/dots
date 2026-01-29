@@ -11,8 +11,8 @@ scan_timeout = 10
 # Format - customize what's shown in the prompt
 # ————————————————————————————————————————————————————
 format = """
-[┌─ ](bold blue)$sudo$username$hostname$directory$git_branch$git_commit$git_state$git_status$fill$nodejs$python$java$ruby$golang$rust$terraform$nix_shell$kubernetes$aws$env_var$jobs$cmd_duration
-[└─](bold blue)$status$character"""
+[┌─ ](bold blue)$sudo$username$hostname$os$directory$git_branch$git_commit$git_state$git_status$fill$nodejs$python$java$ruby$golang$rust$terraform$nix_shell$kubernetes$aws$env_var$jobs$cmd_duration
+[└─ ](bold blue)$status${custom.vim_mode}$character"""
 
 right_format = """"""
 
@@ -24,11 +24,28 @@ success_symbol = "[❯](bold green)"
 error_symbol = "[❯](bold red)"
 
 # ————————————————————————————————————————————————————
+# Vim Mode - shows current vim mode (requires zsh-vi-mode plugin)
+# Colors: INSERT=bright green, NORMAL=magenta, VISUAL=blue, REPLACE=purple
+# ————————————————————————————————————————————————————
+[custom.vim_mode]
+description = "Vim mode indicator"
+format = "$output"
+command = '''
+case "$STARSHIP_VIM_MODE" in
+  cmd) printf "\033[1;35m \033[0m";;  # magenta NORMAL
+  ins) printf "\033[1;92m \033[0m";;  # bright green INSERT
+  vis) printf "\033[1;34m \033[0m";;  # blue VISUAL
+  rep) printf "\033[1;35m \033[0m";;  # purple REPLACE
+esac
+'''
+when = ''' test "$STARSHIP_VIM_MODE" != "" '''
+
+# ————————————————————————————————————————————————————
 # Status - show exit codes and signals
 # ————————————————————————————————————————————————————
 [status]
 disabled = false
-format = ' [$symbol$status]($style) '
+format = '[$symbol$status]($style) '
 symbol = " "
 not_executable_symbol = " "
 not_found_symbol = " "
@@ -50,12 +67,28 @@ format = "[$hostname]($style) in "
 style = "bold dimmed green"
 
 # ————————————————————————————————————————————————————
+# OS - show operating system icon
+# ————————————————————————————————————————————————————
+[os]
+disabled = false
+format = "[$symbol]($style)"
+
+[os.symbols]
+Arch = "󰣇 "
+Debian = "󰣚 "
+EndeavourOS = "󰣇 "
+Fedora = "󰣛 "
+Macos = "󰀵 "
+Ubuntu = "󰕈 "
+Linux = "󰌽 "
+
+# ————————————————————————————————————————————————————
 # Directory - show current path
 # ————————————————————————————————————————————————————
 [directory]
 truncation_length = 3
 truncate_to_repo = true
-read_only = " 󰌾"
+read_only = "󰌾"
 home_symbol = "~"
 repo_root_style = "bold cyan"
 
@@ -80,17 +113,17 @@ style = "bold yellow"
 [git_status]
 format = '($all_status$ahead_behind)'
 style = 'bold purple'
-conflicted = '[=](bold red)[${count} ](bold red)'
+conflicted = '[󱚟 ](bold red)[${count} ](bold red)'
 ahead = '[⇡](bold cyan)[${count} ](bold cyan)'
 behind = '[⇣](bold yellow)[${count} ](bold yellow)'
-diverged = '[⇕](bold yellow)[${count} ](bold yellow)'
+diverged = '[󰇂 ](bold yellow)[${count} ](bold yellow)'
 up_to_date = ''
-untracked = '[?](bold blue)[${count} ](bold blue)'
+untracked = '[ ](bold blue)[${count} ](bold blue)'
 stashed = '' # '[\$](bold cyan)[${count} ](bold cyan)' -- uncomment to show stashed
-modified = '[!](bold yellow)[${count} ](bold yellow)'
-staged = '[+](bold green)[${count} ](bold green)'
-renamed = '[»](bold blue)[${count} ](bold blue)'
-deleted = '[✘](bold red)[${count} ](bold red)'
+modified = '[ ](bold yellow)[${count} ](bold yellow)'
+staged = '[ ](bold green)[${count} ](bold green)'
+renamed = '[ ](bold blue)[${count} ](bold blue)'
+deleted = '[ ](bold red)[${count} ](bold red)'
 
 # ————————————————————————————————————————————————————
 # Language/Tool Versions - only show when relevant
@@ -163,7 +196,7 @@ symbol = "󰸏 "
 symbol = " "
 
 [docker_context]
-symbol = " "
+symbol = " "
 format = "[$symbol$context]($style) "
 only_with_files = true
 

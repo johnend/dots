@@ -39,6 +39,44 @@ plugins=(
 
 source "$ZSH/oh-my-zsh.sh"
 
+# ————————————————————————————————————————————————————
+# Zsh Vi Mode - Export mode for Starship
+# ————————————————————————————————————————————————————
+# Initialize VIM_MODE variable
+export VIM_MODE="ins"
+export STARSHIP_VIM_MODE="ins"
+
+# Hook into zsh-vi-mode to export VIM_MODE variable and refresh prompt
+function zvm_after_select_vi_mode() {
+  case $ZVM_MODE in
+    $ZVM_MODE_NORMAL)
+      STARSHIP_VIM_MODE="cmd"
+      ;;
+    $ZVM_MODE_INSERT)
+      STARSHIP_VIM_MODE="ins"
+      ;;
+    $ZVM_MODE_VISUAL)
+      STARSHIP_VIM_MODE="vis"
+      ;;
+    $ZVM_MODE_VISUAL_LINE)
+      STARSHIP_VIM_MODE="vis"
+      ;;
+    $ZVM_MODE_REPLACE)
+      STARSHIP_VIM_MODE="rep"
+      ;;
+    *)
+      STARSHIP_VIM_MODE="ins"
+      ;;
+  esac
+  # Force prompt refresh
+  zle reset-prompt
+}
+
+# Also hook into the init to set initial mode
+function zvm_after_init() {
+  STARSHIP_VIM_MODE="ins"
+}
+
 # History settings
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=1000000
