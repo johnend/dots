@@ -14,7 +14,7 @@ return {
   { "<leader>sk", ":lua Snacks.picker.keymaps() <cr>", desc = "Keymaps" },
   {
     "<leader>sn",
-    ":lua Snacks.picker({cwd = vim.fn.stdpath 'config')",
+    ":lua Snacks.picker.files({cwd = vim.fn.stdpath('config')})",
     desc = "Neovim config files",
   },
   { "<leader>ss", ":lua Snacks.picker() <cr>", desc = "Builtin pickers" },
