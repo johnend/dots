@@ -48,12 +48,6 @@ if [[ -d "$HOME/.granted/zsh_autocomplete" ]]; then
 fi
 
 # ————————————————————————————————————————————————
-# RVM (Ruby Version Manager)
-# ————————————————————————————————————————————————
-# Load RVM into shell session as a function
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
-# ————————————————————————————————————————————————
 # Amazon Q (post-hook)
 # ————————————————————————————————————————————————
 # Q post block
