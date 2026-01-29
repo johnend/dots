@@ -1,9 +1,23 @@
 ---@diagnostic disable: lowercase-global
--- Use global variable objects for colors and icons
-colors = require "core.config.colors"
-icons = require "core.config.icons"
+-- Safeguard: Catch any critical errors during startup and continue loading
+local function safe_require(module)
+  local ok, result = pcall(require, module)
+  if not ok then
+    -- Show full error in messages, not just notification
+    local err_msg = string.format("Failed to load %s:\n%s", module, result)
+    vim.schedule(function()
+      vim.notify(err_msg, vim.log.levels.ERROR, { title = "Config Error" })
+    end)
+    return nil
+  end
+  return result
+end
 
--- ensure Mason’s installers are on PATH so conform/other health-checks can see them
+-- Use global variable objects for colors and icons
+colors = safe_require "core.config.colors" or {}
+icons = safe_require "core.config.icons" or {}
+
+-- ensure Mason's installers are on PATH so conform/other health-checks can see them
 local mason_bin = vim.fn.stdpath "data" .. "/mason/bin"
 if not string.find(vim.env.PATH, mason_bin, 1, true) then
   vim.env.PATH = mason_bin .. ":" .. vim.env.PATH
@@ -95,13 +109,13 @@ local lazy_opts = {
 
 require("lazy").setup(lazy_opts)
 
-require "core.keymaps"
-require "core.commands"
-require "core.options"
-require "core.filetypes"
-require "core.overrides"
-require "water"
+safe_require "core.keymaps"
+safe_require "core.commands"
+safe_require "core.options"
+safe_require "core.filetypes"
+safe_require "core.overrides"
+safe_require "water"
 
 if vim.g.neovide then
-  require "core.neovide"
+  safe_require "core.neovide"
 end
