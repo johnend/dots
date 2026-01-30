@@ -1,0 +1,11 @@
+{
+  "$schema": "schema.json",
+  "theme": "aura",
+  "autoshare": false,
+  "tui": {
+    "scroll_acceleration": {
+      "enabled": true
+    },
+    "scroll_speed": 3
+  }
+}

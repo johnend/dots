@@ -128,15 +128,25 @@ composer
 julia
 deno
 rustup
+openjdk-headless
 
 # Version management
-asdf-vm
+mise
 
 # Build tools and utilities
 base-devel
 git
 stow
 tmux
+
+# Code formatting and linting
+stylua
+prettier
+shellcheck
+shfmt
+
+# Tree-sitter
+tree-sitter-cli
 
 # =====================================
 # COMMAND LINE UTILITIES
@@ -173,6 +183,26 @@ plocate
 pv
 tldr
 yazi
+tree
+watchman
+pandoc
+mkcert
+poppler
+
+# Container orchestration
+helm
+lazydocker
+kubectl
+minikube
+
+# Additional build tools
+cmake
+automake
+make
+gcc
+
+# Prompt
+starship
 
 # Document viewing
 zathura
@@ -237,6 +267,8 @@ mbpfan-git
 # Additional development tools
 tmuxinator
 ruby-xdg
+pipx
+terraform
 
 # Fun terminal tools
 cbonsai

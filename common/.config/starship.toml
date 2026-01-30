@@ -1,0 +1,233 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# ————————————————————————————————————————————————————
+# Global Settings
+# ————————————————————————————————————————————————————
+add_newline = true
+command_timeout = 750
+scan_timeout = 100
+
+# ————————————————————————————————————————————————————
+# Format - customize what's shown in the prompt
+# ————————————————————————————————————————————————————
+format = """
+[┌─ ](bold blue)$sudo$username$hostname$os$directory$git_branch$git_commit$git_state$git_status$fill$nodejs$python$java$ruby$golang$rust$terraform$nix_shell$kubernetes$aws$env_var$jobs$cmd_duration
+[└─ ](bold blue)$status${custom.vim_mode}$character"""
+
+right_format = """"""
+
+# ————————————————————————————————————————————————————
+# Character - the prompt symbol
+# ————————————————————————————————————————————————————
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+
+# ————————————————————————————————————————————————————
+# Vim Mode - shows current vim mode (requires zsh-vi-mode plugin)
+# Colors: INSERT=bright green, NORMAL=magenta, VISUAL=blue, REPLACE=purple
+# ————————————————————————————————————————————————————
+[custom.vim_mode]
+description = "Vim mode indicator"
+format = "$output"
+command = '''
+case "$STARSHIP_VIM_MODE" in
+  cmd) printf "\033[1;35m \033[0m";;  # magenta NORMAL
+  ins) printf "\033[1;92m \033[0m";;  # bright green INSERT
+  vis) printf "\033[1;34m \033[0m";;  # blue VISUAL
+  rep) printf "\033[1;35m \033[0m";;  # purple REPLACE
+esac
+'''
+when = ''' test "$STARSHIP_VIM_MODE" != "" '''
+
+# ————————————————————————————————————————————————————
+# Status - show exit codes and signals
+# ————————————————————————————————————————————————————
+[status]
+disabled = false
+format = '[$symbol$status]($style) '
+symbol = " "
+not_executable_symbol = " "
+not_found_symbol = " "
+sigint_symbol = " "
+signal_symbol = " "
+
+# ————————————————————————————————————————————————————
+# Username & Hostname - show when SSH or root
+# ————————————————————————————————————————————————————
+[username]
+format = "[$user]($style)@"
+style_user = "bold yellow"
+style_root = "bold red"
+show_always = false
+
+[hostname]
+ssh_only = true
+format = "[$hostname]($style) in "
+style = "bold dimmed green"
+
+# ————————————————————————————————————————————————————
+# OS - show operating system icon
+# ————————————————————————————————————————————————————
+[os]
+disabled = false
+format = "[$symbol]($style)"
+
+[os.symbols]
+Arch = "󰣇 "
+Debian = "󰣚 "
+EndeavourOS = "󰣇 "
+Fedora = "󰣛 "
+Macos = "󰀵 "
+Ubuntu = "󰕈 "
+Linux = "󰌽 "
+
+# ————————————————————————————————————————————————————
+# Directory - show current path
+# ————————————————————————————————————————————————————
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+read_only = "󰌾"
+home_symbol = "~"
+repo_root_style = "bold cyan"
+
+# ————————————————————————————————————————————————————
+# Git - show git status
+# ————————————————————————————————————————————————————
+[git_branch]
+symbol = " "
+format = "[$symbol$branch]($style) "
+
+[git_commit]
+commit_hash_length = 7
+format = '[\($hash$tag\)]($style) '
+style = "bold green"
+only_detached = true
+tag_disabled = false
+
+[git_state]
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
+style = "bold yellow"
+
+[git_status]
+format = '($all_status$ahead_behind)'
+style = 'bold purple'
+conflicted = '[󱚟 ](bold red)[${count} ](bold red)'
+ahead = '[⇡](bold cyan)[${count} ](bold cyan)'
+behind = '[⇣](bold yellow)[${count} ](bold yellow)'
+diverged = '[󰇂 ](bold yellow)[${count} ](bold yellow)'
+up_to_date = ''
+untracked = '[ ](bold blue)[${count} ](bold blue)'
+stashed = '' # '[\$](bold cyan)[${count} ](bold cyan)' -- uncomment to show stashed
+modified = '[ ](bold yellow)[${count} ](bold yellow)'
+staged = '[ ](bold green)[${count} ](bold green)'
+renamed = '[ ](bold blue)[${count} ](bold blue)'
+deleted = '[ ](bold red)[${count} ](bold red)'
+
+# ————————————————————————————————————————————————————
+# Language/Tool Versions - only show when relevant
+# ————————————————————————————————————————————————————
+[nodejs]
+symbol = "󰎙 "
+format = "[$symbol($version )]($style)"
+detect_files = ["package.json", ".node-version", ".nvmrc"]
+
+[python]
+symbol = " "
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+detect_files = ["requirements.txt", ".python-version", "pyproject.toml", "Pipfile", "tox.ini", "setup.py"]
+
+[java]
+symbol = " "
+format = "[$symbol($version )]($style)"
+detect_files = ["pom.xml", "build.gradle.kts", "build.sbt", ".java-version", "deps.edn", "project.clj", "build.boot"]
+
+[ruby]
+symbol = " "
+format = "[$symbol($version )]($style)"
+detect_files = ["Gemfile", ".ruby-version"]
+
+[golang]
+symbol = "󰟓 "
+
+[rust]
+symbol = " "
+
+[lua]
+symbol = " "
+
+# ————————————————————————————————————————————————————
+# Command Duration - show how long commands took
+# ————————————————————————————————————————————————————
+[cmd_duration]
+min_time = 2000
+format = "took [$duration]($style) "
+show_milliseconds = false
+style = "bold yellow"
+
+# ————————————————————————————————————————————————————
+# Jobs - show background jobs
+# ————————————————————————————————————————————————————
+[jobs]
+symbol = "✦"
+number_threshold = 1
+symbol_threshold = 1
+format = "[$symbol$number]($style) "
+style = "bold blue"
+
+# ————————————————————————————————————————————————————
+# Sudo - indicate sudo credentials are cached
+# ————————————————————————————————————————————————————
+[sudo]
+disabled = false
+format = "[$symbol]($style) "
+symbol = "󱢽"
+style = "bold red"
+
+# ————————————————————————————————————————————————————
+# Other Nerd Font Symbols (minimal config)
+# ————————————————————————————————————————————————————
+
+[aws]
+symbol = "󰸏 "
+
+[buf]
+symbol = " "
+
+[docker_context]
+symbol = " "
+format = "[$symbol$context]($style) "
+only_with_files = true
+
+[terraform]
+format = "[$symbol$workspace]($style) "
+symbol = " "
+
+[nix_shell]
+format = '[$symbol$state( \($name\))]($style) '
+symbol = "󱄅 "
+
+[package]
+disabled = true
+
+[kubernetes]
+disabled = false
+format = '[$symbol$context( \($namespace\))]($style) '
+symbol = "☸ "
+# Only show when AWS context is active
+detect_env_vars = ['AWS_PROFILE', 'AWS_REGION', 'AWS_DEFAULT_REGION']
+
+# Automatically shorten ALL EKS ARNs to region/cluster-name
+[[kubernetes.contexts]]
+context_pattern = "arn:aws:eks:(?P<region>[\\w-]+):.*:cluster/(?P<cluster>[\\w-]+)"
+context_alias = "$region/$cluster"
+
+# Environment Variables - show custom env vars
+[env_var.STAGE]
+variable = "STAGE"
+format = "[$env_value]($style) "
+style = "bold blue"
+
+[fill]
+symbol = ' '
