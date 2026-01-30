@@ -4,8 +4,8 @@
 # Global Settings
 # ————————————————————————————————————————————————————
 add_newline = true
-command_timeout = 500
-scan_timeout = 10
+command_timeout = 750
+scan_timeout = 100
 
 # ————————————————————————————————————————————————————
 # Format - customize what's shown in the prompt
