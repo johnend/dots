@@ -168,5 +168,47 @@
         }
       }
     }
+  },
+  "agent": {
+    "artificer": {
+      "model": "github-copilot/claude-sonnet-4.5",
+      "temperature": 0.3
+    },
+    "bard": {
+      "model": "github-copilot/gemini-2.5-pro",
+      "temperature": 0.7
+    },
+    "chronicler": {
+      "model": "github-copilot/claude-sonnet-4.5",
+      "temperature": 0.5
+    },
+    "coach": {
+      "model": "github-copilot/gemini-2.5-pro",
+      "temperature": 0.7
+    },
+    "investigator": {
+      "model": "github-copilot/gpt-5",
+      "temperature": 0.4
+    },
+    "mentor": {
+      "model": "github-copilot/claude-sonnet-4.5",
+      "temperature": 0.6
+    },
+    "pathfinder": {
+      "model": "github-copilot/grok-code-fast-1",
+      "temperature": 0.2
+    },
+    "sentinel": {
+      "model": "github-copilot/claude-haiku-4.5",
+      "temperature": 0.3
+    },
+    "steward": {
+      "model": "github-copilot/gpt-5-mini",
+      "temperature": 0.5
+    },
+    "visionary": {
+      "model": "github-copilot/gemini-2.5-pro",
+      "temperature": 0.8
+    }
   }
 }
