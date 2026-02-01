@@ -1,5 +1,28 @@
 {
-  "$schema": "https://opencode.ai/config.json",
+  "$schema": "schema.json",
+  "default_agent": "artificer",
+  "theme": "aura",
+  "autoshare": false,
+  "tui": {
+    "scroll_acceleration": {
+      "enabled": true
+    },
+    "scroll_speed": 3.0,
+    "diff_style": "auto"
+  },
+  "share": "manual",
+  "autoupdate": "notify",
+  "logLevel": "INFO",
+  "watcher": {
+    "ignore": [
+      "**/node_modules/**",
+      "**/.git/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/.next/**",
+      "**/coverage/**"
+    ]
+  },
   "plugin": [
     "opencode-openai-codex-auth"
   ],
