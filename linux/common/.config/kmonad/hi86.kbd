@@ -14,14 +14,41 @@
 
 
 (defalias
+  ;; Original tap-hold modifiers
   hyper (tap-hold 200 tab C-A-M-lsft)
-  meh (tap-hold 200 esc C-A-lsft))
+  meh (tap-hold 200 esc C-A-lsft)
+  
+  ;; Homerow mods - Left hand: a=Shift, s=Gui, d=Alt, f=Ctrl
+  ;; Using tap-hold-next-release to reduce misfires during fast typing
+  a_shft (tap-hold-next-release 200 a lsft)
+  s_gui  (tap-hold-next-release 200 s lmet)
+  d_alt  (tap-hold-next-release 200 d lalt)
+  f_ctrl (tap-hold-next-release 200 f lctl)
+  
+  ;; Homerow mods - Right hand: j=Ctrl, k=Alt, l=Gui, ;=Shift
+  j_ctrl (tap-hold-next-release 200 j rctl)
+  k_alt  (tap-hold-next-release 200 k lalt)
+  l_gui  (tap-hold-next-release 200 l rmet)
+  ;_shft (tap-hold-next-release 200 ; rsft)
+  
+  ;; Layer switching with notifications
+  gameon (tap-macro (layer-switch gaming) (cmd-button "/home/johne/.config/kmonad/notify-layer.sh Gaming"))
+  gameoff (tap-macro (layer-switch base) (cmd-button "/home/johne/.config/kmonad/notify-layer.sh Base")))
 
 
 (deflayer base
- esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  prnt   slck  pause
+ esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  prnt   slck  @gameon
  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc   ins   home
  @meh  q    w    e    r    t    y    u    i    o    p    [    ]    \     del   end
- @hyper a    s    d    f    g    h    j    k    l    ;    '    ret       pgup  pgdn
+ @hyper @a_shft @s_gui @d_alt @f_ctrl g  h  @j_ctrl @k_alt @l_gui @;_shft '  ret  pgup  pgdn
  lsft z    x    c    v    b    n    m    ,    .    /    rsft           up
  lctl lalt lmet           spc            rmet ralt rctl      left down rght)
+
+
+(deflayer gaming
+ esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  prnt   slck  @gameoff
+ grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc   ins   home
+ tab  q    w    e    r    t    y    u    i    o    p    [    ]    \      del   end
+ caps a    s    d    f    g    h    j    k    l    ;    '    ret         pgup  pgdn
+ lsft z    x    c    v    b    n    m    ,    .    /    rsft           up
+ lctl lmet lalt           spc            ralt rmet rctl      left down rght)
