@@ -1,0 +1,24 @@
+{
+  "name": "opencode-risk-assessor",
+  "version": "1.0.0",
+  "description": "Automatic risk assessment for destructive operations in OpenCode",
+  "main": "dist/cli.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "test": "node --test dist/**/*.test.js"
+  },
+  "keywords": [
+    "opencode",
+    "risk",
+    "assessment",
+    "safety",
+    "destructive-operations"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.19.30",
+    "typescript": "^5.9.3"
+  }
+}
