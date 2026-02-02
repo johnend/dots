@@ -25,14 +25,15 @@ linux/.config/spicetify
 linux/.config/thefuck/__pycache__/settings.cpython-313.pyc
 linux/common/.config/thefuck/__pycache__/settings.cpython-313.pyc
 linux/common/.config/thefuck/__pycache__/settings.cpython-314.pyc
-common/.config/opencode/context/projects/aw-dynamic-web
-common/.config/opencode/context/projects/raf-app
-common/.config/opencode/context/projects/refer-a-friend-service
-common/.config/opencode/context/projects/sportsbook
-common/.config/opencode/context/projects/account-e2e-cypress
-common/.config/opencode/context/projects/adminweb
-common/.config/opencode/context/projects/fd-lambda-shorturl
-common/.config/opencode/context/projects/level-up-butler
-common/.config/opencode/context/projects/refer-a-friend-db
-common/.config/opencode/context/projects/refer-a-friend-db-notifications
-common/.config/opencode/context/projects/refer-a-friend-db-stream
+# OpenCode Context - New hierarchical structure
+# Track general and personal context (personal preferences and personal projects)
+!common/.config/opencode/context/
+!common/.config/opencode/context/general/
+!common/.config/opencode/context/personal/
+
+# Ignore work-specific context (FanDuel patterns and projects)
+common/.config/opencode/context/work/
+
+# Ignore node_modules and build artifacts everywhere
+**/node_modules/
+**/dist/

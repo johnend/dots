@@ -1,0 +1,23 @@
+{
+  "name": "gloomstalker",
+  "version": "1.0.0",
+  "description": "Smart context loading agent for OpenCode",
+  "type": "module",
+  "main": "hook.js",
+  "bin": {
+    "gloomstalker": "./hook.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test",
+    "hook": "node --loader ts-node/esm hook.ts"
+  },
+  "keywords": ["opencode", "context", "ai", "agent"],
+  "author": "John Enderby",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.2",
+    "ts-node": "^10.9.2"
+  }
+}

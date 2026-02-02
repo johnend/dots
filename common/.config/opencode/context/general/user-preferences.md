@@ -1,7 +1,7 @@
 # User Preferences & Working Style
 
-**Last Updated:** 2026-01-30  
-**Source:** Dotfiles analysis + working patterns + AGENTS.md
+**Last Updated:** 2026-02-02  
+**Source:** Personal dotfiles + working patterns
 
 ## Development Environment
 
@@ -11,7 +11,7 @@
 - **Terminal Emulators:**
   - macOS: Ghostty (primary), Alacritty
   - Linux: Ghostty (primary), Alacritty
-- **Prompt:** Starship (migrated from Powerlevel10k - faster, Rust-based)
+- **Prompt:** Starship (Rust-based, fast)
 - **Multiplexer:** Tmux with TPM (Tmux Plugin Manager)
 - **Vi Mode:** zsh-vi-mode plugin enabled (INSERT/NORMAL/VISUAL modes)
 
@@ -144,35 +144,11 @@
 - Manual test steps should be documented when automation is impossible
 - Run `shellcheck` locally before committing complex scripts
 
-## Working Context
-
-### Primary Work
-
-- **Company:** FanDuel
-- **Teams:** Works on Raccoons team across multiple projects (some owned by other teams)
-- **Focus:** Both legacy code and new features
-- **Codebase Types:**
-  - Monorepos (Nx, Yarn workspaces)
-  - Java (Gradle)
-  - TypeScript/JavaScript
-  - React Native + Web
-
-### Model Access
-
-- **Available Models:** GitHub Copilot models only (company-restricted)
-- **No Access To:** OpenAI, Anthropic direct, other external models
-
-### Development Workflow
-
-- VPN required for `yarn install` at FanDuel projects
-- Uses GNU Stow for dotfiles management
-- Cross-platform development (macOS + Linux EndeavourOS/Arch)
-
 ## Project Organization
 
 ### Directory Structure
 
-- **Work Projects:** `~/Developer/fanduel/`
+- **Work Projects:** `~/Developer/work/` (or similar)
 - **Personal Projects:** `~/Developer/personal/`
 - **Dotfiles:** `~/Developer/personal/dots`
 
@@ -265,11 +241,10 @@ stow macos -t ~     # macOS-specific (if on macOS)
 1. ⚠️ **Ask before implementing UI/frontend**
 2. ⚠️ **Never auto-commit or auto-push**
 3. 🎯 **Prefer readability over cleverness**
-4. 🤖 **Work within GitHub Copilot model constraints**
-5. 📦 **User works with legacy code and monorepos**
-6. 📝 **Use conventional commit format (fix:, feat:, etc.)**
-7. 🔍 **Show git status + diff before committing**
-8. 🧪 **Run tests and validation before declaring success**
+4. 📦 **User works with legacy code and monorepos**
+5. 📝 **Use conventional commit format (fix:, feat:, etc.)**
+6. 🔍 **Show git status + diff before committing**
+7. 🧪 **Run tests and validation before declaring success**
 
 ### Preferred Workflows
 
@@ -297,7 +272,6 @@ This file should be loaded alongside project-specific context to provide persona
 - `~/Developer/personal/dots/.gitconfig`
 - `~/Developer/personal/dots/AGENTS.md`
 - `~/Developer/personal/dots/README.md`
-- `~/Developer/personal/dots/ZSH_REFACTOR_2026.md`
 - `~/Developer/personal/dots/common/.zshrc`
 - `~/Developer/personal/dots/common/.config/starship.toml`
 - `~/Developer/personal/dots/common/.config/mise/config.toml`
