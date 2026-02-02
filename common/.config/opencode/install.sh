@@ -92,6 +92,9 @@ install_cli "Todo Enforcer" "$OPENCODE_DIR/hooks/todo-enforcer"
 # Install Risk Assessor
 install_cli "Risk Assessor" "$OPENCODE_DIR/hooks/risk-assessor"
 
+# Install Git Status Checker
+install_cli "Git Status Checker" "$OPENCODE_DIR/hooks/git-status-checker"
+
 # Summary
 echo "================="
 success "OpenCode setup complete!"
@@ -100,5 +103,6 @@ echo "CLI Tools installed:"
 echo "  • GloomStalker (Smart context loading)"
 echo "  • Todo Enforcer (Multi-step task detection)"
 echo "  • Risk Assessor (Destructive operation safety)"
+echo "  • Git Status Checker (User activity detection)"
 echo
 echo "All CLIs are ready to use."

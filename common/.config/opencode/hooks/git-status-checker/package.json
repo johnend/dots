@@ -1,0 +1,17 @@
+{
+  "name": "git-status-checker",
+  "version": "1.0.0",
+  "description": "Detects git changes for AI agent context",
+  "main": "cli.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test"
+  },
+  "keywords": ["git", "ai", "context"],
+  "author": "John Enderby",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}
