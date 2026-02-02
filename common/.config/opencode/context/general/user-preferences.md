@@ -38,7 +38,7 @@
 ### OpenCode Configuration
 
 - **Config Location:** `~/.config/opencode/opencode.jsonc`
-- **Commands:** Prefers markdown files in `~/.config/opencode/command/*.md` (easier to read/edit)
+- **Commands:** Prefers markdown files in `~/.config/opencode/commands/*.md` (easier to read/edit)
 - **OpenCode Docs:** https://github.com/anomalyco/opencode/tree/dev/packages/web/src/content/docs
   - **IMPORTANT:** When editing opencode.jsonc, reference the MDX docs in the GitHub repo above
   - Contains schema documentation, examples, and feature explanations

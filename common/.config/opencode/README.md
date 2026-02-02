@@ -140,10 +140,15 @@ USER REQUEST
 │       ├── cli.js
 │       ├── *.ts
 │       └── README.md
-├── command/             # Custom commands
+├── commands/            # Custom commands
 │   ├── ctx-create.md    # Create project context
 │   ├── ctx-verify.md    # Verify context accuracy
 │   ├── ctx-update.md    # Update project context
+│   ├── mentor/          # Mentor-specific commands
+│   │   ├── implement-with-artificer.md
+│   │   ├── debug-with-me.md
+│   │   ├── reading-list.md
+│   │   └── README.md
 │   └── README.md
 ├── context/             # Hierarchical context system
 │   ├── general/         # Personal preferences (PUBLIC)
@@ -234,7 +239,7 @@ Other commands:
 /ui-create    # UI component scaffolding
 ```
 
-See [command/README.md](./command/README.md) for all commands.
+See [commands/README.md](./commands/README.md) for all commands.
 
 ## Installation
 
@@ -471,7 +476,7 @@ tar -czf work-context-backup.tar.gz ~/.config/opencode/context/work/
 - **[docs/overview.md](./docs/overview.md)** - System architecture and philosophy
 - **[docs/agents.md](./docs/agents.md)** - Detailed agent documentation
 - **[docs/hooks.md](./docs/hooks.md)** - CLI/hook documentation
-- **[command/README.md](./command/README.md)** - Command reference
+- **[commands/README.md](./commands/README.md)** - Command reference
 - Individual READMEs in each CLI directory
 
 ## Troubleshooting
@@ -540,7 +545,7 @@ Personal use only. Not licensed for redistribution.
 
 - [Artificer Agent](./agents/artificer.md) - Main builder documentation
 - [GloomStalker Design](./docs/gloomstalker-DESIGN.md) - Architecture rationale
-- [Command Quick Reference](./command/QUICK_REFERENCE.md) - All commands
+- [Command Quick Reference](./commands/QUICK_REFERENCE.md) - All commands
 
 ---
 

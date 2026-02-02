@@ -215,7 +215,7 @@ Other commands:
 - `/test-fix` - Test-driven debugging
 - `/ui-create` - UI component scaffolding
 
-See [command/README.md](../command/README.md) for all commands.
+See [commands/README.md](../commands/README.md) for all commands.
 
 ## Workflow Example
 
@@ -393,5 +393,5 @@ Potential improvements:
 
 - [Agent Documentation](./agents.md)
 - [Hook/CLI Documentation](./hooks.md)
-- [Command Reference](../command/README.md)
+- [Command Reference](../commands/README.md)
 - [GloomStalker Design](./gloomstalker-DESIGN.md)
