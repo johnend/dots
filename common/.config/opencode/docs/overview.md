@@ -5,11 +5,12 @@
 
 ## Philosophy
 
-OpenCode is an AI assistant configuration system built on three core principles:
+OpenCode is an AI assistant configuration system built on four core principles:
 
 1. **Context Efficiency** - Load only what's needed (40-60% token savings)
 2. **Task Visibility** - Track multi-step work with mandatory todos
-3. **Operational Safety** - Prevent destructive operations from causing damage
+3. **State Awareness** - Understand user's current work-in-progress
+4. **Operational Safety** - Prevent destructive operations from causing damage
 
 ## System Architecture
 
@@ -22,7 +23,7 @@ OpenCode is an AI assistant configuration system built on three core principles:
 │                    ARTIFICER (Orchestrator)                  │
 │  • Receives all requests                                     │
 │  • Coordinates specialist agents                             │
-│  • Enforces three-layer safety system                        │
+│  • Enforces four-layer enhancement system                    │
 └──────────────┬───────────────────────────────────────────────┘
                │
                ├──→ [Step 1] Route to specialist agent if simple
@@ -40,25 +41,31 @@ OpenCode is an AI assistant configuration system built on three core principles:
                │    │ • Returns relevant file list
                │    └─→ Loads only necessary context (40-60% savings)
                │
-               ├──→ [Step 4] Verify project context
+               ├──→ [Step 4] 🔍 GIT STATUS CHECKER CLI (for context)
+               │    │ Detects user's work-in-progress
+               │    │ • Staged and unstaged changes
+               │    │ • Recent commit history
+               │    └─→ Provides current state awareness
+               │
+               ├──→ [Step 5] Verify project context
                │    Check if /ctx-create or /ctx-update needed
                │
-               ├──→ [Step 5] Analyze & Categorize
+               ├──→ [Step 6] Analyze & Categorize
                │    Determine approach (delegate vs. handle)
                │
-               ├──→ [Step 6] 🛡️ RISK ASSESSOR CLI (before destructive ops)
+               ├──→ [Step 7] 🛡️ RISK ASSESSOR CLI (before destructive ops)
                │    │ Evaluates operation safety
                │    │ • Critical (10+) → BLOCK
                │    │ • High (7-9) → ASK user
                │    │ • Medium (4-6) → WARN
                │    └─→ Low/None → Proceed
                │
-               ├──→ [Step 7] Execute & update todos
+               ├──→ [Step 8] Execute & update todos
                │
-               └──→ [Step 8] Verify & Report
+               └──→ [Step 9] Verify & Report
 ```
 
-## Three-Layer Safety System
+## Four-Layer Enhancement System
 
 ### Layer 1: 🔦 GloomStalker (Context Efficiency)
 
@@ -119,7 +126,54 @@ $ node hooks/todo-enforcer/cli.js "Add authentication and write tests"
 - Multiple files mentioned = 1 point
 - Cross-cutting concerns = 2 points
 
-### Layer 3: 🛡️ Risk Assessor (Operational Safety)
+### Layer 3: 🔍 Git Status Checker (Current State Awareness)
+
+**Purpose:** Detect user's work-in-progress for AI context  
+**Location:** `hooks/git-status-checker/`  
+**Type:** TypeScript CLI
+
+**How it works:**
+1. Detects both staged AND unstaged changes (both valuable)
+2. Provides adaptive diff strategy based on file count
+3. Shows recent commits for historical context
+4. Includes new file previews (first 20 lines)
+
+**Diff Strategy:**
+- **<5 files:** Full diffs with all changes
+- **5-15 files:** Summaries with stats (+X/-Y lines)
+- **>15 files:** Grouped summaries by category
+
+**Example:**
+```bash
+$ node hooks/git-status-checker/cli.js
+
+📝 Git Status - Current work-in-progress
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Modified Files (3):
+  🟢 src/auth/service.ts (staged)
+     +45 -12 lines
+     [Added password reset endpoint]
+  
+  🔴 src/auth/middleware.ts (unstaged)
+     +8 -2 lines
+     [Added token validation]
+  
+  🟡 src/auth/types.ts (both)
+     +15 -3 lines
+     [Updated auth types]
+
+Recent Commits:
+  abc1234 - feat: add user authentication
+  def5678 - fix: resolve login bug
+```
+
+**When used:**
+- Code reviews (Mentor: see what user changed)
+- Implementation handoffs (Mentor → Artificer)
+- Debugging sessions (understand recent changes)
+
+### Layer 4: 🛡️ Risk Assessor (Operational Safety)
 
 **Purpose:** Prevent destructive operations  
 **Location:** `hooks/risk-assessor/`  
@@ -196,7 +250,7 @@ OpenCode uses a multi-agent architecture with specialized roles:
 - **Chronicler** 📚 - Research, documentation, GitHub operations
 - **Bard** 🎨 - UI/component creation (user approval required)
 - **Coach** 🏃 - Workflow optimization and productivity
-- **Mentor** 🎓 - Learning and explanation
+- **Mentor** 🎓 - Teaching, code review, collaborative debugging (with specialized commands)
 - **Steward** 🌱 - Code quality and best practices
 - **Visionary** 🔮 - Architecture and design patterns
 
@@ -204,16 +258,23 @@ See [agents.md](./agents.md) for detailed documentation.
 
 ## Command System
 
-Context management commands:
+### Context Management Commands
 
 - `/ctx-create` - Create project context in OpenCode config
 - `/ctx-verify` - Verify context accuracy against current project
 - `/ctx-update` - Surgically update context with project changes
 
-Other commands:
+### General Commands
+
 - `/review` - Code review and feedback
 - `/test-fix` - Test-driven debugging
 - `/ui-create` - UI component scaffolding
+
+### Mentor-Specific Commands
+
+- `/implement-with-artificer` - Hand off implementation to Artificer with session context
+- `/debug-with-me` - Structured collaborative debugging (teach the process)
+- `/reading-list` - Curated learning resources for deep topics
 
 See [commands/README.md](../commands/README.md) for all commands.
 
@@ -245,7 +306,15 @@ See [commands/README.md](../commands/README.md) for all commands.
       - sportsbook/auth.md
    ```
 
-4. **Artificer executes:**
+4. **Git Status Checker (if reviewing/debugging):**
+   ```
+   ✓ Checking current work-in-progress
+   ✓ Found 2 modified files:
+      - src/auth/service.ts (user's WIP)
+      - src/components/LoginForm.tsx (recent change)
+   ```
+
+5. **Artificer executes:**
    ```
    ✓ Todo 1 → in_progress
    ✓ Implements auth service
@@ -258,13 +327,13 @@ See [commands/README.md](../commands/README.md) for all commands.
    [continues through all todos]
    ```
 
-5. **Risk Assessor (if needed):**
+6. **Risk Assessor (if needed):**
    ```
    ✓ No destructive operations detected
    ✓ Proceeding safely
    ```
 
-6. **Verification:**
+7. **Verification:**
    ```
    ✓ All todos completed
    ✓ Tests passing

@@ -242,19 +242,35 @@ If task becomes multi-step or complex → Escalate to Artificer immediately
 ### Mentor 🎓 - The Teacher
 
 **Model:** `github-copilot/claude-sonnet-4.5`  
-**Temperature:** `0.4`  
-**Role:** Learning and explanation
+**Temperature:** `0.2`  
+**Role:** Pair programmer, tutor, and code reviewer
 
 **Purpose:**
-- Explain concepts
-- Teach new technologies
-- Provide learning resources
-- Answer "how" and "why" questions
+- Teach concepts and explain "why" behind solutions
+- Conduct code reviews (performance, security, scalability focus)
+- Guide collaborative debugging
+- Provide curated learning resources
+- Hand off implementation to Artificer when appropriate
+
+**Specialized Commands:**
+- `/implement-with-artificer` - Hand off to Artificer with full session context
+- `/debug-with-me` - Structured 5-step collaborative debugging
+- `/reading-list` - Curated learning resources for deep topics
 
 **When to use:**
 - "Explain how React hooks work"
-- "Teach me about TypeScript generics"
+- "Review my authentication code"
 - "Why should I use X over Y?"
+- "It's not working" (offers `/debug-with-me`)
+- "How does [complex topic] work?" (offers `/reading-list`)
+
+**Key Behaviors:**
+- ✅ Socratic teaching method by default
+- ✅ Uses git-status-checker for code reviews
+- ✅ Focuses on performance/security/scalability (not style)
+- ✅ Offers specialized commands at appropriate times
+- ✅ Hands off to Artificer with full context when user requests implementation
+- ❌ Does not implement code directly (delegates to Artificer)
 
 ### Steward 🌱 - The Quality Guardian
 
@@ -391,6 +407,31 @@ User → Artificer
       Verifies & reports
 ```
 
+### Pattern 4: Mentor → Artificer Handoff
+
+```
+User → Mentor
+         ↓
+      Teaching session
+         ↓
+      User requests implementation
+         ↓
+      Mentor captures context:
+        - Discussion summary
+        - Requirements
+        - Constraints
+         ↓
+      Runs git-status-checker
+         ↓
+      Formats handoff message
+         ↓
+      @Artificer receives full context
+         ↓
+      Artificer implements
+         ↓
+      User can return to Mentor for learning
+```
+
 ## Communication Conventions
 
 ### Delegation Format
@@ -398,10 +439,22 @@ User → Artificer
 ```
 @AgentName [instruction]
 
-Example:
+Examples:
 @Sentinel Add lodash import to src/utils/helpers.ts
 @Pathfinder Find all authentication-related files
 @Investigator Analyze why the login flow is slow
+@Mentor Explain how React reconciliation works
+```
+
+### Mentor Command Format
+
+```
+/command-name [description]
+
+Examples:
+/implement-with-artificer Add password reset functionality
+/debug-with-me My component isn't rendering
+/reading-list How does React reconciliation work?
 ```
 
 ### Status Updates
