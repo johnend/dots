@@ -268,7 +268,7 @@ If you prefer manual setup:
 
 ```bash
 # GloomStalker
-cd ~/.config/opencode/agents/gloomstalker
+cd ~/.config/opencode/hooks/gloomstalker
 npm install
 npx tsc
 chmod +x cli.js
@@ -399,7 +399,7 @@ Create context for projects with `/ctx-create`:
 
 ```bash
 # GloomStalker tests
-cd ~/.config/opencode/agents/gloomstalker
+cd ~/.config/opencode/hooks/gloomstalker
 npm test
 
 # Todo Enforcer CLI test
@@ -420,7 +420,7 @@ npm run watch  # Recompiles on file changes
 
 **GloomStalker - Add keyword mapping:**
 
-1. Edit `agents/gloomstalker/keyword-detector.ts`
+1. Edit `hooks/gloomstalker/keyword-detector.ts`
 2. Add keyword → file mapping
 3. Run tests: `npm test`
 
@@ -504,7 +504,7 @@ chmod +x <cli-directory>/cli.js
 ls -la ~/.config/opencode/context/
 
 # Test GloomStalker
-node agents/gloomstalker/cli.js "test task" --debug
+node hooks/gloomstalker/cli.js "test task" --debug
 ```
 
 ## Design Principles

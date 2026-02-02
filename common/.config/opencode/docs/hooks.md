@@ -20,7 +20,7 @@ OpenCode's three-layer safety system is powered by TypeScript CLIs that run auto
 
 ## Layer 1: 🔦 GloomStalker
 
-**Location:** `agents/gloomstalker/`  
+**Location:** `hooks/gloomstalker/`  
 **Type:** TypeScript CLI  
 **Purpose:** Smart context loading (40-60% token savings)
 
@@ -50,7 +50,7 @@ GloomStalker analyzes user requests for keywords and returns a minimal list of r
 
 ```bash
 # Basic usage
-node agents/gloomstalker/cli.js "Add a test for login API"
+node hooks/gloomstalker/cli.js "Add a test for login API"
 
 # Output
 Files to load:
@@ -95,8 +95,6 @@ Keyword mappings are defined in `keyword-detector.ts`:
 **Dependencies:**
 - TypeScript
 - Node.js built-ins only (no external deps)
-
-See [agents/gloomstalker/README.md](../agents/gloomstalker/README.md) for detailed documentation.
 
 ---
 
@@ -360,7 +358,7 @@ See [hooks/risk-assessor/README.md](../hooks/risk-assessor/README.md) for detail
          │   └─ Block if shouldBlock=true
          │
          ├─→ [Step 3] 🔦 GLOOMSTALKER
-         │   ├─ node agents/gloomstalker/cli.js "task"
+         │   ├─ node hooks/gloomstalker/cli.js "task"
          │   ├─ Get file list from response
          │   └─ Use Read tool to load files
          │
@@ -416,7 +414,7 @@ All three CLIs require TypeScript compilation:
 ./install.sh
 
 # Or manually for each CLI
-cd agents/gloomstalker && npm install && npx tsc
+cd hooks/gloomstalker && npm install && npx tsc
 cd hooks/todo-enforcer && npm install && npx tsc
 cd hooks/risk-assessor && npm install && npx tsc
 ```
@@ -427,7 +425,7 @@ Each CLI can be tested independently:
 
 ```bash
 # GloomStalker
-node agents/gloomstalker/cli.js "test task"
+node hooks/gloomstalker/cli.js "test task"
 
 # Todo Enforcer
 node hooks/todo-enforcer/cli.js "add auth and tests"
@@ -517,6 +515,6 @@ chmod +x <cli-directory>/cli.js
 
 - [Overview Documentation](./overview.md)
 - [Agent Documentation](./agents.md)
-- [GloomStalker README](../agents/gloomstalker/README.md)
+- [GloomStalker README](../hooks/gloomstalker/README.md)
 - [Todo Enforcer README](../hooks/todo-enforcer/README.md)
 - [Risk Assessor README](../hooks/risk-assessor/README.md)

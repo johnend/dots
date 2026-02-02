@@ -63,7 +63,7 @@ OpenCode is an AI assistant configuration system built on three core principles:
 ### Layer 1: 🔦 GloomStalker (Context Efficiency)
 
 **Purpose:** Load minimal necessary context  
-**Location:** `agents/gloomstalker/`  
+**Location:** `hooks/gloomstalker/`  
 **Type:** TypeScript CLI
 
 **How it works:**
@@ -74,7 +74,7 @@ OpenCode is an AI assistant configuration system built on three core principles:
 
 **Example:**
 ```bash
-$ node agents/gloomstalker/cli.js "Add a test for login API"
+$ node hooks/gloomstalker/cli.js "Add a test for login API"
 
 Files to load:
   - context/general/user-preferences.md

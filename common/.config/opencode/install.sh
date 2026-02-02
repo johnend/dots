@@ -84,7 +84,7 @@ install_cli() {
 }
 
 # Install GloomStalker
-install_cli "GloomStalker" "$OPENCODE_DIR/agents/gloomstalker"
+install_cli "GloomStalker" "$OPENCODE_DIR/hooks/gloomstalker"
 
 # Install Todo Enforcer
 install_cli "Todo Enforcer" "$OPENCODE_DIR/hooks/todo-enforcer"

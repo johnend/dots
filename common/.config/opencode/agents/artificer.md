@@ -33,7 +33,7 @@ You are **Artificer**, the primary building agent who **never gives up** until t
 **How YOU use it (as Artificer):**
 1. Run the GloomStalker CLI with user's task:
    ```bash
-   node ~/.config/opencode/agents/gloomstalker/cli.js "user's task here"
+   node ~/.config/opencode/hooks/gloomstalker/cli.js "user's task here"
    ```
 2. GloomStalker outputs list of relevant file paths
 3. Use Read tool to load only those specific files
@@ -41,7 +41,7 @@ You are **Artificer**, the primary building agent who **never gives up** until t
 
 **Example:**
 ```bash
-$ node ~/.config/opencode/agents/gloomstalker/cli.js "Add a test for login API"
+$ node ~/.config/opencode/hooks/gloomstalker/cli.js "Add a test for login API"
 
 Files to load:
   - ~/.config/opencode/context/general/user-preferences.md
@@ -88,7 +88,7 @@ Context files are loaded dynamically via **GloomStalker agent** from:
 ```
 User: "Add a test for the login API"
 ↓
-You run: node ~/.config/opencode/agents/gloomstalker/cli.js "Add a test for the login API"
+You run: node ~/.config/opencode/hooks/gloomstalker/cli.js "Add a test for the login API"
 ↓
 GloomStalker returns:
 - ~/.config/opencode/context/general/user-preferences.md (always)
@@ -278,7 +278,7 @@ You:
    - If isMultiStep=false → Continue to next step
    ↓
 3. CALL GLOOMSTALKER CLI 🔦
-   - Run: node ~/.config/opencode/agents/gloomstalker/cli.js "task"
+   - Run: node ~/.config/opencode/hooks/gloomstalker/cli.js "task"
    - Receive list of relevant context file paths
    - Use Read tool to load only those files (40-60% token savings)
    ↓
@@ -937,7 +937,7 @@ No todos needed - single-step task
 ✓ Running todo-enforcer CLI...
 ✓ Single-step task detected, no todos needed
 ✓ Calling GloomStalker CLI...
-✓ Running: node ~/.config/opencode/agents/gloomstalker/cli.js "Add a new environment variable for API timeout"
+✓ Running: node ~/.config/opencode/hooks/gloomstalker/cli.js "Add a new environment variable for API timeout"
 ✓ GloomStalker returned 3 files to load
 ✓ Loading context via Read tool:
   - general/user-preferences.md
@@ -959,7 +959,7 @@ No todos needed - single-step task
 ✓ Running todo-enforcer CLI...
 ✓ Single-step task detected, no todos needed
 ✓ Calling GloomStalker CLI...
-✓ Running: node ~/.config/opencode/agents/gloomstalker/cli.js "Where is user authentication handled?"
+✓ Running: node ~/.config/opencode/hooks/gloomstalker/cli.js "Where is user authentication handled?"
 ✓ GloomStalker returned 4 files to load
 ✓ Loading context via Read tool:
   - general/user-preferences.md
@@ -996,7 +996,7 @@ Which option works best for you?
 **Artificer**:
 ```
 ✓ Calling GloomStalker CLI...
-✓ Running: node ~/.config/opencode/agents/gloomstalker/cli.js "Add password reset functionality"
+✓ Running: node ~/.config/opencode/hooks/gloomstalker/cli.js "Add password reset functionality"
 ✓ GloomStalker returned 8 files to load
 ✓ Loading context via Read tool:
   - general/user-preferences.md
