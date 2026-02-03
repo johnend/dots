@@ -1,0 +1,32 @@
+{
+  "projectName": "water.nvim",
+  "projectType": "personal",
+  "primaryLanguage": "lua",
+  "framework": "neovim-plugin",
+  "description": "Buffer management plugin for Neovim with git integration, diagnostics, and smart timestamps",
+  "createdAt": "2026-02-03",
+  "lastUpdated": "2026-02-03",
+  "relativePath": "~/Developer/personal/water.nvim",
+  "mainFiles": [
+    "lua/water/init.lua",
+    "lua/water/ui/water.lua",
+    "lua/water/config.lua",
+    "README.md"
+  ],
+  "keywords": [
+    "neovim",
+    "plugin",
+    "buffer-management",
+    "lua",
+    "git-integration",
+    "diagnostics",
+    "ui"
+  ],
+  "dependencies": [
+    "neovim >= 0.9.0",
+    "gitsigns.nvim (optional)",
+    "nerd-font (optional)"
+  ],
+  "relatedContexts": [],
+  "notes": "Extracted from dotfiles on 2026-02-03. ~1,200 LOC. Functional and ready for use."
+}

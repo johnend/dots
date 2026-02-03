@@ -1,0 +1,29 @@
+{
+  "projectPath": "/Users/john.enderby/Developer/personal/qmk_firmware",
+  "projectName": "qmk_firmware",
+  "lastUpdated": "2026-02-03",
+  "contextVersion": "1.0.0",
+  "projectType": "personal",
+  "primaryLanguage": "c",
+  "framework": "qmk",
+  "matchPatterns": [
+    "**/qmk_firmware/**",
+    "**/Developer/personal/qmk_firmware/**"
+  ],
+  "keywords": [
+    "keyboard",
+    "firmware",
+    "qmk",
+    "sofle",
+    "avr",
+    "embedded",
+    "mechanical-keyboard",
+    "rgb",
+    "keymap",
+    "johnend"
+  ],
+  "alwaysLoad": false,
+  "relatedContexts": [],
+  "buildCommand": "qmk compile -kb sofle/rev1 -km johnend",
+  "notes": "ALWAYS use 'qmk compile' CLI, NEVER 'make' directly (causes Xcode path issues on macOS)"
+}
