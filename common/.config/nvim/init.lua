@@ -14,8 +14,8 @@ local function safe_require(module)
 end
 
 -- Use global variable objects for colors and icons
-colors = safe_require "core.config.colors" or {}
-icons = safe_require "core.config.icons" or {}
+Colors = safe_require "config.colors" or {}
+Icons = safe_require "config.icons" or {}
 
 -- ensure Mason's installers are on PATH so conform/other health-checks can see them
 local mason_bin = vim.fn.stdpath "data" .. "/mason/bin"
@@ -68,16 +68,16 @@ end
 
 -- Base plugin specs
 local plugin_specs = {
-  { import = "core.plugins" },
-  { import = "core.plugins.utilities" },
-  { import = "core.plugins.git" },
-  { import = "core.plugins.editing" },
-  { import = "core.plugins.navigation" },
-  { import = "core.plugins.devtools" },
-  { import = "core.plugins.syntax" },
-  { import = "core.plugins.ui" },
-  { import = "core.plugins.ui.colorschemes" },
-  { import = "core.plugins.lsp" },
+  { import = "plugins" },
+  { import = "plugins.utilities" },
+  { import = "plugins.git" },
+  { import = "plugins.editing" },
+  { import = "plugins.navigation" },
+  { import = "plugins.devtools" },
+  { import = "plugins.syntax" },
+  { import = "plugins.ui" },
+  { import = "plugins.ui.colorschemes" },
+  { import = "plugins.lsp" },
 }
 
 -- Conditionally import _testing_ground if it has files
@@ -114,7 +114,6 @@ safe_require "core.commands"
 safe_require "core.options"
 safe_require "core.filetypes"
 safe_require "core.overrides"
-safe_require "water"
 
 if vim.g.neovide then
   safe_require "core.neovide"

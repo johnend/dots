@@ -15,8 +15,8 @@ Feel free to leave a comment if you're browsing and find an issue, or something.
 
 #### Keymaps
 
-Almost all the keymaps can be found within `lua/core/config/wkmaps` the only
-one's that aren't are LSP specific keymaps and the Blink overrides.
+Almost all the keymaps can be found within `lua/config/keymaps` the only one's
+that aren't are LSP specific keymaps and the Blink overrides.
 
 ## Install Instructions
 

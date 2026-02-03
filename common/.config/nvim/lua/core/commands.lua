@@ -116,8 +116,17 @@ autocommand("BufLeave", {
 autocommand({ "VimEnter", "ColorScheme" }, {
   pattern = "*",
   callback = function()
+    -- Link NeoTree background to floating window style for lighter background
+    vim.cmd "highlight link NeoTreeNormal NormalFloat"
+    vim.cmd "highlight link NeoTreeNormalNC NormalFloat"
+
     -- Link 'NeoTreeWinSeparator' to 'FloatBorder'
-    if vim.g.colors_name == "roseprime" or "iceclimber" or "gyokuro" or "hojicha" then
+    if
+      vim.g.colors_name == "roseprime"
+      or vim.g.colors_name == "iceclimber"
+      or vim.g.colors_name == "gyokuro"
+      or vim.g.colors_name == "hojicha"
+    then
       vim.cmd "highlight NeoTreeWinSeparator guibg=none"
     else
       vim.cmd "highlight link NeoTreeWinSeparator FloatBorder"
@@ -196,7 +205,7 @@ end, {
 -- CodeCompanion progress using snacks
 local spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
 local group = vim.api.nvim_create_augroup("CodeCompanionFidgetHooks", { clear = true })
-local icons = require "core.config.icons"
+local icons = require "config.icons"
 
 vim.api.nvim_create_autocmd({ "User" }, {
   pattern = "CodeCompanion*",
@@ -218,27 +227,27 @@ vim.api.nvim_create_autocmd({ "User" }, {
     local msg = "[CodeCompanion] " .. camel_to_sentence(event_name)
     -- Icon mapping for CodeCompanion events
     local event_icons = {
-      Started = icons.ui.BoldArrowRight,
-      Finished = icons.ui.Check,
-      Error = icons.diagnostics.Error,
-      Warning = icons.diagnostics.Warning,
-      Information = icons.diagnostics.Information,
-      Hint = icons.diagnostics.Hint,
-      Opened = icons.ui.FolderOpen,
-      Closed = icons.ui.Folder,
-      Cleared = icons.ui.Broom or icons.ui.BoldClose,
-      Created = icons.ui.NewFile,
-      ContextChanged = icons.ui.History,
-      Hidden = icons.ui.Ellipsis,
-      Visible = icons.ui.Eye or icons.ui.Circle,
-      Progress = icons.ui.Telescope,
-      Cancelled = icons.diagnostics.BoldError,
-      Timeout = icons.diagnostics.Warning,
-      Success = icons.ui.Check,
-      Failure = icons.diagnostics.Error,
-      TestCovered = icons.ui.TestCovered,
-      TestUncovered = icons.ui.TestUncovered,
-      RequestStreaming = icons.ui.Telescope,
+      Started = Icons.ui.BoldArrowRight,
+      Finished = Icons.ui.Check,
+      Error = Icons.diagnostics.Error,
+      Warning = Icons.diagnostics.Warning,
+      Information = Icons.diagnostics.Information,
+      Hint = Icons.diagnostics.Hint,
+      Opened = Icons.ui.FolderOpen,
+      Closed = Icons.ui.Folder,
+      Cleared = Icons.ui.Broom or Icons.ui.BoldClose,
+      Created = Icons.ui.NewFile,
+      ContextChanged = Icons.ui.History,
+      Hidden = Icons.ui.Ellipsis,
+      Visible = Icons.ui.Eye or Icons.ui.Circle,
+      Progress = Icons.ui.Telescope,
+      Cancelled = Icons.diagnostics.BoldError,
+      Timeout = Icons.diagnostics.Warning,
+      Success = Icons.ui.Check,
+      Failure = Icons.diagnostics.Error,
+      TestCovered = Icons.ui.TestCovered,
+      TestUncovered = Icons.ui.TestUncovered,
+      RequestStreaming = Icons.ui.Telescope,
     }
 
     vim.notify(msg, 2, {
