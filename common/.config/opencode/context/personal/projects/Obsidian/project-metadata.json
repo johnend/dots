@@ -1,0 +1,37 @@
+{
+  "projectPath": "/Users/john.enderby/Developer/personal/Obsidian",
+  "projectName": "Obsidian",
+  "lastUpdated": "2026-02-04",
+  "contextVersion": "1.0.0",
+  "projectType": "personal",
+  "primaryLanguage": "markdown",
+  "framework": "obsidian",
+  "matchPatterns": [
+    "**/Obsidian/**",
+    "**/personal/Obsidian/**"
+  ],
+  "keywords": [
+    "obsidian",
+    "notes",
+    "markdown",
+    "vault",
+    "knowledge-base",
+    "vim",
+    "neovim",
+    "personal",
+    "work",
+    "goals",
+    "projects",
+    "cbt",
+    "journal",
+    "templates",
+    "front-matter",
+    "yaml",
+    "tags",
+    "wiki-links",
+    "linking",
+    "metadata"
+  ],
+  "alwaysLoad": false,
+  "relatedContexts": []
+}
