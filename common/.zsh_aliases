@@ -43,6 +43,14 @@ alias "spt"="spotify_player"
 # opencode
 alias "oc"="opencode"
 
+compile_sofle() {
+  if [[ "$(basename "$PWD")" == "qmk_firmware" ]]; then
+    qmk compile -kb sofle -km johnend
+  else
+    echo "🚨 Error: Can only use this alias inside qmk_firmware directory"
+  fi
+}
+
 # Linux specific aliases
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   alias "a"="aerc"
