@@ -170,45 +170,158 @@
     }
   },
   "agent": {
+    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // 🚫 DISABLED NATIVE AGENTS
+    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // Native OpenCode agents disabled in favor of custom agent system.
+    // To re-enable, uncomment and set "disable": false
+    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    "build": {
+      "disable": true
+      // To re-enable: Change to "disable": false
+    },
+    "plan": {
+      "disable": true
+      // To re-enable: Change to "disable": false
+    },
+    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // 🔨 CUSTOM AGENTS
+    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     "artificer": {
-      "model": "github-copilot/claude-sonnet-4.5",
-      "temperature": 0.3
-    },
-    "bard": {
-      "model": "github-copilot/gemini-2.5-pro",
-      "temperature": 0.7
-    },
-    "chronicler": {
-      "model": "github-copilot/claude-sonnet-4.5",
-      "temperature": 0.5
-    },
-    "coach": {
-      "model": "github-copilot/gemini-2.5-pro",
-      "temperature": 0.7
-    },
-    "investigator": {
-      "model": "github-copilot/gpt-5",
-      "temperature": 0.4
-    },
-    "mentor": {
-      "model": "github-copilot/claude-sonnet-4.5",
-      "temperature": 0.6
-    },
-    "pathfinder": {
-      "model": "github-copilot/grok-code-fast-1",
-      "temperature": 0.2
-    },
-    "sentinel": {
-      "model": "github-copilot/claude-haiku-4.5",
-      "temperature": 0.3
-    },
-    "steward": {
-      "model": "github-copilot/gpt-5-mini",
-      "temperature": 0.5
-    },
-    "visionary": {
-      "model": "github-copilot/gemini-2.5-pro",
-      "temperature": 0.8
+      "permission": {
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        // ✅ AUTO-APPROVE - Read operations and todos
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "todoread": "allow",
+        "todowrite": "allow", // Allow todo management without asking
+        "webfetch": "allow",
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        // ✅ AUTO-APPROVE - File modifications in workspace
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        // Note: Git operations still require approval (see bash section)
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        "edit": "allow",
+        "write": "allow",
+        "task": "ask", // Keep manual control over subagent delegation
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        // 🔍 BASH COMMANDS - Granular control
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        "bash": {
+          // ✅ Safe Git commands (read-only)
+          "git status": "allow",
+          "git status*": "allow",
+          "git log*": "allow",
+          "git diff*": "allow",
+          "git show*": "allow",
+          "git branch": "allow",
+          "git branch -v*": "allow",
+          "git remote -v": "allow",
+          "git ls-files*": "allow",
+          // ✅ Modern CLI tools (preferred - read-only)
+          "rg*": "allow", // ripgrep - better grep
+          "fd*": "allow", // fd - better find
+          "bat*": "allow", // bat - better cat
+          "eza*": "allow", // eza - better ls
+          "jq*": "allow", // jq - JSON processing
+          "fzf*": "allow", // fzf - fuzzy finder
+          // ✅ Traditional shell commands (fallback)
+          "ls": "allow",
+          "ls *": "allow",
+          "pwd": "allow",
+          "cat *": "allow",
+          "head *": "allow",
+          "tail *": "allow",
+          "wc *": "allow",
+          "which *": "allow",
+          "find *": "allow",
+          "grep *": "allow",
+          // ✅ GitHub CLI (read-only commands)
+          "gh repo view*": "allow",
+          "gh pr view*": "allow",
+          "gh pr list*": "allow",
+          "gh issue view*": "allow",
+          "gh issue list*": "allow",
+          "gh run view*": "allow",
+          "gh run list*": "allow",
+          "gh api*": "allow", // API calls (mostly read)
+          // ✅ Custom CLI tools (your hooks)
+          "node */gloomstalker/cli.js*": "allow",
+          "node */todo-enforcer/cli.js*": "allow",
+          "node */risk-assessor/cli.js*": "allow",
+          // ✅ Process inspection (for service management)
+          "lsof*": "allow",
+          "ps *": "allow",
+          "pgrep*": "allow",
+          "curl -s http://localhost*": "allow",
+          "curl -s https://localhost*": "allow",
+          // ✅ Docker inspection (read-only)
+          "docker ps*": "allow",
+          "docker images*": "allow",
+          "docker logs*": "allow",
+          "docker inspect*": "allow",
+          "docker-compose ps*": "allow",
+          "docker-compose logs*": "allow",
+          // ✅ Kubernetes inspection (read-only)
+          "kubectl get*": "allow",
+          "kubectl describe*": "allow",
+          "kubectl logs*": "allow",
+          // ⚠️ Package managers - Ask (can be slow/change state)
+          "npm test*": "ask",
+          "npm run*": "ask",
+          "npm install*": "ask",
+          "npm ci*": "ask",
+          "npx*": "ask",
+          "yarn*": "ask",
+          "bun test*": "ask",
+          "bun run*": "ask",
+          "bun install*": "ask",
+          "bun add*": "ask",
+          "bun x*": "ask", // bunx equivalent
+          // ⚠️ Git state changes - Ask (modifies repo)
+          "git add*": "ask",
+          "git commit*": "ask",
+          "git push*": "ask",
+          "git pull*": "ask",
+          "git fetch*": "ask",
+          "git checkout*": "ask",
+          "git switch*": "ask",
+          "git merge*": "ask",
+          "git rebase*": "ask",
+          "git reset*": "ask",
+          "git branch -d*": "ask",
+          "git branch -D*": "ask",
+          "git stash*": "ask",
+          "git restore*": "ask",
+          // ⚠️ GitHub CLI - State changes (ask)
+          "gh pr create*": "ask",
+          "gh pr merge*": "ask",
+          "gh pr close*": "ask",
+          "gh issue create*": "ask",
+          "gh issue close*": "ask",
+          "gh run cancel*": "ask",
+          "gh run rerun*": "ask",
+          // ⚠️ Docker operations - Ask (can affect services)
+          "docker start*": "ask",
+          "docker stop*": "ask",
+          "docker restart*": "ask",
+          "docker rm*": "ask",
+          "docker rmi*": "ask",
+          "docker-compose up*": "ask",
+          "docker-compose down*": "ask",
+          "docker-compose restart*": "ask",
+          // ⚠️ Kubernetes operations - Ask (can affect cluster)
+          "kubectl apply*": "ask",
+          "kubectl delete*": "ask",
+          "kubectl scale*": "ask",
+          "kubectl rollout*": "ask",
+          // ⚠️ Process management - Ask (can disrupt services)
+          "pkill*": "ask",
+          "kill*": "ask"
+        }
+      }
     }
   }
 }
