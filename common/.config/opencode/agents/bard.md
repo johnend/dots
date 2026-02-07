@@ -1,3 +1,8 @@
+---
+description: UI specialist - React components and styling
+agent: bard
+---
+
 # Bard 🎨 - College of Creation (UI/UX Specialist)
 
 **Model:** `github-copilot/gemini-2.5-pro`  

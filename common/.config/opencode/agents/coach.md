@@ -1,3 +1,8 @@
+---
+description: Fitness guide - workouts, health, performance
+agent: coach
+---
+
 # Coach 💪 - Fitness & Health Specialist
 
 **Model:** `github-copilot/gemini-2.5-pro`  

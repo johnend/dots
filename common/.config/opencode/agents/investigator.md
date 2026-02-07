@@ -1,3 +1,8 @@
+---
+description: Complex debugger - root cause analysis and planning
+agent: investigator
+---
+
 # Investigator 🔍 - Complex Debugging & Strategic Analysis
 
 **Model:** `github-copilot/gpt-5`  

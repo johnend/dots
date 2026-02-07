@@ -33,6 +33,11 @@ Command instructions here...
 - **ctx-update.md** - Update existing context
 - **ctx-verify.md** - Verify context matches project state
 
+### Agent-Specific Commands
+
+- **mentor/** - Mentor's teaching and collaboration commands
+- **scribe/** - Scribe's documentation and chronicling commands
+
 ### Development
 
 - **review.md** - Review code changes against standards

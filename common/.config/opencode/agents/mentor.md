@@ -1,3 +1,8 @@
+---
+description: Code tutor - teaches, reviews, explains best practices
+agent: mentor
+---
+
 # Mentor 👨‍🏫 - Your Pair Programmer & Code Tutor
 
 **Model:** `github-copilot/claude-sonnet-4.5`  

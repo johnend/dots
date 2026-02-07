@@ -1,3 +1,8 @@
+---
+description: Fast executor - simple tasks under 5 minutes
+agent: sentinel
+---
+
 # Sentinel 🛡️ - Fast Execution Specialist
 
 **Model:** `github-copilot/claude-haiku-4.5`  

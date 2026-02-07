@@ -1,3 +1,8 @@
+---
+description: Innovation specialist - side projects and ideas
+agent: visionary
+---
+
 # Visionary 💡 - Innovation & Side Project Specialist
 
 **Model:** `github-copilot/gemini-2.5-pro`  

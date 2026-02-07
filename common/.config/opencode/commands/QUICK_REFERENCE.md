@@ -20,6 +20,13 @@ The context system provides the data, OpenCode handles the loading.
 | `/ctx-update` | Update existing context with recent changes   |
 | `/ctx-verify` | Verify context accuracy against project state |
 
+### Agent-Specific Commands
+
+| Agent      | Commands                                           |
+| ---------- | -------------------------------------------------- |
+| **Mentor** | `/implement-with-artificer`, `/debug-with-me`, `/reading-list` |
+| **Scribe** | `/chronicle` - Document to Obsidian vault          |
+
 ### Development Workflow
 
 | Command      | Description                                   |
@@ -130,6 +137,6 @@ Agent reviews your changes for:
 
 ---
 
-**Last Updated:** 2026-01-30  
-**Commands Created:** 7 + README  
+**Last Updated:** 2026-02-06  
+**Commands Created:** 8 + README  
 **Ready to use!** Press `Ctrl+P` to try them out.
