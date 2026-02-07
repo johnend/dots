@@ -5,7 +5,7 @@ return {
   event = "VeryLazy",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "nvim-treesitter/nvim-treesitter", -- managed by core.plugins.syntax.treesitter
+    "nvim-treesitter/nvim-treesitter", -- managed by plugins.syntax.treesitter
     {
       "nvim-telescope/telescope-fzf-native.nvim",
       event = "VeryLazy",

@@ -16,6 +16,7 @@ end
 -- Use global variable objects for colors and icons
 Colors = safe_require "config.colors" or {}
 Icons = safe_require "config.icons" or {}
+UI = safe_require "config.ui" or {}
 
 -- ensure Mason's installers are on PATH so conform/other health-checks can see them
 local mason_bin = vim.fn.stdpath "data" .. "/mason/bin"
@@ -82,7 +83,7 @@ local plugin_specs = {
 
 -- Conditionally import _testing_ground if it has files
 if plugin_folder_has_files "_testing_ground" then
-  table.insert(plugin_specs, 2, { import = "core.plugins._testing_ground" }) -- insert after core.plugins
+  table.insert(plugin_specs, 2, { import = "plugins._testing_ground" }) -- insert after core.plugins
 end
 
 local lazy_opts = {

@@ -2,13 +2,13 @@ return {
   { "<leader>g", group = "Git" },
   {
     "<leader>gg",
-    "<cmd>lua require 'core.plugins.devtools.toggleterm'.lazygit_toggle()<cr>",
+    "<cmd>lua require 'plugins.devtools.toggleterm'.lazygit_toggle()<cr>",
     desc = "LazyGit",
     icon = Icons.git.Octoface,
   },
   {
     "<leader>gh",
-    "<cmd>lua require 'core.plugins.devtools.toggleterm'.gh_dash_toggle()<cr>",
+    "<cmd>lua require 'plugins.devtools.toggleterm'.gh_dash_toggle()<cr>",
     desc = "gh Dash",
     icon = Icons.git.Octoface,
   },

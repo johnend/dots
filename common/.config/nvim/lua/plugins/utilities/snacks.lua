@@ -100,7 +100,7 @@ return {
       rename = { enabled = false },
       scope = { enabled = false },
       scroll = { enabled = false },
-      terminal = { enabled = false },
+      terminal = { enabled = true, win = { position = "float", border = UI.border } },
       toggle = { enabled = false },
     }
   end,

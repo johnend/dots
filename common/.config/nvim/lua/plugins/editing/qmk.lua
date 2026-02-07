@@ -7,7 +7,7 @@ return {
       return
     end
 
-    local conf = {
+    local sofle = {
       name = "LAYOUT",
       layout = {
         "x x x x x x _ _ _ x x x x x x",
@@ -59,6 +59,6 @@ return {
         },
       },
     }
-    qmk.setup(conf)
+    qmk.setup(sofle)
   end,
 }
