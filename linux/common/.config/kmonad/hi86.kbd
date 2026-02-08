@@ -42,7 +42,7 @@
  @meh  q    w    e    r    t    y    u    i    o    p    [    ]    \     del   end
  @hyper @a_shft @s_gui @d_alt @f_ctrl g  h  @j_ctrl @k_alt @l_gui @;_shft '  ret  pgup  pgdn
  lsft z    x    c    v    b    n    m    ,    .    /    rsft           up
- lctl lalt lmet           spc            rmet ralt rctl      left down rght)
+ lctl lalt lmet           spc            lmet ralt rctl      left down rght)
 
 
 (deflayer gaming
@@ -51,4 +51,4 @@
  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \      del   end
  caps a    s    d    f    g    h    j    k    l    ;    '    ret         pgup  pgdn
  lsft z    x    c    v    b    n    m    ,    .    /    rsft           up
- lctl lmet lalt           spc            ralt rmet rctl      left down rght)
+ lctl lalt lmet           spc            lmet ralt rctl      left down rght)
