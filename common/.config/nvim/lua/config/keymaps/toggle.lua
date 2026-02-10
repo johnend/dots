@@ -71,6 +71,11 @@ return {
   {
     "<leader>ti",
     function()
+      -- Initialize from Snacks state if not set
+      if vim.g.indent_enabled == nil then
+        vim.g.indent_enabled = Snacks.indent.enabled
+      end
+
       vim.g.indent_enabled = not vim.g.indent_enabled
 
       if vim.g.indent_enabled then
@@ -110,6 +115,11 @@ return {
   {
     "<leader>tt",
     function()
+      -- Initialize from Snacks state if not set
+      if vim.g.twilight_enabled == nil then
+        vim.g.twilight_enabled = Snacks.dim.enabled
+      end
+
       vim.g.twilight_enabled = not vim.g.twilight_enabled
 
       if vim.g.twilight_enabled then

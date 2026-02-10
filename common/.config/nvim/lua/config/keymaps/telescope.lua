@@ -5,7 +5,12 @@ return {
   {
     "<leader>sc",
     function()
-      require("colorscheme-persist").picker()
+      require("config.telescope-colorscheme").colorscheme(
+        require("telescope.themes").get_dropdown {
+          layout_config = { width = 0.8, height = 0.3 },
+          enable_preview = true,
+        }
+      )
     end,
     desc = "Colorschemes",
   },

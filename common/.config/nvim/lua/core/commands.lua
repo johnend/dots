@@ -202,6 +202,23 @@ end, {
   nargs = "?",
 })
 
+-- Save colorscheme when it changes
+vim.api.nvim_create_autocmd("ColorScheme", {
+  group = vim.api.nvim_create_augroup("SaveColorscheme", { clear = true }),
+  callback = function(args)
+    local theme = args.match
+    if theme == "default" then
+      return
+    end
+    local path = vim.fn.stdpath "config" .. "/theme.json"
+    local ok, f = pcall(io.open, path, "w")
+    if ok and f then
+      f:write(vim.json.encode { colorscheme = theme })
+      f:close()
+    end
+  end,
+})
+
 -- CodeCompanion progress using snacks
 local spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
 local group = vim.api.nvim_create_augroup("CodeCompanionFidgetHooks", { clear = true })

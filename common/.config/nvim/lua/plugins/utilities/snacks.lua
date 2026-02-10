@@ -80,7 +80,7 @@ return {
       explorer = { enabled = false }, -- could replace neo-tree looks nice tbh
       git = { enabled = false },
       indent = {
-        enabled = true,
+        enabled = false,
         only_scope = true,
         only_current = true,
         animate = {
