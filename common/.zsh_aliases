@@ -29,9 +29,6 @@ alias "lt"="ls -T --level=4 --ignore-glob='.git'"
 alias "ltg"="ls -T --level=2 --ignore-glob='.git'"
 alias "lat"="ls -Ta --ignore-glob='.git'" # use with caution!
 
-# neovim
-alias "nv"="nvim"
-
 # gh cli
 gh-create() { 
   gh repo create "${1:-$(basename "$PWD")}" --public --source=. --remote=origin
@@ -62,7 +59,7 @@ fi
 
 # Alternative NeoVim configs
 alias cvim="nvim --clean"
-alias v="qvim"
+alias v="$EDITOR"
 
 # AWS assume role tool (granted)
 alias assume=". assume"

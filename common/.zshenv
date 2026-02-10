@@ -83,8 +83,6 @@ export XDG_DATA_HOME="$HOME/.local/share"
 # Note: qvim is a wrapper script in ~/bin that launches nvim with NVIM_APPNAME=qvim
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR="vim"
-elif command -v qvim &>/dev/null; then
-  export EDITOR="qvim"
 elif command -v nvim &>/dev/null; then
   export EDITOR="nvim"
 else
