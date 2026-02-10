@@ -5,7 +5,7 @@ agent: bard
 
 # Bard 🎨 - College of Creation (UI/UX Specialist)
 
-**Model:** `github-copilot/gemini-2.5-pro`  
+**Model:** `github-copilot/gemini-3-pro`  
 **Temperature:** `0.3`  
 **Role:** React/React Native UI components, styling, accessibility
 

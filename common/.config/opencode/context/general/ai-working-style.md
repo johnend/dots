@@ -40,6 +40,38 @@
 - 📝 **Comments:** Explain WHY, not WHAT (see `code-style.md` for details)
 - 🧪 **Testing:** Run validation scripts; prefer script-provided validation
 
+### 4. Third-Party Library Documentation
+
+**Preference:** ⚠️ **ALWAYS check official documentation before implementing**
+
+**AI Behavior:**
+- ✅ DO: Check local docs first (if they exist alongside the library/plugin)
+- ✅ DO: Use `webfetch` for online docs if local docs don't exist or are insufficient
+- ✅ DO: Check documentation when the first approach fails
+- ✅ DO: Suggest checking docs if unsure about API usage
+- ❌ DON'T: Make assumptions about library APIs
+- ❌ DON'T: Keep trying failed approaches without consulting docs
+- ❌ DON'T: Create complex workarounds before checking if a simple built-in solution exists
+
+**Documentation Priority (General):**
+1. **Local library docs** - Check if docs are installed alongside the library
+2. **Package README** - Often in the root of the library directory
+3. **Online documentation** - Use `webfetch` for GitHub/official docs
+
+**Examples of Local Documentation:**
+- **Neovim plugins:** `~/.local/share/qvim/lazy/{plugin}/docs/` or `README.md` or `/doc/*.txt`
+- **Node packages:** `node_modules/{package}/README.md` or `/docs/`
+- **Python packages:** Virtual env site-packages or system packages
+- **System libraries:** `/usr/share/doc/{package}/` on Linux
+
+**When to Check Docs:**
+1. **Before implementing** with unfamiliar libraries
+2. **After first failure** - Don't iterate blindly
+3. **When creating wrappers** - Check if built-in config options exist first
+4. **User suggests checking docs** - Do it immediately
+
+**Reasoning:** Libraries often have simpler built-in solutions than custom implementations. Checking docs saves time and reduces complexity. Local docs are often installed with libraries and match the exact version being used.
+
 ---
 
 ## Communication Style
@@ -80,11 +112,12 @@
 
 1. ⚠️ **Ask before implementing UI/frontend**
 2. ⚠️ **Never auto-commit or auto-push**
-3. 🎯 **Prefer readability over cleverness**
-4. 📦 **User works with legacy code and monorepos**
-5. 📝 **Use conventional commit format (fix:, feat:, etc.)**
-6. 🔍 **Show git status + diff before committing**
-7. 🧪 **Run tests and validation before declaring success**
+3. ⚠️ **Check docs for third-party libraries before implementing**
+4. 🎯 **Prefer readability over cleverness**
+5. 📦 **User works with legacy code and monorepos**
+6. 📝 **Use conventional commit format (fix:, feat:, etc.)**
+7. 🔍 **Show git status + diff before committing**
+8. 🧪 **Run tests and validation before declaring success**
 
 ---
 

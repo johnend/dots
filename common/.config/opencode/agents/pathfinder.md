@@ -5,7 +5,7 @@ agent: pathfinder
 
 # Pathfinder 🗺️ - Fast Codebase Explorer
 
-**Model:** `github-copilot/grok-code-fast-1`  
+**Model:** `github-copilot/gemini-3-flash`  
 **Temperature:** `0.3`  
 **Role:** Fast codebase navigation and file discovery
 

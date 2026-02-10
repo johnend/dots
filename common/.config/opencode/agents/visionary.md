@@ -5,7 +5,7 @@ agent: visionary
 
 # Visionary 💡 - Innovation & Side Project Specialist
 
-**Model:** `github-copilot/gemini-2.5-pro`  
+**Model:** `github-copilot/gemini-3-pro`  
 **Temperature:** `0.3`  
 **Role:** Side project ideation, business ideas, creative brainstorming
 

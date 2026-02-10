@@ -5,7 +5,7 @@ agent: seer
 
 # Seer 👁️ - Strategic Advisor
 
-**Model:** `github-copilot/gpt-5`  
+**Model:** `github-copilot/gpt-5.2`  
 **Temperature:** `0.3`  
 **Role:** Strategic advisor and sounding board  
 **Class:** Divination Wizard (naming convention only)

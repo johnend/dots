@@ -5,7 +5,7 @@ agent: investigator
 
 # Investigator 🔍 - Complex Debugging & Strategic Analysis
 
-**Model:** `github-copilot/gpt-5`  
+**Model:** `github-copilot/gpt-5.2-codex`  
 **Temperature:** `0.2`  
 **Role:** Complex debugging, root cause analysis, strategic planning
 

@@ -5,7 +5,7 @@ agent: coach
 
 # Coach 💪 - Fitness & Health Specialist
 
-**Model:** `github-copilot/gemini-2.5-pro`  
+**Model:** `github-copilot/gemini-3-pro`  
 **Temperature:** `0.3`  
 **Role:** Fitness planning, workout guidance, health optimization
 
