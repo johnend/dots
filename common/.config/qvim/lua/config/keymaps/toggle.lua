@@ -4,6 +4,7 @@ vim.g.scrolloff_max = true
 return {
   { "<leader>t", group = "Toggle", icon = Icons.ui.Toggle },
   { "<leader>td", group = "Dim", icon = Icons.misc.Dim },
+  { "<leader>ti", group = "Indent", icon = Icons.misc.Indent },
   {
     "<leader>ta",
     function()
@@ -24,6 +25,8 @@ return {
   },
   { "<leader>tde", ":lua Snacks.dim() <cr>", icon = Icons.ui.ToggleOn, desc = "Enable" },
   { "<leader>tdd", ":lua Snacks.dim.disable() <cr>", icon = Icons.ui.ToggleOff, desc = "Disable" },
+  { "<leader>tie", ":lua Snacks.indent.enable() <cr>", icon = Icons.ui.ToggleOn, desc = "Enable" },
+  { "<leader>tid", ":lua Snacks.indent.disable() <cr>", icon = Icons.ui.ToggleOff, desc = "Disable" },
   {
     "<leader>ts",
     function()
@@ -33,6 +36,6 @@ return {
     end,
     desc = "Scrolloff",
   },
-  { "<leader>ti", ":lua Snacks.image.hover() <cr>", icon = Icons.misc.Image, desc = "Image" },
+  { "<leader>tp", ":lua Snacks.image.hover() <cr>", icon = Icons.misc.Image, desc = "Image Preview" },
   { "<leader>tz", ":lua Snacks.zen() <cr>", icon = Icons.misc.Meditate, desc = "Zen" },
 }
