@@ -186,6 +186,20 @@ local M = {
     Watch = "",
     Write = "",
   },
+  ai = {
+    Artificer = "",
+    Mentor = "",
+    Scribe = "󰴒",
+    Seer = "",
+    Sentinel = "󱡮",
+    Chronicler = "",
+    Investigator = "",
+    Bard = "",
+    Pathfinder = "",
+    Coach = "",
+    Steward = "󰄚",
+    Visionary = "",
+  },
 }
 
 return M

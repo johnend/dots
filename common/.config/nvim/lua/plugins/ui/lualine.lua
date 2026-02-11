@@ -29,7 +29,7 @@ return {
         icons_enabled = true,
         -- disabled filetypes
         disabled_filetypes = {
-          statusline = { "alpha" }, -- disable in dashboard
+          statusline = { "alpha" }, -- disable in dashboard only
           winbar = {},
         },
         ignore_focus = {},
@@ -51,6 +51,7 @@ return {
           components.lsp,
           components.filename,
           components.filetype,
+          components.codecompanion,
           components.spaces,
         },
         lualine_y = { components.location },
@@ -69,5 +70,25 @@ return {
       inactive_winbar = {},
       extensions = {},
     }
+
+    -- Ensure statusline always shows, even in CodeCompanion buffers
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "codecompanion",
+      callback = function()
+        vim.opt.laststatus = 3
+        vim.wo.statusline = ""  -- Clear window-local statusline (use global)
+      end,
+    })
+    
+    -- Also ensure when entering codecompanion windows
+    vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
+      pattern = "*",
+      callback = function()
+        if vim.bo.filetype == "codecompanion" then
+          vim.opt.laststatus = 3
+          vim.wo.statusline = ""
+        end
+      end,
+    })
   end,
 }

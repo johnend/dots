@@ -49,6 +49,7 @@ return {
     }
 
     local keymaps = require "config.keymaps"
+    local ai = keymaps.ai
     local buffers = keymaps.buffers
     local general = keymaps.general
     local git = keymaps.git
@@ -63,6 +64,8 @@ return {
 
     -- Document existing
     wk.add {
+      ---------------------------------
+      ai,
       ---------------------------------
       buffers,
       ---------------------------------

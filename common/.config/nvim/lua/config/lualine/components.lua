@@ -148,6 +148,9 @@ M.lsp = {
   lsp_status,
   color = lsp_color,
   padding = { left = 1, right = 1 },
+  cond = function()
+    return vim.bo.filetype ~= "codecompanion"
+  end,
 }
 
 M.mode = {
@@ -197,13 +200,8 @@ M.filename = {
   separator = { left = "" },
   symbols = { modified = Icons.git.LineModified, readonly = Icons.ui.Lock },
   color = {},
-  cond = nil,
-  fmt = function(str)
-    if vim.bo.filetype == "codecompanion" then
-      return "CodeCompanion" .. " " .. Icons.misc.Brain
-    end
-
-    return str
+  cond = function()
+    return vim.bo.filetype ~= "codecompanion"
   end,
 }
 
@@ -212,6 +210,60 @@ M.filetype = {
   colored = true,
   icon_only = true,
   separator = { left = "", right = "" },
+  cond = function()
+    return vim.bo.filetype ~= "codecompanion"
+  end,
+}
+
+M.codecompanion = {
+  function()
+    if vim.bo.filetype ~= "codecompanion" then
+      return ""
+    end
+
+    local ok, codecompanion = pcall(require, "codecompanion")
+    if not ok then
+      return "CodeCompanion"
+    end
+
+    local bufnr = vim.api.nvim_get_current_buf()
+    local chat = codecompanion.buf_get_chat(bufnr)
+
+    if not chat then
+      return "CodeCompanion"
+    end
+
+    -- Get the model name
+    local model = "unknown"
+    if chat.adapter and chat.adapter.schema and chat.adapter.schema.model then
+      if type(chat.adapter.schema.model) == "table" then
+        model = chat.adapter.schema.model.default or "unknown"
+      else
+        model = chat.adapter.schema.model
+      end
+    end
+
+    -- Get agent name if stored (from recent agent switch)
+    local agent_name = vim.g.current_agent or nil
+
+    -- Determine icon based on status
+    local icon = Icons.ui.Pencil
+    if chat.status and chat.status ~= "" then
+      icon = Icons.misc.Brain
+    end
+
+    -- Show agent name if available, otherwise show model
+    if agent_name then
+      return string.format("%s %s · %s", icon, agent_name:gsub("^%l", string.upper), model)
+    else
+      return string.format("%s CodeCompanion · %s", icon, model)
+    end
+  end,
+  cond = function()
+    return vim.bo.filetype == "codecompanion"
+  end,
+  color = {},
+  padding = { left = 1, right = 1 },
 }
 
 M.diagnostics = {
@@ -223,6 +275,9 @@ M.diagnostics = {
     info = Icons.diagnostics.BoldInformation .. " ",
     hint = Icons.diagnostics.BoldHint .. " ",
   },
+  cond = function()
+    return vim.bo.filetype ~= "codecompanion"
+  end,
 }
 
 M.spaces = {
@@ -231,6 +286,9 @@ M.spaces = {
     return Icons.ui.Tab .. " " .. shiftwidth
   end,
   padding = 1,
+  cond = function()
+    return vim.bo.filetype ~= "codecompanion"
+  end,
 }
 
 M.location = {
