@@ -59,7 +59,7 @@ fi
 
 # Alternative NeoVim configs
 alias cvim="nvim --clean"
-alias v="$EDITOR"
+alias v="nvim"
 
 # AWS assume role tool (granted)
 alias assume=". assume"
