@@ -47,20 +47,40 @@
         // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         // ✅ AUTO-APPROVE - Read operations and todos
         // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        "read": "allow",
-        "glob": "allow",
-        "grep": "allow",
+        "read": {
+          "/Users/john.enderby/Developer/**": "allow",
+          "/Users/john.enderby/.config/opencode/**": "allow",
+          "*": "allow"
+        },
+        "glob": {
+          "/Users/john.enderby/Developer/**": "allow",
+          "/Users/john.enderby/.config/opencode/**": "allow",
+          "*": "allow"
+        },
+        "grep": {
+          "/Users/john.enderby/Developer/**": "allow",
+          "/Users/john.enderby/.config/opencode/**": "allow",
+          "*": "allow"
+        },
         "todoread": "allow",
         "todowrite": "allow",      // Allow todo management without asking
         "webfetch": "allow",
         
         // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        // ✅ AUTO-APPROVE - File modifications in workspace
+        // ✅ AUTO-APPROVE - File modifications in ~/Developer directory
         // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         // Note: Git operations still require approval (see bash section)
         // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        "edit": "allow",
-        "write": "allow",
+        "edit": {
+          "/Users/john.enderby/Developer/**": "allow",
+          "/Users/john.enderby/.config/opencode/**": "allow",
+          "*": "ask"
+        },
+        "write": {
+          "/Users/john.enderby/Developer/**": "allow",
+          "/Users/john.enderby/.config/opencode/**": "allow",
+          "*": "ask"
+        },
         "task": "ask",              // Keep manual control over subagent delegation
         
         // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
