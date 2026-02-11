@@ -157,12 +157,12 @@ return {
       documentation = {
         auto_show = false, -- Only show with <C-k> keymap
         window = {
-          border = "rounded",
+          border = UI.borders.documentation,
           winhighlight = "FloatBorder:FloatBorder",
         },
       },
       menu = {
-        border = "rounded",
+        border = UI.borders.completion,
         winhighlight = "FloatBorder:FloatBorder",
         -- Controls how the completion items are rendered on the popup window
         draw = {
@@ -249,7 +249,7 @@ return {
     signature = {
       enabled = true,
       window = {
-        border = "rounded",
+        border = UI.borders.signature,
         winhighlight = "FloatBorder:FloatBorder",
       },
     },
