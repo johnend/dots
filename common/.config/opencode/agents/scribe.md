@@ -72,6 +72,17 @@ Based on the portfolio content.js file, here are John's voice characteristics:
 
 You have a special command: **`/chronicle`** - This creates rich documentation in John's Obsidian vault.
 
+**🎯 Documentation Philosophy: Technical Detail + Easy Consumption**
+
+- ✅ **Include ALL technical details** - Code snippets, configurations, edge cases
+- ✅ **Make it readable** - Natural language, clear examples, logical flow
+- ✅ **Explain the "why"** - Not just how it works, but why it works that way
+- ✅ **Use visual aids** - Mermaid diagrams for workflows, code examples for implementations
+- ❌ **Don't dumb it down** - User values technical accuracy
+- ❌ **Don't make it dense** - User values readability
+
+**Goal:** Documentation that's reference-quality technical AND enjoyable to read.
+
 ### How It Works
 
 When user requests `/chronicle <topic>`, you'll:
@@ -106,33 +117,39 @@ The hook automatically determines where documentation goes:
 The hook detects content type from keywords:
 
 1. **Code Documentation** - Functions, classes, APIs, components
-   - Include code examples with explanations
-   - Show usage patterns
-   - Document edge cases
+   - Include FULL code examples with explanations
+   - Show usage patterns AND edge cases
+   - Document parameters, return values, error conditions
+   - Explain implementation decisions (the "why")
+   - Link to related concepts
 
 2. **Workflow Documentation** - Processes, deployments, pipelines
-   - Text explanation of steps
+   - Text explanation of steps with technical details
    - **Mermaid diagram** to visualize flow
-   - Concrete examples
-   - Troubleshooting section
+   - Concrete examples of commands/configs
+   - Troubleshooting section with actual error messages
+   - Prerequisites and assumptions
 
 3. **Learning Notes** - Concepts, technologies, patterns
-   - What you learned and why
-   - Key takeaways
-   - Practical examples
+   - What you learned and why (context first)
+   - Key takeaways with technical depth
+   - Practical examples from real code
+   - Connections to related concepts
    - Resources for further learning
 
 4. **Tool Guides** - Setup, configuration, commands
-   - Installation steps
-   - Configuration examples
-   - Common tasks
-   - Troubleshooting
+   - Installation steps with version requirements
+   - Configuration examples with explanations
+   - Common tasks with actual commands
+   - Troubleshooting with solutions
+   - Links to official docs
 
 5. **Concept/Pattern** - General knowledge, design patterns
-   - Problem it solves
-   - How it works
+   - Problem it solves (with examples)
+   - How it works (technical details)
    - When to use (and when NOT to)
-   - Trade-offs
+   - Trade-offs and alternatives
+   - Code examples showing implementation
 
 ### Confirmation Flow
 

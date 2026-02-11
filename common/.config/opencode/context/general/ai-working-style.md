@@ -7,6 +7,19 @@
 
 ## 🚨 CRITICAL RULES - NEVER VIOLATE
 
+### ⚠️ RULE APPLICATION: EVERY REQUEST
+
+**IMPORTANT:** These rules apply to **EVERY REQUEST** in a session, not just the initial one.
+
+- ✅ Run context loading (GloomStalker) for **each new request**
+- ✅ Check documentation for **each library usage**
+- ✅ Verify git safety for **each git operation**
+- ✅ Assess risk for **each destructive operation**
+- ❌ DON'T assume context from initial request applies to follow-up requests
+- ❌ DON'T skip safety checks because session already started
+
+**Reasoning:** Each request may have different requirements, even in the same session. Session continuation should NOT bypass safety protocols.
+
 ### 1. Git Commit Behavior
 
 **Preference:** ⚠️ **Manual git operations ONLY**
@@ -15,7 +28,7 @@
 - ✅ DO: Make code changes
 - ✅ DO: Run tests
 - ✅ DO: Show `git status` and `git diff`
-- ❌ DON'T: Auto-commit
+- ❌ DON'T: Auto-commit (applies to EVERY request, not just first one)
 - ❌ DON'T: Auto-push
 - ❌ DON'T: Create PRs automatically
 - ❌ DON'T: Amend commits without explicit request
@@ -29,7 +42,7 @@
 **Preference:** ⚠️ **Prefers doing frontend work himself**
 
 **AI Behavior:**
-- ❌ NEVER implement UI without asking first
+- ❌ NEVER implement UI without asking first (applies to EVERY UI request)
 - ✅ ALWAYS ask: "Would you like me to implement this UI, create basic structure, or just provide guidance?"
 
 **Reasoning:** User values control over visual/UX decisions
@@ -47,7 +60,7 @@
 **AI Behavior:**
 - ✅ DO: Check local docs first (if they exist alongside the library/plugin)
 - ✅ DO: Use `webfetch` for online docs if local docs don't exist or are insufficient
-- ✅ DO: Check documentation when the first approach fails
+- ✅ DO: Check documentation when the first approach fails (applies to EVERY failure, not just first)
 - ✅ DO: Suggest checking docs if unsure about API usage
 - ❌ DON'T: Make assumptions about library APIs
 - ❌ DON'T: Keep trying failed approaches without consulting docs
@@ -64,13 +77,39 @@
 - **Python packages:** Virtual env site-packages or system packages
 - **System libraries:** `/usr/share/doc/{package}/` on Linux
 
-**When to Check Docs:**
+**When to Check Docs (ON EVERY RELEVANT REQUEST):**
 1. **Before implementing** with unfamiliar libraries
 2. **After first failure** - Don't iterate blindly
 3. **When creating wrappers** - Check if built-in config options exist first
 4. **User suggests checking docs** - Do it immediately
 
 **Reasoning:** Libraries often have simpler built-in solutions than custom implementations. Checking docs saves time and reduces complexity. Local docs are often installed with libraries and match the exact version being used.
+
+### 5. Documentation & Knowledge Base
+
+**Obsidian Vault Location:** `~/Developer/personal/Obsidian`
+
+**AI Behavior:**
+- ✅ DO: Ask @Scribe to document in Obsidian when creating/explaining complex features
+- ✅ DO: Use Scribe's `/chronicle` command for rich documentation
+- ✅ DO: Include technical detail that's also easy to consume
+- ✅ DO: Reference Obsidian vault when user asks for documentation
+- ❌ DON'T: Create documentation outside Obsidian vault unless user specifies
+- ❌ DON'T: Write generic documentation—make it technically detailed AND readable
+
+**Obsidian Structure:**
+- **Work projects:** `Work/Domains/{Project-Name}/`
+- **Personal learning:** `Personal/Learning/Notes/`
+- **Tool guides:** `Personal/Knowledge/Tools/`
+- **Project-specific:** `Personal/Projects/{Project-Name}/`
+
+**When to Document:**
+1. Complex features or workflows implemented
+2. Non-obvious patterns or architectural decisions
+3. User explicitly requests documentation
+4. Knowledge worth preserving for future reference
+
+**Reasoning:** Centralized knowledge base in Obsidian makes information discoverable and reusable. Technical detail ensures accuracy; readability ensures utility.
 
 ---
 
@@ -110,14 +149,20 @@
 
 ## Quick Reference - ALWAYS Remember
 
-1. ⚠️ **Ask before implementing UI/frontend**
-2. ⚠️ **Never auto-commit or auto-push**
-3. ⚠️ **Check docs for third-party libraries before implementing**
-4. 🎯 **Prefer readability over cleverness**
-5. 📦 **User works with legacy code and monorepos**
-6. 📝 **Use conventional commit format (fix:, feat:, etc.)**
-7. 🔍 **Show git status + diff before committing**
-8. 🧪 **Run tests and validation before declaring success**
+**🔄 ON EVERY REQUEST (not just initial):**
+1. ⚠️ **Load appropriate context via GloomStalker for the CURRENT request**
+2. ⚠️ **Check docs for third-party libraries before implementing**
+3. ⚠️ **Never auto-commit or auto-push** (even in continued sessions)
+4. ⚠️ **Ask before implementing UI/frontend** (each time)
+5. ⚠️ **Assess risk before destructive operations**
+
+**General Principles:**
+6. 🎯 **Prefer readability over cleverness**
+7. 📦 **User works with legacy code and monorepos**
+8. 📝 **Use conventional commit format (fix:, feat:, etc.)**
+9. 🔍 **Show git status + diff before committing**
+10. 🧪 **Run tests and validation before declaring success**
+11. 📚 **Document in Obsidian vault** (`~/Developer/personal/Obsidian`) via @Scribe
 
 ---
 

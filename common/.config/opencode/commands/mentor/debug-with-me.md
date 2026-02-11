@@ -1,3 +1,8 @@
+---
+description: Structured collaborative debugging - teach systematic problem-solving
+agent: mentor
+---
+
 # /debug-with-me
 
 **Purpose:** Structured collaborative debugging where Mentor guides user through systematic problem-solving.

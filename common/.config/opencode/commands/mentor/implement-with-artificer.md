@@ -1,3 +1,8 @@
+---
+description: Hand off implementation to Artificer with full session context
+agent: mentor
+---
+
 # /implement-with-artificer
 
 **Purpose:** Hand off implementation to Artificer with full session context from Mentor conversation.

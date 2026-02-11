@@ -322,22 +322,35 @@ You:
 
 ## Execution Workflow
 
+### ⚠️ CRITICAL: Run Checks on EVERY Request
+
+**These checks apply to EVERY request in a session**, not just the initial one:
+- ✅ **Todo-enforcer** (Step 2) - Each request may be multi-step
+- ✅ **GloomStalker** (Step 3) - Load context for CURRENT request
+- ✅ **Git safety** - Never auto-commit, even in continued sessions
+- ✅ **Documentation checks** (Step 6) - Check docs before implementing with libraries
+- ✅ **Risk assessment** (Step 6) - Before each destructive operation
+- ✅ **UI confirmation** (Step 5) - Ask before each frontend implementation
+
+**Reasoning:** Each request in a session can have different requirements, risks, and constraints. Session continuation should NOT bypass safety protocols.
+
 ### Standard Workflow
 
 ```
 1. RECEIVE TASK
    ↓
-2. RUN TODO-ENFORCER CLI 🚦
+2. RUN TODO-ENFORCER CLI 🚦 (ON EVERY REQUEST)
    - Run: node ~/.config/opencode/hooks/todo-enforcer/cli.js "task"
    - Returns JSON with shouldBlock, isMultiStep, message, suggestedTodos
    - If shouldBlock=true → Show enforcement message and STOP
    - If isMultiStep=true but not blocking → Create todos before proceeding
    - If isMultiStep=false → Continue to next step
    ↓
-3. CALL GLOOMSTALKER CLI 🔦
+3. CALL GLOOMSTALKER CLI 🔦 (ON EVERY REQUEST)
    - Run: node ~/.config/opencode/hooks/gloomstalker/cli.js "task"
    - Receive list of relevant context file paths
    - Use Read tool to load only those files (40-60% token savings)
+   - Context loaded is specific to CURRENT request, not previous requests
    ↓
 4. VERIFY PROJECT CONTEXT (automatic)
    - Check if project has context in OpenCode config
@@ -355,6 +368,10 @@ You:
    - Multi-step? → Orchestrate yourself
    ↓
 6. EXECUTE (or delegate)
+   - **BEFORE library/plugin usage:** Check documentation
+     * Check local docs first (node_modules/, plugin dirs)
+     * Use webfetch for online docs if local insufficient
+     * Don't iterate blindly - consult docs after first failure
    - **BEFORE destructive operations:** Run risk-assessor CLI
      * node ~/.config/opencode/hooks/risk-assessor/cli.js "operation"
      * If riskLevel=critical → BLOCK and explain why
@@ -371,6 +388,7 @@ You:
    - Validate output
    ↓
 8. RETRY IF FAILED (up to 3 attempts)
+   - Check documentation for correct approach
    - Try different approach
    - Delegate to different agent
    - Escalate to Investigator for analysis
@@ -378,6 +396,9 @@ You:
 9. REPORT COMPLETION
    - Verify all todos completed
    - Provide summary
+   - **Suggest documentation** if complex feature implemented:
+     * "@Scribe Can you document [feature] in Obsidian?"
+     * Ensures knowledge is preserved in ~/Developer/personal/Obsidian
 ```
 
 ### Task Categorization
