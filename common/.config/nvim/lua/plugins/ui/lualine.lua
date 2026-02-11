@@ -1,6 +1,13 @@
 return {
   "nvim-lualine/lualine.nvim",
   event = { "BufReadPre", "BufNewFile" },
+  dependencies = {
+    {
+      "tiagovla/scope.nvim",
+      event = "VeryLazy",
+      opts = {}, -- Use default config
+    },
+  },
   config = function()
     local status_ok, lualine = pcall(require, "lualine")
     if not status_ok then
@@ -17,6 +24,7 @@ return {
     end
 
     local components = require "config.lualine.components"
+    local tabline_components = require "config.lualine.tabline"
     local ts_context = require "treesitter-context"
 
     lualine.setup {
@@ -65,7 +73,14 @@ return {
         lualine_y = { components.location },
         lualine_z = { components.progress },
       },
-      tabline = {},
+      tabline = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = { tabline_components.buffers },
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = { tabline_components.tabs },
+      },
       winbar = {},
       inactive_winbar = {},
       extensions = {},
@@ -76,10 +91,10 @@ return {
       pattern = "codecompanion",
       callback = function()
         vim.opt.laststatus = 3
-        vim.wo.statusline = ""  -- Clear window-local statusline (use global)
+        vim.wo.statusline = "" -- Clear window-local statusline (use global)
       end,
     })
-    
+
     -- Also ensure when entering codecompanion windows
     vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
       pattern = "*",
