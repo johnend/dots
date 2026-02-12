@@ -9,6 +9,7 @@ M.excluded = {
   "catppuccin-latte",
   "catppuccin-macchiato",
   "catppuccin-mocha",
+  "crimson_moonlight",
   "dawnfox",
   "dayfox",
   "nordfox",
