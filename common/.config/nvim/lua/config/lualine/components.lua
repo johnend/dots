@@ -154,10 +154,10 @@ M.lsp = {
 }
 
 M.mode = {
-  function()
-    return " " .. Icons.ui.Target .. " "
-  end,
-  padding = { left = 0, right = 0 },
+  "mode",
+  icons_enabled = true,
+  icon = Icons.misc.Vim,
+  padding = { left = 1, right = 0 },
 }
 
 local function diff_source()

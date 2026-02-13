@@ -63,8 +63,8 @@ return {
       theme = "dropdown", ---@type telescope_themes
       defaults = {
         prompt_prefix = " " .. Icons.ui.Telescope .. "  ",
-        selection_caret = " " .. Icons.ui.Forward .. "  ",
-        entry_prefix = " ",
+        selection_caret = " " .. Icons.misc.Dragon .. "  ",
+        -- entry_prefix = " ",
         initial_mode = "insert",
         selection_strategy = "reset",
         sorting_strategy = "descending",
