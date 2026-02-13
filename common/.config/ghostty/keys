@@ -1,0 +1,93 @@
+# Read the docs for more information https://ghostty.org/docs/config/keybind/reference
+# These are the default keybinds `ghostty +list-keybinds`
+super + alt   + shift + j       write_screen_file:open,plain
+super + alt   + shift + w       close_all_windows
+super + ctrl  + shift + j       write_screen_file:copy,plain
+super + alt   + arrow_down      goto_split:down
+super + alt   + arrow_left      goto_split:left
+super + alt   + arrow_right     goto_split:right
+super + alt   + arrow_up        goto_split:up
+super + alt   + i               inspector:toggle
+super + alt   + w               close_tab:this
+super + ctrl  + equal           equalize_splits
+super + ctrl  + arrow_down      resize_split:down,10
+super + ctrl  + arrow_left      resize_split:left,10
+super + ctrl  + arrow_right     resize_split:right,10
+super + ctrl  + arrow_up        resize_split:up,10
+super + ctrl  + f               toggle_fullscreen
+super + shift + bracket_left    previous_tab
+super + shift + bracket_right   next_tab
+super + shift + ,               reload_config
+super + shift + enter           toggle_split_zoom
+super + shift + arrow_down      jump_to_prompt:1
+super + shift + arrow_up        jump_to_prompt:-1
+super + shift + d               new_split:down
+super + shift + f               end_search
+super + shift + g               navigate_search:previous
+super + shift + j               write_screen_file:paste,plain
+super + shift + p               toggle_command_palette
+super + shift + t               undo
+super + shift + v               paste_from_selection
+super + shift + w               close_window
+super + shift + z               redo
+ctrl  + shift + tab             previous_tab
+super + bracket_left            goto_split:previous
+super + bracket_right           goto_split:next
+super + digit_1                 goto_tab:1
+super + digit_2                 goto_tab:2
+super + digit_3                 goto_tab:3
+super + digit_4                 goto_tab:4
+super + digit_5                 goto_tab:5
+super + digit_6                 goto_tab:6
+super + digit_7                 goto_tab:7
+super + digit_8                 goto_tab:8
+super + equal                   increase_font_size:1
+super + +                       increase_font_size:1
+super + ,                       open_config
+super + -                       decrease_font_size:1
+super + 0                       reset_font_size
+super + 1                       goto_tab:1
+super + 2                       goto_tab:2
+super + 3                       goto_tab:3
+super + 4                       goto_tab:4
+super + 5                       goto_tab:5
+super + backspace               text:\\x15
+super + 6                       goto_tab:6
+super + 7                       goto_tab:7
+super + 8                       goto_tab:8
+super + 9                       last_tab
+super + enter                   toggle_fullscreen
+super + end                     scroll_to_bottom
+super + home                    scroll_to_top
+super + page_down               scroll_page_down
+super + page_up                 scroll_page_up
+super + arrow_down              jump_to_prompt:1
+super + arrow_left              text:\\x01
+super + arrow_right             text:\\x05
+super + arrow_up                jump_to_prompt:-1
+super + a                       select_all
+super + c                       copy_to_clipboard:mixed
+super + d                       new_split:right
+super + f                       start_search
+super + g                       navigate_search:next
+super + k                       clear_screen
+super + n                       new_window
+super + q                       quit
+super + t                       new_tab
+super + v                       paste_from_clipboard
+super + w                       close_surface
+super + z                       undo
+alt   + arrow_left              esc:b
+alt   + arrow_right             esc:f
+ctrl  + tab                     next_tab
+shift + end                     adjust_selection:end
+shift + home                    adjust_selection:home
+shift + page_down               adjust_selection:page_down
+shift + page_up                 adjust_selection:page_up
+shift + arrow_down              adjust_selection:down
+shift + arrow_left              adjust_selection:left
+shift + arrow_right             adjust_selection:right
+shift + arrow_up                adjust_selection:up
+escape                          end_search
+copy                            copy_to_clipboard:mixed
+paste                           paste_from_clipboard
