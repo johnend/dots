@@ -31,11 +31,18 @@ return {
     desc = "AutoSave",
   },
   {
+    "<leader>tb",
+    function()
+      require("core.colorscheme").toggle_transparency()
+    end,
+    desc = "Transparency",
+  },
+  {
     "<leader>tc",
     function()
-      toggle_notify("colorizer_enabled", "ColorizerToggle", "Colorizer", true)
+      toggle_notify("colorizer_enabled", "ColorizerToggle", "Colorizer", false)
     end,
-    desc = "Toggle colorizer",
+    desc = "Colorizer",
   },
   {
     "<leader>td",

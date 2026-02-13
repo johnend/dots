@@ -53,8 +53,8 @@ safe_require "core.overrides"
 local colorscheme = require "core.colorscheme"
 local highlights = require "core.highlights"
 
-colorscheme.apply()
 highlights.setup()
+colorscheme.apply()
 
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 -- NEOVIDE-SPECIFIC
