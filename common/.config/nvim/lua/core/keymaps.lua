@@ -49,7 +49,6 @@ keymap("n", "N", "nzzzv", opts)
 vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", opts)
 
 -- Diagnostic keymaps
--- TODO: the goto_prev and goto_next methods are deprecated will need something else
 vim.keymap.set("n", "[d", function()
   vim.diagnostic.jump { count = 1 }
 end, { desc = "Previous diagnostic message" })
@@ -66,16 +65,14 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Move text up and down
-keymap("v", "<A-j>", ":m .+1<CR>==", opts)
-keymap("v", "<A-k>", ":m .-2<CR>==", opts)
+keymap("v", "J", ":m >+1<CR>==", opts)
+keymap("v", "K", ":m <-2<CR>==", opts)
 keymap("v", "p", '"_dP', opts)
 
 -- Visual Block --
 -- Move text up and down
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
-keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
-keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
 -- Terminal --
 -- Better terminal navigation
@@ -83,3 +80,9 @@ keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
 keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+
+-- Remove things --
+keymap("n", "Q", "<nop>")
+
+-- Shell commands --
+keymap("n", "<leader>zx", "<cmd>!chmod +x %<cr>", { desc = "chmod +x", silent = true })
