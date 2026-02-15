@@ -2,6 +2,7 @@ return {
   "akinsho/bufferline.nvim",
   version = "*",
   event = "VeryLazy",
+  enabled = true,
   dependencies = {
     "nvim-tree/nvim-web-devicons",
     {
@@ -15,8 +16,13 @@ return {
   },
   config = function()
     local status_ok, bufferline = pcall(require, "bufferline")
+    if not status_ok then
+      return
+    end
+
     bufferline.setup {
       options = {
+        always_show_bufferline = false,
         -- mode = "buffers",
         style_preset = bufferline.style_preset.no_italic,
         -- themable = true,
@@ -31,9 +37,8 @@ return {
         offsets = {
           {
             filetype = "neo-tree",
-            text = Icons.ui.Folder .. " Files",
+            text = "Neo-tree",
             text_align = "left",
-
             separator = true,
           },
         },
