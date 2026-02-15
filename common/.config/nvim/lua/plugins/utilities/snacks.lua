@@ -15,7 +15,7 @@ return {
       function()
         Snacks.scratch.select()
       end,
-      desc = "Scratch buffer",
+      desc = "Scratch buffers",
     },
   },
 
