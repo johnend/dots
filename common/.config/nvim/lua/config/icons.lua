@@ -113,6 +113,7 @@ local M = {
     FolderSymlink = "",
     Forward = "",
     Gear = "",
+    HandPointRight = "󰋇",
     HalfCircleLeft = "",
     HalfCircleRight = "",
     History = "",
