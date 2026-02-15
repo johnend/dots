@@ -91,8 +91,6 @@ return {
       ---------------------------------
       {
         mode = { "n", "v" },
-        { "<leader>q", "<cmd>q<cr>", desc = "Quit" },
-        { "<leader>w", "<cmd>w<cr>", desc = "Write", icon = Icons.misc.Write },
       },
     }
   end,

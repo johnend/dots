@@ -1,4 +1,5 @@
 return {
+  { "<leader>z", group = "Shell", icon = Icons.misc.Shell },
   {
     mode = { "n", "v" },
     {
@@ -8,7 +9,8 @@ return {
       end,
       desc = "Format buffer",
     },
-    { "<leader>q", "<cmd>q<cr>", desc = "Quit" },
     { "<leader>/", "<Plug>(comment_toggle_linewise_current)", desc = "Comment toggle current line" },
+    { "<leader>;", "<cmd>Alpha<cr>", desc = "Dashboard" },
+    { "<leader>w", "<cmd>write<cr>", desc = "Write" },
   },
 }
