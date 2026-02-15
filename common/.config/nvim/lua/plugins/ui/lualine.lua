@@ -1,13 +1,7 @@
 return {
   "nvim-lualine/lualine.nvim",
   event = { "BufReadPre", "BufNewFile" },
-  dependencies = {
-    {
-      "tiagovla/scope.nvim",
-      event = "VeryLazy",
-      opts = {}, -- Use default config
-    },
-  },
+  dependencies = {},
   config = function()
     local status_ok, lualine = pcall(require, "lualine")
     if not status_ok then
@@ -24,7 +18,6 @@ return {
     end
 
     local components = require "config.lualine.components"
-    local tabline_components = require "config.lualine.tabline"
     local ts_context = require "treesitter-context"
 
     lualine.setup {
@@ -46,7 +39,6 @@ return {
         globalstatus = true,
         refresh = {
           statusline = 300,
-          tabline = 1000,
           winbar = 1000,
         },
       },
@@ -73,14 +65,7 @@ return {
         lualine_y = { components.location },
         lualine_z = { components.progress },
       },
-      tabline = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = { tabline_components.buffers },
-        lualine_x = {},
-        lualine_y = {},
-        lualine_z = { tabline_components.tabs },
-      },
+      tabline = {},
       winbar = {},
       inactive_winbar = {},
       extensions = {},
