@@ -1,5 +1,5 @@
 return {
-  "hachy/eva01.vim",
+  "scottmckendry/cyberdream.nvim",
   lazy = false,
   priority = 1000,
 }
