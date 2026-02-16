@@ -76,9 +76,9 @@ return {
         -- entry_prefix = " ",
         initial_mode = "insert",
         selection_strategy = "reset",
+        path_display = { "smart" },
         layout_config = {},
         file_ignore_patterns = ignore_patterns,
-        -- path_display = { "" },
         color_devicons = true,
         set_env = { ["COLORTERM"] = "truecolor" },
         mappings = {

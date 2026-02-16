@@ -42,6 +42,7 @@ M.excluded = {
   "catppuccin-macchiato",
   "catppuccin-mocha",
   "crimson_moonlight",
+  "cyberdream-light",
   "dawnfox",
   "dayfox",
   "nordfox",
@@ -54,7 +55,7 @@ M.excluded = {
   "rose-pine",
   "rose-pine-dawn",
   "rose-pine-moon",
-  "sequoia-main",
+  "sequoia",
   "tokyonight",
   "tokyonight-day",
   "tokyonight-moon",
@@ -179,10 +180,33 @@ local function build_filtered_colors(opts)
   -- Optional: remove vim's builtin themes (overlaps with M.excluded for some)
   if opts.ignore_builtins then
     local builtins = {
-      "blue", "darkblue", "default", "delek", "desert", "elflord", "evening",
-      "habamax", "industry", "koehler", "lunaperche", "morning", "murphy",
-      "pablo", "peachpuff", "quiet", "retrobox", "ron", "shine", "slate",
-      "sorbet", "torte", "unokai", "vim", "wildcharm", "zaibatsu", "zellner",
+      "blue",
+      "darkblue",
+      "default",
+      "delek",
+      "desert",
+      "elflord",
+      "evening",
+      "habamax",
+      "industry",
+      "koehler",
+      "lunaperche",
+      "morning",
+      "murphy",
+      "pablo",
+      "peachpuff",
+      "quiet",
+      "retrobox",
+      "ron",
+      "shine",
+      "slate",
+      "sorbet",
+      "torte",
+      "unokai",
+      "vim",
+      "wildcharm",
+      "zaibatsu",
+      "zellner",
     }
     colors = vim.tbl_filter(function(c)
       return not vim.tbl_contains(builtins, c)
@@ -221,9 +245,7 @@ M.colorscheme = function(opts)
   -- Preview window: shows a file or the current buffer; highlights update as you move.
   local previewer
   if opts.enable_preview then
-    local preview_path = opts.preview_file
-      or opts.preview_path
-      or api.nvim_buf_get_name(api.nvim_get_current_buf())
+    local preview_path = opts.preview_file or opts.preview_path or api.nvim_buf_get_name(api.nvim_get_current_buf())
     local bufnr = api.nvim_get_current_buf()
     previewer = previewers.new_buffer_previewer {
       get_buffer_by_name = function()
