@@ -1,0 +1,20 @@
+---
+description: "Before marking a task complete: actually works E2E, integration tested, docs updated, no temp/debug. Fix class of issues, not just one instance."
+alwaysApply: false
+---
+
+# Quality before marking complete
+
+**Before you say “done,” check:**
+
+- Does it **actually work** end-to-end (not just build or unit pass)?
+- Are **integration points** exercised (e.g. frontend → backend → data)?
+- **Edge cases** considered (empty, null, boundaries)?
+- **Security** (nothing exposed that shouldn’t be; validate/sanitize inputs)?
+- **Performance** (no obvious N+1, leaks, or unbounded work)?
+- **Docs/notes** updated to match what you changed?
+- **Cleanup:** No temp files, debug code, or `console.log` left behind?
+
+**Ownership:** If you fix one instance of a bug, search for the same pattern elsewhere and fix the **class** of issue. Map dependencies and side effects before changing; ensure the whole system stays consistent.
+
+Task is complete when it’s ready to ship, not when it’s “technically working.”

@@ -1,0 +1,12 @@
+---
+description: "Use bounded searches (head_limit, path scope); exhaust search methods before concluding 'not found'. Don't retry the exact same search."
+alwaysApply: false
+---
+
+# Search and investigation safety
+
+**Bounded searches:** Use a reasonable `head_limit` (e.g. 20–50) and scope (path, file type) so searches don’t run unbounded. Don’t search for files you just deleted or moved. If a search returns nothing, try broader or different patterns—don’t repeat the exact same search hoping for different results.
+
+**“Not found” = search inadequate until proven otherwise:** Before concluding something doesn’t exist, try: different patterns (e.g. `**/name*`), content search (Grep) not just filename (Glob), parent/related directories, and a quick check of directory structure. When the user says “it’s there, find it,” treat that as: escalate (e.g. list full structure, recursive search), question your assumptions, then report what you missed.
+
+**Progressive search:** Start specific → expand gradually. When you find the target, look nearby for related files and gather full context. One search with no results is not proof of absence.

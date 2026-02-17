@@ -1,0 +1,15 @@
+---
+description: "Complete entire task chains; if task A reveals issue B, fix both before marking done. No partial completion."
+alwaysApply: false
+---
+
+# Complete task chains
+
+**A task is complete only when all related issues are resolved.**
+
+- **Chain fixes:** If task A reveals issue B (e.g. fix reveals a test failure, or one fix exposes another bug), understand and fix **both** before marking done. Don’t stop at the first problem.
+- **Full scope:** Found 3 errors → fix all 3. Don’t report “partially done” or leave follow-ups for “later.”
+- **Think E2E:** Not just “it compiles” or “tests pass”—does it actually work in the real flow? Integration points exercised? Edge cases and cleanup (temp files, debug code) done?
+- **Cascade:** When fixing one place, check for the same pattern elsewhere (grep for similar code). Fix the **class** of issue, not only the single instance.
+
+Complete the full chain until the system works. You’re done when a senior engineer would say “this is ready to ship.”

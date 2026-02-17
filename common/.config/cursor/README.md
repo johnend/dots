@@ -87,6 +87,13 @@ See `_template.*` in each directory for the expected format and field descriptio
 - **commands/implement-brief.md** — `/implement-brief`: produce a short implementation brief (decisions, state, requirements) so the next step can implement without re-explaining.
 - **rules/multi-step-todos.mdc** — For multi-step tasks, propose a short todo list and get approval before executing (apply intelligently).
 - **rules/destructive-confirm.mdc** — Before destructive or high-impact operations, state the risk and ask for explicit confirmation (apply intelligently).
+- **rules/trust-code-over-docs.mdc** — Verify against actual code/config; when docs and code disagree, trust code; update docs after (apply intelligently).
+- **rules/complete-task-chains.mdc** — Complete entire task chains; fix class of issues; no partial completion (apply intelligently).
+- **rules/file-tools-not-bash.mdc** — Use Read/Write/StrReplace for file content; bash for system commands only (apply intelligently).
+- **rules/search-safety.mdc** — Bounded searches; exhaust methods before "not found" (apply intelligently).
+- **rules/research-before-change.mdc** — Complex work: discover and verify first; simple ops: execute directly (apply intelligently).
+- **rules/quality-before-complete.mdc** — Before marking done: works E2E, integration tested, docs updated, cleanup (apply intelligently).
+- **skills/research-protocol/** — 8-step research-first protocol for complex work (discovery → verify → execute → update docs).
 - **agents/code-reviewer.md** — Subagent for focused code review (invoke manually or let the model delegate).
 - **agents/debugger.md** — Subagent for errors and failing tests (root cause + minimal fix).
 - **commands/retrospective.md** — `/retrospective`: run the **Retrospective & Doctrine Evolution Protocol** (session analysis → lesson distillation → doctrine integration → final report). Use at **end of significant sessions** to capture lessons and update rules.
@@ -106,14 +113,20 @@ The following were ported from your OpenCode config (dotfiles) and adapted to Cu
 
 ### Rules (paste into Cursor Settings → Rules or use in project `.cursor/rules/`)
 
-| File                              | Source                                                | Purpose                                                                           |
-| --------------------------------- | ----------------------------------------------------- | --------------------------------------------------------------------------------- |
-| **rules/git-and-safety.mdc**      | `context/general/ai-working-style.md`                 | Manual git only, ask before UI, check docs before libraries, apply every request. |
-| **rules/code-style.mdc**          | `context/general/code-style.md`                       | Comment WHY not WHAT; readability over cleverness; when to comment vs skip.       |
-| **rules/git-workflow.mdc**        | `context/general/git-workflow.md`                     | Conventional commits, branch naming, delta, allowed vs approval-required git ops. |
-| **rules/prefer-modern-cli.mdc**   | `context/general/cli-tools.md` + `dev-environment.md` | When suggesting shell commands: prefer rg, fd, bat, eza, delta, mise.             |
-| **rules/multi-step-todos.mdc**    | (OpenCode Todo Enforcer behaviour)                    | For multi-step or ambiguous tasks, propose a todo list and get approval first.    |
-| **rules/destructive-confirm.mdc** | (OpenCode Risk Assessor behaviour)                    | Before destructive/high-impact ops, state risk and ask for explicit confirmation. |
+| File                                  | Source                                                | Purpose                                                                           |
+| ------------------------------------- | ----------------------------------------------------- | --------------------------------------------------------------------------------- |
+| **rules/git-and-safety.mdc**          | `context/general/ai-working-style.md`                 | Manual git only, ask before UI, check docs before libraries, apply every request. |
+| **rules/code-style.mdc**              | `context/general/code-style.md`                       | Comment WHY not WHAT; readability over cleverness; when to comment vs skip.       |
+| **rules/git-workflow.mdc**            | `context/general/git-workflow.md`                     | Conventional commits, branch naming, delta, allowed vs approval-required git ops. |
+| **rules/prefer-modern-cli.mdc**       | `context/general/cli-tools.md` + `dev-environment.md` | When suggesting shell commands: prefer rg, fd, bat, eza, delta, mise.             |
+| **rules/multi-step-todos.mdc**        | (OpenCode Todo Enforcer behaviour)                    | For multi-step or ambiguous tasks, propose a todo list and get approval first.    |
+| **rules/destructive-confirm.mdc**     | (OpenCode Risk Assessor behaviour)                    | Before destructive/high-impact ops, state risk and ask for explicit confirmation. |
+| **rules/trust-code-over-docs.mdc**    | (Senior Engineer Guidelines)                          | Verify against code/config; trust code over docs; update docs after.              |
+| **rules/complete-task-chains.mdc**    | (Senior Engineer Guidelines)                          | Complete full task chains; fix class of issues; no partial completion.            |
+| **rules/file-tools-not-bash.mdc**     | (Senior Engineer Guidelines)                          | Use file tools for file content; bash for system commands only.                   |
+| **rules/search-safety.mdc**           | (Senior Engineer Guidelines)                          | Bounded searches; exhaust before "not found."                                     |
+| **rules/research-before-change.mdc**  | (Senior Engineer Guidelines)                          | Complex work: discover and verify first; simple: execute directly.                |
+| **rules/quality-before-complete.mdc** | (Senior Engineer Guidelines)                          | Before done: works E2E, integration tested, docs updated, cleanup.                |
 
 ### Commands
 

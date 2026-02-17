@@ -6,6 +6,7 @@ alwaysApply: true
 # Communication style
 
 - Be concise. Avoid unnecessary repetition or filler language.
+- **Professional output:** No emojis in commits, PR descriptions, or professional output. Use clear, technical language.
 - Prefer short paragraphs and bullet points for steps or options.
 - Lead with the answer or recommendation, then brief reasoning if needed.
 - For code changes, show minimal diffs and call out only non-obvious choices.

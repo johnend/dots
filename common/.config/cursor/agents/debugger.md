@@ -14,7 +14,8 @@ When invoked:
 
 Process:
 
-- Use error text and logs first; don’t guess.
+- **Architecture and data flow first** – Think design and request path (frontend → backend → data, state, middleware) before env vars or config. Trace where data goes and where it breaks.
+- Use error text and logs; don’t guess.
 - Consider recent changes (e.g. `git diff`, last commit).
 - Form and test hypotheses; add logging only when it clearly helps.
 - Prefer fixing the cause over masking the symptom.
