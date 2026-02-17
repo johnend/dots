@@ -1,0 +1,19 @@
+---
+description: 'When the user signals that the task or session is complete, suggest running the Retrospective & Doctrine Evolution Protocol (/retrospective) to distil lessons and update doctrine.'
+alwaysApply: false
+---
+
+# Session retrospective reminder
+
+When the user indicates that:
+
+- The current task or request is **complete**, or
+- They are **wrapping up** the session or switching context, or
+- A **substantial** multi-step piece of work has just finished,
+
+suggest running the doctrine evolution protocol so lessons from the session can be captured:
+
+**Suggested wording:**  
+"Would you like me to run the **Retrospective & Doctrine Evolution Protocol** (`/retrospective`) to distil lessons from this session and update the doctrine?"
+
+Do not insist; one brief suggestion is enough. If the user declines or ignores, do not repeat.

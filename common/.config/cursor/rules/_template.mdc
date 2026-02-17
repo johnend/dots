@@ -1,0 +1,26 @@
+---
+# Rule metadata (YAML frontmatter). Used in .cursor/rules/ (project) or paste into Cursor Settings → Rules.
+description: 'One-line description of what this rule does (shown in rule picker)'
+globs: '**/*.ts' # Optional. File pattern so rule applies when matching files are open. Omit for global.
+alwaysApply: false # true = apply to every chat; false = use description/globs/manual @rule
+---
+
+# Rule title (e.g. TypeScript standards)
+
+Write the rule content here. Keep it under ~50 lines and one concern per rule.
+
+- Use bullet points or short sections.
+- Prefer concrete examples: ✅ GOOD vs ❌ BAD.
+- Reference files with paths instead of pasting long snippets so rules don’t go stale.
+
+## Example
+
+```typescript
+// ✅ GOOD
+try {
+  await fetchData();
+} catch (e) {
+  logger.error('Failed to fetch', { error: e });
+  throw new DataFetchError('Unable to retrieve data', { cause: e });
+}
+```

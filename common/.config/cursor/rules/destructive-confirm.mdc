@@ -1,0 +1,17 @@
+---
+description: 'Before suggesting or running destructive or high-impact operations, state the risk and ask for explicit confirmation.'
+alwaysApply: false
+---
+
+# Confirm before destructive or high-impact actions
+
+Before suggesting or running any **destructive or high-impact** operation, briefly state what will happen and the risk, then ask for explicit confirmation. Do not execute until the user confirms.
+
+Examples of operations that require this:
+
+- **Git:** force push, rewrite history, bulk reset, deleting branches others might use
+- **Files/system:** mass delete, overwriting many files, changing system or env config
+- **Deploy/production:** deploying to production, running migrations on prod DB, changing live config
+- **Credentials:** changing secrets, rotating keys, modifying auth config
+
+One short sentence is enough (e.g. “This will force-push to `main` and overwrite remote history. Confirm?”). If the user has already given explicit approval in the same conversation, you do not need to ask again for the same operation.

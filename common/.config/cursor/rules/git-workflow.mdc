@@ -1,0 +1,28 @@
+---
+description: 'Git workflow: conventional commits, branch naming, delta, allowed vs approval-required operations'
+alwaysApply: false
+---
+
+# Git workflow (when working with git)
+
+## Commit style
+
+- **Format:** Conventional commits via aliases if available: `git fix "msg"`, `git feat "msg"`, `git chore "msg"`, `git docs "msg"`, etc.
+- **Tense:** Imperative ("add feature" not "added feature"). First line under 72 characters.
+- **Process:** Show `git status` and `git diff` (preferably with delta) before committing; wait for user approval.
+
+## Branch naming
+
+**Pattern:** `<jira project key>-<ticket number>-<summary>` (e.g. `ABC-101-repo-init`).
+
+## Operations
+
+- **Allowed without approval:** `git status`, `git log`, `git diff`, `git show`, `git branch` (read-only), `git remote -v`.
+- **Require approval:** `git add`, `git commit`, `git push`, `git pull`, `git fetch`, `git checkout`/`git switch`, `git merge`, `git rebase`, `git reset`, `git stash`, branch delete.
+- **Avoid without explicit confirmation:** `git push --force` (prefer `--force-with-lease`), `git reset --hard`.
+- **NEVER** force push to main/master.
+
+## Tools
+
+- **Delta:** Use for readable diffs (e.g. side-by-side, theme). Suggest `git diff` / `git log -p` with delta when available.
+- **GitHub CLI:** Read-only (e.g. `gh pr view`, `gh issue list`) is fine; state-changing (`gh pr create`, `gh pr merge`) requires approval.
