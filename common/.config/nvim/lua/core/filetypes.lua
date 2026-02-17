@@ -6,6 +6,7 @@ vim.filetype.add {
     env = "sh",
     rasi = "rasi",
     cfg = "cfg",
+    mdc = "markdown",
     tfvars = "terraform",
     tf = "terraform",
     yamlfmt = "yaml",
