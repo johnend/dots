@@ -25,7 +25,7 @@
   "privacyCache": {
     "ghostMode": true,
     "privacyMode": 2,
-    "updatedAt": 1771405806641
+    "updatedAt": 1771443430136
   },
   "authInfo": {
     "email": "john.enderby@fanduel.com",
@@ -36,6 +36,6 @@
     "authId": "auth0|user_01JVVZ00HATX1FVK0R033QNDBC"
   },
   "network": {
-    "useHttp1ForAgent": false
+    "useHttp1ForAgent": true
   }
 }

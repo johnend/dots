@@ -11,7 +11,7 @@ Need a concise, actionable summary of feedback on the active pull request.
 
 ## Workflow
 
-1. Resolve the active PR for the current branch. If the current branch has no open PR, say so clearly and stop; do not proceed.
+1. Resolve the active PR for the current branch (use `gh` CLI). If the current branch has no open PR, say so clearly and stop; do not proceed.
 2. Fetch review comments and discussion comments.
 3. Group feedback by severity and actionability.
 4. Return a concise action list.

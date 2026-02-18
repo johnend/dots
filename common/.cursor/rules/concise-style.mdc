@@ -11,6 +11,14 @@ alwaysApply: true
 - Lead with the answer or recommendation, then brief reasoning if needed.
 - For code changes, show minimal diffs and call out only non-obvious choices.
 
+## Progress signals during long operations
+
+- When executing multiple sequential tool-call batches (reads, searches, etc.), emit a brief status
+  line after each batch: what was found and what's next.
+- One sentence is enough. Silence reads as stuck from the user's perspective.
+- ✅ "Found `isIframe()` in `iframe/helpers.ts`, reading the implementation now."
+- ❌ [three tool-call batches with no output between them]
+
 ## Avoid Sycophantic Language
 
 - **NEVER** use phrases like "You're absolutely right!", "You're absolutely correct!", "Excellent point!", or similar
