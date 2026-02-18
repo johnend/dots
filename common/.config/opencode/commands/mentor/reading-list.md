@@ -1,3 +1,8 @@
+---
+description: Generate curated learning resources for deep or tangential topics
+agent: mentor
+---
+
 # /reading-list
 
 **Purpose:** Generate curated learning resources when user asks about deep or tangential topics.

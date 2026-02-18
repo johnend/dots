@@ -4,6 +4,8 @@ path = "~/.gitsettings/catppuccin/.gitconfig"
 [core]
 pager = delta
 editor = nvim
+	fsmonitor = true
+	untrackedCache = true
 [interactive]
 diffFilter = delta --color-only
 [delta]
@@ -45,3 +47,5 @@ path = ~/.gitsettings/credentials.conf
 path = ~/.gitsettings/credentials.conf
 [pull]
 rebase = false
+[feature]
+	manyFiles = true

@@ -1,0 +1,38 @@
+---
+description: 'Git: manual only (no auto-commit/push). UI: ask before implementing. Docs: check before using libraries. Apply every request.'
+alwaysApply: true
+---
+
+# Git, UI, and safety (every request)
+
+These apply to **every request** in a session, not only the first.
+
+## Git
+
+- **Manual git only:** Do not auto-commit, auto-push, or create PRs. Do not amend without an explicit request.
+- **Do:** Make code changes, run tests, show `git status` and `git diff` (e.g. with delta). Then wait for approval before any commit/push.
+- **Conventional commits:** Prefer following the commit convention within the repo if there is one. If no such convention exists then follow conventional commits e.g. `fix:`, `feat:`, `chore:`, `docs:`, etc. Imperative, under 72 chars for the first line.
+- **Branch naming:** `<jira project key>-<ticket number>-<summary>` (e.g. `ABC-101-repo-init`).
+- **Force push:** Prefer `--force-with-lease` over `--force`; main branches are under protection rules. **NEVER** force push to main.
+
+## UI / frontend
+
+- **Ask before implementing UI:** Do not implement UI changes without asking first. Offer: "Implement this UI for you, create a basic structure, or just provide guidance?"
+
+## Third-party libraries
+
+- **Check docs before implementing:** Prefer local docs (e.g. `node_modules/<pkg>/README.md`), package README, or official docs (e.g. webfetch). Do not assume library APIs; after a first failure, check docs before trying more workarounds.
+- **When to check:** Before using an unfamiliar library; after a first failure; when building wrappers (check for built-in options first).
+- **Prefer installed** Don't install new dependencies unless absolutely necessary. Read package.json files and other dependency manangement files (where relevant) to see if suitable libraries are already in use.
+
+## Testing and validation
+
+- Run validation/test scripts before declaring success. Use `--dry-run` where appropriate before touching live systems. Re-run checks after changing configs.
+
+## Quick reference (every request)
+
+1. No auto-commit or auto-push.
+2. Ask before implementing UI/frontend.
+3. Check docs for third-party libraries when relevant.
+4. Assess risk before destructive or high-impact operations.
+5. Prefer readability over cleverness; use conventional commits when suggesting messages.

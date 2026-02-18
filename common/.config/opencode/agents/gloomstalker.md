@@ -1,5 +1,5 @@
 ---
-description: Smart context loading agent - reduces token usage by 40-60%
+description: Smart context loader - saves 40-60% tokens
 agent: gloomstalker
 ---
 

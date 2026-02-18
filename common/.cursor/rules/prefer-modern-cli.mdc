@@ -1,0 +1,19 @@
+---
+description: 'When suggesting or running shell/terminal commands, prefer modern CLI tools: rg over grep, fd over find, bat over cat, eza over ls, delta for git diffs, mise for versions.'
+alwaysApply: false
+---
+
+# Prefer modern CLI tools
+
+When you suggest or run shell commands (e.g. search, list files, view diffs, run scripts), prefer these tools:
+
+| Avoid              | Prefer                             | Use for                                    |
+| ------------------ | ---------------------------------- | ------------------------------------------ |
+| `grep`             | `rg` (ripgrep)                     | Content search (fast, respects .gitignore) |
+| `find`             | `fd`                               | File discovery (simpler syntax)            |
+| `cat`              | `bat`                              | Viewing files (syntax highlighting)        |
+| `ls`               | `eza`                              | Listing directories (icons, git status)    |
+| `git diff` (plain) | `git diff` with **delta** as pager | Readable diffs (if delta is configured)    |
+| asdf / nvm / pyenv | **mise**                           | Version management (Node, Python, etc.)    |
+
+Use the Read or Grep tools in the IDE when that’s the right fit; when suggesting commands for the user to run in a terminal, prefer the right-hand column above.

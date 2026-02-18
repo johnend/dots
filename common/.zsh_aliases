@@ -29,9 +29,6 @@ alias "lt"="ls -T --level=4 --ignore-glob='.git'"
 alias "ltg"="ls -T --level=2 --ignore-glob='.git'"
 alias "lat"="ls -Ta --ignore-glob='.git'" # use with caution!
 
-# neovim
-alias "nv"="nvim"
-
 # gh cli
 gh-create() { 
   gh repo create "${1:-$(basename "$PWD")}" --public --source=. --remote=origin
@@ -42,6 +39,14 @@ alias "spt"="spotify_player"
 
 # opencode
 alias "oc"="opencode"
+
+compile_sofle() {
+  if [[ "$(basename "$PWD")" == "qmk_firmware" ]]; then
+    qmk compile -kb sofle -km johnend
+  else
+    echo "🚨 Error: Can only use this alias inside qmk_firmware directory"
+  fi
+}
 
 # Linux specific aliases
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
@@ -54,7 +59,7 @@ fi
 
 # Alternative NeoVim configs
 alias cvim="nvim --clean"
-alias v="qvim"
+alias v="nvim"
 
 # AWS assume role tool (granted)
 alias assume=". assume"

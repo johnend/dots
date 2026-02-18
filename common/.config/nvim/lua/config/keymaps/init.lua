@@ -1,4 +1,5 @@
 return {
+  ai = require(... .. ".ai"),
   buffers = require(... .. ".buffers"),
   general = require(... .. ".general"),
   git = require(... .. ".git"),

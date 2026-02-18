@@ -202,6 +202,18 @@ end, {
   nargs = "?",
 })
 
+-- Save colorscheme when it changes (preserves transparency in theme.json)
+-- and re-apply transparency in the same event to avoid a flash of opaque theme
+vim.api.nvim_create_autocmd("ColorScheme", {
+  group = vim.api.nvim_create_augroup("SaveColorscheme", { clear = true }),
+  callback = function(args)
+    local theme = args.match
+    local colorscheme = require("core.colorscheme")
+    colorscheme.save_state({ colorscheme = theme })
+    colorscheme.reapply_transparency_if_enabled()
+  end,
+})
+
 -- CodeCompanion progress using snacks
 local spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
 local group = vim.api.nvim_create_augroup("CodeCompanionFidgetHooks", { clear = true })

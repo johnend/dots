@@ -1,5 +1,6 @@
 return {
   "folke/noice.nvim",
+  enabled = true,
   event = "VimEnter",
   dependencies = {
     "MunifTanjim/nui.nvim",
@@ -146,6 +147,7 @@ return {
         lsp_doc_border = true,
       },
       cmdline = {
+        view = "cmdline",
         format = {
           cmdline = { icon = Icons.misc.Industry },
           help = { icon = Icons.ui.Lightbulb },

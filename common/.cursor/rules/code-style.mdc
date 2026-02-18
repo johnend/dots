@@ -1,0 +1,43 @@
+---
+description: 'Commenting: explain WHY not WHAT. Readability over cleverness. When to comment vs skip.'
+alwaysApply: true
+---
+
+# Code style and comments
+
+**Readability over cleverness.** Write code that is easy to understand, maintain, and debug.
+
+## Commenting rule
+
+**Explain WHY, not WHAT.** Only add a comment when a competent developer familiar with the domain might not understand _why_ the code exists or _why_ it is written that way.
+
+### Comment when it helps
+
+- Non-obvious workarounds, hacks, or temporal fixes (and when they can be removed).
+- Counter-intuitive logic (e.g. `>` vs `>=` for API/UI boundary reasons).
+- Performance or security rationale that is not obvious from the code.
+- External constraints (browser bugs, API quirks, library behavior).
+- Magic numbers that are not self-explanatory (with a short reason).
+- Complex algorithm choice (why this algorithm, not just what it does).
+
+### Skip comments for
+
+- Standard business logic and self-excribing code.
+- Obvious patterns (e.g. "useEffect to fetch on mount").
+- Type definitions and simple validation that are clear from names.
+- Restating what the code obviously does.
+
+### Quick test
+
+- Is this surprising or something you had to look up? → Comment.
+- Will someone ask "why?" in review? → Comment.
+- Standard practice in the domain? → Skip.
+
+**Summary:** Comment the surprising, not the standard.
+
+## Style preferences
+
+- Prefer explicit over implicit; descriptive names over abbreviations (except well-known: `id`, `url`, `api`).
+- Small, focused functions; single responsibility.
+- Shell scripts: `set -euo pipefail`; UPPER_SNAKE for constants, lowercase_snake for variables/functions.
+- Follow project ESLint/Prettier and existing patterns.

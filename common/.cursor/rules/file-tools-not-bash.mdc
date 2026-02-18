@@ -1,0 +1,17 @@
+---
+description: "Use Read/Write/StrReplace for file content; use bash only for system commands (git, npm, etc.). Don't use sed/awk/cat for editing."
+alwaysApply: false
+---
+
+# File operations: use the right tools
+
+**File content** (read, edit, create, search within files): Use the **file tools** (Read, Write, StrReplace, Grep). They’re built for this, handle permissions, and avoid partial writes.
+
+**System operations** (git, package managers, running commands, process management): Use **bash** (or the terminal).
+
+- **Don’t:** Use `sed`, `awk`, `echo >`, or `cat <<EOF` to edit or create files when you have proper file-editing tools.
+- **Don’t:** Use `cat` or `head` to read file content when you have a Read tool.
+- **Do:** Use absolute paths for file operations when possible to avoid directory confusion.
+- **Do:** Run independent operations in parallel when safe.
+
+Using file tools for file work keeps edits atomic and avoids permission or truncation issues.

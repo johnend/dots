@@ -49,7 +49,7 @@ local options = {
   clipboard = "unnamedplus",
 
   -- more space in the neovim command line for displaying message
-  cmdheight = 2,
+  cmdheight = 1,
 
   -- mostly just for cmp
   completeopt = { "menuone", "noselect" },

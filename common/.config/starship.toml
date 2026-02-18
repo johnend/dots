@@ -4,7 +4,7 @@
 # Global Settings
 # ————————————————————————————————————————————————————
 add_newline = true
-command_timeout = 750
+command_timeout = 1500
 scan_timeout = 100
 
 # ————————————————————————————————————————————————————
@@ -88,6 +88,7 @@ Linux = "󰌽 "
 [directory]
 truncation_length = 3
 truncate_to_repo = true
+truncation_symbol = ".."
 read_only = "󰌾"
 home_symbol = "~"
 repo_root_style = "bold cyan"
@@ -124,6 +125,8 @@ modified = '[ ](bold yellow)[${count} ](bold yellow)'
 staged = '[ ](bold green)[${count} ](bold green)'
 renamed = '[ ](bold blue)[${count} ](bold blue)'
 deleted = '[ ](bold red)[${count} ](bold red)'
+# Performance optimization for large monorepos
+ignore_submodules = true
 
 # ————————————————————————————————————————————————————
 # Language/Tool Versions - only show when relevant

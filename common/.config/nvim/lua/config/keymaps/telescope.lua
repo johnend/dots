@@ -5,7 +5,7 @@ return {
   {
     "<leader>sc",
     function()
-      require("colorscheme-persist").picker()
+      require("config.telescope-colorscheme").colorscheme()
     end,
     desc = "Colorschemes",
   },

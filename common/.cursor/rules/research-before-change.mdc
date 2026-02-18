@@ -1,0 +1,12 @@
+---
+description: "For complex work (features, bugs, integrations, config), discover and verify before changing. For simple known ops, execute directly."
+alwaysApply: false
+---
+
+# Research before change
+
+**Complex work (discover and verify first):** Implementing features, fixing non-trivial bugs, dependency or config changes, debugging integrations, data flow or architectural changes. Before editing: find and read relevant notes/docs (then verify against code), map the system (data flow, dependencies, existing similar code), inspect existing implementations. If you can leverage or extend existing code instead of adding new, prefer that. Then verify your understanding and check for blockers (ambiguous requirements, security impact, multiple valid designs). Only after that: implement. After completion, update docs/notes to match reality.
+
+**Simple operations (execute directly):** Git ops on known repos, reading a file at a known path, running a known command, installing a known dependency, single config change when you’ve already verified the target. No need to run a full discovery protocol.
+
+**When in doubt:** If “not found” or “doesn’t exist” is possible, treat it as complex—discover thoroughly first. After research, proceed with implementation without asking permission for the implementation itself (our other rules still apply for git, UI, and destructive ops).

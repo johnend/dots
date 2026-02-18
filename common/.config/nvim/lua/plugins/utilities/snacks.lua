@@ -15,7 +15,7 @@ return {
       function()
         Snacks.scratch.select()
       end,
-      desc = "Scratch buffer",
+      desc = "Scratch buffers",
     },
   },
 
@@ -80,7 +80,7 @@ return {
       explorer = { enabled = false }, -- could replace neo-tree looks nice tbh
       git = { enabled = false },
       indent = {
-        enabled = true,
+        enabled = false,
         only_scope = true,
         only_current = true,
         animate = {
@@ -100,7 +100,7 @@ return {
       rename = { enabled = false },
       scope = { enabled = false },
       scroll = { enabled = false },
-      terminal = { enabled = false },
+      terminal = { enabled = true, win = { position = "float", border = UI.border } },
       toggle = { enabled = false },
     }
   end,

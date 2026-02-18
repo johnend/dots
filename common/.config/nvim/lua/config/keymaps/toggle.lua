@@ -31,11 +31,18 @@ return {
     desc = "AutoSave",
   },
   {
+    "<leader>tb",
+    function()
+      require("core.colorscheme").toggle_transparency()
+    end,
+    desc = "Transparency",
+  },
+  {
     "<leader>tc",
     function()
-      toggle_notify("colorizer_enabled", "ColorizerToggle", "Colorizer", true)
+      toggle_notify("colorizer_enabled", "ColorizerToggle", "Colorizer", false)
     end,
-    desc = "Toggle colorizer",
+    desc = "Colorizer",
   },
   {
     "<leader>td",
@@ -71,6 +78,11 @@ return {
   {
     "<leader>ti",
     function()
+      -- Initialize from Snacks state if not set
+      if vim.g.indent_enabled == nil then
+        vim.g.indent_enabled = Snacks.indent.enabled
+      end
+
       vim.g.indent_enabled = not vim.g.indent_enabled
 
       if vim.g.indent_enabled then
@@ -110,6 +122,11 @@ return {
   {
     "<leader>tt",
     function()
+      -- Initialize from Snacks state if not set
+      if vim.g.twilight_enabled == nil then
+        vim.g.twilight_enabled = Snacks.dim.enabled
+      end
+
       vim.g.twilight_enabled = not vim.g.twilight_enabled
 
       if vim.g.twilight_enabled then

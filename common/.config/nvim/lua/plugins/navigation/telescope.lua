@@ -5,7 +5,7 @@ return {
   event = "VeryLazy",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "nvim-treesitter/nvim-treesitter", -- managed by core.plugins.syntax.treesitter
+    "nvim-treesitter/nvim-treesitter", -- managed by plugins.syntax.treesitter
     {
       "nvim-telescope/telescope-fzf-native.nvim",
       event = "VeryLazy",
@@ -35,7 +35,6 @@ return {
     ---| "ivy"      # see `telescope.themes.get_ivy()`
     ---| "center"   # use the default telescope theme
 
-    local dropdown_config = { theme = "dropdown", layout_config = { width = 0.8, height = 0.3 } }
     local ignore_patterns = {
       -- folders
       "^node_modules/",
@@ -59,18 +58,27 @@ return {
 
     local actions = require "telescope.actions"
 
+    local center_config = {
+      layout_strategy = "horizontal",
+      layout_config = {
+        prompt_position = "top",
+        height = 0.5,
+        width = 0.6,
+        preview_width = 0.5,
+      },
+      sorting_strategy = "ascending",
+    }
+
     telescope.setup {
-      theme = "dropdown", ---@type telescope_themes
       defaults = {
         prompt_prefix = " " .. Icons.ui.Telescope .. "  ",
-        selection_caret = " " .. Icons.ui.Forward .. "  ",
-        entry_prefix = " ",
+        selection_caret = Icons.ui.HandPointRight .. " ",
+        -- entry_prefix = " ",
         initial_mode = "insert",
         selection_strategy = "reset",
-        sorting_strategy = "descending",
+        path_display = { "smart" },
         layout_config = {},
         file_ignore_patterns = ignore_patterns,
-        -- path_display = { "" },
         color_devicons = true,
         set_env = { ["COLORTERM"] = "truecolor" },
         mappings = {
@@ -91,28 +99,37 @@ return {
       },
       -- TODO: figure out how to change the layouts of the pickers (increased width for preview for example)
       pickers = {
-        help_tags = {
-          theme = dropdown_config.theme,
-          layout_config = dropdown_config.layout_config,
-        },
-        keymaps = {
-          theme = dropdown_config.theme,
-          layout_config = dropdown_config.layout_config,
-          selection_caret = Icons.ui.Forward,
-        },
+        help_tags = center_config,
+        diagnostics = center_config,
         commands = {
-          theme = dropdown_config.theme,
-          layout_config = dropdown_config.layout_config,
-          selection_caret = Icons.ui.Forward,
+          layout_strategy = center_config.layout_strategy,
+          layout_config = {
+            prompt_position = "top",
+            height = 0.5,
+            width = 0.6,
+          },
+          previewer = false,
+          sorting_strategy = "ascending",
         },
+        keymaps = center_config,
         find_files = {
-          theme = dropdown_config.theme,
-          sorting_strategy = nil,
-          layout_config = dropdown_config.layout_config,
+          layout_strategy = center_config.layout_strategy,
+          layout_config = center_config.layout_config,
+          sorting_strategy = "ascending",
+          find_command = find_command,
+          hidden = true,
+        },
+        git_files = {
+          layout_strategy = center_config.layout_strategy,
+          layout_config = center_config.layout_config,
+          sorting_strategy = "ascending",
           find_command = find_command,
           hidden = true,
         },
         live_grep = {
+          layout_strategy = center_config.layout_strategy,
+          layout_config = center_config.layout_config,
+          sorting_strategy = "ascending",
           additional_args = function()
             return { "--hidden" }
           end,
@@ -121,34 +138,22 @@ return {
           theme = "dropdown",
           previewer = false,
         },
-        colorscheme = {
-          theme = dropdown_config.theme,
-          layout_config = dropdown_config.layout_config,
-          enable_preview = true,
-        },
+        colorscheme = center_config,
         grep_string = {
-          theme = dropdown_config.theme,
+          layout_strategy = center_config.layout_strategy,
+          layout_config = center_config.layout_config,
+          sorting_strategy = "ascending",
           file_ignore_patterns = vim.list_extend(vim.deepcopy(ignore_patterns), {
             "package%-lock%.json",
             "yarn%.lock",
           }),
         },
-        diagnostics = {
-          theme = "dropdown",
-        },
-        oldfiles = {
-          theme = dropdown_config.theme,
-          layout_config = dropdown_config.layout_config,
-        },
+        oldfiles = center_config,
         buffers = {
+          layout_strategy = center_config.layout_strategy,
+          layout_config = center_config.layout_config,
+          sorting_strategy = "ascending",
           initial_mode = "normal",
-          theme = dropdown_config.theme,
-          layout_config = dropdown_config.layout_config,
-        },
-        current_buffer_fuzzy_find = {
-          previewer = false,
-          theme = dropdown_config.theme,
-          layout_config = dropdown_config.layout_config,
         },
       },
     }

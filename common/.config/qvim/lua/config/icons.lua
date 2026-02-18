@@ -170,6 +170,7 @@ local M = {
     Hook = "󰛢",
     Industry = "󱨚",
     Image = "󰥷",
+    Indent = "",
     Lazy = "",
     Mason = "󱌢",
     Meditate = "󱅻",

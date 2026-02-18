@@ -1,0 +1,15 @@
+---
+description: "Verify against actual code and config; when docs and reality disagree, trust code. Update docs after completing work."
+alwaysApply: false
+---
+
+# Trust code over docs
+
+**Documentation can be outdated.** The source of truth is: the codebase as it exists, live config/env, and actual behaviour when run.
+
+- **Before changing:** Read docs for intent, then **verify against actual code and config**. If they disagree, trust the code. Fix or update docs after you complete the task.
+- **Applies to:** READMEs, in-code comments, JSDoc, ADRs, wikis, any written docs. Check workspace notes, project .md files, and (if relevant) ~/Documents/ for existing notes—use as context but verify against code.
+- **After work:** Update existing notes/docs to match what you changed; don’t create duplicate docs. Use format YYYY-MM-DD-slug.md when creating new notes.
+- **In-code comments:** For new code, document **why** decisions were made, not just what the code does.
+
+When in doubt, run the code or inspect the config. The code never lies; docs often do.

@@ -1,3 +1,8 @@
+---
+description: Researcher - gathers docs, PRs, external info
+agent: chronicler
+---
+
 # Chronicler 📚 - Research & Documentation Specialist
 
 **Model:** `github-copilot/claude-sonnet-4.5`  

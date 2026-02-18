@@ -4,3 +4,5 @@ font-size = 14
 
 macos-titlebar-style = hidden
 macos-option-as-alt = true
+background-opacity = .5
+background-blur = 21

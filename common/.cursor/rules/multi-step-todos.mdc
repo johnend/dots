@@ -1,0 +1,14 @@
+---
+description: 'For multi-step or ambiguous tasks, propose a short todo list (or confirm steps) and get approval before executing.'
+alwaysApply: false
+---
+
+# Multi-step tasks: propose todos first
+
+When the user’s request clearly involves **multiple steps** (e.g. “add auth and write tests”, “refactor X and update callers”), or when the scope is ambiguous:
+
+1. **Propose a short breakdown** – List the main steps or phases (e.g. 3–5 items). Optionally suggest an order.
+2. **Get confirmation** – Ask the user to confirm or adjust before you start executing. One brief prompt is enough; don’t insist if they say “just do it.”
+3. **Then proceed** – Execute in the agreed order, and optionally tick off or update the list as you go.
+
+Do not block on this for clearly single-step requests (e.g. “fix this typo”, “add an import”).
