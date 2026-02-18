@@ -10,22 +10,22 @@
     "vimMode": true
   },
   "model": {
-    "modelId": "claude-4.6-opus-high-thinking",
-    "displayModelId": "opus-4.6-thinking",
-    "displayName": "Claude 4.6 Opus (Thinking)",
-    "displayNameShort": "Opus 4.6 (Thinking)",
+    "modelId": "claude-4.6-sonnet-medium",
+    "displayModelId": "sonnet-4.6",
+    "displayName": "Claude 4.6 Sonnet",
+    "displayNameShort": "Sonnet 4.6",
     "aliases": [
-      "opus-4.6-thinking",
-      "claude-4.6-opus-thinking"
+      "sonnet",
+      "sonnet-4.6"
     ],
     "maxMode": false
   },
-  "hasChangedDefaultModel": false,
+  "hasChangedDefaultModel": true,
   "maxMode": false,
   "privacyCache": {
     "ghostMode": true,
     "privacyMode": 2,
-    "updatedAt": 1771347653322
+    "updatedAt": 1771405806641
   },
   "authInfo": {
     "email": "john.enderby@fanduel.com",
