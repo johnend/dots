@@ -88,7 +88,7 @@ Linux = "󰌽 "
 [directory]
 truncation_length = 3
 truncate_to_repo = true
-truncation_symbol = ".."
+truncation_symbol = "../"
 read_only = "󰌾"
 home_symbol = "~"
 repo_root_style = "bold cyan"
