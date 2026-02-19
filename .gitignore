@@ -37,4 +37,4 @@ common/.config/opencode/context/work/
 # Ignore node_modules and build artifacts everywhere
 **/node_modules/
 **/dist/
-/common/.config/cursor/chats/1963e78ef01f626c14090dd11316a79f
+/common/.config/cursor/chats/*
