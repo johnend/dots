@@ -11,6 +11,7 @@ return {
     },
     { "<leader>/", "<Plug>(comment_toggle_linewise_current)", desc = "Comment toggle current line" },
     { "<leader>;", "<cmd>Alpha<cr>", desc = "Dashboard" },
-    { "<leader>w", "<cmd>write<cr>", desc = "Write" },
+    { "<leader>w", "<cmd>w<cr>", desc = "Write" },
+    { "<leader>q", "<cmd>q<cr>", desc = "Quit" },
   },
 }
