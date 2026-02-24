@@ -22,8 +22,8 @@
 ;; accept. For example:
 ;;
 (setq doom-font (font-spec :family "Monaspace Neon" :size 14 :weight 'regular)
-     doom-variable-pitch-font (font-spec :family "UbuntuSans Nerd Font" :size 14)
-     doom-big-font (font-spec :family "Monaspace Neon" :size 24))
+      doom-variable-pitch-font (font-spec :family "UbuntuSans Nerd Font" :size 14)
+      doom-big-font (font-spec :family "Monaspace Neon" :size 24))
 
 (custom-set-faces!
   '(italic :family "Monaspace Radon" :slant italic)

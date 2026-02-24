@@ -29,6 +29,12 @@ export PATH="$HOME/.local/share/mise/shims:$PATH"
 # Bun
 export PATH="$PATH:$HOME/.bun/bin"
 
+# DOOM
+if command -v emacs &>/dev/null; then
+    export DOOMDIR="$HOME/.config/doom"
+    export PATH="$HOME/.config/emacs/bin:$PATH"
+fi
+
 # ────────────────────────────────────────────────────────────────────────────────
 # macOS-specific paths
 # ────────────────────────────────────────────────────────────────────────────────
@@ -52,11 +58,14 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   
   # Language-specific paths
   export PATH="$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin"
-  export PATH="/home/johne/.cache/.bun/bin:$PATH"
+  export PATH="$HOME/.cache/.bun/bin:$PATH"
   
   # Go (macOS gets this from /etc/paths.d/go)
   [[ -d "/usr/local/go/bin" ]] && [[ ":$PATH:" != *":/usr/local/go/bin:"* ]] && export PATH="$PATH:/usr/local/go/bin"
 fi
+
+: "${GOPATH:-$HOME/go}"
+[[ -d "$GOPATH/bin" ]] && export PATH="$GOPATH/bin:$PATH"
 
 # ────────────────────────────────────────────────────────────────────────────────
 # Homebrew Python (highest priority if available)
