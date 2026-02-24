@@ -10,4 +10,7 @@ idiomatic_version_file_enable_tools = ["node", "python", "ruby", "java"]
 task_disable_paths = ["/"]
 
 [tools]
+node = "latest"
+zig = "latest"
+go = "latest"
 yarn = "1.22"
