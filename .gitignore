@@ -38,3 +38,4 @@ common/.config/opencode/context/work/
 **/node_modules/
 **/dist/
 /common/.config/cursor/chats/*
+/common/.config/emacs
