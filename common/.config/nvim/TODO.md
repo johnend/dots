@@ -17,6 +17,12 @@
   - [x] Line 166: `menu.border` → `UI.borders.completion`
   - [x] Line 252: `signature.window.border` → `UI.borders.signature`
 
+- [x] **UI highlight architecture cleanup**
+  - [x] Keep transparency policy in `lua/config/ui/transparency.lua`
+  - [x] Add non-transparency overrides in `lua/config/ui/highlights-overrides.lua`
+  - [x] Move WhichKey icon underline/background normalization into highlight overrides
+  - [x] Keep Gitsigns fg-preservation logic stable under transparency
+
 ### 🔨 In Progress (10 remaining)
 
 #### High Priority (Most Visible)

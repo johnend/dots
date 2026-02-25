@@ -1,4 +1,4 @@
--- Highlights that benefit make sense to have transparency
+-- UI highlight policies for transparency.
 local M = {}
 
 M.default = {
@@ -20,6 +20,8 @@ M.default = {
 }
 
 M.preserve_fg_highlights = {
+  -- These groups preserve foreground/style and only get transparent background
+  -- when they already define one. This avoids clobbering link-derived fg colors.
   "GitSignsAdd",
   "GitSignsChange",
   "GitSignsDelete",
@@ -80,5 +82,19 @@ M.preserve_fg_highlights = {
   "GitSignsDeleteVirtLnInLine",
   "GitSignsVirtLnum",
 }
+
+function M.apply_transparency_highlights()
+  for _, highlight in ipairs(M.default) do
+    vim.api.nvim_set_hl(0, highlight, { bg = "none" })
+  end
+
+  for _, highlight in ipairs(M.preserve_fg_highlights) do
+    local current = vim.api.nvim_get_hl(0, { name = highlight, link = false })
+    if current and next(current) ~= nil and current.bg ~= nil then
+      local next_hl = vim.tbl_extend("force", {}, current, { bg = "none" })
+      vim.api.nvim_set_hl(0, highlight, next_hl)
+    end
+  end
+end
 
 return M

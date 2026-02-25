@@ -38,21 +38,8 @@ function M.save_state(updates)
 end
 
 local function apply_transparency_highlights()
-  local highlights = require("config.ui.transparency").default
-  local preserve_fg_highlights = require("config.ui.transparency").preserve_fg_highlights
-
-  for _, highlight in pairs(highlights) do
-    vim.api.nvim_set_hl(0, highlight, { bg = "none" })
-  end
-
-  for _, highlight in pairs(preserve_fg_highlights) do
-    local current = vim.api.nvim_get_hl(0, { name = highlight })
-    vim.api.nvim_set_hl(
-      0,
-      highlight,
-      { fg = current.fg and ("#" .. string.format("%06x", current.fg)) or nil, bg = "none" }
-    )
-  end
+  require("config.ui.transparency").apply_transparency_highlights()
+  require("config.ui.highlights-overrides").fix_whichkey_icon_highlights(true)
 end
 
 function M.apply()
@@ -86,12 +73,12 @@ function M.toggle_transparency()
   local currently_transparent = current_bg == "" or current_bg == "NONE" or current_bg == "-1"
 
   if currently_transparent then
-    M.save_state({ transparent = false })
+    M.save_state { transparent = false }
     M.apply()
     vim.notify("Background: Colorscheme", vim.log.levels.INFO)
   else
     apply_transparency_highlights()
-    M.save_state({ transparent = true })
+    M.save_state { transparent = true }
     vim.notify("Background: Transparent (persisted)", vim.log.levels.INFO)
   end
 end
