@@ -11,7 +11,7 @@ scan_timeout = 100
 # Format - customize what's shown in the prompt
 # ————————————————————————————————————————————————————
 format = """
-[┌─ ](bold blue)$sudo$username$hostname$os$directory$git_branch$git_commit$git_state$git_status$fill$nodejs$python$java$ruby$golang$rust$terraform$nix_shell$kubernetes$aws$env_var$jobs$cmd_duration
+[┌─ ](bold blue)$username$hostname$os$directory$git_branch$git_commit$git_state$git_status$fill$nodejs$python$java$ruby$golang$rust$terraform$nix_shell$kubernetes$aws$env_var$jobs$cmd_duration
 [└─ ](bold blue)$status${custom.vim_mode}$character"""
 
 right_format = """"""
@@ -30,6 +30,7 @@ error_symbol = "[❯](bold red)"
 [custom.vim_mode]
 description = "Vim mode indicator"
 format = "$output"
+ignore_timeout = true
 command = '''
 case "$STARSHIP_VIM_MODE" in
   cmd) printf "\033[1;35m \033[0m";;  # magenta NORMAL
@@ -183,7 +184,7 @@ style = "bold blue"
 # Sudo - indicate sudo credentials are cached
 # ————————————————————————————————————————————————————
 [sudo]
-disabled = false
+disabled = true
 format = "[$symbol]($style) "
 symbol = "󱢽"
 style = "bold red"
