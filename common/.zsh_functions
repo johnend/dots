@@ -79,46 +79,62 @@ function brzf() {
 
   while [[ "$#" -gt 0 ]]; do
     case "$1" in
-      --rm|-r)
-        cmd="uninstall"
-        ;;
-      --cask|-c)
-        cmd="cask"
-        ;;
-      --help|-h)
-        echo "brzf: Interactive Homebrew with fuzzy search"
-        echo ""
-        echo "Usage:"
-        echo "  brzf [query]             Search and install package (default)"
-        echo "  brzf -r | --rm           Fuzzy uninstall installed package"
-        echo "  brzf -c | --cask [query] Search and install GUI app (cask)"
-        echo "  brzf -h | --help         Show this help message"
-        return 0
-        ;;
-      *)
-        arg="$1"
-        ;;
+    --rm | -r)
+      cmd="uninstall"
+      ;;
+    --cask | -c)
+      cmd="cask"
+      ;;
+    --help | -h)
+      echo "brzf: Interactive Homebrew with fuzzy search"
+      echo ""
+      echo "Usage:"
+      echo "  brzf [query]             Search and install package (default)"
+      echo "  brzf -r | --rm           Fuzzy uninstall installed package"
+      echo "  brzf -c | --cask [query] Search and install GUI app (cask)"
+      echo "  brzf -h | --help         Show this help message"
+      return 0
+      ;;
+    *)
+      arg="$1"
+      ;;
     esac
     shift
   done
 
   case "$cmd" in
-      uninstall)
-        local choice
-choice=$(brew list | fzf --ansi --height=40% --prompt="❌ brzf: Uninstall > " --preview 'echo {}')
-          [[ -n "$choice" ]] && echo "🧼 Uninstalling $choice..." && brew uninstall "$choice" || echo "❌ No package selected."
-        ;;
+  uninstall)
+    local choice
+    choice=$(brew list | fzf --ansi --height=40% --prompt="❌ brzf: Uninstall > " --preview 'echo {}')
+    [[ -n "$choice" ]] && echo "🧼 Uninstalling $choice..." && brew uninstall "$choice" || echo "❌ No package selected."
+    ;;
 
-      cask)
-        local choice
-choice=$(brew search --casks --desc "$arg" 2>&1 | grep -v 'Warning: Use `--eval-all`' | awk '{printf "\033[1m%s\033[0m \033[2m%s\033[0m\n", $1, substr($0, index($0,$2))}' | fzf --ansi --height=40% --prompt="🖥️ brzf: Cask > ")
-            [[ -n "$choice" ]] && pkg=$(echo "$choice" | awk '{print $1}' | sed 's/:$//') && echo "📦 Installing cask: $pkg..." && brew install --cask "$pkg" || echo "❌ No cask selected."
-        ;;
+  cask)
+    local choice
+    choice=$(brew search --casks --desc "$arg" 2>&1 | grep -v 'Warning: Use `--eval-all`' | awk '{printf "\033[1m%s\033[0m \033[2m%s\033[0m\n", $1, substr($0, index($0,$2))}' | fzf --ansi --height=40% --prompt="🖥️ brzf: Cask > ")
+    [[ -n "$choice" ]] && pkg=$(echo "$choice" | awk '{print $1}' | sed 's/:$//') && echo "📦 Installing cask: $pkg..." && brew install --cask "$pkg" || echo "❌ No cask selected."
+    ;;
 
-      *)
-        local choice
-choice=$(brew search --desc "$arg" 2>&1 | grep -v 'Warning: Use `--eval-all`' | awk '{printf "\033[1m%s\033[0m \033[2m%s\033[0m\n", $1, substr($0, index($0,$2))}' | fzf --ansi --height=40% --prompt="🍺 brzf: Install > ")
-            [[ -n "$choice" ]] && pkg=$(echo "$choice" | awk '{print $1}' | sed 's/:$//') && echo "🔧 Installing $pkg..." && brew install "$pkg" || echo "❌ No package selected."
-        ;;
+  *)
+    local choice
+    choice=$(brew search --desc "$arg" 2>&1 | grep -v 'Warning: Use `--eval-all`' | awk '{printf "\033[1m%s\033[0m \033[2m%s\033[0m\n", $1, substr($0, index($0,$2))}' | fzf --ansi --height=40% --prompt="🍺 brzf: Install > ")
+    [[ -n "$choice" ]] && pkg=$(echo "$choice" | awk '{print $1}' | sed 's/:$//') && echo "🔧 Installing $pkg..." && brew install "$pkg" || echo "❌ No package selected."
+    ;;
   esac
+}
+
+#######################################
+# Clone repo with fzf
+#######################################
+
+function cloner() {
+  if ! command -v gh &>/dev/null; then
+    echo "GitHub CLI is not installed."
+    return 1
+  fi
+
+  local choice
+  choice=$(gh repo list | awk '{printf "\033[1m%s\033[0m \033[2m%s\033[0m\n", $1, substr($0, index($0,$2))}' | fzf --ansi --height=40% --prompt="Choose a repo to clone:" --preview 'echo {}')
+
+  [[ -n "$choice" ]] && repo=$(echo "$choice" | awk '{print $1}') && echo "Cloning $repo..." && gh repo clone "$repo" || echo "No repo selected."
 }
