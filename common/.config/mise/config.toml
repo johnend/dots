@@ -9,8 +9,3 @@ idiomatic_version_file_enable_tools = ["node", "python", "ruby", "java"]
 # Tasks can still be used in specific directories by creating mise.toml with [tasks]
 task_disable_paths = ["/"]
 
-[tools]
-node = "latest"
-zig = "latest"
-go = "latest"
-yarn = "1.22"

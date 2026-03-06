@@ -1,0 +1,6 @@
+[tools]
+node = "latest"
+zig = "latest"
+go = "latest"
+yarn = "1.22"
+codex = "latest"
