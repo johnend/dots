@@ -1,0 +1,15 @@
+[Unit]
+Description=Ghostty
+After=graphical-session.target
+After=dbus.socket
+Requires=dbus.socket
+
+[Service]
+Type=notify-reload
+ReloadSignal=SIGUSR2
+BusName=com.mitchellh.ghostty
+Environment=GTK_THEME=Adwaita
+ExecStart=/usr/bin/ghostty --gtk-single-instance=true --initial-window=false
+
+[Install]
+WantedBy=graphical-session.target
