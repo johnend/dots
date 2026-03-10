@@ -1,6 +1,7 @@
 .stow-local-ignore
 
 # btop
+common/.config/btop/btop.conf
 common/.config/btop/btop.log
 
 # K9s ignores
