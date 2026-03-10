@@ -39,3 +39,22 @@ common/.config/opencode/context/work/
 **/dist/
 /common/.config/cursor/chats/*
 /common/.config/emacs
+
+# Codex runtime state
+common/.codex/auth.json
+common/.codex/history.jsonl
+common/.codex/log/
+common/.codex/logs_*.sqlite
+common/.codex/logs_*.sqlite-shm
+common/.codex/logs_*.sqlite-wal
+common/.codex/models_cache.json
+common/.codex/sessions/
+common/.codex/shell_snapshots/
+common/.codex/state_*.sqlite
+common/.codex/state_*.sqlite-shm
+common/.codex/state_*.sqlite-wal
+common/.codex/tmp/
+common/.codex/version.json
+common/.codex/.personality_migration
+common/.codex/skills/.system/
+common/.local/bin/claude

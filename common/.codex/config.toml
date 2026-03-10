@@ -1,4 +1,4 @@
-model = "gpt-5.3-codex"
+model = "gpt-5.4"
 model_reasoning_effort = "medium"
 
 [projects."/Users/john.enderby"]
@@ -6,3 +6,15 @@ trust_level = "trusted"
 
 [projects."/Users/john.enderby/Developer/personal/dots"]
 trust_level = "trusted"
+
+[projects."/home/johne"]
+trust_level = "trusted"
+
+[projects."/home/johne/Developer/dots"]
+trust_level = "trusted"
+
+[projects."/home/johne/Developer/the-future"]
+trust_level = "trusted"
+
+[notice.model_migrations]
+"gpt-5.3-codex" = "gpt-5.4"
