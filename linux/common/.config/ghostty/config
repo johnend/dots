@@ -3,4 +3,14 @@ config-file = ./config_base
 async-backend = epoll
 
 window-decoration = false
+
 font-size = 10
+
+font-family = Monaspace Neon Frozen
+font-family-bold = Monaspace Neon Frozen SemiBold
+font-family-italic = Monaspace Radon Frozen
+font-family-bold-italic = Monaspace Radon Frozen SemiBold
+font-family = Symbols Nerd Font
+font-feature = dlig, liga, ss01, ss02, ss03, ss04, ss05, ss06, ss07, ss08, ss09, ss10
+# font-thicken = true
+adjust-cell-height = 2
