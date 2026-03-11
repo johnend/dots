@@ -16,5 +16,8 @@ trust_level = "trusted"
 [projects."/home/johne/Developer/the-future"]
 trust_level = "trusted"
 
+[projects."/home/johne/Documents/Obsidian"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 "gpt-5.3-codex" = "gpt-5.4"

@@ -22,6 +22,7 @@ Apply these rules on every relevant task:
 
 5. Research and verification:
 - For complex changes, inspect code paths and relevant docs before editing.
+- Use the `research-protocol` skill when the task involves non-trivial implementation, integration, config, or architectural risk.
 - Trust code/config over stale documentation when they differ.
 
 6. Quality gate:
