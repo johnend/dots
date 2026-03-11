@@ -7,6 +7,9 @@ trust_level = "trusted"
 [projects."/Users/john.enderby/Developer/personal/dots"]
 trust_level = "trusted"
 
+[projects."/Users/john.enderby/.cursor"]
+trust_level = "trusted"
+
 [projects."/home/johne"]
 trust_level = "trusted"
 
@@ -19,5 +22,23 @@ trust_level = "trusted"
 [projects."/home/johne/Documents/Obsidian"]
 trust_level = "trusted"
 
+[projects."/Users/john.enderby/Developer/fanduel/raccoons/aw-dynamic-web"]
+trust_level = "trusted"
+
+[projects."/Users/john.enderby/Developer/fanduel/raccoons/account_e2e_cypress"]
+trust_level = "trusted"
+
+[projects."/Users/john.enderby/Developer/fanduel/raccoons/refer-a-friend-service"]
+trust_level = "trusted"
+
+[projects."/Users/john.enderby/Developer/fanduel/raccoons/raf-app"]
+trust_level = "trusted"
+
+[projects."/Users/john.enderby/Developer/fanduel/sportsbook"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 "gpt-5.3-codex" = "gpt-5.4"
+
+[tui]
+theme = "catppuccin-mocha"
