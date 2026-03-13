@@ -1,0 +1,6 @@
+interface:
+  display_name: "Debug With Me"
+  short_description: "Debug issues with a structured workflow"
+  default_prompt: "Use $debug-with-me to investigate this bug with hypotheses, narrowing, and scoped verification."
+policy:
+  allow_implicit_invocation: true

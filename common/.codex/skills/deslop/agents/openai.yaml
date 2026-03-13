@@ -1,0 +1,6 @@
+interface:
+  display_name: "Deslop"
+  short_description: "Remove AI-style code and test slop"
+  default_prompt: "Use $deslop to clean up this patch without changing intended behavior."
+policy:
+  allow_implicit_invocation: true

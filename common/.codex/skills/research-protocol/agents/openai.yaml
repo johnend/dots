@@ -1,0 +1,6 @@
+interface:
+  display_name: "Research Protocol"
+  short_description: "Research first for risky repo changes"
+  default_prompt: "Use $research-protocol to inspect the code and verify the change surface before implementing."
+policy:
+  allow_implicit_invocation: true

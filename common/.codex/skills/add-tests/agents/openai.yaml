@@ -1,0 +1,6 @@
+interface:
+  display_name: "Add Tests"
+  short_description: "Add focused, meaningful test coverage"
+  default_prompt: "Use $add-tests to add focused tests for this change."
+policy:
+  allow_implicit_invocation: true

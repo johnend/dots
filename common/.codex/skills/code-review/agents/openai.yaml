@@ -1,0 +1,6 @@
+interface:
+  display_name: "Code Review"
+  short_description: "Review code for bugs and regressions"
+  default_prompt: "Use $code-review to review this patch for bugs, regressions, and missing tests."
+policy:
+  allow_implicit_invocation: true

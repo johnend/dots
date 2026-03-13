@@ -1,0 +1,6 @@
+interface:
+  display_name: "Pre-Commit Cleanup"
+  short_description: "Tighten a patch before review or commit"
+  default_prompt: "Use $pre-commit-cleanup to tighten this patch before review."
+policy:
+  allow_implicit_invocation: true

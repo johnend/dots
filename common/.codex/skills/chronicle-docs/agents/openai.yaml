@@ -1,0 +1,6 @@
+interface:
+  display_name: "Chronicle Docs"
+  short_description: "Write clear Obsidian technical docs"
+  default_prompt: "Use $chronicle-docs to draft or update this technical note for the Obsidian vault."
+policy:
+  allow_implicit_invocation: true

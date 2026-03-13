@@ -1,0 +1,6 @@
+interface:
+  display_name: "Implement Brief"
+  short_description: "Create a concise implementation handoff"
+  default_prompt: "Use $implement-brief to produce a concise handoff brief for this work."
+policy:
+  allow_implicit_invocation: true

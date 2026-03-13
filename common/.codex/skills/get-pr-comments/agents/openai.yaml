@@ -1,0 +1,6 @@
+interface:
+  display_name: "Get PR Comments"
+  short_description: "Summarize pull request review feedback"
+  default_prompt: "Use $get-pr-comments to fetch and summarize the feedback on the current pull request."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Check Compiler Errors"
+  short_description: "Fix compile and type-check failures"
+  default_prompt: "Use $check-compiler-errors to run the right checks and fix the highest-confidence failures first."
+policy:
+  allow_implicit_invocation: true

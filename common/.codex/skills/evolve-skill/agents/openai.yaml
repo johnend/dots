@@ -1,0 +1,6 @@
+interface:
+  display_name: "Evolve Skill"
+  short_description: "Turn repeated work into better skills"
+  default_prompt: "Use $evolve-skill to update the right skill from this feedback or repeated workflow."
+policy:
+  allow_implicit_invocation: true

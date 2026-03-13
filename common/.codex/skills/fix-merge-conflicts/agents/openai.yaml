@@ -1,0 +1,6 @@
+interface:
+  display_name: "Fix Merge Conflicts"
+  short_description: "Resolve merge conflicts with minimal edits"
+  default_prompt: "Use $fix-merge-conflicts to resolve these conflicts and leave the branch buildable."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Test Fix"
+  short_description: "Diagnose and fix failing tests"
+  default_prompt: "Use $test-fix to diagnose these failing tests and re-validate the fix."
+policy:
+  allow_implicit_invocation: true
