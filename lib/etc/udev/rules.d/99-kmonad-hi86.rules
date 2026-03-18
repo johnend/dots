@@ -1,0 +1,3 @@
+# Start the hi86 KMonad user unit when the external keyboard appears.
+# Match on the stable by-id symlink so the rule survives event number changes.
+ACTION=="add", SUBSYSTEM=="input", KERNEL=="event*", ENV{DEVLINKS}=="*usb-BY_Tech_Gaming_Keyboard-event-kbd*", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}+="kmonad@hi86.service"
