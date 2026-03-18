@@ -30,9 +30,9 @@ export PATH="$HOME/.local/share/mise/shims:$PATH"
 export PATH="$PATH:$HOME/.bun/bin"
 
 # DOOM
-if command -v emacs &>/dev/null; then
-    export DOOMDIR="$HOME/.config/doom"
-    export PATH="$HOME/.config/emacs/bin:$PATH"
+if [[ -d "$HOME/.config/emacs/bin" ]]; then
+  export DOOMDIR="$HOME/.config/doom"
+  export PATH="$HOME/.config/emacs/bin:$PATH"
 fi
 
 # ────────────────────────────────────────────────────────────────────────────────
@@ -68,13 +68,6 @@ fi
 [[ -d "$GOPATH/bin" ]] && export PATH="$GOPATH/bin:$PATH"
 
 # ────────────────────────────────────────────────────────────────────────────────
-# Homebrew Python (highest priority if available)
-# ────────────────────────────────────────────────────────────────────────────────
-if command -v brew &>/dev/null; then
-  PYTHON_BIN="$(brew --prefix)/opt/python/libexec/bin"
-  export PATH="$PYTHON_BIN:$PATH"
-fi
-
 # ════════════════════════════════════════════════════════════════════════════════
 # ENVIRONMENT VARIABLES
 # ════════════════════════════════════════════════════════════════════════════════
@@ -89,13 +82,10 @@ export XDG_DATA_HOME="$HOME/.local/share"
 # ────────────────────────────────────────────────────────────────────────────────
 # Editor configuration
 # ────────────────────────────────────────────────────────────────────────────────
-# Note: qvim is a wrapper script in ~/bin that launches nvim with NVIM_APPNAME=qvim
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR="vim"
-elif command -v nvim &>/dev/null; then
-  export EDITOR="nvim"
 else
-  export EDITOR="vim"
+  export EDITOR="nvim"
 fi
 
 # Visual editor (defaults to EDITOR if not set)

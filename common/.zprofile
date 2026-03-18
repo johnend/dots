@@ -19,6 +19,10 @@ elif [[ -x /usr/local/bin/brew ]]; then
   eval "$(/usr/local/bin/brew shellenv)"
 fi
 
+if [[ -n "${HOMEBREW_PREFIX:-}" ]] && [[ -d "$HOMEBREW_PREFIX/opt/python/libexec/bin" ]]; then
+  export PATH="$HOMEBREW_PREFIX/opt/python/libexec/bin:$PATH"
+fi
+
 # ————————————————————————————————————————————————
 # Amazon Q (AWS CLI assistant)
 # ————————————————————————————————————————————————

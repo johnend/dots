@@ -9,7 +9,9 @@ if [[ ! "$PATH" == */opt/homebrew/opt/fzf/bin* ]]; then
 fi
 
 # Load fzf shell integration (includes keybindings and completion)
-source <(fzf --zsh)
+if command -v fzf >/dev/null 2>&1; then
+  source <(fzf --zsh)
+fi
 
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS$'\n'"\
