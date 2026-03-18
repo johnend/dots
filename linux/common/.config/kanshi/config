@@ -3,6 +3,7 @@ profile nomad {
     mode 2880x1800
     scale 1.5
   }
+  exec sh -lc "swaymsg 'workspace number 1; move workspace to output eDP-1'; swaymsg 'workspace number 2; move workspace to output eDP-1'; swaymsg 'workspace number 3; move workspace to output eDP-1'"
 }
 
 profile deskbound {
@@ -17,8 +18,7 @@ profile deskbound {
   }
   output HDMI-A-1 {
     mode 1920x1080
-    position 4479,0
+    position 4480,0
   }
+  exec sh -lc "swaymsg 'workspace number 1; move workspace to output DP-3'; swaymsg 'workspace number 2; move workspace to output HDMI-A-1'; swaymsg 'workspace number 3; move workspace to output eDP-1'"
 }
-
-
