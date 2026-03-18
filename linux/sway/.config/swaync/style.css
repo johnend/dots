@@ -6,7 +6,7 @@
 
 * {
   all: unset;
-  font-family: Ububtu Nerd Font;
+  font-family: Ubuntu Nerd Font;
   transition: 0.3s;
   font-size: 1rem;
 }
@@ -28,7 +28,7 @@
 
 /* Base notification styling */
 .notification {
-  border-radius: none;
+  border-radius: 0;
 }
 
 /* Notification priority indicators - left border colors */
