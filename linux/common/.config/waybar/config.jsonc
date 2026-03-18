@@ -281,10 +281,10 @@
       ""
     ]
   },
-  // Power profiles
+  // Power profiles via tlp-pd's PowerProfiles D-Bus API
   "power-profiles-daemon": {
     "format": "{icon}",
-    "tooltip-format": "Power profile: {profile}",
+    "tooltip-format": "Power profile: {profile}\nDriver: tlp-pd",
     "tooltip": true,
     "format-icons": {
       "default": "",
