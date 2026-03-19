@@ -14,9 +14,9 @@
 
 
 (defalias
-  ;; Original tap-hold modifiers
-  hyper (tap-hold 200 tab C-A-M-lsft)
-  meh (tap-hold 200 esc C-A-lsft)
+  ;; Navigation tap-holds
+  hyper_esc (tap-hold 200 esc C-A-M-lsft)
+  meh_tab   (tap-hold 200 tab C-A-lsft)
   
   ;; Homerow mods - Left hand: a=Shift, s=Gui, d=Alt, f=Ctrl
   ;; Using tap-hold-next-release to reduce misfires during fast typing
@@ -32,21 +32,21 @@
   ;_shft (tap-hold-next-release 200 ; rsft)
   
   ;; Layer switching with notifications
-  gameon (tap-macro (layer-switch gaming) (cmd-button "/home/johne/.config/kmonad/notify-layer.sh Gaming"))
-  gameoff (tap-macro (layer-switch base) (cmd-button "/home/johne/.config/kmonad/notify-layer.sh Base")))
+  plainon (tap-macro (layer-switch plain) (cmd-button "/home/johne/.config/kmonad/notify-layer.sh plain"))
+  baseon  (tap-macro (layer-switch base) (cmd-button "/home/johne/.config/kmonad/notify-layer.sh base")))
 
 
 (deflayer base
- esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  prnt   slck  @gameon
+ esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  prnt   slck  @plainon
  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc   ins   home
- @meh  q    w    e    r    t    y    u    i    o    p    [    ]    \     del   end
- @hyper @a_shft @s_gui @d_alt @f_ctrl g  h  @j_ctrl @k_alt @l_gui @;_shft '  ret  pgup  pgdn
+ @hyper_esc q    w    e    r    t    y    u    i    o    p    [    ]    \     del   end
+ @meh_tab   @a_shft @s_gui @d_alt @f_ctrl g  h  @j_ctrl @k_alt @l_gui @;_shft '  ret  pgup  pgdn
  lsft z    x    c    v    b    n    m    ,    .    /    rsft           up
  lctl lalt lmet           spc            lmet ralt rctl      left down rght)
 
 
-(deflayer gaming
- esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  prnt   slck  @gameoff
+(deflayer plain
+ esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  prnt   slck  @baseon
  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc   ins   home
  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \      del   end
  caps a    s    d    f    g    h    j    k    l    ;    '    ret         pgup  pgdn

@@ -1,43 +1,56 @@
 #!/bin/bash
-# Wrapper script for KMonad layer change notifications
-# Ensures proper D-Bus environment for notify-send
+set -euo pipefail
 
-# Log for debugging
-exec 2>> /tmp/kmonad-notify.log
-echo "[$(date)] Called with: $*" >&2
+# Wrapper script for KMonad layer change notifications.
+# Pull a desktop session environment from the running compositor/shell process.
 
-# Get the user's D-Bus session address
+exec 2>>/tmp/kmonad-notify.log
+echo "[$(date --iso-8601=seconds)] Called with: $*" >&2
+
 USER_ID=$(id -u)
+export XDG_RUNTIME_DIR="/run/user/${USER_ID}"
 
-# Try multiple methods to get the correct DBUS address
-# Method 1: Check from running KDE/Plasma processes
-for pid in $(pgrep -u $USER_ID plasmashell); do
-  if [ -f "/proc/$pid/environ" ]; then
-    eval "export $(strings /proc/$pid/environ | grep '^DBUS_SESSION_BUS_ADDRESS=')"
-    break
-  fi
+export_from_process_env() {
+  local pid="$1"
+  local var_name="$2"
+  local value=""
+
+  [ -r "/proc/${pid}/environ" ] || return 1
+
+  value=$(
+    tr '\0' '\n' < "/proc/${pid}/environ" | sed -n "s/^${var_name}=//p" | head -n 1
+  )
+
+  [ -n "${value}" ] || return 1
+  export "${var_name}=${value}"
+}
+
+for process_name in plasmashell kwin_wayland gnome-shell sway hyprland; do
+  while read -r pid; do
+    [ -n "${DBUS_SESSION_BUS_ADDRESS:-}" ] || export_from_process_env "${pid}" DBUS_SESSION_BUS_ADDRESS || true
+    [ -n "${WAYLAND_DISPLAY:-}" ] || export_from_process_env "${pid}" WAYLAND_DISPLAY || true
+    [ -n "${DISPLAY:-}" ] || export_from_process_env "${pid}" DISPLAY || true
+  done < <(pgrep -u "${USER_ID}" "${process_name}" || true)
 done
 
-# Method 2: Fallback to default
-if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
-  export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${USER_ID}/bus"
-fi
+export DBUS_SESSION_BUS_ADDRESS="${DBUS_SESSION_BUS_ADDRESS:-unix:path=${XDG_RUNTIME_DIR}/bus}"
+export DISPLAY="${DISPLAY:-:0}"
 
-# Method 3: Try getting WAYLAND_DISPLAY too
-for pid in $(pgrep -u $USER_ID plasmashell); do
-  if [ -f "/proc/$pid/environ" ]; then
-    eval "export $(strings /proc/$pid/environ | grep '^WAYLAND_DISPLAY=')"
-    break
-  fi
-done
+case "${1:-unknown}" in
+  base|Base)
+    layer_name="Base"
+    ;;
+  plain|Plain)
+    layer_name="Plain"
+    ;;
+  *)
+    layer_name="${1:-Unknown}"
+    ;;
+esac
 
-export DISPLAY=:0
+echo "DBUS_SESSION_BUS_ADDRESS: ${DBUS_SESSION_BUS_ADDRESS}" >&2
+echo "DISPLAY: ${DISPLAY}" >&2
+echo "WAYLAND_DISPLAY: ${WAYLAND_DISPLAY:-}" >&2
 
-echo "DBUS_SESSION_BUS_ADDRESS: $DBUS_SESSION_BUS_ADDRESS" >&2
-echo "DISPLAY: $DISPLAY" >&2
-echo "WAYLAND_DISPLAY: $WAYLAND_DISPLAY" >&2
-
-# Send notification with the layer name passed as argument
-LAYER_NAME="${1:-Unknown}"
-notify-send -t 2000 'KMonad' "Layer: ${LAYER_NAME}" -u low
+notify-send -a "KMonad" -t 2000 -u low "KMonad" "Layer: ${layer_name}"
 echo "notify-send exit code: $?" >&2

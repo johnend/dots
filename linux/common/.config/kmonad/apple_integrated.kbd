@@ -14,14 +14,40 @@
 
 
 (defalias
-  hyper (tap-hold 200 tab C-A-M-lsft)
-  meh (tap-hold 200 esc C-A-lsft))
+  ;; Navigation tap-holds
+  hyper_esc (tap-hold 200 esc C-A-M-lsft)
+  meh_tab   (tap-hold 200 tab C-A-lsft)
+
+  ;; Homerow mods - Left hand: a=Shift, s=Gui, d=Alt, f=Ctrl
+  a_shft (tap-hold-next-release 200 a lsft)
+  s_gui  (tap-hold-next-release 200 s lmet)
+  d_alt  (tap-hold-next-release 200 d lalt)
+  f_ctrl (tap-hold-next-release 200 f lctl)
+
+  ;; Homerow mods - Right hand: j=Ctrl, k=Alt, l=Gui, ;=Shift
+  j_ctrl (tap-hold-next-release 200 j rctl)
+  k_alt  (tap-hold-next-release 200 k lalt)
+  l_gui  (tap-hold-next-release 200 l rmet)
+  ;_shft (tap-hold-next-release 200 ; rsft)
+
+  ;; Fn toggles between the modded and raw typing layers
+  plainon (tap-macro (layer-switch plain) (cmd-button "/home/johne/.config/kmonad/notify-layer.sh plain"))
+  baseon  (tap-macro (layer-switch base) (cmd-button "/home/johne/.config/kmonad/notify-layer.sh base")))
 
 
 (deflayer base
  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12     
  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc   
- @meh  q    w    e    r    t    y    u    i    o    p    [    ]    \     
- @hyper a    s    d    f    g    h    j    k    l    ;    '    ret       
+ @hyper_esc q    w    e    r    t    y    u    i    o    p    [    ]    \     
+ @meh_tab   @a_shft @s_gui @d_alt @f_ctrl g    h    @j_ctrl @k_alt @l_gui @;_shft '    ret       
  lsft z    x    c    v    b    n    m    ,    .    /    rsft        up
- fn lctl lalt lmet           spc            rmet ralt            left down rght)
+ @plainon lctl lalt lmet           spc            rmet ralt            left down rght)
+
+
+(deflayer plain
+ esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12     
+ grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc   
+ tab  q    w    e    r    t    y    u    i    o    p    [    ]    \      
+ caps a    s    d    f    g    h    j    k    l    ;    '    ret         
+ lsft z    x    c    v    b    n    m    ,    .    /    rsft       up
+ @baseon lctl lalt lmet           spc            rmet ralt           left down rght)

@@ -6,12 +6,25 @@
 - **Type**: `tap-hold-next-release` with 200ms timeout
 - **Left hand**: a=Shift, s=Gui, d=Alt, f=Ctrl
 - **Right hand**: j=Ctrl, k=Alt, l=Gui, ;=Shift
+- **Keyboards**: Enabled on both `hi86.kbd` and `apple_integrated.kbd` base layers
 - **Status**: Working reasonably well, slight improvement over initial 175ms `tap-hold-next`
+
+### Navigation Tap-Holds
+- **Tab key**: `hyper_esc` (`Esc` when tapped, Hyper when held)
+- **Caps Lock key**: `meh_tab` (`Tab` when tapped, Meh when held)
+- **Applies to**: Both `hi86.kbd` and `apple_integrated.kbd`
+
+### Raw Typing Layer
+- **Name**: `plain`
+- **Purpose**: Temporary fallback layer without homerow mods or tap-hold navigation keys
+- **hi86 toggle**: Top-right key switches between `base` and `plain`
+- **Apple integrated toggle**: `fn` switches between `base` and `plain`
 
 ### Layer Notifications
 - **Working**: ✅ Notifications now display on layer switch
-- **Fix required**: Added `--allow-cmd` flag to systemd service
+- **Service requirement**: `--allow-cmd` is enabled in the systemd service template
 - **Script**: `~/.config/kmonad/notify-layer.sh` handles D-Bus environment for notifications
+- **Labels**: Notifications normalize current layer names to `Base` and `Plain`
 
 ## Future Ideas to Try
 
@@ -48,6 +61,7 @@
 ### Notifications Not Working
 - Ensure `--allow-cmd` flag is in systemd service: `/usr/bin/kmonad --allow-cmd ...`
 - Check D-Bus environment in notification script
+- Check `/tmp/kmonad-notify.log` for the captured environment and `notify-send` exit code
 - Verify script has execute permissions
 
 ### Homerow Mod Misfires

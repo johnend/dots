@@ -173,6 +173,6 @@ WantedBy=default.target
 ## Current Status
 
 **Using**: KMonad v0.4.4 with `tap-hold-next-release` at 200ms  
-**Working**: Layer notifications, homerow mods mostly working  
+**Working**: Layer notifications, homerow mods on both keyboards, `plain` fallback layer toggles  
 **Pain point**: Occasional homerow mod misfires  
 **Next step**: Test current setup for a few days, then decide on Kanata
