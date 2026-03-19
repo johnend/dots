@@ -1,13 +1,13 @@
 profile nomad {
-  output eDP-1 {
+  output "Apple Computer Inc Color LCD Unknown" {
     mode 2880x1800
     scale 1.5
   }
-  exec sh -lc "swaymsg 'workspace number 1; move workspace to output eDP-1'; swaymsg 'workspace number 2; move workspace to output eDP-1'; swaymsg 'workspace number 3; move workspace to output eDP-1'"
+  exec sh -lc "swaymsg 'workspace number 1; move workspace to output \"Apple Computer Inc Color LCD Unknown\"'; swaymsg 'workspace number 2; move workspace to output \"Apple Computer Inc Color LCD Unknown\"'; swaymsg 'workspace number 3; move workspace to output \"Apple Computer Inc Color LCD Unknown\"'"
 }
 
 profile deskbound {
-  output eDP-1 {
+  output "Apple Computer Inc Color LCD Unknown" {
     mode 2880x1800
     scale 1.5
     position 0,0
@@ -20,5 +20,5 @@ profile deskbound {
     mode 1920x1080
     position 4480,0
   }
-  exec sh -lc "swaymsg 'workspace number 1; move workspace to output DP-3'; swaymsg 'workspace number 2; move workspace to output HDMI-A-1'; swaymsg 'workspace number 3; move workspace to output eDP-1'"
+  exec sh -lc "swaymsg 'workspace number 1; move workspace to output DP-3'; swaymsg 'workspace number 2; move workspace to output HDMI-A-1'; swaymsg 'workspace number 3; move workspace to output \"Apple Computer Inc Color LCD Unknown\"'"
 }

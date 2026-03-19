@@ -73,6 +73,7 @@ apply_wallpaper() {
   local path="$1"
   start_swww_daemon
   swww img "$path" "${TRANSITION_ARGS[@]}"
+  "$HOME/.config/swww/sync-cache.sh"
 }
 
 print_menu() {

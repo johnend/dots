@@ -14,3 +14,4 @@ swww query || swww-daemon
 
 # Change to random wallpaper in the Pictures directory
 swww img "${DIR}"/"${RANDOMWALL}" --transition-fps 60 --transition-type any --transition-duration 3 --resize crop
+"$HOME/.config/swww/sync-cache.sh"
