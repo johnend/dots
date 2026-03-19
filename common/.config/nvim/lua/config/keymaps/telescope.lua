@@ -19,12 +19,11 @@ return {
     ":lua require('telescope.builtin').find_files { cwd = vim.fn.stdpath 'config' }<cr>",
     desc = "Neovim config files",
   },
-  {
+  vim.g.neovide and {
     "<leader>sp",
-    "<cmd>Telescope project project theme=dropdown layout_config={width=0.5, height=0.4}<cr>",
+    "<cmd>ProjectExplorer<cr>",
     desc = "Projects",
-  },
-  { "<leader>sr", "<cmd>Telescope resume<cr>", desc = "Resume project" },
+  } or nil,
   { "<leader>ss", "<cmd>Telescope builtin<cr>", desc = "Builtin pickers" },
   {
     "<leader>st",
@@ -34,5 +33,5 @@ return {
   { "<leader>sv", "<cmd>Telescope git_files<cr>", desc = "Git files" },
   { "<leader>sw", "<cmd>Telescope grep_string<cr>", desc = "Current word" },
   { "<leader>sx", "<cmd>Telescope commands<cr>", desc = "Commands" },
-  { "<leader>s.", "<cmd>Telescope oldfiles<cr>", desc = "Recent files" },
+  { "<leader>sr", "<cmd>Telescope oldfiles<cr>", desc = "Recent files" },
 }

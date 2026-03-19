@@ -35,6 +35,7 @@ function M.get_specs()
     { import = "plugins.ui" },
     { import = "plugins.colorschemes" },
     { import = "plugins.lsp" },
+    { import = "plugins.neovide" },
   }
 
   -- Conditionally import _testing_ground if it has files

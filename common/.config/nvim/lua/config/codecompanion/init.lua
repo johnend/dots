@@ -1,9 +1,9 @@
 -- config/codecompanion/init.lua
 -- Main CodeCompanion configuration orchestrator
 
-local slash_commands = require("config.codecompanion.slash_commands")
-local prompt_library = require("config.codecompanion.prompt_library")
-local display = require("config.codecompanion.display")
+local slash_commands = require "config.codecompanion.slash_commands"
+local prompt_library = require "config.codecompanion.prompt_library"
+local display = require "config.codecompanion.display"
 
 return {
   -- Adapter configuration
@@ -12,7 +12,7 @@ return {
       return require("codecompanion.adapters").extend("copilot", {
         schema = {
           model = {
-            default = "claude-sonnet-4.5",
+            default = "claude-sonnet-4.6",
           },
         },
       })
@@ -36,10 +36,10 @@ return {
         system_prompt = function(ctx)
           -- Get current agent from global variable (set by switch_agent())
           local current_agent = vim.g.current_agent or "Artificer"
-          
+
           -- Get agent-specific prompt function from prompt_library
           local agent_prompt_fn = prompt_library.get_agent_prompt(current_agent)
-          
+
           if agent_prompt_fn then
             -- Agent found, use its custom prompt
             return agent_prompt_fn(ctx)

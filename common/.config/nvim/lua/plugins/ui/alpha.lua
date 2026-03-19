@@ -19,22 +19,25 @@ return {
 
     dashboard.section.header.val = headers.king
     dashboard.section.buttons.val = {
-      button("f", Icons.ui.Files .. "  Find file", ":Telescope find_files <CR>"),
-      button(
-        "p",
-        Icons.git.Repo .. "  Find project",
-        ":Telescope project project theme=dropdown layout_config={width=0.3, height=0.4}<CR>"
-      ),
-      button("r", Icons.ui.History .. "  Recent files", ":Telescope oldfiles <CR>"),
-      button("g", Icons.ui.Text .. "  Grep text", ":Telescope live_grep <CR>"),
-      button("c", Icons.ui.Gear .. "  Config", ":cd ~/.config/nvim | e init.lua<CR>"),
-      button("l", Icons.misc.Plug .. "  Plugins", ":Lazy<CR>"),
-      button("m", Icons.misc.Mason .. "  Mason", ":Mason<CR>"),
-      button("q", Icons.ui.SignOut .. "  Quit", ":qa<CR>"),
+      button("f", Icons.ui.Files .. "  Find file", ":Telescope find_files<cr>"),
+      button("r", Icons.ui.History .. "  Recent files", ":Telescope oldfiles<cr>"),
+      button("g", Icons.ui.Text .. "  Grep text", ":Telescope live_grep<cr>"),
+      button("c", Icons.ui.Gear .. "  Config", ":cd ~/.config/nvim | e init.lua<cr>"),
+      button("l", Icons.misc.Plug .. "  Plugins", ":Lazy<cr>"),
+      button("m", Icons.misc.Mason .. "  Mason", ":Mason<cr>"),
+      button("q", Icons.ui.SignOut .. "  Quit", ":qa<cr>"),
     }
 
     local function footer()
       return "johnenderby.com"
+    end
+
+    if vim.g.neovide then
+      table.insert(
+        dashboard.section.buttons.val,
+        3,
+        button("p", Icons.git.Repo .. "  Find Project", "<cmd>ProjectExplorer<cr>")
+      )
     end
 
     dashboard.section.footer.val = footer()
