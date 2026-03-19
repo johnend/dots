@@ -4,7 +4,7 @@
 (defcfg
   danger-enable-cmd yes
   process-unmapped-keys yes
-  concurrent-tap-hold yes
+  concurrent-tap-hold no
   log-layer-changes no
   linux-dev (
     "/dev/input/by-id/usb-Apple_Inc._Apple_Internal_Keyboard___Trackpad-event-kbd"
@@ -14,12 +14,18 @@
 )
 
 (defvar
-  tap-time 200
-  hold-time 200
+  tap-time 300
+  hold-time 300
+  dance-time 180
 )
 
 (deflocalkeys-linux
   fn 464
+)
+
+(defhands
+  (left  q w e r t a s d f g z x c v b)
+  (right y u i o p h j k l ; n m , . /)
 )
 
 (defsrc
@@ -38,30 +44,29 @@
   hyper_esc (tap-hold $tap-time $hold-time esc @hyper)
   meh_tab   (tap-hold $tap-time $hold-time tab @meh)
 
-  ;; Homerow mods with same-hand roll protection.
-  ;; Same-side alpha presses resolve to taps; opposite-hand presses can resolve to holds.
-  a_shft (tap-hold-release-tap-keys-release $tap-time $hold-time a lsft (q w e r t s d f g z x c v b) (q w e r t s d f g z x c v b))
-  s_gui  (tap-hold-release-tap-keys-release $tap-time $hold-time s lmet (q w e r t a d f g z x c v b) (q w e r t a d f g z x c v b))
-  d_alt  (tap-hold-release-tap-keys-release $tap-time $hold-time d lalt (q w e r t a s f g z x c v b) (q w e r t a s f g z x c v b))
-  f_ctrl (tap-hold-release-tap-keys-release $tap-time $hold-time f lctl (q w e r t a s d g z x c v b) (q w e r t a s d g z x c v b))
+  ;; Homerow mod aliases kept for later experimentation.
+  a_shft (tap-hold-press $tap-time $hold-time a lsft)
+  s_gui  (tap-hold-press $tap-time $hold-time s lmet)
+  d_alt  (tap-hold-press $tap-time $hold-time d lalt)
+  f_ctrl (tap-hold-press $tap-time $hold-time f lctl)
 
-  j_ctrl (tap-hold-release-tap-keys-release $tap-time $hold-time j rctl (y u i o p h k l ; n m , . /) (y u i o p h k l ; n m , . /))
-  k_alt  (tap-hold-release-tap-keys-release $tap-time $hold-time k ralt (y u i o p h j l ; n m , . /) (y u i o p h j l ; n m , . /))
-  l_gui  (tap-hold-release-tap-keys-release $tap-time $hold-time l rmet (y u i o p h j k ; n m , . /) (y u i o p h j k ; n m , . /))
-  ;_shft (tap-hold-release-tap-keys-release $tap-time $hold-time ; rsft (y u i o p h j k l n m , . /) (y u i o p h j k l n m , . /))
+  j_ctrl (tap-hold-press $tap-time $hold-time j rctl)
+  k_alt  (tap-hold-press $tap-time $hold-time k ralt)
+  l_gui  (tap-hold-press $tap-time $hold-time l rmet)
+  ;_ctrl (tap-hold-press $tap-time $hold-time ; rctl)
 
-  ;; Fn toggles the raw fallback layer and shows a notification.
-  plainon (multi (layer-switch plain) (cmd "/bin/bash" "/home/johne/.config/kanata/notify-layer.sh" "plain"))
-  baseon  (multi (layer-switch base) (cmd "/bin/bash" "/home/johne/.config/kanata/notify-layer.sh" "base"))
+  ;; Fn uses tap-dance so entering plain is more deliberate.
+  fntobase  (multi (layer-switch base) (cmd "/bin/bash" "/home/johne/.config/kanata/notify-layer.sh" "base"))
+  fntoplain (tap-dance $dance-time (fn (multi (layer-switch plain) (cmd "/bin/bash" "/home/johne/.config/kanata/notify-layer.sh" "plain"))))
 )
 
 (deflayer base
   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   @hyper_esc q    w    e    r    t    y    u    i    o    p    [    ]    \
-  @meh_tab   @a_shft @s_gui @d_alt @f_ctrl g    h    @j_ctrl @k_alt @l_gui @;_shft '    ret
+  @meh_tab   a      s      d      f       g    h    j       k      l      @;_ctrl '    ret
   lsft z    x    c    v    b    n    m    ,    .    /    rsft       up
-  @plainon lctl lalt lmet           spc            rmet ralt           left down rght
+  @fntoplain lctl lalt lmet           spc            rmet ralt           left down rght
 )
 
 (deflayer plain
@@ -70,5 +75,5 @@
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
   caps a    s    d    f    g    h    j    k    l    ;    '    ret
   lsft z    x    c    v    b    n    m    ,    .    /    rsft       up
-  @baseon lctl lalt lmet           spc            rmet ralt           left down rght
+  @fntobase lctl lalt lmet           spc            rmet ralt           left down rght
 )

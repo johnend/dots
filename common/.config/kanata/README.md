@@ -10,15 +10,14 @@
 
 - `Tab`: tap for `Esc`, hold for Hyper
 - `Caps Lock`: tap for `Tab`, hold for Meh
-- `a s d f / j k l ;`: homerow mods on the `base` layer
-- `fn`: toggles between `base` and `plain`
+- the `base` layer is mostly plain letters, with `;` restored as a `Ctrl` homerow mod
+- `fn`: double tap from `base` to enter `plain`, single tap in `plain` to return to `base`
 - `plain`: raw typing layer without homerow mods or navigation tap-holds
 
 ## Homerow Mods
 
-- Uses `tap-hold-release-tap-keys-release` with `200ms` tap/hold timing.
-- Same-hand alpha rolls are listed as tap keys so rolls like `as`, `df`, `jk`, `kl` resolve to letters instead of modifiers.
-- Opposite-hand presses can still resolve to held modifiers for shortcuts.
+- Homerow mod aliases are still defined for later experiments, but only `;` is active on the `base` layer right now as `Ctrl`.
+- `base` currently favors raw typing, with `plain` available as a more deliberate fallback layer.
 
 ## Notifications
 
