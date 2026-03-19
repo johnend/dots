@@ -60,3 +60,4 @@ common/.codex/.personality_migration
 common/.codex/skills/.system/
 common/.local/bin/claude
 /common/.zcompdump-*
+**/geeqie/history
