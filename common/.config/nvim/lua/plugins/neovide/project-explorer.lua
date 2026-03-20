@@ -8,9 +8,14 @@ return {
   opts = {
     paths = {
       "~/Developer",
+      "~/Developer/fanduel",
+      "~/Developer/fanduel/raccoons",
       "~/Developer/dots/common/.config",
       "~/Developer/dots/linux/common/.config",
       "~/Developer/dots/linux/sway/.config",
+      "~/Developer/personal/dots/common/.config",
+      "~/Developer/personal/dots/linux/common/.config",
+      "~/Developer/personal/dots/linux/sway/.config",
     },
     newProjectPath = "~/Developer",
     file_explorer = function(dir)
