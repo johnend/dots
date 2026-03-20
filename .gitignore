@@ -44,6 +44,9 @@ common/.config/opencode/context/work/
 /common/.config/cursor/statsig-cache.json
 /common/.config/emacs
 
+# Claude Code runtime state
+common/.claude/plugins/
+
 # Codex runtime state
 common/.codex/auth.json
 common/.codex/history.jsonl
