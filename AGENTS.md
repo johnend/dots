@@ -14,7 +14,7 @@ Dotfiles are split by portability: `common/` holds cross-platform config (Neovim
 
 ## Coding Style & Naming Conventions
 
-Shell scripts should declare their interpreter (`#!/bin/bash` or `#!/bin/zsh`), enable safe-mode flags (`set -euo pipefail` for Bash additions), and keep indentation to two spaces for readability. Use uppercase snake case for constants (`INTERNAL_KB_ID`) and descriptive lowercase names for locals. Configuration directories should mirror upstream paths (e.g., `common/.config/<app>`), and filenames should stay lowercase with hyphens to match their window manager bindings. Run `shellcheck` locally before committing complex scripts, and keep comments actionable—explain why a non-obvious command is needed rather than what it does.
+Shell scripts should declare their interpreter (`#!/bin/bash` or `#!/bin/zsh`), enable safe-mode flags (`set -euo pipefail` for Bash additions), and keep indentation to two spaces for readability. Use uppercase snake case for constants (`INTERNAL_KB_ID`) and descriptive lowercase names for locals. Configuration directories should mirror upstream paths (e.g., `common/.config/<app>`), and filenames should stay lowercase with hyphens to match their window manager bindings. Run `shellcheck` locally before committing complex scripts, and keep comments actionable—explain why a non-obvious command is needed rather than what it does. Documentation should describe the current state only; do not preserve migration notes, superseded history, or "how this used to work" unless the user explicitly asks for historical context.
 
 ## Testing Guidelines
 

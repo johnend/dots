@@ -7,7 +7,8 @@ description: 'Brief description of what this skill does and when the agent shoul
 
 ## Instructions
 
-Step-by-step guidance for the agent. Keep it concise; only add what the agent wouldn’t already know.
+Step-by-step guidance for the agent. Keep it concise; only add what the agent
+wouldn't already know.
 
 - What to do first.
 - What to check or avoid.

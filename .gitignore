@@ -17,6 +17,7 @@ linux/.config/spicetify/
 
 # macOS files
 .DS_Store
+**/.DS_Store
 commmon/.config/nvim/tmux*.log
 
 #tmux
