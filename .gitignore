@@ -40,6 +40,8 @@ common/.config/opencode/context/work/
 **/node_modules/
 **/dist/
 /common/.config/cursor/chats/*
+/common/.config/cursor/cli-config.json
+/common/.config/cursor/statsig-cache.json
 /common/.config/emacs
 
 # Codex runtime state
