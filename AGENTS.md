@@ -2,12 +2,12 @@
 
 ## Project Structure & Module Organization
 
-Dotfiles are split by portability: `common/` holds cross-platform config (Neovim under `common/.config/nvim`, shell profiles), while `linux/` and `macos/` overlay host-specific tweaks such as Sway rules or `.tool-versions`. Installer assets stay in `lib/`; `lib/sway/` ships the EndeavourOS/Arch bootstrap and package manifests. Lightweight utilities that run under an existing desktop live in `linux/scripts/`.
+Dotfiles are split by portability: `common/` holds cross-platform config (Neovim under `common/.config/nvim`, shell profiles), while `linux/` and `macos/` overlay host-specific tweaks such as Sway rules or `.tool-versions`. Installer assets stay in `lib/`; `lib/sway/` ships the EndeavourOS/Arch bootstrap and package manifests. Lightweight utilities that run under an existing desktop live in `linux/scripts/`. AI tooling config lives in `common/.ai/` (shared skills), `common/.claude/` (Claude Code settings), and `common/.codex/` (Codex config).
 
 ## Build, Test, and Development Commands
 
 - `stow common -t $HOME` — symlink the shared configs into a fresh home directory; repeat for `linux` or `macos` as needed.
-- `bash common/install.sh` — reproducibly install Oh My Zsh, Powerlevel10k, TPM, and rebuild the `bat` cache.
+- `bash common/install.sh` — reproducibly install Oh My Zsh, Starship, TPM, and rebuild the `bat` cache.
 - `sudo ./lib/sway/sway-install.sh --dry-run` — show everything the Sway installer would touch; drop `--dry-run` to perform the real install.
 - `./lib/sway/validate-environment.sh` — confirm required packages, services, and dotfiles are present after provisioning.
 - `zsh linux/scripts/toggle-internal-kb.sh` — quick utility to enable/disable the laptop keyboard inside Sway.
