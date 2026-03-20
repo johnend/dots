@@ -1,15 +1,7 @@
 {
   "$schema": "schema.json",
   "default_agent": "artificer",
-  "theme": "aura",
   "autoshare": false,
-  "tui": {
-    "scroll_acceleration": {
-      "enabled": true
-    },
-    "scroll_speed": 3.0,
-    "diff_style": "auto"
-  },
   "share": "manual",
   "autoupdate": "notify",
   "logLevel": "INFO",
