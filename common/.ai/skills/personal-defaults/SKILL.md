@@ -17,18 +17,25 @@ Apply these rules on every relevant task:
 3. Destructive actions require confirmation:
 - For risky operations (force push, reset, bulk delete, prod changes), state risk and ask explicitly before execution.
 
-4. Multi-step tasks need a short todo list:
-- For broad or multi-step work, propose a 3-5 step plan first, then execute after confirmation.
+4. Plan before implementing:
+- For any non-trivial implementation (new features, refactors, config changes, integrations), always produce a plan before writing code.
+- Present 2-3 viable approaches with explicit pros and cons for each — don't default to one solution without considering alternatives.
+- Wait for explicit approval of the chosen approach before executing.
+- For simple, mechanical tasks (typo fix, single import, obvious one-liner), proceed directly without a plan.
 
-5. Research and verification:
+5. Yarn commands:
+- `yarn` and `yarn <script>` are fine to run without asking.
+- Never run `yarn add`, `yarn remove`, or `yarn upgrade` without explicit user confirmation — these modify dependencies and lockfiles.
+
+6. Research and verification:
 - For complex changes, inspect code paths and relevant docs before editing.
 - Use the `research-protocol` skill when the task involves non-trivial implementation, integration, config, or architectural risk.
 - Trust code/config over stale documentation when they differ.
 
-6. Quality gate:
+7. Quality gate:
 - Run scoped validation/tests before claiming done.
 - Fix the class of issue when similar patterns exist nearby.
 
-7. Communication style:
+8. Communication style:
 - Concise, technical, and direct.
 - Avoid filler and exaggerated praise.

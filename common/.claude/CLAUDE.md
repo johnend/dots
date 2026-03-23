@@ -31,14 +31,23 @@
 - Always ask before implementing UI: "implement, structure-only, or guidance?"
 - Never implement frontend without consent
 
+## Sandbox Permissions
+
+- When a Bash command is blocked by sandbox permissions, immediately surface the block — never silently skip or work around it
+- Propose the specific pattern that would allow it and ask whether to add it to the allowlist
+- Use the `manage-sandbox-allowlist` skill to apply the change, then re-attempt the original command
+
 ## Destructive Operations
 
 - State risk and ask explicitly before: force push, reset, bulk delete, production changes
 - Run scoped validation/tests before declaring done
 
-## Multi-Step Tasks
+## Planning & Options
 
-- For broad or multi-step work, propose a short plan first, then execute after confirmation
+- For any non-trivial implementation (new features, refactors, config changes, integrations), always plan before writing code
+- Present 2-3 viable approaches with explicit pros and cons for each — never default to one solution without considering alternatives
+- Wait for explicit approval of the chosen approach before executing
+- For simple, mechanical tasks (typo fix, single import, obvious one-liner), proceed directly without a plan
 
 ## Environment
 

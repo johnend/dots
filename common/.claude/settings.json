@@ -18,7 +18,6 @@
       "Bash(git blame*)",
       "Bash(git shortlog*)",
       "Bash(git stash list*)",
-
       "Bash(rg *)",
       "Bash(fd *)",
       "Bash(bat *)",
@@ -28,7 +27,6 @@
       "Bash(delta *)",
       "Bash(zoxide *)",
       "Bash(z *)",
-
       "Bash(ls *)",
       "Bash(ls)",
       "Bash(pwd)",
@@ -70,26 +68,21 @@
       "Bash(true)",
       "Bash(false)",
       "Bash(mkdir *)",
-
       "Bash(shellcheck *)",
       "Bash(shfmt *)",
       "Bash(stylua --check *)",
-
       "Bash(mise current*)",
       "Bash(mise ls*)",
       "Bash(mise list*)",
       "Bash(mise where*)",
       "Bash(mise which*)",
-
       "Bash(node -e *)",
       "Bash(node -p *)",
       "Bash(node --eval *)",
       "Bash(node --print *)",
       "Bash(python3 -c *)",
-
       "Bash(stow --simulate *)",
       "Bash(stow -n *)",
-
       "Bash(gh repo view*)",
       "Bash(gh pr view*)",
       "Bash(gh pr list*)",
@@ -103,7 +96,6 @@
       "Bash(gh auth status*)",
       "Bash(gh repo list*)",
       "Bash(gh search *)",
-
       "Bash(docker ps*)",
       "Bash(docker images*)",
       "Bash(docker logs*)",
@@ -113,35 +105,31 @@
       "Bash(docker-compose ps*)",
       "Bash(docker-compose logs*)",
       "Bash(docker-compose config*)",
-
       "Bash(kubectl get*)",
       "Bash(kubectl describe*)",
       "Bash(kubectl logs*)",
       "Bash(kubectl config current-context*)",
       "Bash(kubectl config get-contexts*)",
-
       "Bash(helm list*)",
       "Bash(helm status*)",
       "Bash(helm get *)",
-
       "Bash(terraform plan*)",
       "Bash(terraform show*)",
       "Bash(terraform state list*)",
       "Bash(terraform state show*)",
       "Bash(terraform output*)",
       "Bash(terraform validate*)",
-
       "Bash(lsof*)",
       "Bash(ps *)",
       "Bash(pgrep*)",
       "Bash(curl -s http://localhost*)",
       "Bash(curl -s https://localhost*)",
       "Bash(fastfetch*)",
-
+      "Bash(yarn)",
+      "Bash(yarn *)",
       "Bash(* --version)",
       "Bash(* --help)",
       "Bash(* --help *)",
-
       "Read(//Users/john.enderby/Developer/**)",
       "Read(~/.config/**)",
       "Read(~/.claude/**)",
@@ -160,7 +148,16 @@
       "Bash(git push --force)",
       "Bash(git reset --hard*)",
       "Bash(git clean -f*)",
-      "Bash(git branch -D *)"
+      "Bash(git branch -D *)",
+      "Bash(yarn add *)",
+      "Bash(yarn remove *)",
+      "Bash(yarn upgrade *)"
     ]
+  },
+  "enabledPlugins": {
+    "typescript-lsp@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true,
+    "jdtls-lsp@claude-plugins-official": true,
+    "lua-lsp@claude-plugins-official": true
   }
 }
