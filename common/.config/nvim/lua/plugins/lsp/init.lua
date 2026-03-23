@@ -22,7 +22,7 @@ return {
     --- Setup servers and capabilities ---
     --------------------------------------
     local servers = require "config.lsp.servers"
-    local formatters = { "stylua", "prettier", "prettierd" }
+    local formatters = { "stylua", "prettier", "prettierd", "google-java-format" }
     -- local dap = {"js-debug-adapter", "codelldb"} -- uncomment to include daps
     local capabilities = require("blink.cmp").get_lsp_capabilities()
     local ensure_tools = vim.tbl_keys(servers)
@@ -39,7 +39,8 @@ return {
     require("mason-lspconfig").setup {
       ensure_installed = vim.tbl_keys(servers),
       automatic_installation = true,
-      automatic_enable = true,
+      -- jdtls is intentionally excluded: nvim-jdtls manages it via ftplugin/java.lua
+      automatic_enable = { exclude = { "jdtls" } },
     }
 
     ------------------------------------------------------
