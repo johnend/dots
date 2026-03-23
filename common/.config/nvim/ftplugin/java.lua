@@ -100,5 +100,23 @@ require("jdtls").start_or_attach {
     -- Enable DAP once jdtls is attached
     require("jdtls").setup_dap { hotcodereplace = "auto" }
     require("jdtls.dap").setup_dap_main_class_configs()
+
+    local map = function(mode, keys, func, desc)
+      vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = desc })
+    end
+
+    require("which-key").add {
+      { "<leader>j", group = "Java", buffer = bufnr },
+    }
+
+    -- <leader>j is free globally — used here as the Java namespace
+    map("n", "<leader>je", require("jdtls").extract_variable, "Extract variable")
+    map("n", "<leader>ju", require("jdtls").update_project_config, "Update project config")
+    map("n", "<leader>jm", require("jdtls").extract_method, "Extract method")
+    map("n", "<leader>jc", require("jdtls").extract_constant, "Extract constant")
+    -- Visual variants — operate on the selection
+    map("v", "<leader>je", function() require("jdtls").extract_variable(true) end, "Extract variable")
+    map("v", "<leader>jm", function() require("jdtls").extract_method(true) end, "Extract method")
+    map("v", "<leader>jc", function() require("jdtls").extract_constant(true) end, "Extract constant")
   end,
 }
