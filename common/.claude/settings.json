@@ -1,4 +1,8 @@
 {
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "permissions": {
     "allow": [
       "Bash(git status*)",
@@ -153,6 +157,10 @@
       "Bash(yarn remove *)",
       "Bash(yarn upgrade *)"
     ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-command.sh"
   },
   "enabledPlugins": {
     "typescript-lsp@claude-plugins-official": true,
