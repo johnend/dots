@@ -47,6 +47,9 @@ common/.config/opencode/context/work/
 # Claude Code runtime state
 common/.claude/plugins/
 
+# System-provided AI skills
+common/.ai/skills/.system/
+
 # Codex runtime state
 common/.codex/auth.json
 common/.codex/history.jsonl
