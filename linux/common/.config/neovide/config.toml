@@ -11,30 +11,14 @@ theme = "auto"
 title-hidden = true
 vsync = true
 wsl = false
-scale_factor = 0.5
-refresh_rate = 144
-scroll_animation_length = 0.3
-no_idle = true
-
-# cursor VFX
-# cursor_vfx_mode = "torpedo"
-# cursor_vfx_particle_lifetime_ms = 200.0
-# cursor_vfx_particle_density = 15.0
-cursor_animate_command_line = false
-
-# zero padding (so Telescope floats align perfectly)
-padding_top = 0
-padding_bottom = 0
-padding_left = 0
-padding_right = 0
 
 [font]
 normal = [
-  "Monaspace Neon", "Symbols Nerd Font"
+  "Monaspace Neon Frozen", "Symbols Nerd Font"
 ] # Will use the bundled Fira Code Nerd Font by default
-bold = ["Monaspace Neon Semibold", "Symbols Nerd Font"]
-italic = ["Monaspace Radon", "Symbols Nerd Font"]
-bold_italic = ["Monaspace Radon Semibold", "Symbols Nerd Font"]
+bold = ["Monaspace Neon Frozen Semibold", "Symbols Nerd Font"]
+italic = ["Monaspace Radon Frozen", "Symbols Nerd Font"]
+bold_italic = ["Monaspace Radon Frozen Semibold", "Symbols Nerd Font"]
 size = 14
 
 [box-drawing]
