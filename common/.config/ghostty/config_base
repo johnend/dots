@@ -7,6 +7,13 @@ shell-integration = zsh
 
 confirm-close-surface = false
 
+font-family = Monaspace Neon Frozen
+font-family-bold = Monaspace Neon Frozen SemiBold
+font-family-italic = Monaspace Radon Frozen
+font-family-bold-italic = Monaspace Radon Frozen SemiBold
+font-family = Symbols Nerd Font
+font-feature = calt, liga, ss01, ss02, ss03, ss04, ss05, ss06, ss07, ss08, ss09, ss10
+
 # --- Custom shaders have signifcant impact to performance on MBP with G750M cards ---
 # --- Only turn on for machines with decent hardware ---
 # custom-shader = shaders/cursor_blaze.glsl
