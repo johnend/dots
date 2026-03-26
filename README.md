@@ -100,7 +100,7 @@ dots/
 
 ### Linux (Sway, Hyprland, KDE)
 
-![image](https://github.com/user-attachments/assets/0b36b509-ab04-44a4-a9ed-5149191dc0f5)
+<img width="2880" height="1800" alt="fullscreen-26-03-2026_10-12-52" src="https://github.com/user-attachments/assets/10e11601-e184-4d75-956a-5594c1a16444" />
 
 My Linux machines run Sway and KDE. The `linux/` tree keeps shared and environment-specific configs under the same roof. Any common assets are stored in `common/.config`, while the Sway, Hyprland, and KDE setups live in `linux/sway`, `linux/hyprland`, and `linux/kde`, respectively.
 
