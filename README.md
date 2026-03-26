@@ -108,7 +108,7 @@ See [`linux/sway/README.md`](linux/sway/README.md) for screenshots and details.
 
 ### macOS
 
-![image](https://github.com/user-attachments/assets/fcfe09b8-98c5-4e51-960d-3121b8d752d4)
+<img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/34a953be-1274-4261-afbb-9d58f81dcea4" />
 
 ---
 
