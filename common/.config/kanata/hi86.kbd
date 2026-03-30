@@ -1,0 +1,71 @@
+;; Shared BY Tech Hi86 config for Kanata.
+;; Mirrors the Apple integrated Kanata behavior on the Hi86 physical layout.
+
+(defcfg
+  danger-enable-cmd yes
+  process-unmapped-keys yes
+  concurrent-tap-hold no
+  log-layer-changes no
+  linux-dev (
+    "/dev/input/by-id/usb-BY_Tech_Gaming_Keyboard-event-kbd"
+  )
+  linux-device-detect-mode keyboard-only
+  linux-output-device-name "kanata-hi86"
+)
+
+(defvar
+  tap-time 200
+  hold-time 200
+  dance-time 180
+)
+
+(defhands
+  (left  q w e r t a s d f g z x c v b)
+  (right y u i o p h j k l ; n m , . /)
+)
+
+(defsrc
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  prnt slck pause
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc ins  home
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \    del  end
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret        pgup pgdn
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft          up
+  lctl lmet lalt           spc            ralt rmet rctl     left down rght
+)
+
+(defalias
+  ;; Navigation tap-holds
+  hyper (multi lctl lalt lmet lsft)
+  meh   (multi lctl lalt lsft)
+  hyper_esc (tap-hold $tap-time $hold-time esc @hyper)
+  meh_tab   (tap-hold $tap-time $hold-time tab @meh)
+
+  ;; Conservative homerow mods: Ctrl + Gui only.
+  ;; Same-hand neighboring keys force a tap during common rolls.
+  s_gui  (tap-hold-release-keys $tap-time $hold-time s lmet (a d w e z x))
+  f_ctrl (tap-hold-release-keys $tap-time $hold-time f lctl (a s d r e w c v))
+  j_ctrl (tap-hold-release-keys $tap-time $hold-time j rctl (h k l u i o n m))
+  l_gui  (tap-hold-release-keys $tap-time $hold-time l rmet (j k ; i o p m ,))
+
+  ;; Pause uses tap-dance so entering plain is more deliberate.
+  pausetobase  (multi (layer-switch base) (cmd "/bin/bash" "/home/johne/.config/kanata/notify-layer.sh" "base"))
+  pausetoplain (tap-dance $dance-time (pause (multi (layer-switch plain) (cmd "/bin/bash" "/home/johne/.config/kanata/notify-layer.sh" "plain"))))
+)
+
+(deflayer base
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  prnt slck @pausetoplain
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc ins  home
+  @hyper_esc q    w    e    r    t    y    u    i    o    p    [    ]    \    del  end
+  @meh_tab   a    @s_gui d    @f_ctrl g    h    @j_ctrl k    @l_gui ;    '    ret        pgup pgdn
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft          up
+  lctl lalt lmet           spc            rmet ralt rctl     left down rght
+)
+
+(deflayer plain
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  prnt slck @pausetobase
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc ins  home
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \    del  end
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret        pgup pgdn
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft          up
+  lctl lalt lmet           spc            rmet ralt rctl     left down rght
+)

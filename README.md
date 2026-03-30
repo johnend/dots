@@ -100,7 +100,7 @@ dots/
 
 ### Linux (Sway, Hyprland, KDE)
 
-![image](https://github.com/user-attachments/assets/0b36b509-ab04-44a4-a9ed-5149191dc0f5)
+<img width="2880" height="1800" alt="fullscreen-26-03-2026_10-12-52" src="https://github.com/user-attachments/assets/10e11601-e184-4d75-956a-5594c1a16444" />
 
 My Linux machines run Sway and KDE. The `linux/` tree keeps shared and environment-specific configs under the same roof. Any common assets are stored in `common/.config`, while the Sway, Hyprland, and KDE setups live in `linux/sway`, `linux/hyprland`, and `linux/kde`, respectively.
 
@@ -108,7 +108,7 @@ See [`linux/sway/README.md`](linux/sway/README.md) for screenshots and details.
 
 ### macOS
 
-<img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/34a953be-1274-4261-afbb-9d58f81dcea4" />
+<img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/5ce54c46-9523-4541-8e93-7cf06870c709" />
 
 ---
 
