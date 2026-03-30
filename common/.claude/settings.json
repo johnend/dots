@@ -167,5 +167,6 @@
     "pyright-lsp@claude-plugins-official": true,
     "jdtls-lsp@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true
-  }
+  },
+  "model": "opus[1m]"
 }
