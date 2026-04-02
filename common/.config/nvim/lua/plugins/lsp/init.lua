@@ -57,21 +57,6 @@ return {
     end
 
     -----------------------------------------------
-    --- Use nicer looking icons for diagnostics ---
-    -----------------------------------------------
-    local sign_keys = {
-      Error = "Error",
-      Warning = "Warn",
-      Information = "Info",
-      Hint = "Hint",
-    }
-
-    for long, short in pairs(sign_keys) do
-      local icon = Icons.diagnostics[long]
-      local hl = "DiagnosticSign" .. short
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-    end
-
     -- diagnostics styling
     vim.diagnostic.config {
       severity_sort = true,

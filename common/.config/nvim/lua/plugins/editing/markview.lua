@@ -13,6 +13,7 @@ return {
       condition = function(buffer)
         local ft = vim.bo[buffer].ft
         local bt = vim.bo[buffer].bt
+        local allowed = { markdown = true, md = true, codecompanion = true }
 
         -- Special handling for codecompanion buffers which have buftype=nofile
         if bt == "nofile" and ft == "codecompanion" then
@@ -20,7 +21,7 @@ return {
         elseif bt == "nofile" then
           return false
         else
-          return true
+          return allowed[ft] == true
         end
       end,
     },
