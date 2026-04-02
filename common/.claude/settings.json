@@ -166,7 +166,7 @@
     "typescript-lsp@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
     "jdtls-lsp@claude-plugins-official": true,
-    "lua-lsp@claude-plugins-official": true
-  },
-  "model": "opus[1m]"
+    "lua-lsp@claude-plugins-official": true,
+    "feature-dev@claude-plugins-official": true
+  }
 }
