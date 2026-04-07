@@ -87,19 +87,19 @@ return {
           enabled = true,
           name = "LSP",
           module = "blink.cmp.sources.lsp",
-          score_offset = 100, -- Prioritize LSP completions
+          score_offset = 0, -- Prioritize LSP completions
           transform_items = sanitize_and_dedupe,
         },
         lazydev = {
           enabled = true,
           name = "LazyDev",
           module = "lazydev.integrations.blink",
-          score_offset = 100, -- Equal to LSP for Lua files
+          score_offset = 50, -- Equal to LSP for Lua files
         },
         snippets = {
           enabled = true,
           name = "LuaSnip",
-          max_items = 15,
+          max_items = 100,
           min_keyword_length = 2,
           module = "blink.cmp.sources.snippets",
           score_offset = -3, -- Lower priority, appears below LSP/path
