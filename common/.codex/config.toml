@@ -41,6 +41,9 @@ trust_level = "trusted"
 [projects."/Users/john.enderby/Developer/fanduel/ten-percent/level-up-butler"]
 trust_level = "trusted"
 
+[projects."/home/johne/Developer/startpage"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 "gpt-5.3-codex" = "gpt-5.4"
 
