@@ -1,0 +1,115 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+output="${1:-HDMI-A-1}"
+state_dir="${XDG_STATE_HOME:-$HOME/.local/state}/monitor-toggle"
+state_file="$state_dir/layout.json"
+
+if ! command -v kscreen-doctor >/dev/null 2>&1; then
+  printf 'monitor-toggle: kscreen-doctor is not installed\n' >&2
+  exit 1
+fi
+
+if ! command -v jq >/dev/null 2>&1; then
+  printf 'monitor-toggle: jq is not installed\n' >&2
+  exit 1
+fi
+
+config_json="$(kscreen-doctor -j)"
+
+state="$(
+  jq -r --arg output "$output" '
+    .outputs[]
+    | select(.name == $output)
+    | if .enabled then "enabled" else "disabled" end
+  ' <<<"$config_json" | head -n1
+)"
+
+if [[ -z "$state" ]]; then
+  printf 'monitor-toggle: output "%s" not found in current KScreen config\n' "$output" >&2
+  exit 1
+fi
+
+save_layout() {
+  mkdir -p "$state_dir"
+  jq '
+    {
+      outputs: [
+        .outputs[]
+        | select(.connected and .enabled)
+        | {
+            name,
+            currentModeId,
+            pos,
+            priority,
+            scale,
+            rotation
+          }
+      ]
+    }
+  ' <<<"$config_json" >"$state_file"
+}
+
+restore_layout() {
+  local -a args=()
+  local line
+
+  if [[ -f "$state_file" ]]; then
+    while IFS=$'\t' read -r name mode_id x y priority scale rotation; do
+      [[ -z "$name" ]] && continue
+      args+=(
+        "output.$name.enable"
+        "output.$name.mode.$mode_id"
+        "output.$name.position.$x,$y"
+      )
+      if [[ -n "$priority" && "$priority" != "null" ]]; then
+        args+=("output.$name.priority.$priority")
+      fi
+      if [[ -n "$scale" && "$scale" != "null" ]]; then
+        args+=("output.$name.scale.$scale")
+      fi
+      if [[ -n "$rotation" && "$rotation" != "null" ]]; then
+        case "$rotation" in
+          1) args+=("output.$name.rotation.none") ;;
+          2) args+=("output.$name.rotation.left") ;;
+          4) args+=("output.$name.rotation.inverted") ;;
+          8) args+=("output.$name.rotation.right") ;;
+        esac
+      fi
+    done < <(
+      jq -r '
+        .outputs[]
+        | [
+            .name,
+            .currentModeId,
+            .pos.x,
+            .pos.y,
+            .priority,
+            .scale,
+            .rotation
+          ]
+        | @tsv
+      ' "$state_file"
+    )
+  fi
+
+  if [[ ${#args[@]} -eq 0 ]]; then
+    args=("output.$output.enable")
+  fi
+
+  kscreen-doctor "${args[@]}"
+}
+
+if [[ "$state" == "enabled" ]]; then
+  save_layout
+  kscreen-doctor "output.$output.disable"
+  if command -v notify-send >/dev/null 2>&1; then
+    notify-send "Monitor disabled" "$output is now disabled"
+  fi
+else
+  restore_layout
+  if command -v notify-send >/dev/null 2>&1; then
+    notify-send "Monitor enabled" "$output is now enabled"
+  fi
+fi
