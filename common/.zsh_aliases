@@ -51,6 +51,7 @@ compile_sofle() {
 # Linux specific aliases
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   alias "a"="aerc"
+  alias "mtoggle"="monitor-toggle"
   alias "vim"="nvim"
   alias pavucontrol="GTK_THEME=Adwaita-dark pavucontrol"
   alias nmtui="NEWT_COLORS='root=black,black;window=black,black;border=white,black;listbox=white,black;label=blue,black;checkbox=red,black;title=green,black;button=black,red;actsellistbox=black,red;actlistbox=white,gray;compactbutton=white,gray;actcheckbox=white,blue;entry=lightgray,black;textbox=blue,black' nmtui"

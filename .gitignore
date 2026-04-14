@@ -51,8 +51,12 @@ common/.claude/plugins/
 common/.ai/skills/.system/
 
 # Codex runtime state
+/.codex
 common/.codex/auth.json
+common/.codex/.tmp/
+common/.codex/cache/
 common/.codex/history.jsonl
+common/.codex/installation_id
 common/.codex/log/
 common/.codex/logs_*.sqlite
 common/.codex/logs_*.sqlite-shm
@@ -70,3 +74,4 @@ common/.codex/skills/.system/
 common/.local/bin/claude
 /common/.zcompdump-*
 **/geeqie/history
+linux/kde/.local/share/plasma/containmentpreviews/
