@@ -4,7 +4,7 @@ return {
   -------------------------------------
   { "gr", group = "LSP go to", icon = Icons.ui.Code },
   { "<leader>l", group = "LSP", icon = Icons.ui.Code },
-  { "<leader>li", ":LspInfo<cr>", desc = "LSP info" },
+  { "<leader>li", ":checkhealth lsp<cr>", desc = "LSP info" },
   { "<leader>ll", ":Trouble loclist toggle<cr>", desc = "Location list" },
   { "<leader>lq", ":Trouble qflist toggle<cr>", desc = "Quickfix list" },
   { "<leader>lv", ":Trouble lsp toggle focus=false<cr>", desc = "LSP toggle" },
