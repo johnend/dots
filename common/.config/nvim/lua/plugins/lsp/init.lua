@@ -62,14 +62,14 @@ return {
       severity_sort = true,
       float = { border = "rounded", source = "if_many" },
       underline = { severity = vim.diagnostic.severity.WARN },
-      signs = vim.g.have_nerd_font and {
+      signs = {
         text = {
           [vim.diagnostic.severity.ERROR] = Icons.diagnostics.Error,
           [vim.diagnostic.severity.WARN] = Icons.diagnostics.Warning,
           [vim.diagnostic.severity.INFO] = Icons.diagnostics.Information,
           [vim.diagnostic.severity.HINT] = Icons.diagnostics.Hint,
         },
-      } or {},
+      },
       virtual_text = false,
     }
 
