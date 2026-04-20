@@ -15,7 +15,7 @@ return {
   emmet_language_server = {},
   ---------------------------------------
   eslint = {
-    setting = {
+    settings = {
       codeAction = {
         disableRuleComment = {
           enable = true,
