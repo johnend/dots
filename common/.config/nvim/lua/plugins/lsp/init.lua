@@ -86,7 +86,23 @@ return {
 
         -- your mappings…
         map("grD", vim.lsp.buf.declaration, "Declaration")
-        map("gra", require("actions-preview").code_actions, "Code Action")
+        map("gra", function()
+          -- Neovim only collects diagnostics starting at the cursor line, missing
+          -- multi-line diagnostics (e.g. ESLint import/order spans many lines).
+          -- Collect all diagnostics that span the cursor line instead.
+          local lnum = vim.fn.line "." - 1
+          local lsp_diags = {}
+          for _, d in ipairs(vim.diagnostic.get(0)) do
+            if d.lnum <= lnum and lnum <= (d.end_lnum or d.lnum) then
+              if d.user_data and d.user_data.lsp then
+                table.insert(lsp_diags, d.user_data.lsp)
+              end
+            end
+          end
+          require("actions-preview").code_actions {
+            context = { diagnostics = lsp_diags, triggerKind = 1 },
+          }
+        end, "Code Action")
         map("grd", require("telescope.builtin").lsp_definitions, "Definitions")
         map("gre", vim.diagnostic.open_float, "Open Diagnostic Float", { "n", "x" })
         map("gri", require("telescope.builtin").lsp_implementations, "Implementations")
