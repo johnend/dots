@@ -14,8 +14,13 @@ Use this skill when the user wants a concise summary of feedback on the active p
 
 # 2. Fetch feedback
 
-- Collect review comments and discussion comments.
-- De-duplicate repeated feedback where multiple comments point to the same issue.
+Collect all three comment types using `gh`:
+
+- **Inline review comments** (on specific lines of code): `gh api repos/{owner}/{repo}/pulls/{pr}/comments`
+- **PR discussion comments** (general thread): `gh api repos/{owner}/{repo}/issues/{pr}/comments`
+- **Review summaries** (the body submitted with each review): `gh api repos/{owner}/{repo}/pulls/{pr}/reviews`
+
+De-duplicate repeated feedback where multiple comments point to the same issue.
 
 # 3. Distill into action
 
