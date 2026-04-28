@@ -1,0 +1,6 @@
+interface:
+  display_name: "Review PR"
+  short_description: "First-pass review checklist for a pull request"
+  default_prompt: "Use $review-pr to review the specified pull request and produce a structured checklist for manual review."
+policy:
+  allow_implicit_invocation: true

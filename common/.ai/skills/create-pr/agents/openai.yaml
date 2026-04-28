@@ -1,0 +1,6 @@
+interface:
+  display_name: "Create PR"
+  short_description: "Create a pull request with a concise summary"
+  default_prompt: "Use $create-pr to create a pull request for the current branch with a concise description, respecting any repo PR template."
+policy:
+  allow_implicit_invocation: true

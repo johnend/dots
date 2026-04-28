@@ -1,0 +1,6 @@
+interface:
+  display_name: "Manage Sandbox Allowlist"
+  short_description: "Add or remove sandbox permission patterns"
+  default_prompt: "Use $manage-sandbox-allowlist to add or remove CLI tool patterns from the sandbox permissions allowlist."
+policy:
+  allow_implicit_invocation: true
