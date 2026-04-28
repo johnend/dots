@@ -18,6 +18,25 @@ return {
   { "<leader>gdo", ":DiffviewOpen<cr>", desc = "Open diffview" },
   { "<leader>gdc", ":DiffviewClose<cr>", desc = "Close diffview" },
   { "<leader>gdr", ":DiffviewRefresh<cr>", desc = "Refresh diffview" },
+  {
+    "<leader>gdb",
+    function()
+      local base = nil
+      for _, ref in ipairs { "origin/HEAD", "origin/main", "origin/master" } do
+        local result = vim.fn.trim(vim.fn.system("git merge-base HEAD " .. ref .. " 2>/dev/null"))
+        if result ~= "" and not result:find "fatal" then
+          base = result
+          break
+        end
+      end
+      if base then
+        vim.cmd("DiffviewOpen " .. base)
+      else
+        vim.notify("Could not find branch base", vim.log.levels.WARN)
+      end
+    end,
+    desc = "Diff branch vs base",
+  },
   { "<leader>gx", ":lua Snacks.gitbrowse()<cr>", desc = "Open GitRepo" },
 
   -- Octo (GitHub) - Global launchers
