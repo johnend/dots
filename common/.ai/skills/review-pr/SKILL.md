@@ -1,14 +1,14 @@
 ---
 name: review-pr
 description: >
-  Review a colleague's pull request and produce a structured checklist plan for manual review — no auto-commenting on GitHub.
+  Review a colleague's pull request and output a structured review with actionable findings — no auto-commenting on GitHub, no plan mode, no implementation.
   TRIGGER when: user asks to review a PR, review a pull request, check a PR, look at a PR, give feedback on a PR, first-pass review, or references a PR number/URL to review.
   DO NOT TRIGGER when: user asks to fetch or summarize existing PR comments (use get-pr-comments), or wants to review their own uncommitted changes (use code-review).
 ---
 
 # Review PR
 
-Produce a first-pass review checklist for a colleague's pull request so the user can walk through it themselves. **Never post comments or reviews on GitHub.**
+Review a colleague's pull request and output a structured, actionable review the user can post or reference on the PR. **This is a review-only skill — never enter plan mode, never implement fixes, never modify code.**
 
 ## Input
 
@@ -24,6 +24,7 @@ Run these in parallel:
 - `gh pr view <pr> --json title,body,author,baseRefName,headRefName,files,additions,deletions,labels` — PR metadata.
 - `gh pr diff <pr>` — full diff.
 - `gh pr view <pr> --json comments,reviews,reviewRequests` — existing review comments (to avoid duplicating already-flagged issues).
+- `gh api repos/{owner}/{repo}/pulls/{pr}/comments` — inline review comments.
 
 ### 2. Read project standards
 
@@ -33,7 +34,11 @@ Read the repo's coding standards and instruction files to calibrate findings:
 - `.github/copilot-instructions.md`
 - Any `.github/instructions/` files relevant to the changed areas (e.g. analytics, copy, routing)
 
-### 3. Analyse the diff
+### 3. Read surrounding code
+
+For each changed file, read the full file (not just the diff) to understand context — types, sibling functions, existing patterns. This prevents false positives and reveals whether the PR is following or breaking local conventions.
+
+### 4. Analyse the diff
 
 Review every changed file in the diff. For each finding, record:
 
@@ -50,52 +55,59 @@ Prioritise:
 4. Violations of project conventions (from step 2)
 5. Readability, naming, structure
 
-### 4. Check for repo-specific conventions
+### 5. Output the review
 
-- Read any project-level instruction files or CLAUDE.md for repo-specific patterns and conventions.
-- Flag violations of those conventions in findings.
+Output the review directly as formatted text in your response. **Do NOT use EnterPlanMode, tasks, or any planning tools.**
 
-### 5. Output as a plan
+The review has two parts: an **overview** followed by **inline comments** the user can copy directly into GitHub's PR review UI.
 
-Present findings as a **plan** (use EnterPlanMode / task list) with the following structure:
+Use this structure:
 
-```
-## PR: <title> (#<number>) by <author>
+---
 
-### Summary
-- Brief description of what the PR does
-- Products/areas affected
-- Size: +<additions> / -<deletions> across <n> files
+**PR: `<title>` (#`<number>`) by `<author>`**
 
-### Critical (must fix)
-- [ ] <file:line> — description
+**Summary**
+> Brief description of what the PR does, products/areas affected, size (+additions / -deletions across n files).
 
-### Warnings (should fix)
-- [ ] <file:line> — description
+**Overall assessment**: Clean / Minor issues / Needs changes — one-line verdict.
 
-### Suggestions (nice to have)
-- [ ] <file:line> — description
-
-### Nits
-- [ ] <file:line> — description
-
-### Questions (things to clarify with the author)
-- [ ] <file:line> — question
-
-### Test coverage
+**Test coverage**
 - Assessment of whether the changes are adequately tested
 - Specific test gaps to check
 
-### Already flagged by reviewers
-- Summary of existing review comments (so you know what's covered)
-```
+**Already flagged by reviewers**
+- Summary of existing review comments so you know what's already covered
+
+---
+
+### Inline comments
+
+For each finding, output a block the user can paste directly as a GitHub review comment on the relevant line. Group by file, ordered by severity (Critical > Warning > Suggestion > Nit > Question).
+
+Format each comment block like this:
+
+> **`<file_path>`** — line `<line_number>` (`<severity>`)
+>
+> ```<lang>
+> // the specific line(s) of code this comment targets (from the diff)
+> ```
+>
+> **Comment:**
+> The review comment text — actionable, concise, written as if addressing the PR author directly.
+
+Use the line numbers from the **PR diff / changed file** (i.e. the lines the author would see in the GitHub Files Changed tab). Include enough surrounding code (2-3 lines) for the author to locate the spot without ambiguity.
+
+---
 
 If a section has no items, omit it. If the PR looks clean, say so explicitly and note any residual risk.
 
 ## Rules
 
-- **Read-only** — never push, comment, approve, or request changes on GitHub.
-- Keep descriptions concise — one line per finding where possible.
-- Always include file:line references.
+- **Review only** — never enter plan mode, never implement fixes, never edit code, never push, comment, approve, or request changes on GitHub.
+- Output the review as text in your response — not as a plan, not as tasks.
+- Keep descriptions concise — one or two lines per finding.
+- Always include `file:line` references.
+- **Tone**: Frame suggestions and nits as short questions, not prescriptive statements. Raise the concern, ask if it's worth addressing, and give the author an easy out. Avoid lecturing or over-explaining — the user will be pasting these as-is and wants them to read naturally as peer feedback, not AI output.
 - Flag uncertainty: if you're unsure about a finding, frame it as a question rather than a statement.
 - Consider the PR holistically: does the change make sense as a unit? Is it too large? Should it be split?
