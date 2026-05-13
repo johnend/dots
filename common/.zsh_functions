@@ -55,8 +55,36 @@ function run() {
       echo "Nothing selected. Exiting 👋"
     fi
 
+  elif [[ -f build.gradle || -f build.gradle.kts || -f settings.gradle || -f settings.gradle.kts ]]; then
+    local gradle_cmd
+    if [[ -f gradlew ]]; then
+      gradle_cmd="./gradlew"
+    elif command -v gradle &>/dev/null; then
+      gradle_cmd="gradle"
+    else
+      echo "🚨 Error: no Gradle wrapper (gradlew) or gradle binary found."
+      return 1
+    fi
+
+    local selected
+    selected=$(
+      $gradle_cmd tasks 2>&1 \
+        | grep -E '^[a-zA-Z][a-zA-Z0-9]* - ' \
+        | awk -F ' - ' '{printf "%-35s \033[2m%s\033[0m\n", $1, $2}' \
+        | fzf --ansi --height 40% --prompt="🐘 Gradle > "
+    )
+
+    if [[ -n "$selected" ]]; then
+      local task_name
+      task_name=$(echo "$selected" | awk '{print $1}')
+      print -s "$gradle_cmd $task_name"
+      $gradle_cmd "$task_name"
+    else
+      echo "Nothing selected. Exiting 👋"
+    fi
+
   else
-    echo "🚨 Error: could not find package.json or pyproject.toml"
+    echo "🚨 Error: could not find package.json or a Gradle build file"
   fi
 }
 
