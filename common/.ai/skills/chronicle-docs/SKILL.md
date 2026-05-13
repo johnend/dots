@@ -24,13 +24,21 @@ Target vault: `~/Developer/personal/Obsidian`
 - Add other Obsidian-relevant fields when they improve organization, such as `aliases`, `created`, `updated`, or `status`.
 - Keep metadata consistent with the note path and content. Do not add placeholder fields with empty values.
 
-# 4. Write documentation:
+# 4. Wikilink hygiene:
+
+- Use bare filenames in wikilinks — never use relative paths like `../` (e.g. `[[Java-Setup]]` not `[[../Java-Setup]]`).
+- Never create files named `README.md` — use a unique name derived from the directory context instead (e.g. `Dotfiles-Overview.md`, `Refer-a-Friend-Overview.md`). Generic filenames cause ambiguous wikilinks in Obsidian when multiple directories have the same filename.
+- Never link to a generic filename like `[[README]]` that could match multiple files. Use a unique filename or the full vault path to disambiguate.
+- Only add wikilinks to documents that are known to exist in the vault. Do not speculatively link to notes that might be created later. If referring to a topic without a matching note, use plain text instead of a wikilink.
+- Before adding a `[[Related]]` or `[[See Also]]` section, verify target notes exist. Prefer fewer accurate links over many broken ones.
+
+# 5. Write documentation:
 
 - Explain why and how.
 - Include examples, commands, and troubleshooting.
 - Use concise, natural technical language.
 
-# 5. Output:
+# 6. Output:
 
 - Suggested path
 - Final markdown content ready to store, including frontmatter when appropriate

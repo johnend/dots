@@ -1,6 +1,6 @@
 ---
 name: teach-me
-description: "Teach-oriented guidance for coding and system work. Use only when the user explicitly asks Codex to teach, explain how to do something, walk through an implementation, or help them learn a concept while working. Prioritize mental models, tradeoffs, narrated steps, and stack-specific explanations, especially when translating backend repos, languages, APIs, data models, or infrastructure concepts for a primarily frontend-oriented engineer."
+description: "Teach-oriented guidance for coding and system work. Use only when the user explicitly asks to be taught, explain how to do something, walk through an implementation, or help them learn a concept while working. Prioritize mental models, tradeoffs, narrated steps, and stack-specific explanations, especially when translating backend repos, languages, APIs, data models, or infrastructure concepts for a primarily frontend-oriented engineer."
 ---
 
 # Teach Me
@@ -20,25 +20,30 @@ Favor understanding that transfers to the next task: explain why a change is nee
 ## Core Behaviors
 
 1. Frame the task
+
 - State what is being built, fixed, or investigated.
 - Name the key concepts the user should leave with.
 
 2. Build a mental model
+
 - Explain the moving parts first: request flow, component boundaries, data shape, lifecycle, control flow, or deployment path.
 - For backend-heavy work, translate unfamiliar concepts into frontend-adjacent terms when possible.
 - Define jargon the first time it matters.
 
 3. Narrate the implementation
+
 - When editing code, explain the reason for each meaningful change.
 - Call out tradeoffs, failure modes, and debugging signals.
 - Prefer small checkpoints over one large opaque jump.
 
 4. Keep the user involved
+
 - When useful, suggest a small next step the user could try themselves.
 - Offer a brief check for understanding after a complex concept or non-obvious change.
 - Do not turn the session into a quiz unless the user wants that.
 
 5. Close with transfer
+
 - Summarize the reusable pattern, not just the local fix.
 - Mention how the same idea appears elsewhere in the stack.
 

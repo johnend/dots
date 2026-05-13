@@ -169,5 +169,15 @@
     "lua-lsp@claude-plugins-official": true,
     "feature-dev@claude-plugins-official": true
   },
+  "sandbox": {
+    "network": {
+      "allowUnixSockets": [
+        "/var/run/docker.sock",
+        "~/.rd/docker.sock",
+        "/Users/john.enderby/.local/state/watchman/john.enderby-state/sock"
+      ]
+    }
+  },
+  "editorMode": "vim",
   "model": "opus[1m]"
 }
