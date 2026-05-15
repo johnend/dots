@@ -59,8 +59,6 @@ Prioritise:
 
 Output the review directly as formatted text in your response. **Do NOT use EnterPlanMode, tasks, or any planning tools.**
 
-The review has two parts: an **overview** followed by **inline comments** the user can copy directly into GitHub's PR review UI.
-
 Use this structure:
 
 ---
@@ -73,19 +71,30 @@ Use this structure:
 **Overall assessment**: Clean / Minor issues / Needs changes — one-line verdict.
 
 **Test coverage**
-- Assessment of whether the changes are adequately tested
-- Specific test gaps to check
+> Assessment of whether the changes are adequately tested, and any specific gaps.
 
 **Already flagged by reviewers**
-- Summary of existing review comments so you know what's already covered
+> Summary of existing review comments so you know what's already covered. Omit if none.
+
+---
+
+### Findings
+
+Present all findings as a single markdown table, ordered by severity (Critical → Warning → Suggestion → Nit → Question):
+
+| File:Line | Severity | Category | Finding |
+|-----------|----------|----------|---------|
+| `path/to/file.ts:42` | Warning | Bug/Correctness | Brief description — what the issue is and why it matters |
+
+Categories: Bug/Correctness, Security, Performance, Test Gap, Style/Convention, Naming, Architecture, Question
+
+If the PR is clean, replace the table with a single line stating that and note any residual risk.
 
 ---
 
 ### Inline comments
 
-For each finding, output a block the user can paste directly as a GitHub review comment on the relevant line. Group by file, ordered by severity (Critical > Warning > Suggestion > Nit > Question).
-
-Format each comment block like this:
+For each row in the findings table, output a paste-ready block for GitHub's PR review UI, grouped by file:
 
 > **`<file_path>`** — line `<line_number>` (`<severity>`)
 >
@@ -96,11 +105,11 @@ Format each comment block like this:
 > **Comment:**
 > The review comment text — actionable, concise, written as if addressing the PR author directly.
 
-Use the line numbers from the **PR diff / changed file** (i.e. the lines the author would see in the GitHub Files Changed tab). Include enough surrounding code (2-3 lines) for the author to locate the spot without ambiguity.
+Use line numbers from the PR diff (the lines the author would see in the GitHub Files Changed tab). Include 2-3 lines of surrounding code for context.
 
 ---
 
-If a section has no items, omit it. If the PR looks clean, say so explicitly and note any residual risk.
+If a section has no items, omit it.
 
 ## Rules
 

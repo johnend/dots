@@ -10,6 +10,8 @@
 - Use `--force-with-lease` over `--force`
 - Git aliases available: `git fix "msg"`, `git feat "msg"`, `git chore "msg"`, etc.
 - Delta configured as git pager (side-by-side, catppuccin-mocha)
+- When committing multiple changes, chunk them into logical commits rather than one large commit.
+- Commit before replying to PR review comments when both are requested.
 
 ## Code Quality
 
@@ -31,11 +33,20 @@
 - Always ask before implementing UI: "implement, structure-only, or guidance?"
 - Never implement frontend without consent
 
+## PR Reviews
+
+- When asked to review a PR (any phrasing), produce a structured review directly — do NOT enter plan mode or implement changes
+- Output format: **Summary** → **Test Coverage** → findings table (File:Line | Severity | Category | Finding) → **Suggestions**
+- Use diplomatic, collegial tone for critical feedback
+- Never auto-comment or post to GitHub — draft only, for user approval
+
 ## Sandbox Permissions
 
 - When a Bash command is blocked by sandbox permissions, immediately surface the block — never silently skip or work around it
 - Propose the specific pattern that would allow it and ask whether to add it to the allowlist
 - Use the `manage-sandbox-allowlist` skill to apply the change, then re-attempt the original command
+- The sandbox blocks `gh` config access, `~/.npmrc` reads, and some pre-commit hooks. If a command fails due to sandbox, retry with sandbox disabled rather than working around it.
+- Never use `2>/dev/null` on commands whose stderr matters for debugging (e.g., gradle, build tools).
 
 ## Destructive Operations
 
@@ -48,6 +59,12 @@
 - Present 2-3 viable approaches with explicit pros and cons for each — never default to one solution without considering alternatives
 - Wait for explicit approval of the chosen approach before executing
 - For simple, mechanical tasks (typo fix, single import, obvious one-liner), proceed directly without a plan
+
+## Scope Discipline
+
+- Do not modify shared/infrastructure files (Dockerfile, base images, shared build configs) to fix a local-only issue unless explicitly asked.
+- Do not fabricate items in PR descriptions (e.g., 'approaches tried'). Only include what was actually done in the session.
+- When uncertain about an experiment key, config key, or override value, ask rather than guess.
 
 ## Environment
 
@@ -64,18 +81,18 @@
 
 Prefer modern replacements over traditional Unix tools:
 
-| Use | Instead of |
-|-----|-----------|
-| `rg` (ripgrep) | `grep` |
-| `fd` | `find` |
-| `bat` | `cat` |
-| `eza` | `ls` |
-| `delta` | `diff` |
-| `zoxide` (`z`) | `cd` |
+| Use              | Instead of             |
+| ---------------- | ---------------------- |
+| `rg` (ripgrep)   | `grep`                 |
+| `fd`             | `find`                 |
+| `bat`            | `cat`                  |
+| `eza`            | `ls`                   |
+| `delta`          | `diff`                 |
+| `zoxide` (`z`)   | `cd`                   |
 | `lazygit` (`gg`) | complex git operations |
-| `yazi` | file browsing |
-| `btop` | `top`/`htop` |
-| `k9s` | raw kubectl |
-| `lazydocker` | raw docker commands |
+| `yazi`           | file browsing          |
+| `btop`           | `top`/`htop`           |
+| `k9s`            | raw kubectl            |
+| `lazydocker`     | raw docker commands    |
 
 Also available: `jq`, `fzf`, `shellcheck`, `shfmt`, `stylua`, `fastfetch`, `gh`, `stow`, `mise`

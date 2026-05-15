@@ -178,6 +178,5 @@
       ]
     }
   },
-  "editorMode": "vim",
-  "model": "opus[1m]"
+  "editorMode": "vim"
 }

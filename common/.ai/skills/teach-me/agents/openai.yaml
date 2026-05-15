@@ -1,6 +1,6 @@
 interface:
   display_name: "Teach Me"
   short_description: "Teach through implementation guidance"
-  default_prompt: "Use $teach-me to explain how to implement this step by step while you work."
+  default_prompt: "Use $teach-me to walk me through implementing this myself, step by step. Don't make the edits."
 policy:
   allow_implicit_invocation: false

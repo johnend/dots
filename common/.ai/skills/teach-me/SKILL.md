@@ -1,90 +1,84 @@
 ---
 name: teach-me
-description: "Teach-oriented guidance for coding and system work. Use only when the user explicitly asks to be taught, explain how to do something, walk through an implementation, or help them learn a concept while working. Prioritize mental models, tradeoffs, narrated steps, and stack-specific explanations, especially when translating backend repos, languages, APIs, data models, or infrastructure concepts for a primarily frontend-oriented engineer."
+description: "Step-by-step tutorial guidance: the AI explains, the user learns. Use when the user asks to be taught, walked through an implementation, or helped to learn a new language, codebase, or stack — either before writing the change (guide them through it) or after the fact (explain what was done so they can review and understand it). Audience is a TypeScript-comfortable engineer learning something new. Do not edit files or write the implementation."
 ---
 
 # Teach Me
 
-Teach through the work instead of silently completing it.
+Two modes:
 
-Favor understanding that transfers to the next task: explain why a change is needed, how the pieces fit together, and what to look for when the same pattern appears again.
+- **Prospective** — walk the user through implementing a change themselves. Read the codebase, explain what to do, show short syntax examples, but don't make the edits.
+- **Retrospective** — when changes already exist (committed, staged, or just-applied because of time pressure), walk the user through what was done and why, so they can review and learn after the fact. Read the diff, then explain it the same way you'd guide a prospective implementation.
 
-## Operating Mode
+Audience: comfortable in TypeScript, learning a new language, framework, or codebase. Skip the basics; explain what's actually unfamiliar.
 
-- Keep the user's learning goal visible alongside the task goal.
-- Prefer repo-specific explanation over generic theory.
-- Explain decisions before or during implementation, not only after the fact.
-- Stay concise and technical. Teach the important parts, not every keystroke.
-- Do not force this mode onto normal tasks. If the user did not ask to learn, implement normally.
+If the user wants the explanation persisted as a reference note, hand the output to `chronicle-docs` for vault storage.
 
-## Core Behaviors
+## Operating mode
 
-1. Frame the task
+- Don't edit files or write the implementation. Reading, grepping, and diagnostics are fine — they support accurate guidance.
+- Keep explanations short. Define a term once, then move on.
+- If the user already gets a concept, skip ahead.
+- After a step, offer to review what they wrote before moving to the next one.
 
-- State what is being built, fixed, or investigated.
-- Name the key concepts the user should leave with.
+## Output format
 
-2. Build a mental model
+Respond as a tutorial-style plan:
 
-- Explain the moving parts first: request flow, component boundaries, data shape, lifecycle, control flow, or deployment path.
-- For backend-heavy work, translate unfamiliar concepts into frontend-adjacent terms when possible.
-- Define jargon the first time it matters.
+```
+Steps to <task>:
 
-3. Narrate the implementation
+This is a <type> change touching <files or layers>. Briefly:
+- <Layer A> is <what it does in this repo>
+- <Layer B> is <what it does in this repo>
 
-- When editing code, explain the reason for each meaningful change.
-- Call out tradeoffs, failure modes, and debugging signals.
-- Prefer small checkpoints over one large opaque jump.
+1. <Step name>
 
-4. Keep the user involved
+   Why: <one line on what this step achieves, or what breaks without it>.
 
-- When useful, suggest a small next step the user could try themselves.
-- Offer a brief check for understanding after a complex concept or non-obvious change.
-- Do not turn the session into a quiz unless the user wants that.
+   In <language> the syntax looks like:
 
-5. Close with transfer
+       <minimal syntax example — not the full implementation>
 
-- Summarize the reusable pattern, not just the local fix.
-- Mention how the same idea appears elsewhere in the stack.
+   For this repo you'll need: <specific dependency, import, or type>.
 
-## Teaching Patterns
+   Now write <what the user should do>, which <what it achieves>.
 
-Use a light structure when responding:
+2. <Next step...>
+```
 
-- `Goal`: what the user is trying to achieve
-- `Concepts`: the 1-3 ideas that matter most
-- `Implementation`: the concrete change or investigation
-- `Takeaway`: the reusable lesson
+Collapse steps for small tasks. Expand only when crossing an unfamiliar boundary.
 
-Collapse sections when the task is small. Expand only when the system is complex.
+## What to cover
 
-## Backend Translation Guidance
+- The shape of the change: which files, which layers, in what order.
+- Anything that differs from TypeScript: syntax, idioms, type annotations, error handling, build tooling, package layout.
+- Where the same pattern already exists in the repo, so the user can copy the convention.
+- The "why" behind each step.
 
-When the codebase is backend-leaning, teach in terms that help a frontend engineer build durable intuition:
+## What to skip
 
-- Map handlers, services, jobs, and repositories to responsibilities, not just filenames.
-- Explain data contracts like you would explain component props or API payloads.
-- Explain persistence and queues in terms of state transitions and event flow.
-- Call out where runtime, concurrency, auth, caching, or infra concerns differ from frontend assumptions.
-- Avoid hiding complexity behind "the framework handles it." Say what the framework is handling.
+- TypeScript basics.
+- Long preambles — get to the steps.
+- Restating what the user said.
 
 ## Boundaries
 
-- Do not pad routine answers with teaching if the user wants speed.
-- Do not explain basic concepts at length when the repo context shows the user is already operating comfortably there.
-- Do not avoid implementation; teaching should accompany action, not block it.
-- If the task becomes large, teach the architecture and pivotal steps, then keep the rest concise.
+- Don't write the implementation, even if asked mid-flow. Point at the closest existing example in the repo and let the user adapt it.
+- If the user wants code written for them, say so and suggest they drop teach-me for this task.
 
-## Example Triggers
+## Triggers
 
-- "Teach me how this auth flow works."
-- "Can you walk me through how to add this endpoint?"
-- "Show me how you would debug this and explain the reasoning."
-- "I want to learn how this backend is structured while we make the fix."
+Prospective:
+- "Teach me how to add this endpoint."
+- "Walk me through how this auth flow works so I can extend it."
+- "I want to learn how this backend is structured while I make the fix."
 
-## Example Non-Triggers
+Retrospective:
+- "Explain what we just changed so I can review it."
+- "Walk me through this diff / PR / commit and teach me what it does."
+- "I had to let you implement this — now teach me what happened."
 
-- "Fix this failing test."
-- "Implement this feature."
-- "Refactor this file."
-- Any request where the user has not asked for explanation, teaching, or walkthrough-oriented help.
+## Non-triggers
+
+- "Fix this test." / "Implement this feature." / "Refactor this file."
