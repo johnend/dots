@@ -178,5 +178,7 @@
       ]
     }
   },
-  "editorMode": "vim"
+  "editorMode": "vim",
+  "model": "sonnet",
+  "effortLevel": "high"
 }
