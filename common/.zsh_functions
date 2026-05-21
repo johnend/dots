@@ -166,3 +166,33 @@ function cloner() {
 
   [[ -n "$choice" ]] && repo=$(echo "$choice" | awk '{print $1}') && echo "Cloning $repo..." && gh repo clone "$repo" || echo "No repo selected."
 }
+
+#######################################
+# Validate ~/.claude.json on shell startup
+# Detects the mcpServers serializer bug that wipes user MCPs.
+#######################################
+function _claude_config_check() {
+  local config="$HOME/.claude.json"
+  [[ -f "$config" ]] || return 0
+  command -v jq >/dev/null 2>&1 || return 0
+
+  if ! jq empty "$config" >/dev/null 2>&1; then
+    local latest_valid=""
+    for f in "$HOME"/.claude/backups/.claude.json.backup.*(.NOm); do
+      if jq empty "$f" >/dev/null 2>&1; then latest_valid="$f"; break; fi
+    done
+    print -P "%F{red}⚠ ~/.claude.json is unparseable (MCP serializer bug?)%f"
+    [[ -n "$latest_valid" ]] && print -P "%F{yellow}  Latest valid backup: $latest_valid%f"
+    print -P "%F{yellow}  Restore: cp \"\$BACKUP\" ~/.claude.json%f"
+    return
+  fi
+
+  # Detect the specific schema bug even when jq parses (defensive — top-level mcpServers must be object, not array)
+  local mcp_type
+  mcp_type=$(jq -r '.mcpServers | type' "$config" 2>/dev/null)
+  if [[ "$mcp_type" == "array" ]]; then
+    print -P "%F{red}⚠ ~/.claude.json: top-level mcpServers is an array — should be an object%f"
+    print -P "%F{yellow}  Fix: jq '.mcpServers = {}' ~/.claude.json > ~/.claude.json.tmp && mv ~/.claude.json.tmp ~/.claude.json%f"
+  fi
+}
+_claude_config_check
