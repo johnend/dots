@@ -1,6 +1,0 @@
-interface:
-  display_name: "Personal Defaults"
-  short_description: "Apply repo-specific coding guardrails"
-  default_prompt: "Use $personal-defaults to apply the usual repo guardrails to this task."
-policy:
-  allow_implicit_invocation: true
