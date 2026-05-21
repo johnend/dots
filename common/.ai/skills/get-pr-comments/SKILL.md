@@ -1,6 +1,8 @@
 ---
 name: get-pr-comments
 description: Fetch review and discussion comments for the current pull request, classify human-reviewer feedback against tracked patterns, and turn it all into a concise action list.
+effort: medium
+model: claude-haiku-4-5
 ---
 
 # Get PR Comments

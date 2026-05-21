@@ -1,6 +1,8 @@
 ---
 name: manage-sandbox-allowlist
 description: "Add or remove CLI tool patterns from Claude Code's sandbox permissions allowlist and denylist. Triggered proactively by user request or reactively when a Bash command is blocked."
+effort: low
+model: claude-haiku-4-5
 ---
 
 # Manage Sandbox Allowlist

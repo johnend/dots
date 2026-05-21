@@ -1,6 +1,8 @@
 ---
 name: create-pr
 description: Create a pull request from the current branch with a concise summary, respecting repo PR templates. Triggered by "/create-pr" or "create a PR".
+effort: medium
+model: claude-haiku-4-5
 ---
 
 # Create Pull Request
