@@ -47,6 +47,9 @@ common/.config/opencode/context/work/
 # Claude Code runtime state
 common/.claude/plugins/
 
+# Local backup files (e.g. .claude.json.{prefix,postfix}.* snapshots)
+.backups/
+
 # System-provided AI skills
 common/.ai/skills/.system/
 
