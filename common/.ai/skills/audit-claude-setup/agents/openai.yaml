@@ -1,0 +1,6 @@
+interface:
+  display_name: "Audit Claude Code Setup"
+  short_description: "Audit Claude Code config against latest docs (Claude Code only)"
+  default_prompt: "Use $audit-claude-setup to review the Claude Code configuration against the latest documentation."
+policy:
+  allow_implicit_invocation: false
