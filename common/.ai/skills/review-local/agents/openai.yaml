@@ -1,0 +1,6 @@
+interface:
+  display_name: "Review Local Changes"
+  short_description: "Review uncommitted/staged changes for bugs and regressions"
+  default_prompt: "Use $review-local to review the current local changes for bugs, regressions, and missing tests."
+policy:
+  allow_implicit_invocation: true
