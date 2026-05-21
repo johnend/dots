@@ -4,6 +4,7 @@
 
 - **Manual control only** — never auto-commit, auto-push, auto-merge, or auto-create PRs
 - Show `git status` and `git diff --stat` before suggesting any commit
+- Before suggesting a commit, invoke the `review-local` skill on the staged diff and surface findings. Skip only if the user explicitly opts out (e.g. "skip the review", "just commit")
 - Follow the repo's existing commit style (check `git log` first) — only use conventional commits (`fix:`, `feat:`, etc.) when the repo already does
 - Branch naming: follow repo convention; default to `<type>: <scope> - <summary>` for personal repos
 - When on a ticket branch (e.g. `ABC-123-some-feature`), prepend the ticket number to the first commit on the branch: `ABC-123 commit message`. Infer the ticket from the branch name.
@@ -52,6 +53,7 @@
 
 - State risk and ask explicitly before: force push, reset, bulk delete, production changes
 - Run scoped validation/tests before declaring done
+- Package managers: installing from a lockfile (`yarn`, `npm install`, `pnpm install`, `bun install`) and running scripts (`yarn <script>`, `npm run <script>`, `bun run <script>`, etc.) are fine. Never modify dependencies without explicit confirmation — applies to all package managers (`yarn add/remove/upgrade`, `npm install <pkg>`, `npm uninstall`, `pnpm add/remove`, `bun add/remove`, `pip install`, `poetry add`, `cargo add`, `bundle add`, etc.)
 
 ## Planning & Options
 
@@ -59,6 +61,17 @@
 - Present 2-3 viable approaches with explicit pros and cons for each — never default to one solution without considering alternatives
 - Wait for explicit approval of the chosen approach before executing
 - For simple, mechanical tasks (typo fix, single import, obvious one-liner), proceed directly without a plan
+
+## Research & Implementation
+
+For non-trivial work (features, subtle bugs, integrations, dependency/config changes), don't start editing immediately:
+
+1. **Discover** — Read the smallest set of relevant docs, configs, and code paths. Prefer existing implementations over inventing a new pattern. Map the affected flow and dependencies before editing.
+2. **Verify** — Confirm the likely data flow, ownership, and change surface. Identify blockers and risky assumptions. Ask a focused question when a key requirement cannot be inferred safely.
+3. **Execute** — Implement once the path is clear. Prefer extending existing code over introducing parallel abstractions.
+4. **Close the loop** — Run the narrowest useful validation. Update existing docs when the change makes them stale. Fix nearby instances when the same issue pattern clearly repeats.
+
+Trust code/config over stale documentation when they differ. Mechanical tasks (typo, single import, obvious one-liner) skip this and go straight to the edit.
 
 ## Scope Discipline
 
