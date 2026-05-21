@@ -1,11 +1,11 @@
 ---
 name: evolve-skill
-description: Review user feedback or session patterns and create or update Codex skills so durable behavior changes are captured in the right SKILL.md with proposal-first approval.
+description: Review user feedback or session patterns and create or update agent skills so durable behavior changes are captured in the right SKILL.md with proposal-first approval.
 ---
 
 # Evolve Skill
 
-Use this skill when the user wants to adjust Codex behavior via skills, update an existing skill, or turn a repeated workflow into a new skill.
+Use this skill when the user wants to adjust agent behavior via skills, update an existing skill, or turn a repeated workflow into a new skill.
 
 # 1. Define the target
 

@@ -3,7 +3,7 @@ name: review-pr
 description: >
   Review a colleague's pull request and output a structured review with actionable findings — no auto-commenting on GitHub, no plan mode, no implementation.
   TRIGGER when: user asks to review a PR, review a pull request, check a PR, look at a PR, give feedback on a PR, first-pass review, or references a PR number/URL to review.
-  DO NOT TRIGGER when: user asks to fetch or summarize existing PR comments (use get-pr-comments), or wants to review their own uncommitted changes (use code-review).
+  DO NOT TRIGGER when: user asks to fetch or summarize existing PR comments (use get-pr-comments), or wants to review their own uncommitted changes (use review-local).
 ---
 
 # Review PR
@@ -57,7 +57,7 @@ Prioritise:
 
 ### 5. Output the review
 
-Output the review directly as formatted text in your response. **Do NOT use EnterPlanMode, tasks, or any planning tools.**
+Output the review directly as formatted text in your response. **Do NOT enter plan mode or use planning/task tools.**
 
 Use this structure:
 

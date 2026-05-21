@@ -5,6 +5,8 @@ description: "Add or remove CLI tool patterns from Claude Code's sandbox permiss
 
 # Manage Sandbox Allowlist
 
+**Claude Code only.** This skill targets `~/.claude/settings.json` and Claude Code's permission schema (`Bash(<pattern>)`, `Read(<path>)`, etc.). Codex uses a different sandbox model configured in `~/.codex/config.toml` — do not invoke this skill from Codex.
+
 Use this skill to add or remove patterns from the Claude Code sandbox permissions in `settings.json`.
 
 ## Triggers
