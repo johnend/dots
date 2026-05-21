@@ -1,8 +1,4 @@
 {
-  "attribution": {
-    "commit": "",
-    "pr": ""
-  },
   "permissions": {
     "allow": [
       "Bash(git status*)",
@@ -134,7 +130,7 @@
       "Bash(* --version)",
       "Bash(* --help)",
       "Bash(* --help *)",
-      "Read(//Users/john.enderby/Developer/**)",
+      "Read(/Users/john.enderby/Developer/**)",
       "Read(~/.config/**)",
       "Read(~/.claude/**)",
       "Read(~/.zshrc)",
@@ -144,7 +140,7 @@
       "Read(~/.gitconfig)",
       "Read(~/.gitsettings/**)",
       "Read(~/.tmux.conf)",
-      "Edit(//Users/john.enderby/Developer/**)"
+      "Edit(/Users/john.enderby/Developer/**)"
     ],
     "deny": [
       "Bash(rm -rf *)",
