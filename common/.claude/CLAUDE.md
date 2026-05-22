@@ -40,6 +40,7 @@
 - Output format: **Summary** → **Test Coverage** → findings table (File:Line | Severity | Category | Finding) → **Suggestions**
 - Use diplomatic, collegial tone for critical feedback
 - Never auto-comment or post to GitHub — draft only, for user approval
+- For per-reviewer pattern tracking (e.g. `get-pr-comments`), exclude AI authors (Copilot, CodeRabbit, Sonarcloud, Greptile, Ellipsis, anything matching `*[bot]`) — their comments still appear in the action list but don't accumulate against human reviewers
 
 ## Sandbox Permissions
 
