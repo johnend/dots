@@ -7,6 +7,8 @@ Codex sandbox config lives in ~/.codex/config.toml and uses a different model.
 
 # Global Preferences
 
+Do not make any changes until you have 95% confidence in what you need to build. Ask me follow up questions until you reach that confidence level.
+
 ## Git Workflow
 
 - **Manual control only** — never auto-commit, auto-push, auto-merge, or auto-create PRs
@@ -109,3 +111,7 @@ Prefer modern replacements over traditional Unix tools:
 | `lazydocker`     | raw docker commands    |
 
 Also available: `jq`, `fzf`, `shellcheck`, `shfmt`, `stylua`, `fastfetch`, `gh`, `stow`, `mise`
+
+## Applied learning
+
+When something failed repeatedly, when the user has to re-explain, or when a workaround is found for a platform/tool limitation, add a one-line bullet here. Keep each bullet under 15 words. No explanations. Only add things that will save time in future sessions.
