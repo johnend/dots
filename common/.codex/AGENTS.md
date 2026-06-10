@@ -44,7 +44,7 @@ Codex sandbox config lives in ~/.codex/config.toml and uses a different model.
 ## PR Reviews
 
 - When asked to review a PR (any phrasing), produce a structured review directly — do NOT enter plan mode or implement changes
-- Output format: **Summary** → **Test Coverage** → findings table (File:Line | Severity | Category | Finding) → **Suggestions**
+- Output format: **Header** (Summary, Overall assessment, Test coverage, Already flagged, severity tally) → **Findings**, severity-grouped (Critical → Warning → Suggestion → Nit → Question), each severity introduced by a box-drawing header, one self-contained block per finding (location + category + code snippet + paste-ready comment), thick `━` rule between findings within a section. Full spec lives in the `/review-pr` skill.
 - Use diplomatic, collegial tone for critical feedback
 - Never auto-comment or post to GitHub — draft only, for user approval
 - For per-reviewer pattern tracking (e.g. `get-pr-comments`), exclude AI authors (Copilot, CodeRabbit, Sonarcloud, Greptile, Ellipsis, anything matching `*[bot]`) — their comments still appear in the action list but don't accumulate against human reviewers

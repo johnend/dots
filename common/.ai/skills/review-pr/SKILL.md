@@ -10,6 +10,9 @@ description: >
 
 Review a colleague's pull request and output a structured, actionable review the user can post or reference on the PR. **This is a review-only skill — never enter plan mode, never implement fixes, never modify code.**
 
+> [!NOTE]
+> `gh` CLI commands require sandbox-disabled execution and should be batched upfront rather than retried after a block
+
 ## Input
 
 - Accepts a PR number, URL, or branch name as the argument.
@@ -49,6 +52,7 @@ Review every changed file in the diff. For each finding, record:
 - **Already flagged** — if an existing review comment covers this, note it and skip
 
 Prioritise:
+
 1. Correctness and behavioural regressions
 2. Security and unsafe data handling
 3. Missing or insufficient tests
@@ -59,57 +63,65 @@ Prioritise:
 
 Output the review directly as formatted text in your response. **Do NOT enter plan mode or use planning/task tools.**
 
-Use this structure:
+Use this structure.
 
----
+#### Header block
 
+```
 **PR: `<title>` (#`<number>`) by `<author>`**
 
 **Summary**
-> Brief description of what the PR does, products/areas affected, size (+additions / -deletions across n files).
+Brief description of what the PR does, products/areas affected, size
+(+additions / -deletions across n files).
 
-**Overall assessment**: Clean / Minor issues / Needs changes — one-line verdict.
+**Overall assessment:** Clean / Minor issues / Needs changes — one-line verdict.
 
-**Test coverage**
-> Assessment of whether the changes are adequately tested, and any specific gaps.
+**Test coverage:** Assessment of whether changes are adequately tested and any gaps.
 
-**Already flagged by reviewers**
-> Summary of existing review comments so you know what's already covered. Omit if none.
+**Already flagged by reviewers:** Summary of existing review comments so you know
+what's already covered. Omit if none.
 
----
+**<n> warnings · <n> suggestions · <n> nits · <n> questions**
+```
 
-### Findings
+The severity tally line goes last in the header. Omit severities with zero findings.
 
-Present all findings as a single markdown table, ordered by severity (Critical → Warning → Suggestion → Nit → Question):
+#### Findings — severity-grouped, one self-contained block per finding
 
-| File:Line | Severity | Category | Finding |
-|-----------|----------|----------|---------|
-| `path/to/file.ts:42` | Warning | Bug/Correctness | Brief description — what the issue is and why it matters |
+For each severity that has findings, emit a box-drawing header, then each finding inline. Severities go in order: Critical → Warning → Suggestion → Nit → Question.
+
+Box header (use this exact width — 62 chars between the corners):
+
+```
+╔══════════════════════════════════════════════════════════════╗
+║  WARNINGS · <n> findings                                     ║
+╚══════════════════════════════════════════════════════════════╝
+```
+
+Each finding is a self-contained block:
+
+````
+### `<file_path>:<line>` · <Category>
+
+```<lang>
+// 2-3 lines of surrounding code from the diff for context
+```
+
+The review comment — actionable, concise, written as if addressing the PR
+author directly. This is what the user will paste into GitHub.
+````
+
+Between findings within the same severity section, separate with a thick rule:
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+No rule before the first finding or after the last one. No rule between severity sections — the next box header is enough.
 
 Categories: Bug/Correctness, Security, Performance, Test Gap, Style/Convention, Naming, Architecture, Question
 
-If the PR is clean, replace the table with a single line stating that and note any residual risk.
-
----
-
-### Inline comments
-
-For each row in the findings table, output a paste-ready block for GitHub's PR review UI, grouped by file:
-
-> **`<file_path>`** — line `<line_number>` (`<severity>`)
->
-> ```<lang>
-> // the specific line(s) of code this comment targets (from the diff)
-> ```
->
-> **Comment:**
-> The review comment text — actionable, concise, written as if addressing the PR author directly.
-
-Use line numbers from the PR diff (the lines the author would see in the GitHub Files Changed tab). Include 2-3 lines of surrounding code for context.
-
----
-
-If a section has no items, omit it.
+If the PR is clean, skip the findings section and add a single line stating that, noting any residual risk.
 
 ## Rules
 
