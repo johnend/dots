@@ -3,6 +3,7 @@
 ## Git Workflow
 
 - **Manual control only** — never auto-commit, auto-push, auto-merge, or auto-create PRs
+- Never include any `Co-Authored-By` trailer in commit messages — overrides Claude Code's default. Enforced by `hooks/block-coauthored-by.sh`.
 - Show `git status` and `git diff --stat` before suggesting any commit
 - Before suggesting a commit, invoke the `review-local` skill on the staged diff and surface findings. Skip only if the user explicitly opts out (e.g. "skip the review", "just commit")
 - Follow the repo's existing commit style (check `git log` first) — only use conventional commits (`fix:`, `feat:`, etc.) when the repo already does
@@ -20,7 +21,8 @@
 - Comments explain WHY, not WHAT — skip comments for standard patterns, self-documenting code, and obvious operations
 - Comment workarounds, counter-intuitive logic, performance tradeoffs, security decisions, external constraints, TODOs with timeline
 - Prefer explicit over implicit; verbose names over abbreviations
-- Shell scripts: `set -euo pipefail`, 2-space indent, UPPER_SNAKE_CASE constants, lowercase_snake_case variables/functions
+- Shell scripts: `set -euo pipefail` (advised by `hooks/check-shell-safe-mode.sh`), 2-space indent, UPPER_SNAKE_CASE constants, lowercase_snake_case variables/functions
+- Inside bash functions, never combine `local` with command substitution (`local x=$(cmd)`) — `local` always returns 0 and silently swallows the inner exit status; declare and assign on separate lines. Advised by `hooks/check-local-assignment.sh`.
 
 ## Communication
 
@@ -48,13 +50,13 @@
 - Propose the specific pattern that would allow it and ask whether to add it to the allowlist
 - Use the `manage-sandbox-allowlist` skill to apply the change, then re-attempt the original command
 - The sandbox blocks `gh` config access, `~/.npmrc` reads, and some pre-commit hooks. If a command fails due to sandbox, retry with sandbox disabled rather than working around it.
-- Never use `2>/dev/null` on commands whose stderr matters for debugging (e.g., gradle, build tools).
+- Never use `2>/dev/null` on commands whose stderr matters for debugging — build tools (gradle, mvn, tsc, jest, pytest, etc.) and remote-contact commands (`gh`, `git push/fetch/pull/ls-remote/commit`). Enforced by `hooks/block-stderr-suppression.sh`.
 
 ## Destructive Operations
 
 - State risk and ask explicitly before: force push, reset, bulk delete, production changes
 - Run scoped validation/tests before declaring done
-- Package managers: installing from a lockfile (`yarn`, `npm install`, `pnpm install`, `bun install`) and running scripts (`yarn <script>`, `npm run <script>`, `bun run <script>`, etc.) are fine. Never modify dependencies without explicit confirmation — applies to all package managers (`yarn add/remove/upgrade`, `npm install <pkg>`, `npm uninstall`, `pnpm add/remove`, `bun add/remove`, `pip install`, `poetry add`, `cargo add`, `bundle add`, etc.)
+- Package managers: lockfile installs (`npm install`, `yarn`, `pnpm install`, `bun install`, `npm ci`) and script runs (`npm run X`, `yarn X`, etc.) are fine. Never modify dependencies without explicit confirmation. Enforced by `hooks/block-dependency-changes.sh` and the `yarn add/remove/upgrade` deny patterns.
 
 ## Planning & Options
 
