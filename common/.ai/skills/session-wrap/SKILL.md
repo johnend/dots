@@ -1,5 +1,5 @@
 ---
-name: session-wrap
+name: Session Wrap
 description: "End-of-session documentation: synthesizes what was done, why, patterns implemented, and codebase knowledge gained, then hands off to chronicle-docs to write a structured Obsidian note."
 ---
 
@@ -39,6 +39,7 @@ Example: `RACNS-1234-some-feature` → `RACNS-1234`. Omit if no match.
   - No `repo` field in frontmatter
 
 **File name**:
+
 - Work with JIRA ticket: `<TICKET>-<Short-Title>.md` (e.g. `RACNS-1234-Predicts-Join-Page.md`)
 - Everything else: `YYYY-MM-DD-<Short-Title>.md`
 
@@ -107,6 +108,7 @@ Prepare these fields to pass to `chronicle-docs`:
 Show the full synthesized content to the user for review. After showing it, ask explicitly:
 
 > Save this to Obsidian?
+>
 > 1. Yes — write it now
 > 2. No — discard
 
@@ -114,6 +116,7 @@ Wait for the user's response. Do not proceed until they reply.
 
 **If the user confirms (selects 1, says "yes", "go ahead", "looks good", or any affirmative):**
 Invoke `chronicle-docs` by calling `Skill("chronicle-docs")`, passing:
+
 - The synthesized content from Phase 3
 - The suggested Obsidian path from Phase 2
 - The file name from Phase 2

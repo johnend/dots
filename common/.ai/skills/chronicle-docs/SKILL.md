@@ -5,7 +5,12 @@ description: Draft or update high-quality technical documentation for the Obsidi
 
 # Chronicle Docs
 
-Target vault: `~/Developer/personal/Obsidian`
+Target vaults, in preference order:
+
+- Current Linux machine: `/home/johne/Documents/Obsidian`
+- Work machine: `~/Developer/personal/Obsidian`
+
+Use the first path that exists. Do not spend time rediscovering the vault path unless neither exists.
 
 # 1. Classify content:
 

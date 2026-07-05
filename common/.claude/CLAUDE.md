@@ -32,6 +32,7 @@ Do not make any changes until you have 95% confidence in what you need to build.
 - Technical depth appreciated
 - Check official docs before implementing with unfamiliar libraries — don't iterate blindly on failed approaches
 - Check local docs first (plugin `/doc/`, `node_modules/*/README.md`), then online via webfetch
+- when presenting an implementation plan, include a confidence level and briefly state the main uncertainty or validation needed to raise confidence
 
 ## UI/Frontend
 
