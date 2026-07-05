@@ -32,22 +32,22 @@ function run() {
   if [[ -f package.json ]]; then
     scripts=$(jq -r '.scripts | to_entries[] | "\(.key): \(.value)"' package.json | fzf --height 40%)
     if [[ -n $scripts ]]; then
-      script_name=$(echo $scripts | awk -F ':' '{print $1}' | xargs)
+      script_name="${scripts%%: *}"
       if [[ -f yarn.lock ]]; then
         print -s "yarn run $script_name"
-        yarn run $script_name
+        yarn run "$script_name"
       elif [[ -f package-lock.json ]]; then
         print -s "npm run $script_name"
-        npm run $script_name
+        npm run "$script_name"
       elif [[ -f pnpm-lock.yaml ]]; then
         print -s "pnpm run $script_name"
-        pnpm run $script_name
+        pnpm run "$script_name"
       elif [[ -f bun.lockb ]]; then
         print -s "bun run $script_name"
-        bun run $script_name
+        bun run "$script_name"
       elif [[ -f deno.json || -f deno.jsonc ]]; then
         print -s "deno task $script_name"
-        deno task $script_name
+        deno task "$script_name"
       else
         echo "No recognized JS/TS package manager lockfile found."
       fi
