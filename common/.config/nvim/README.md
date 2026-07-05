@@ -131,7 +131,7 @@ below.
 
 ### git
 
-- [sindrets/diffview.nvim](https://dotfyle.com/plugins/sindrets/diffview.nvim)
+- [dlyongemallo/diffview-plus.nvim](https://github.com/dlyongemallo/diffview-plus.nvim)
 - [lewis6991/gitsigns.nvim](https://dotfyle.com/plugins/lewis6991/gitsigns.nvim)
 - I primarily use LazyGit in a Toggleterm
 

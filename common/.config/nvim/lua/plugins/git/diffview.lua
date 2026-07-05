@@ -1,5 +1,6 @@
 return {
-  "sindrets/diffview.nvim",
+  "dlyongemallo/diffview-plus.nvim",
+  version = "*",
   event = "VeryLazy",
 
   config = function()
