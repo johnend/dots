@@ -77,7 +77,7 @@ return {
     snippets = { preset = "luasnip" },
 
     sources = {
-      default = { "lsp", "path", "snippets", "buffer" },
+      default = { "lsp", "css_variables", "path", "snippets", "buffer" },
       -- Per-filetype source configuration
       per_filetype = {
         lua = { "lsp", "path", "snippets", "lazydev", "buffer" },
@@ -87,14 +87,22 @@ return {
           enabled = true,
           name = "LSP",
           module = "blink.cmp.sources.lsp",
-          score_offset = 0, -- Prioritize LSP completions
+          fallbacks = { "buffer" },
+          score_offset = 0,
           transform_items = sanitize_and_dedupe,
+        },
+        css_variables = {
+          enabled = true,
+          name = "CSS Variables",
+          module = "config.completion.css_variables",
+          fallbacks = { "buffer" },
+          score_offset = 12,
         },
         lazydev = {
           enabled = true,
           name = "LazyDev",
           module = "lazydev.integrations.blink",
-          score_offset = 50, -- Equal to LSP for Lua files
+          score_offset = 4,
         },
         snippets = {
           enabled = true,
@@ -102,13 +110,14 @@ return {
           max_items = 100,
           min_keyword_length = 2,
           module = "blink.cmp.sources.snippets",
-          score_offset = -3, -- Lower priority, appears below LSP/path
+          score_offset = 0, -- Blink already applies the global snippet penalty.
         },
         path = {
           enabled = true,
           name = "Path",
           module = "blink.cmp.sources.path",
-          score_offset = 50, -- High priority for paths
+          fallbacks = { "buffer" },
+          score_offset = 3,
           opts = {
             trailing_slash = false,
             label_trailing_slash = true,
@@ -129,7 +138,7 @@ return {
       -- Manual completion trigger (easy with space-hold-as-ctrl)
       ["<C-l>"] = {
         function(cmp)
-          cmp.show { providers = { "lsp", "path", "snippets", "buffer" } }
+          cmp.show()
         end,
       },
       -- Disable arrow keys in completion menu
@@ -155,7 +164,8 @@ return {
         },
       },
       documentation = {
-        auto_show = false, -- Only show with <C-k> keymap
+        auto_show = false,
+        auto_show_delay_ms = 300,
         window = {
           border = UI.borders.documentation,
           winhighlight = "FloatBorder:FloatBorder",

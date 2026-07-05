@@ -1,6 +1,7 @@
 -- LSP server configurations
 -- Each server's configuration is defined here and imported by the main LSP setup
 local schemastore = require "schemastore"
+local css_variables = require "config.completion.css_variables"
 
 return {
   ---------------------------------------
@@ -8,7 +9,20 @@ return {
   ---------------------------------------
   cssls = {},
   ---------------------------------------
-  css_variables = {},
+  css_variables = {
+    filetypes = css_variables.filetypes,
+    on_attach = function(client)
+      -- css-variables-language-server currently throws on completion in some CSS module buffers.
+      -- Keep it attached for non-completion features; Blink handles variable completion from the same globs.
+      client.server_capabilities.completionProvider = nil
+    end,
+    settings = {
+      cssVariables = {
+        lookupFiles = css_variables.lookup_files,
+        blacklistFolders = css_variables.blacklist_folders,
+      },
+    },
+  },
   ---------------------------------------
   cssmodules_ls = {},
   ---------------------------------------
