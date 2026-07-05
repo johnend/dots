@@ -1,0 +1,42 @@
+[
+  {
+    "icon": "󰾰",
+    "title": "btop",
+    "category": "Tools",
+    "action": {
+      "popup": "btop"
+    }
+  },
+  {
+    "icon": "󰊢",
+    "title": "lazygit",
+    "category": "Tools",
+    "action": {
+      "tmux": "display-popup -E -h 80% -w 80% -d '#{pane_current_path}' lazygit"
+    }
+  },
+  {
+    "icon": "󰇅",
+    "title": "fastfetch",
+    "category": "Tools",
+    "action": {
+      "tmux": "display-popup -E -h 80% -w 80% \"fastfetch; printf '\\nPress Enter to close...'; read -r\""
+    }
+  },
+  {
+    "icon": "󰇥",
+    "title": "yazi",
+    "category": "Tools",
+    "action": {
+      "tmux": "display-popup -E -h 85% -w 85% -d '#{pane_current_path}' yazi"
+    }
+  },
+  {
+    "icon": "",
+    "title": "sessionizer",
+    "category": "Tools",
+    "action": {
+      "popup": "~/.local/bin/tmux-sessionizer"
+    }
+  }
+]
