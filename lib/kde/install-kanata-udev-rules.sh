@@ -3,7 +3,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 RULES_SOURCE_DIR="${SCRIPT_DIR}/../etc/udev/rules.d"
-RULE_NAME="99-kmonad-hi86.rules"
+RULE_NAME="99-kanata-hi86.rules"
 RULE_SOURCE="${RULES_SOURCE_DIR}/${RULE_NAME}"
 RULE_DEST="/etc/udev/rules.d/${RULE_NAME}"
 
@@ -21,4 +21,4 @@ install -Dm644 "${RULE_SOURCE}" "${RULE_DEST}"
 udevadm control --reload-rules
 
 echo "Installed ${RULE_DEST}"
-echo "Unplug and replug the BY Tech keyboard to trigger kmonad@hi86.service."
+echo "Unplug and replug the BY Tech keyboard to trigger kanata@hi86.service."
