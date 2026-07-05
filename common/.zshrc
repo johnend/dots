@@ -32,7 +32,6 @@ plugins=(
   gh
   git
   gradle
-  yarn
   zsh-autosuggestions
   zsh-vi-mode
 )

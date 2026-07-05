@@ -106,3 +106,9 @@ postingraf() {
 # Duckypad configs and such
 alias duckyconfig="DUCKYPAD_UI_SCALE=1 python3 ~/Developer/duckyPad-Configurator/src/duckypad_config.py"
 alias duckyprofiles="DUCKYPAD_UI_SCALE=1 python3 ~/Developer/duckyPad-Profile-Autoswitcher/src/duckypad_autoprofile.py"
+
+# cloudflared
+alias cft='cloudflared tunnel'
+alias cfta='cloudflared tunnel run aurijin-prototype'
+alias cftl='cloudflared tunnel list'
+alias cftr='cloudflared tunnel route dns'

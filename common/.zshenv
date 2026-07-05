@@ -131,6 +131,9 @@ fi
 # Zoxide exclude directories
 export _ZO_EXCLUDE_DIRS="$HOME/.local/share/nvim/jdtls-workspace/*"
 
+# Codex/Claude bash output length
+export BASH_MAX_OUTPUT_LENGTH=15000
+
 # ────────────────────────────────────────────────────────────────────────────────
 # Security certificates (Netskope)
 # ────────────────────────────────────────────────────────────────────────────────
