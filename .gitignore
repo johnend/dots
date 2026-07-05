@@ -24,6 +24,7 @@ linux/.config/spicetify/
 commmon/.config/nvim/tmux*.log
 
 # Neovim runtime state
+common/.config/nvim.log
 common/.config/nvim/*.log
 
 #tmux
