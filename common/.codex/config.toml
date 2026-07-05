@@ -1,6 +1,7 @@
-model = "gpt-5.4"
-model_reasoning_effort = "medium"
+model = "gpt-5.5"
+model_reasoning_effort = "xhigh"
 personality = "pragmatic"
+plan_mode_reasoning_effort = "xhigh"
 
 [projects."/Users/john.enderby"]
 trust_level = "trusted"
@@ -44,8 +45,30 @@ trust_level = "trusted"
 [projects."/home/johne/Developer/startpage"]
 trust_level = "trusted"
 
+[projects."/home/johne/Developer/aurijin"]
+trust_level = "trusted"
+
+[projects."/home/johne/Developer/dots/common/.config/nvim"]
+trust_level = "trusted"
+
+[projects."/home/johne/Developer"]
+trust_level = "trusted"
+
+[projects."/home/johne/Developer/dots/common/.config/tmux"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 "gpt-5.3-codex" = "gpt-5.4"
+"gpt-5.4" = "gpt-5.5"
 
 [tui]
 theme = "catppuccin-mocha"
+vim_mode_default = true
+status_line = ["model-with-reasoning", "current-dir", "project-name", "git-branch", "context-used", "codex-version", "context-window-size"]
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
+
+[[skills.config]]
+path = "/home/johne/Developer/dots/common/.ai/skills/audit-claude-setup/SKILL.md"
+enabled = false
