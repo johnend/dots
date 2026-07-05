@@ -171,14 +171,16 @@ for k, v in pairs(options) do
 end
 
 -- Keep LSP log quiet — only errors worth surfacing
-vim.lsp.set_log_level("WARN")
+vim.lsp.log.set_level "WARN"
 
 -- Trim LSP log entries older than 2 months when file exceeds 10MB.
 -- Runs deferred to avoid blocking startup.
 vim.defer_fn(function()
-  local log_path = vim.lsp.get_log_path()
+  local log_path = vim.lsp.log.get_filename()
   local stat = vim.uv.fs_stat(log_path)
-  if not stat or stat.size <= 10 * 1024 * 1024 then return end
+  if not stat or stat.size <= 10 * 1024 * 1024 then
+    return
+  end
 
   local cutoff = os.date("%Y-%m-%d", os.time() - (60 * 24 * 60 * 60))
   local kept = {}
@@ -197,7 +199,9 @@ vim.defer_fn(function()
   local f = io.open(log_path, "w")
   if f then
     f:write(table.concat(kept, "\n"))
-    if #kept > 0 then f:write "\n" end
+    if #kept > 0 then
+      f:write "\n"
+    end
     f:close()
   end
 end, 5000)

@@ -24,9 +24,12 @@ vim.filetype.add {
 
 -- custom filetype icons
 
-require("nvim-web-devicons").set_icon {
-  ["cfg"] = {
-    icon = "",
-    name = "Configuration",
-  },
-}
+local devicons_ok, devicons = pcall(require, "nvim-web-devicons")
+if devicons_ok then
+  devicons.set_icon {
+    ["cfg"] = {
+      icon = "",
+      name = "Configuration",
+    },
+  }
+end

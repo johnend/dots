@@ -4,12 +4,10 @@ return {
   -------------------------------------
   { "gr", group = "LSP go to", icon = Icons.ui.Code },
   { "<leader>l", group = "LSP", icon = Icons.ui.Code },
-  { "<leader>li", ":checkhealth lsp<cr>", desc = "LSP info" },
+  { "<leader>li", ":checkhealth vim.lsp<cr>", desc = "LSP health" },
   { "<leader>ll", ":Trouble loclist toggle<cr>", desc = "Location list" },
   { "<leader>lq", ":Trouble qflist toggle<cr>", desc = "Quickfix list" },
   { "<leader>lv", ":Trouble lsp toggle focus=false<cr>", desc = "LSP toggle" },
-  -- TODO: need to create a picker that passes LSP name to LspRestart
-  -- { "<leader>lr", ":LspRestart<cr>", desc = "Restart LSP Server" },
   {
     "<leader>ls",
     ":Trouble symbols<cr>",

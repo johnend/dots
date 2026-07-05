@@ -104,10 +104,21 @@ autocommand("BufLeave", {
   pattern = { "*lazygit*" },
   group = vim.api.nvim_create_augroup("git_refresh_neotree", { clear = true }),
   callback = function()
-    local manager = require "neo-tree.sources.manager"
-    local state = manager.get_state "filesystem"
+    local manager_ok, manager = pcall(require, "neo-tree.sources.manager")
+    if not manager_ok then
+      return
+    end
+
+    local state_ok, state = pcall(manager.get_state, "filesystem")
+    if not state_ok then
+      return
+    end
+
     if state and type(state.window) == "number" and vim.api.nvim_win_is_valid(state.window) then
-      require("neo-tree.sources.filesystem.commands").refresh(state)
+      local commands_ok, commands = pcall(require, "neo-tree.sources.filesystem.commands")
+      if commands_ok then
+        commands.refresh(state)
+      end
     end
   end,
 })
@@ -262,7 +273,14 @@ vim.api.nvim_create_autocmd({ "User" }, {
       RequestStreaming = Icons.ui.Telescope,
     }
 
-    vim.notify(msg, 2, {
+    local level = vim.log.levels.INFO
+    if vim.endswith(request.match, "Error") or vim.endswith(request.match, "Failure") then
+      level = vim.log.levels.ERROR
+    elseif vim.endswith(request.match, "Warning") or vim.endswith(request.match, "Timeout") then
+      level = vim.log.levels.WARN
+    end
+
+    vim.notify(msg, level, {
       timeout = 1000,
       keep = function()
         return not vim

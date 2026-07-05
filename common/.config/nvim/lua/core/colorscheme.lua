@@ -11,8 +11,8 @@ function M.load()
   local state = { colorscheme = default_colorscheme, transparent = false }
   local ok, json = pcall(vim.fn.readfile, theme_file)
   if ok and json and #json > 0 then
-    local decoded = vim.fn.json_decode(table.concat(json, "\n"))
-    if decoded then
+    local decode_ok, decoded = pcall(vim.fn.json_decode, table.concat(json, "\n"))
+    if decode_ok and type(decoded) == "table" then
       if decoded.colorscheme then
         state.colorscheme = decoded.colorscheme
       end
