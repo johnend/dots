@@ -8,6 +8,9 @@ common/.config/btop/btop.log
 common/.config/k9s/clusters/
 common/.config/k9s/k9s.log
 
+# Yazi runtime backups
+common/.config/yazi/yazi.toml-*
+
 # Lazygit state
 common/.config/lazygit/state.yml
 
@@ -19,6 +22,9 @@ linux/.config/spicetify/
 .DS_Store
 **/.DS_Store
 commmon/.config/nvim/tmux*.log
+
+# Neovim runtime state
+common/.config/nvim/*.log
 
 #tmux
 common/.config/tmux/plugins
@@ -58,13 +64,21 @@ common/.ai/skills/.system/
 common/.codex/auth.json
 common/.codex/.tmp/
 common/.codex/cache/
+common/.codex/generated_images/
+common/.codex/goals_*.sqlite
+common/.codex/goals_*.sqlite-shm
+common/.codex/goals_*.sqlite-wal
 common/.codex/history.jsonl
 common/.codex/installation_id
 common/.codex/log/
 common/.codex/logs_*.sqlite
 common/.codex/logs_*.sqlite-shm
 common/.codex/logs_*.sqlite-wal
+common/.codex/memories_*.sqlite
+common/.codex/memories_*.sqlite-shm
+common/.codex/memories_*.sqlite-wal
 common/.codex/models_cache.json
+common/.codex/session_index*.jsonl
 common/.codex/sessions/
 common/.codex/shell_snapshots/
 common/.codex/state_*.sqlite
