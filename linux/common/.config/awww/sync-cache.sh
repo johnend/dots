@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 set -euo pipefail
 
-CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/swww"
+CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/awww"
 STABLE_CACHE_DIR="$CACHE_DIR/by-id"
 
 mkdir -p "$STABLE_CACHE_DIR"

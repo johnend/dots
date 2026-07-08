@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 set -euo pipefail
 
-CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/swww"
+CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/awww"
 STABLE_CACHE_DIR="$CACHE_DIR/by-id"
 
 mkdir -p "$STABLE_CACHE_DIR"
@@ -14,11 +14,11 @@ cache_path_for_identity() {
 }
 
 extract_filter() {
-  tr '\0' '\n' < "$1" | sed -n '2p'
+  tr '\0' '\n' <"$1" | sed -n '2p'
 }
 
 extract_image() {
-  tr '\0' '\n' < "$1" | sed -n '3p'
+  tr '\0' '\n' <"$1" | sed -n '3p'
 }
 
 restore_output() {
@@ -31,7 +31,7 @@ restore_output() {
   image="$(extract_image "$cache_file")"
   [[ -n "$image" && -f "$image" ]] || return 1
 
-  swww img -o "$name" -f "${filter:-Lanczos3}" "$image" --transition-type none >/dev/null
+  awww img -o "$name" -f "${filter:-Lanczos3}" "$image" --transition-type none >/dev/null
 }
 
 swaymsg -t get_outputs | jq -r '.[] | select(.active) | @base64' | while IFS= read -r encoded; do
@@ -55,14 +55,14 @@ swaymsg -t get_outputs | jq -r '.[] | select(.active) | @base64' | while IFS= re
   fi
 
   case "$identity" in
-    "Apple Computer Inc Color LCD Unknown")
-      for alias in eDP-1 eDP-2; do
-        alias_cache="$CACHE_DIR/$alias"
-        if restore_output "$name" "$alias_cache"; then
-          cp "$alias_cache" "$stable_cache"
-          break
-        fi
-      done
-      ;;
+  "Apple Computer Inc Color LCD Unknown")
+    for alias in eDP-1 eDP-2; do
+      alias_cache="$CACHE_DIR/$alias"
+      if restore_output "$name" "$alias_cache"; then
+        cp "$alias_cache" "$stable_cache"
+        break
+      fi
+    done
+    ;;
   esac
 done
