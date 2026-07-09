@@ -6,7 +6,7 @@ A comprehensive package and tool collection for macOS development, featuring a u
 
 A complete development environment featuring:
 
-- **mise** - Unified version manager (replaces asdf, pyenv, nvm, etc.)
+- **mise** - Unified version manager
 - **Starship** - Fast, customizable shell prompt
 - **Oh-My-Zsh** - Enhanced shell with plugins
 - **Complete development toolchain** - Docker, Kubernetes, Terraform, and more
@@ -75,9 +75,8 @@ A complete development environment featuring:
 ### Version Management
 
 - **mise** - Unified version manager for Node.js, Python, Ruby, Go, and more
-  - Replaces: asdf, pyenv, nvm, nodenv, rbenv, goenv, jenv
   - Config: `~/.config/mise/config.toml`
-  - Legacy support: Reads `.tool-versions`, `.node-version`, `.python-version`, etc.
+  - Reads `.tool-versions`, `.node-version`, `.python-version`, etc.
 
 ### Shell & Prompt
 

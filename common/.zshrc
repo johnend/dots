@@ -1,9 +1,3 @@
-# ————————————————————————————————————————————————
-# Deduplicate PATH automatically (zsh unique array)
-# ————————————————————————————————————————————————
-# This must be at the very top to ensure PATH stays unique throughout initialization
-typeset -U PATH path
-
 # Load system config
 [[ -f "$HOME/.zsh_functions" ]] && source "$HOME/.zsh_functions"
 

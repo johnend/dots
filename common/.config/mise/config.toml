@@ -13,5 +13,6 @@ task_disable_paths = ["/"]
 minimum_release_age_excludes = ["codex"]
 
 [tools]
+npm = "latest"
 pipx = "latest"
-pnpm = "10.33.2"
+usage = "latest"

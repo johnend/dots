@@ -14,6 +14,6 @@ When you suggest or run shell commands (e.g. search, list files, view diffs, run
 | `cat`              | `bat`                              | Viewing files (syntax highlighting)        |
 | `ls`               | `eza`                              | Listing directories (icons, git status)    |
 | `git diff` (plain) | `git diff` with **delta** as pager | Readable diffs (if delta is configured)    |
-| asdf / nvm / pyenv | **mise**                           | Version management (Node, Python, etc.)    |
+| version managers   | **mise**                           | Version management (Node, Python, etc.)    |
 
 Use the Read or Grep tools in the IDE when that’s the right fit; when suggesting commands for the user to run in a terminal, prefer the right-hand column above.

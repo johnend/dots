@@ -2,7 +2,7 @@
 #
 # Use this file for:
 # - Setting up PATH (before interactive tools need it)
-# - Initializing language version managers (asdf, rvm, pyenv, etc.)
+# - Initializing login-shell tooling
 # - One-time login setup
 #
 # Load order: .zshenv → .zprofile → .zshrc → .zlogin

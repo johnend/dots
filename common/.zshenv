@@ -15,24 +15,22 @@
 # ────────────────────────────────────────────────────────────────────────────────
 # Core paths (highest priority)
 # ────────────────────────────────────────────────────────────────────────────────
-# Personal scripts (must be first for EDITOR detection below)
-export PATH="$HOME/bin:$PATH"
-
-# Local installs
-export PATH="$PATH:$HOME/.local/bin"
-export PATH="$PATH:$HOME/.npm-global/bin"
-export PATH="$PATH:$HOME/.cargo/bin"
-
-# mise shims (available for all shells)
-export PATH="$HOME/.local/share/mise/shims:$PATH"
-
-# Bun
-export PATH="$PATH:$HOME/.bun/bin"
+typeset -gU PATH path
+path=(
+  "$HOME/bin"
+  "$HOME/.config/emacs/bin"
+  "$HOME/.local/share/mise/shims"
+  "$HOME/.local/bin"
+  "$HOME/.npm-global/bin"
+  "$HOME/.cargo/bin"
+  "$HOME/.bun/bin"
+  "$HOME/.cache/.bun/bin"
+  $path
+)
 
 # DOOM
 if [[ -d "$HOME/.config/emacs/bin" ]]; then
   export DOOMDIR="$HOME/.config/doom"
-  export PATH="$HOME/.config/emacs/bin:$PATH"
 fi
 
 # ────────────────────────────────────────────────────────────────────────────────
@@ -58,13 +56,12 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   
   # Language-specific paths
   export PATH="$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin"
-  export PATH="$HOME/.cache/.bun/bin:$PATH"
   
   # Go (macOS gets this from /etc/paths.d/go)
   [[ -d "/usr/local/go/bin" ]] && [[ ":$PATH:" != *":/usr/local/go/bin:"* ]] && export PATH="$PATH:/usr/local/go/bin"
 fi
 
-: "${GOPATH:-$HOME/go}"
+: "${GOPATH:=$HOME/go}"
 [[ -d "$GOPATH/bin" ]] && export PATH="$GOPATH/bin:$PATH"
 
 # ────────────────────────────────────────────────────────────────────────────────

@@ -79,7 +79,7 @@ dots/
 **common/** - Shared configurations that work across all platforms:
 - Neovim, Tmux, Git, Shell (zsh), Starship prompt
 - CLI tools: bat, eza, ripgrep, fzf, etc.
-- Version manager: mise (replaces asdf, pyenv, nvm)
+- Version manager: mise
 
 **linux/** - Linux desktop environment configurations:
 - Window manager configs (Sway, Hyprland, KDE)
@@ -117,7 +117,7 @@ See [`linux/sway/README.md`](linux/sway/README.md) for screenshots and details.
 ### Shell & Prompt
 - **Zsh + Oh My Zsh** - Enhanced shell with plugins (autosuggestions, syntax highlighting, fzf-tab)
 - **Starship** - Fast, customizable prompt (replaced Powerlevel10k)
-- **mise** - Unified version manager (replaced asdf, pyenv, nvm, etc.)
+- **mise** - Unified version manager
 
 ### Terminal Emulators
 - **Linux:** Ghostty (primary), Alacritty
@@ -219,12 +219,10 @@ This is a personal dotfiles repository, but feel free to:
 
 Some app configs (like Ghostty and Kitty) are split between `common/` and the OS-specific folder, using imports in the OS's config file. This allows tweaking platform-specific settings (like font sizes for Retina displays) without duplicating everything.
 
-### Version Manager Migration
+### Version Management
 
-Recently migrated from **asdf** to **mise**:
-- mise is faster and more compatible
-- Reads legacy `.tool-versions` files
-- Supports `.node-version`, `.python-version`, etc.
+mise manages language runtimes and tool versions:
+- Reads `.tool-versions`, `.node-version`, `.python-version`, etc.
 - Configuration: `~/.config/mise/config.toml`
 
 ### Prompt Migration

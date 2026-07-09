@@ -1,0 +1,84 @@
+[metadata]
+name = "npm-scripts"
+description = "List and run package.json scripts"
+requirements = ["jq"]
+
+[source]
+command = '''
+root="$PWD"
+while [ "$root" != "/" ] && [ ! -f "$root/package.json" ]; do
+  root=$(dirname "$root")
+done
+
+[ -f "$root/package.json" ] || exit 0
+
+manager=""
+runner=""
+if [ -f "$root/yarn.lock" ]; then
+  manager="yarn"
+  runner="run"
+elif [ -f "$root/package-lock.json" ]; then
+  manager="npm"
+  runner="run"
+elif [ -f "$root/pnpm-lock.yaml" ]; then
+  manager="pnpm"
+  runner="run"
+elif [ -f "$root/bun.lockb" ]; then
+  manager="bun"
+  runner="run"
+elif [ -f "$root/deno.json" ] || [ -f "$root/deno.jsonc" ]; then
+  manager="deno"
+  runner="task"
+fi
+
+command_label="unknown"
+if [ -n "$manager" ] && [ -n "$runner" ]; then
+  command_label="$manager $runner"
+fi
+
+jq -r --arg root "$root" --arg manager "$manager" --arg runner "$runner" --arg command_label "$command_label" '
+  .scripts // {}
+  | to_entries[]
+  | [$root, $manager, $runner, .key, .value, $command_label]
+  | @tsv
+' "$root/package.json" 2>/dev/null
+'''
+display = "{split:\\t:3}"
+output = "{split:\\t:3}"
+frecency = false
+
+[preview]
+command = '''
+cd '{split:\t:0}' || exit 1
+jq -r --arg script '{split:\t:3}' '.scripts[$script]' package.json
+'''
+
+[ui.preview_panel]
+size = 30
+header = "{split:\\t:5}"
+
+[keybindings]
+enter = "actions:run"
+
+[actions.run]
+description = "Run the selected package script"
+command = '''
+root='{split:\t:0}'
+manager='{split:\t:1}'
+runner='{split:\t:2}'
+script='{split:\t:3}'
+
+if [ -z "$manager" ] || [ -z "$runner" ]; then
+  echo "No recognized JS/TS package manager lockfile found."
+  exit 1
+fi
+
+if ! command -v "$manager" >/dev/null 2>&1; then
+  echo "Error: $manager is not installed or not on PATH."
+  exit 1
+fi
+
+cd "$root" || exit 1
+"$manager" "$runner" "$script"
+'''
+mode = "execute"

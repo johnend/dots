@@ -1,5 +1,6 @@
 [tools]
-node = "latest"
+node = "lts"
+pnpm = "11"
 zig = "latest"
 go = "latest"
 yarn = "1.22"

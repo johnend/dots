@@ -15,7 +15,7 @@
 
 ## Version Management
 
-**mise** (not asdf/nvm/pyenv). Reads `.tool-versions`, `.node-version`, etc.
+**mise** manages language runtimes and tool versions. Reads `.tool-versions`, `.node-version`, etc.
 - `mise install`, `mise use node@20`, `mise ls`, `mise current`
 
 ## Package Managers

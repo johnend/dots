@@ -32,7 +32,7 @@ Personal dotfiles repository for cross-platform development environment. Manages
 - **Process viewer:** bottom (btm), htop
 
 ### Version Management
-- **mise:** Unified version manager (replaces asdf, nvm, pyenv, rbenv)
+- **mise:** Unified version manager
 - **Languages:** Node.js, Python, Ruby, Rust, Go
 
 ### Linux Desktop (Sway/KDE)

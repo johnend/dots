@@ -90,7 +90,7 @@ Trust code/config over stale documentation when they differ. Mechanical tasks (t
 - **Shell:** Zsh + Oh My Zsh, vi-mode, Starship prompt
 - **Editor:** Neovim (Neovide GUI), `v` alias
 - **Multiplexer:** Tmux with TPM
-- **Version management:** mise (not asdf/nvm/pyenv)
+- **Version management:** mise
 - **Package managers:** Yarn (primary JS), Homebrew (macOS), pacman/yay (Arch)
 - **Dotfiles:** GNU Stow from `~/Developer/personal/dots` → `common/`, `linux/`, `macos/`
 - **Window managers:** AeroSpace (macOS), Sway (Linux laptop), KDE (Linux desktop)
