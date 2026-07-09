@@ -10,6 +10,9 @@ output = "{}"
 [preview]
 command = "cat 'node_modules/{}/package.json' 2>/dev/null | jq -C '{name, version, description, license, homepage, main}'"
 
+[keybindings]
+enter = "actions:readme"
+
 [actions.readme]
 description = "View the package README"
 command = "cat node_modules/{}/README.md 2>/dev/null | less"

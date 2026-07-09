@@ -1,0 +1,24 @@
+[metadata]
+name = "tmux-sessionizer"
+description = "Switch to tmux sessions"
+requirements = ["tmux-sessionizer", "tmux"]
+
+[source]
+command = [
+  { name = "Sessions", run = "tmux-sessionizer --list sessions" },
+  { name = "Active",   run = "tmux-sessionizer --list active" },
+  { name = "Windows",  run = "tmux-sessionizer --list windows" },
+]
+display = "{split:\t:4}"
+output = "{split:\t:1}"
+
+[preview]
+command = "if [ '{split:\t:0}' = 'tmux' ] || [ '{split:\t:0}' = 'window' ]; then tmux capture-pane -t '{split:\t:1}' -p 2>/dev/null || echo 'No preview available'; else ls -la --color=always '{split:\t:1}'; fi"
+
+[keybindings]
+enter = "actions:switch"
+
+[actions.switch]
+description = "Switch to the selected tmux session"
+command = "tmux-sessionizer --switch '{split:\t:0}' '{split:\t:1}'"
+mode = "execute"

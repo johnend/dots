@@ -11,6 +11,9 @@ output = "{split:\\::0}"
 [preview]
 command = "nmcli -t -f SSID,BSSID,MODE,FREQ,SIGNAL,SECURITY,ACTIVE device wifi list 2>/dev/null | grep '^{split:\\::0}:'"
 
+[keybindings]
+enter = "actions:connect"
+
 [actions.connect]
 description = "Connect to the selected network"
 command = "nmcli device wifi connect '{split:\\::0}'"

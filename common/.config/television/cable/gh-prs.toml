@@ -31,6 +31,9 @@ command = '''gh pr view '{strip_ansi|split:#:1|split:   :0}' --json number,title
 (.body // "")'
 '''
 
+[keybindings]
+enter = "actions:open"
+
 [actions.open]
 description = "Open the PR in the browser"
 command = "gh pr view {strip_ansi|split:#:1|split:   :0} --web"

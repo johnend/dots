@@ -13,6 +13,9 @@ command = "journalctl -b --no-pager -o short-iso -n 50 SYSLOG_IDENTIFIER='{}' 2>
 layout = "portrait"
 preview_panel = { size = 70 }
 
+[keybindings]
+enter = "actions:full"
+
 [actions.logs]
 description = "Follow live logs for the selected identifier"
 command = "journalctl -f SYSLOG_IDENTIFIER={}"

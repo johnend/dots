@@ -15,6 +15,9 @@ command = "echo '{}'"
 layout = "portrait"
 preview_panel = { size = 30 }
 
+[keybindings]
+enter = "actions:restore"
+
 [actions.restore]
 description = "Restore the selected trashed file"
 command = "echo '{split: :1..}' | trash-restore"

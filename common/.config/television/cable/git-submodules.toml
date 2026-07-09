@@ -9,12 +9,20 @@ command = "git submodule status | awk '{print $2}'"
 [preview]
 command = "git -C '{}' log --oneline -10 --color=always"
 
+[keybindings]
+enter = "actions:status"
+
+[actions.status]
+description = "Show the selected submodule status"
+command = "git submodule status -- '{}' && git -C '{}' log --oneline -10 --color=always"
+mode = "execute"
+
 [actions.update]
 description = "Update the selected submodule"
-command = "git submodule update --init --recursive {}"
+command = "git submodule update --init --recursive '{}'"
 mode = "execute"
 
 [actions.sync]
 description = "Sync the selected submodule URL"
-command = "git submodule sync {}"
+command = "git submodule sync '{}'"
 mode = "execute"

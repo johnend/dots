@@ -13,6 +13,7 @@ command = "tldr '{0}' --color always"
 layout = "portrait"
 
 [keybindings]
+enter = "actions:open"
 ctrl-e = "actions:open"
 
 [actions.open]

@@ -12,10 +12,16 @@ output = "{split: :0}"
 command = "ps -p '{split: :0}' -o user,pid,ppid,state,%cpu,%mem,command | fold"
 
 [keybindings]
+enter = "actions:inspect"
 ctrl-k = "actions:kill"
 f2 = "actions:term"
 ctrl-s = "actions:stop"
 ctrl-c = "actions:cont"
+
+[actions.inspect]
+description = "Inspect the selected process"
+command = "ps -p '{split: :0}' -o user,pid,ppid,state,%cpu,%mem,etime,command | less"
+mode = "execute"
 
 [actions.kill]
 description = "Kill the selected process (SIGKILL)"

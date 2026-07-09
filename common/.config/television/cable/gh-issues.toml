@@ -30,6 +30,9 @@ command = '''gh issue view '{strip_ansi|split:#:1|split:   :0}' --json number,ti
 (.body // "")'
 '''
 
+[keybindings]
+enter = "actions:open"
+
 [actions.open]
 description = "Open the issue in the browser"
 command = "gh issue view {strip_ansi|split:#:1|split: :0} --web"

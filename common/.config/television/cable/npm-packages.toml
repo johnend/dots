@@ -9,12 +9,20 @@ command = "npm list -g --depth=0 --parseable 2>/dev/null | tail -n +2 | xargs -I
 [preview]
 command = "npm info '{}' 2>/dev/null | head -30"
 
+[keybindings]
+enter = "actions:info"
+
+[actions.info]
+description = "Show package info"
+command = "npm info '{}' | less"
+mode = "execute"
+
 [actions.uninstall]
 description = "Uninstall the selected global package"
-command = "npm uninstall -g {}"
+command = "npm uninstall -g '{}'"
 mode = "execute"
 
 [actions.update]
 description = "Update the selected global package"
-command = "npm update -g {}"
+command = "npm update -g '{}'"
 mode = "execute"

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/tmux-sessionizer"
 CONFIG_FILE="$CONFIG_DIR/tmux-sessionizer.conf"
+TS_TMUX_ICON="${TS_TMUX_ICON:-}"
 
 # config file example
 # ------------------------
@@ -25,11 +26,27 @@ sanity_check() {
         echo "tmux is not installed. Please install it first."
         exit 1
     fi
+}
 
+fzf_check() {
     if ! command -v fzf &>/dev/null; then
         echo "fzf is not installed. Please install it first."
         exit 1
     fi
+}
+
+usage() {
+    cat <<EOF
+Usage:
+  tmux-sessionizer
+  tmux-sessionizer --list [all|sessions|active|windows]
+  tmux-sessionizer --switch <kind> <target>
+  tmux-sessionizer <path-or-session>
+
+Modes:
+  --list             Print candidates as: kind<TAB>target<TAB>session<TAB>status<TAB>display
+  --switch           Switch to an existing tmux session or project directory
+EOF
 }
 
 switch_to() {
@@ -41,7 +58,7 @@ switch_to() {
 }
 
 has_session() {
-    tmux list-sessions | grep -q "^$1:"
+    tmux has-session -t "$1" 2>/dev/null
 }
 
 hydrate() {
@@ -52,7 +69,23 @@ hydrate() {
     fi
 }
 
-sanity_check
+display_path() {
+    case "$1" in
+        "$HOME")
+            printf '~\n'
+            ;;
+        "$HOME"/*)
+            printf '%s/%s\n' "~" "${1#"$HOME"/}"
+            ;;
+        *)
+            printf '%s\n' "$1"
+            ;;
+    esac
+}
+
+session_name_from_dir() {
+    basename "$1" | tr . _
+}
 
 # if TS_SEARCH_PATHS is not set use default
 [[ -n "$TS_SEARCH_PATHS" ]] || TS_SEARCH_PATHS=(~/ ~/personal ~/personal/dev/env/.config)
@@ -65,57 +98,156 @@ if [[ ${#TS_EXTRA_SEARCH_PATHS[@]} -gt 0 ]]; then
     TS_SEARCH_PATHS+=("${TS_EXTRA_SEARCH_PATHS[@]}")
 fi
 
-# utility function to find directories
-find_dirs() {
-    # list TMUX sessions
-    if [[ -n "${TMUX}" ]]; then
-        current_session=$(tmux display-message -p '#S')
-        tmux list-sessions -F "[TMUX] #{session_name}" 2>/dev/null | grep -vFx "[TMUX] $current_session"
-    else
-        tmux list-sessions -F "[TMUX] #{session_name}" 2>/dev/null
-    fi
+list_active_sessions() {
+    tmux list-sessions -F "#{session_name}" 2>/dev/null |
+        while IFS= read -r session; do
+            printf 'tmux\t%s\t%s\tactive\t%s %s\n' "$session" "$session" "$TS_TMUX_ICON" "$session"
+        done
+}
 
-    # note: TS_SEARCH_PATHS is an array of paths to search for directories
-    # if the path ends with :number, it will search for directories with a max depth of number ;)
-    # if there is no number, it will search for directories with a max depth defined by TS_MAX_DEPTH or 1 if not set
+list_windows() {
+    tmux list-windows -a -F $'#{session_name}\t#{window_index}\t#{window_name}\t#{window_active}' 2>/dev/null |
+        while IFS=$'\t' read -r session window_index window_name window_active; do
+            target="$session:$window_index"
+
+            if [[ "$window_active" == 1 ]]; then
+                printf 'window\t%s\t%s\tactive\t%s %s %s\n' "$target" "$session" "$TS_TMUX_ICON" "$target" "$window_name"
+            else
+                printf 'window\t%s\t%s\tinactive\t%s %s %s\n' "$target" "$session" "$TS_TMUX_ICON" "$target" "$window_name"
+            fi
+        done
+}
+
+list_session_candidates() {
     for entry in "${TS_SEARCH_PATHS[@]}"; do
-        # Check if entry as :number as suffix then adapt the maxdepth parameter
         if [[ "$entry" =~ ^([^:]+):([0-9]+)$ ]]; then
             path="${BASH_REMATCH[1]}"
             depth="${BASH_REMATCH[2]}"
         else
             path="$entry"
+            depth="${TS_MAX_DEPTH:-1}"
         fi
 
-        [[ -d "$path" ]] && find "$path" -mindepth 1 -maxdepth "${depth:-${TS_MAX_DEPTH:-1}}" -path '*/.git' -prune -o -type d -print
+        [[ -d "$path" ]] && find "$path" -mindepth 1 -maxdepth "$depth" -path '*/.git' -prune -o -type d -print 2>/dev/null
+    done | while IFS= read -r dir; do
+        session_name=$(session_name_from_dir "$dir")
+        display=$(display_path "$dir")
+
+        if has_session "$session_name"; then
+            printf 'dir\t%s\t%s\tactive\t%s %s\n' "$dir" "$session_name" "$TS_TMUX_ICON" "$display" 2>/dev/null || break
+        else
+            printf 'dir\t%s\t%s\tinactive\t%s\n' "$dir" "$session_name" "$display" 2>/dev/null || break
+        fi
     done
 }
 
-if [[ $# -eq 1 ]]; then
+list_candidates() {
+    case "${1:-all}" in
+        all)
+            list_active_sessions
+            list_session_candidates
+            ;;
+        sessions)
+            list_session_candidates
+            ;;
+        active)
+            list_active_sessions
+            ;;
+        windows)
+            list_windows
+            ;;
+        *)
+            echo "Unknown list mode: $1" >&2
+            exit 1
+            ;;
+    esac
+}
+
+switch_dir() {
     selected="$1"
-else
-    selected=$(find_dirs | fzf)
-fi
 
-if [[ -z $selected ]]; then
-    exit 0
-fi
+    selected_name=$(session_name_from_dir "$selected")
+    tmux_running=$(pgrep tmux)
 
-if [[ "$selected" =~ ^\[TMUX\]\ (.+)$ ]]; then
-    selected="${BASH_REMATCH[1]}"
-fi
+    if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+        tmux new-session -ds "$selected_name" -c "$selected"
+        hydrate "$selected_name" "$selected"
+    fi
 
-selected_name=$(basename "$selected" | tr . _)
-tmux_running=$(pgrep tmux)
+    if ! has_session "$selected_name"; then
+        tmux new-session -ds "$selected_name" -c "$selected"
+        hydrate "$selected_name" "$selected"
+    fi
 
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmux new-session -ds "$selected_name" -c "$selected"
-    hydrate "$selected_name" "$selected"
-fi
+    switch_to "$selected_name"
+}
 
-if ! has_session "$selected_name"; then
-    tmux new-session -ds "$selected_name" -c "$selected"
-    hydrate "$selected_name" "$selected"
-fi
+switch_window() {
+    target="$1"
+    session="${target%%:*}"
 
-switch_to "$selected_name"
+    tmux select-window -t "$target"
+    switch_to "$session"
+}
+
+switch_target() {
+    kind="$1"
+    target="$2"
+
+    case "$kind" in
+        tmux)
+            switch_to "$target"
+            ;;
+        dir)
+            switch_dir "$target"
+            ;;
+        window)
+            switch_window "$target"
+            ;;
+        *)
+            echo "Unknown target kind: $kind" >&2
+            exit 1
+            ;;
+    esac
+}
+
+sanity_check
+
+case "${1:-}" in
+    --help|-h)
+        usage
+        exit 0
+        ;;
+    --list)
+        list_candidates "${2:-all}"
+        exit 0
+        ;;
+    --switch)
+        if [[ $# -ne 3 ]]; then
+            usage >&2
+            exit 1
+        fi
+        switch_target "$2" "$3"
+        exit 0
+        ;;
+    "")
+        fzf_check
+        selected=$(list_candidates | fzf --delimiter=$'\t' --with-nth=5)
+        [[ -z $selected ]] && exit 0
+        IFS=$'\t' read -r kind target _ _ _ <<<"$selected"
+        switch_target "$kind" "$target"
+        ;;
+    *)
+        selected="$1"
+
+        if [[ "$selected" =~ ^\[TMUX\]\ (.+)$ ]]; then
+            switch_target tmux "${BASH_REMATCH[1]}"
+        elif [[ "$selected" =~ ^${TS_TMUX_ICON}\ (.+)$ ]]; then
+            switch_target tmux "${BASH_REMATCH[1]}"
+        elif has_session "$selected"; then
+            switch_target tmux "$selected"
+        else
+            switch_target dir "$selected"
+        fi
+        ;;
+esac

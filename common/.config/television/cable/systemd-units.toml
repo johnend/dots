@@ -17,11 +17,17 @@ command = "systemctl status '{split: :0}' --no-pager"
 layout = "portrait"
 
 [keybindings]
+enter = "actions:status"
 ctrl-s = "actions:start"
 f2 = "actions:stop"
 ctrl-r = "actions:restart"
 ctrl-e = "actions:enable"
 ctrl-d = "actions:disable"
+
+[actions.status]
+description = "Show the selected service status"
+command = "systemctl status '{split: :0}' --no-pager"
+mode = "execute"
 
 [actions.start]
 description = "Start the selected service"

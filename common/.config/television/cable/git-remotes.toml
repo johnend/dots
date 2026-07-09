@@ -9,12 +9,20 @@ command = "git remote"
 [preview]
 command = "git remote show '{}'"
 
+[keybindings]
+enter = "actions:show"
+
+[actions.show]
+description = "Show the selected remote"
+command = "git remote show '{}'"
+mode = "execute"
+
 [actions.fetch]
 description = "Fetch from the selected remote"
-command = "git fetch {}"
+command = "git fetch '{}'"
 mode = "execute"
 
 [actions.remove]
 description = "Remove the selected remote"
-command = "git remote remove {}"
+command = "git remote remove '{}'"
 mode = "execute"

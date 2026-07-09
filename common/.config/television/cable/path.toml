@@ -9,7 +9,10 @@ command = "printf '%s\n' \"$PATH\" | tr ':' '\n'"
 [preview]
 command = "fd -tx -d1 . \"{}\" -X printf \"%s\n\" \"{/}\" | sort -f | bat -n --color=always"
 
+[keybindings]
+enter = "actions:cd"
+
 [actions.cd]
 description = "Open a shell in the selected PATH directory"
-command = "cd {} && $SHELL"
+command = "cd '{}' && $SHELL"
 mode = "execute"

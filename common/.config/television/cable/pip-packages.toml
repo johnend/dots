@@ -13,15 +13,21 @@ command = "pip show '{}'"
 layout = "portrait"
 
 [keybindings]
+enter = "actions:info"
 ctrl-u = "actions:upgrade"
 ctrl-d = "actions:uninstall"
 
+[actions.info]
+description = "Show package info"
+command = "pip show '{}'"
+mode = "execute"
+
 [actions.upgrade]
 description = "Upgrade the selected package"
-command = "pip install --upgrade {}"
+command = "pip install --upgrade '{}'"
 mode = "execute"
 
 [actions.uninstall]
 description = "Uninstall the selected package"
-command = "pip uninstall {}"
+command = "pip uninstall '{}'"
 mode = "execute"

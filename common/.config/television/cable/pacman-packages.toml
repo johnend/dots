@@ -10,6 +10,9 @@ output = "{split: :0}"
 [preview]
 command = "pacman -Qi '{split: :0}' 2>/dev/null"
 
+[keybindings]
+enter = "actions:files"
+
 [actions.remove]
 description = "Remove the selected package"
 command = "sudo pacman -R '{split: :0}'"

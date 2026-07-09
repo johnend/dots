@@ -14,9 +14,15 @@ frecency = false
 command = "git show -p --stat --pretty=fuller --color=always '{strip_ansi|split: :1}' | head -n 1000"
 
 [keybindings]
+enter = "actions:show"
 ctrl-y = "actions:cherry-pick"
 ctrl-r = "actions:revert"
 ctrl-o = "actions:checkout"
+
+[actions.show]
+description = "Show the selected commit"
+command = "git show --color=always '{strip_ansi|split: :1}' | less -R"
+mode = "execute"
 
 [actions.cherry-pick]
 description = "Cherry-pick the selected commit"

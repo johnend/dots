@@ -8,7 +8,7 @@ command = "$SHELL -ic 'alias'"
 output = "{split:=:0}"
 
 [preview]
-command = "$SHELL -ic 'alias' | grep -E '^(alias )?{split:=:0}='"
+command = "$SHELL -ic 'alias' | awk -F= -v name='{split:=:0}' '$1 == name { print }'"
 
 [ui.preview_panel]
 size = 30

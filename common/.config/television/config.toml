@@ -120,7 +120,6 @@ background = "#191724"
 # ----------------------------------------------------------------------------
 #
 [keybindings]
-ctrl-s = "no_op"
 # Application control
 # ------------------
 esc = "quit"
@@ -156,7 +155,7 @@ ctrl-f = "cycle_previews"
 # --------------
 ctrl-y = "copy_entry_to_clipboard"
 # ctrl-r = "reload_source"
-ctrl-b = "cycle_sources"
+ctrl-s = "cycle_sources"
 
 # UI Features
 # ----------
