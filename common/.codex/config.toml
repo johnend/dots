@@ -1,7 +1,8 @@
 model = "gpt-5.5"
-model_reasoning_effort = "xhigh"
+model_reasoning_effort = "high"
 personality = "pragmatic"
 plan_mode_reasoning_effort = "xhigh"
+default_permissions = "git-fsmonitor-workspace"
 
 [projects."/Users/john.enderby"]
 trust_level = "trusted"
@@ -57,6 +58,9 @@ trust_level = "trusted"
 [projects."/home/johne/Developer/dots/common/.config/tmux"]
 trust_level = "trusted"
 
+[projects."/home/johne/.local/share/easyeffects"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 "gpt-5.3-codex" = "gpt-5.4"
 "gpt-5.4" = "gpt-5.5"
@@ -68,6 +72,16 @@ status_line = ["model-with-reasoning", "current-dir", "project-name", "git-branc
 
 [tui.model_availability_nux]
 "gpt-5.5" = 4
+
+[permissions.git-fsmonitor-workspace]
+extends = ":workspace"
+
+[permissions.git-fsmonitor-workspace.network]
+enabled = true
+mode = "limited"
+
+[permissions.git-fsmonitor-workspace.network.unix_sockets]
+"/home/johne/Developer/dots/.git/fsmonitor--daemon.ipc" = "allow"
 
 [[skills.config]]
 path = "/home/johne/Developer/dots/common/.ai/skills/audit-claude-setup/SKILL.md"
