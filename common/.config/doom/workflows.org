@@ -1,0 +1,247 @@
+#+title: Doom Emacs Workflows
+#+startup: overview
+
+* How to read this
+
+This config keeps the shape of the Neovim workflow but uses Doom's native
+modules. The main habit shift is that =SPC= is still the command hub, but many
+commands are Doom defaults rather than custom mappings.
+
+Useful discovery commands:
+
+| Key       | Use |
+|-----------+-----|
+| =SPC h d h= | Doom documentation hub |
+| =SPC h d w= | This workflow guide |
+| =SPC ?=     | Search keybindings |
+| =SPC h k=   | Describe a keybinding |
+| =SPC h f=   | Describe a function |
+| =SPC h v=   | Describe a variable |
+| =SPC h m=   | Describe the current mode |
+
+Pause after =SPC= to let which-key show the next available keys.
+
+* Core editing
+
+| Key | Use |
+|-----+-----|
+| =SPC w= | Save the current buffer |
+| =SPC q= | Quit the current window |
+| =SPC F= | Format the current buffer |
+| =SPC b n= / =SPC b p= | Next / previous buffer |
+| =SPC b d= | Kill the current buffer |
+| =SPC x h= / =SPC x s= | Horizontal / vertical split |
+| =SPC x d= | Close the current split |
+| =SPC x e= | Balance split sizes |
+
+Evil mode is enabled everywhere, so normal Vim motions, operators, text objects,
+registers, macros, marks, and Ex commands are the default editing model.
+
+* Projects and files
+
+Doom uses Projectile for project detection and project commands.
+
+| Key | Use |
+|-----+-----|
+| =SPC SPC= | Find file in the current project |
+| =SPC s f= | Find project file |
+| =SPC s r= | Recent files |
+| =SPC s n= | Open files from this Doom config |
+| =SPC p p= | Switch project |
+| =SPC p f= | Find file in project |
+| =SPC p s g= | Search project with ripgrep |
+
+Project roots usually come from Git repositories. If a directory does not behave
+like a project, check for a =.git= directory or Projectile marker file.
+
+* Search and navigation
+
+Vertico and Consult replace the Telescope-style picker workflow.
+
+| Key | Use |
+|-----+-----|
+| =SPC s g= | Grep the current project |
+| =SPC /= | Search the current project |
+| =SPC s w= | Search for symbol at point |
+| =SPC s b= | Switch buffers |
+| =SPC s d= | Diagnostics |
+| =SPC s h= | Help for a symbol |
+| =SPC s k= | Describe a keymap |
+| =SPC s x= | Run an Emacs command |
+
+Inside minibuffer pickers, type to filter, use =C-j= / =C-k= or arrows to move,
+and press =RET= to select.
+
+* LSP, diagnostics, and code actions
+
+Eglot is the LSP client. Doom starts it through language modules for JavaScript,
+TypeScript, web, GraphQL, JSON, YAML, Lua, Go, Python, Java, shell, and Terraform.
+
+| Key | Use |
+|-----+-----|
+| =K= | Hover documentation |
+| =gd= | Go to definition |
+| =gr= | Find references |
+| =SPC c a= | Code action |
+| =SPC c r= | Rename symbol |
+| =SPC c j= | Workspace/document symbols through Consult/Eglot |
+| =SPC s d= | Diagnostics list |
+
+Language servers and formatters are external tools. Doom configures Emacs to use
+them; it does not install Node, TypeScript, Prettier, stylelint, pyright, gopls,
+or similar project tooling for you.
+
+* Formatting
+
+Formatting on save is enabled through Doom's =:editor (format +onsave)= module,
+which uses Apheleia. Frontend buffers are mapped to =prettierd= with =prettier=
+as fallback.
+
+| Key | Use |
+|-----+-----|
+| =SPC F= | Format current buffer |
+| =gQ= | Format region |
+| =C-u SPC w= | Save without format-on-save |
+
+If formatting does nothing, check whether the formatter binary is available in
+the shell environment Emacs sees.
+
+* Git and GitHub
+
+Magit is the main Git UI. It replaces most Diffview/Gitsigns/LazyGit workflows
+with an Emacs-native interface.
+
+| Key | Use |
+|-----+-----|
+| =SPC g g= | Magit status |
+| =SPC g G= | Magit status for current directory |
+| =SPC g b= | Git blame |
+| =SPC g d= | Git diff commands |
+| =SPC g l= | Git log commands |
+
+Forge is enabled for GitHub/GitLab-style issue and PR workflows inside Magit.
+Forge needs a token before it can fetch hosted issues and pull requests.
+
+The gutter/fringe shows changed lines through Doom's =vc-gutter= module. Use
+Magit for staging, commits, branch operations, history, and reviewing diffs.
+
+* Terminals
+
+vterm is the closest Doom equivalent to a serious embedded terminal.
+
+| Key | Use |
+|-----+-----|
+| =SPC z z= | Toggle vterm |
+| =SPC o t= | Doom's default vterm popup binding |
+
+Run tools like =lazygit= or =gh dash= inside vterm when you want the terminal UI.
+Magit/Forge are usually better for Git operations you want to keep inside Emacs.
+
+* File managers: Dired, Dirvish, and Treemacs
+
+** Dired and Dirvish
+
+Dired is Emacs' built-in directory editor. Doom's =dired= module installs and
+enables Dirvish, which makes Dired more visual and adds better previews, history,
+menus, and path-copy commands.
+
+Open Dired with =SPC .= and choose a directory, or use =-= from many file buffers
+to jump to the current file's directory.
+
+Common Dired/Dirvish keys:
+
+| Key | Use |
+|-----+-----|
+| =h= / =l= | Up directory / open file or directory |
+| =m= / =u= | Mark / unmark file |
+| =D= | Delete marked files |
+| =R= | Rename or move marked files |
+| =C= | Copy marked files |
+| =+= | Create directory |
+| =C-c C-e= | Edit directory listing with wdired |
+| =?= | Dirvish dispatch menu |
+| =p= | Dirvish yank menu |
+| =y p= | Copy displayed file path |
+| =y l= | Copy true absolute path |
+| =TAB= | Toggle subtree |
+| =q= | Quit Dirvish/Dired window |
+
+Wdired is the closest equivalent to Oil's "edit the directory as text" workflow:
+use =C-c C-e= in Dired, edit names in the buffer, then commit the changes with
+=C-c C-c=.
+
+** Treemacs
+
+Treemacs is the project sidebar. Use it when you want a persistent tree view
+rather than a picker or directory editor.
+
+| Key | Use |
+|-----+-----|
+| =SPC n e= | Toggle project sidebar |
+| =SPC n f= | Reveal current file in sidebar |
+| =SPC o p= | Doom default project sidebar toggle |
+
+Use Projectile/Consult for fast file opening, Dired/Dirvish for file operations,
+and Treemacs for spatial project browsing.
+
+* AI
+
+Doom's =:tools llm= module provides gptel. This is not a line-by-line port of
+CodeCompanion agents, but it covers the native Emacs AI workflow.
+
+| Key | Use |
+|-----+-----|
+| =SPC l l= | Open gptel |
+| =SPC l m= | Open gptel menu |
+| =SPC l s= | Send to gptel |
+| =SPC l r= | Rewrite with gptel |
+| =SPC l e= | Quick explain |
+| =SPC l a= | Add selected text to context |
+| =SPC l f= | Add file to context |
+
+Custom CodeCompanion agents and hook menus were intentionally not recreated.
+That keeps the Doom config small and avoids rebuilding Neovim-specific behavior.
+
+* Installed module and plugin notes
+
+This is the practical plugin map for the enabled Doom config:
+
+| Doom area | What it gives you | How to use it |
+|-----------+-------------------+---------------|
+| Evil | Vim editing model | Use normal Vim motions and =SPC= leader menus |
+| Vertico/Consult | Telescope-like pickers | =SPC SPC=, =SPC s g=, =SPC s b=, =SPC ?= |
+| Corfu | In-buffer completion | Type normally; =C-SPC= triggers completion |
+| Projectile | Project detection/actions | =SPC p p=, =SPC p f=, =SPC SPC= |
+| Eglot | LSP client | =K=, =gd=, =gr=, =SPC c a=, =SPC c r= |
+| Flycheck/Flymake via syntax | Diagnostics | =SPC s d= or check the fringe/modeline |
+| Apheleia | Formatting | =SPC F= and format-on-save |
+| Magit | Git porcelain | =SPC g g= |
+| Forge | GitHub/GitLab issues and PRs in Magit | Open Magit, then use Forge commands after auth |
+| vc-gutter | Git change signs | Watch the fringe; use Magit for actions |
+| vterm | Terminal emulator | =SPC z z= or =SPC o t= |
+| Dired | Directory editor | Open directories and perform file operations |
+| Dirvish | Enhanced Dired UI | Use Dired keys plus =?=, =TAB=, =y p= |
+| Treemacs | Project sidebar | =SPC n e= / =SPC n f= |
+| hl-todo | TODO/FIXME highlighting | =SPC n t= |
+| tree-sitter | Better syntax parsing | Enabled by language modules; no daily command needed |
+| smartparens | Paired delimiter handling | Automatic in programming modes |
+| snippets | Snippet expansion | Use Doom/Yasnippet expansion when snippets appear |
+| doom-dashboard | Startup dashboard | Appears on empty launch |
+| workspaces | Project/session workspaces | =SPC TAB= prefix |
+| llm/gptel | AI chat/rewrite/context | =SPC l= prefix |
+
+* Neovim to Doom quick map
+
+| Neovim habit | Doom equivalent |
+|--------------+-----------------|
+| Telescope files | =SPC SPC= or =SPC s f= |
+| Telescope live grep | =SPC s g= or =SPC /= |
+| Telescope buffers | =SPC s b= or =SPC ,= |
+| Trouble diagnostics | =SPC s d= |
+| Neo-tree sidebar | =SPC n e= |
+| Oil directory editing | Dired + =C-c C-e= wdired |
+| Toggleterm | =SPC z z= vterm |
+| LazyGit | Run =lazygit= in vterm, or use =SPC g g= Magit |
+| Gitsigns | vc-gutter + Magit |
+| Conform format | =SPC F= / format-on-save |
+| CodeCompanion | =SPC l= gptel commands |

@@ -47,21 +47,21 @@
   ;; Main theme colors
   (
     ;; name        default   256       16
-    (base           '("#191724" "#191724" "black"       ))
-    (surface        '("#1f1d2e" "#1f1d2e" "brightblack" ))
-    (overlay        '("#26233a" "#26233a" "brightblack" ))
-    (muted          '("#6e6a86" "#6e6a86" "brightblack" ))
-    (subtle         '("#908caa" "#908caa" "brightblack" ))
-    (text           '("#e0def4" "#e0def4" "brightblack" ))
-    (love           '("#eb6f92" "#eb6f92" "red"         ))
-    (gold           '("#f6c177" "#f6c177" "white"       ))
-    (rose           '("#ebbcba" "#ebbcba" "white"       ))
-    (pine           '("#31748f" "#31748f" "white"       ))
-    (foam           '("#9ccfd8" "#9ccfd8" "white"       ))
-    (iris           '("#c4a7e7" "#c4a7e7" "white"       ))
-    (highlightL     '("#21202e" "#21202e" "grey"        ))
-    (highlightM     '("#403d52" "#403d52" "grey"        ))
-    (highlightH     '("#524f67" "#524f67" "grey"        ))
+    (base           '("#191724" "#191724" "black"))
+    (surface        '("#1f1d2e" "#1f1d2e" "brightblack"))
+    (overlay        '("#26233a" "#26233a" "brightblack"))
+    (muted          '("#6e6a86" "#6e6a86" "brightblack"))
+    (subtle         '("#908caa" "#908caa" "brightblack"))
+    (text           '("#e0def4" "#e0def4" "brightblack"))
+    (love           '("#eb6f92" "#eb6f92" "red"))
+    (gold           '("#f6c177" "#f6c177" "white"))
+    (rose           '("#ebbcba" "#ebbcba" "white"))
+    (pine           '("#31748f" "#31748f" "white"))
+    (foam           '("#9ccfd8" "#9ccfd8" "white"))
+    (iris           '("#c4a7e7" "#c4a7e7" "white"))
+    (highlightL     '("#21202e" "#21202e" "grey"))
+    (highlightM     '("#403d52" "#403d52" "grey"))
+    (highlightH     '("#524f67" "#524f67" "grey"))
 
     ;; Variables required by doom theme
     ;; These are required by doom theme and used in various places
@@ -145,8 +145,8 @@
   (
     ;; Font
     ((font-lock-comment-face &override)
-      :slant 'italic
-      :background (if doom-rose-pine-brighter-comments (doom-blend teal base 0.07)))
+     :slant 'italic
+     :background (if doom-rose-pine-brighter-comments (doom-blend teal base 0.07)))
     ((font-lock-type-face &override) :slant 'italic)
     ((font-lock-builtin-face &override) :slant 'italic)
     ((font-lock-function-name-face &override) :foreground type)
