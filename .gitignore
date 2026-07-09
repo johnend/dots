@@ -79,6 +79,7 @@ common/.codex/memories_*.sqlite
 common/.codex/memories_*.sqlite-shm
 common/.codex/memories_*.sqlite-wal
 common/.codex/models_cache.json
+common/.codex/plugins/cache/
 common/.codex/session_index*.jsonl
 common/.codex/sessions/
 common/.codex/shell_snapshots/
