@@ -74,6 +74,7 @@ function zvm_after_select_vi_mode() {
 # Also hook into the init to set initial mode
 function zvm_after_init() {
   STARSHIP_VIM_MODE="ins"
+  [[ -f "$HOME/.zsh_fzf" ]] && source "$HOME/.zsh_fzf"
 }
 
 # History settings
@@ -84,9 +85,6 @@ SAVEHIST=1000000
 
 # Aliases
 [[ -f "$HOME/.zsh_aliases" ]] && source "$HOME/.zsh_aliases"
-
-# FZF
-[[ -f "$HOME/.zsh_fzf" ]] && source "$HOME/.zsh_fzf"
 
 # Completions
 [[ -f "$HOME/.zsh_completions" ]] && source "$HOME/.zsh_completions"
