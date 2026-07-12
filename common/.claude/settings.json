@@ -154,26 +154,6 @@
       "Bash(yarn upgrade *)"
     ]
   },
-  "statusLine": {
-    "type": "command",
-    "command": "bash ~/.claude/statusline-command.sh"
-  },
-  "enabledPlugins": {
-    "typescript-lsp@claude-plugins-official": true,
-    "pyright-lsp@claude-plugins-official": true,
-    "jdtls-lsp@claude-plugins-official": true,
-    "lua-lsp@claude-plugins-official": true,
-    "feature-dev@claude-plugins-official": true
-  },
-  "sandbox": {
-    "network": {
-      "allowUnixSockets": [
-        "/var/run/docker.sock",
-        "~/.rd/docker.sock",
-        "/Users/john.enderby/.local/state/watchman/john.enderby-state/sock"
-      ]
-    }
-  },
   "hooks": {
     "PreToolUse": [
       {
@@ -215,6 +195,27 @@
       }
     ]
   },
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "typescript-lsp@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true,
+    "jdtls-lsp@claude-plugins-official": true,
+    "lua-lsp@claude-plugins-official": true,
+    "feature-dev@claude-plugins-official": true
+  },
+  "sandbox": {
+    "network": {
+      "allowUnixSockets": [
+        "/var/run/docker.sock",
+        "~/.rd/docker.sock",
+        "/Users/john.enderby/.local/state/watchman/john.enderby-state/sock"
+      ]
+    }
+  },
   "effortLevel": "xhigh",
-  "editorMode": "vim"
+  "editorMode": "vim",
+  "model": "sonnet"
 }
