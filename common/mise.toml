@@ -4,8 +4,12 @@ pnpm = "11"
 zig = "latest"
 go = "latest"
 yarn = "1.22"
-codex = "latest"
 bun = "latest"
 deno = "latest"
-# java = "corretto-21.0.6.7.1"
-# ruby = "3.4.5"
+
+# Mac only
+java = {version = "corretto-21.0.6.7.1", os = ["macos"]}
+ruby = {version = "3.4.5", os = ["macos"]}
+
+# Linux only
+codex = {version = "latest", os = ["linux"]}
