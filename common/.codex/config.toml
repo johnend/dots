@@ -1,5 +1,5 @@
-model = "gpt-5.5"
-model_reasoning_effort = "high"
+model = "gpt-5.6-sol"
+model_reasoning_effort = "medium"
 personality = "pragmatic"
 plan_mode_reasoning_effort = "xhigh"
 default_permissions = "git-fsmonitor-workspace"
@@ -75,6 +75,7 @@ status_line = ["model-with-reasoning", "current-dir", "project-name", "git-branc
 
 [tui.model_availability_nux]
 "gpt-5.5" = 4
+"gpt-5.6-sol" = 4
 
 [permissions.git-fsmonitor-workspace]
 extends = ":workspace"
