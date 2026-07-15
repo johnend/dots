@@ -1,0 +1,114 @@
+[metadata]
+name = "brew"
+description = "Search/install/uninstall Homebrew formulae and casks, and manage tap trust"
+requirements = ["brew", "jq"]
+
+[source]
+command = [
+  { name = "Install", run = '''
+    brew search --desc "" 2>/dev/null | tail -n +2 | sed -E 's/^([^:]+): (.*)$/install-formula\t\1\t\2\t/' | sed "s/'//g"
+  ''' },
+  { name = "Cask", run = '''
+    brew search --casks --desc "" 2>/dev/null | tail -n +2 | sed -E 's/^([^:]+): (.*)$/install-cask\t\1\t\2\t/' | sed "s/'//g"
+  ''' },
+  { name = "Installed", run = '''
+    brew list --versions 2>/dev/null | awk '{v=$0; sub(/^[^ ]+ /,"",v); print "uninstall\t" $1 "\t" v "\t"}'
+  ''' },
+  { name = "Trust", run = '''
+    trust_file="${XDG_CONFIG_HOME:-$HOME/.config}/homebrew/trust.json"
+    [ -f "$trust_file" ] || trust_file="$HOME/.homebrew/trust.json"
+
+    trusted_taps=""
+    trusted_formulae=""
+    trusted_casks=""
+    if [ -f "$trust_file" ]; then
+      trusted_taps=$(jq -r '.trustedtaps[]? // empty' "$trust_file" 2>/dev/null)
+      trusted_formulae=$(jq -r '.trustedformulae[]? // empty' "$trust_file" 2>/dev/null)
+      trusted_casks=$(jq -r '.trustedcasks[]? // empty' "$trust_file" 2>/dev/null)
+    fi
+
+    trusted_tmp=$(mktemp)
+    trap 'rm -f "$trusted_tmp"' EXIT
+
+    find "$(brew --cellar)" -maxdepth 3 -name INSTALL_RECEIPT.json -print0 2>/dev/null \
+      | xargs -0 jq -r '[input_filename, (.source.tap // "")] | @tsv' 2>/dev/null \
+      | while IFS="$(printf '\t')" read -r receipt tap; do
+          [ -z "$tap" ] && continue
+          [ "$tap" = "homebrew/core" ] && continue
+          name=$(basename "$(dirname "$(dirname "$receipt")")")
+          fullname="$tap/$name"
+          if echo "$trusted_taps" | grep -qxF "$tap" || echo "$trusted_formulae" | grep -qxF "$fullname"; then
+            printf 'trust\t%s\tformula\t trusted  \n' "$fullname" >> "$trusted_tmp"
+          else
+            printf 'trust\t%s\tformula\t untrusted\n' "$fullname"
+          fi
+        done
+
+    find "$(brew --caskroom)" -maxdepth 3 -name INSTALL_RECEIPT.json -print0 2>/dev/null \
+      | xargs -0 jq -r '[input_filename, (.source.tap // "")] | @tsv' 2>/dev/null \
+      | while IFS="$(printf '\t')" read -r receipt tap; do
+          [ -z "$tap" ] && continue
+          [ "$tap" = "homebrew/cask" ] && continue
+          name=$(basename "$(dirname "$(dirname "$receipt")")")
+          fullname="$tap/$name"
+          if echo "$trusted_taps" | grep -qxF "$tap" || echo "$trusted_casks" | grep -qxF "$fullname"; then
+            printf 'trust\t%s\tcask\t trusted  \n' "$fullname" >> "$trusted_tmp"
+          else
+            printf 'trust\t%s\tcask\t untrusted\n' "$fullname"
+          fi
+        done
+
+    cat "$trusted_tmp"
+  ''' },
+]
+display = "{split:\\t:3} {split:\\t:1} \u2014 {split:\\t:2}"
+output = "{split:\\t:1}"
+
+[preview]
+command = '''
+kind='{split:\t:0}'
+name='{split:\t:1}'
+case "$kind" in
+  install-cask) brew info --cask "$name" 2>/dev/null ;;
+  install-formula|uninstall) brew info "$name" 2>/dev/null ;;
+  trust) printf 'Tap: %s\nType: %s\nStatus: %s\n' "${name%/*}" '{split:\t:2}' '{split:\t:3}' ;;
+esac
+'''
+
+[keybindings]
+enter = "actions:run"
+ctrl-a = "actions:trust-cask"
+
+[actions.run]
+description = "Install formula (Install) / Install cask (Cask) / Uninstall (Installed) / Toggle formula trust (Trust)"
+separator = "\n"
+command = '''
+printf '%s\n' '{trim}' | while IFS="$(printf '\t')" read -r kind name col2 col3; do
+  case "$kind" in
+    install-formula) brew install "$name" ;;
+    install-cask) brew install --cask "$name" ;;
+    uninstall) brew uninstall "$name" ;;
+    trust)
+      case "$col3" in
+        *untrusted*) brew trust --formula "$name" ;;
+        *) brew untrust --formula "$name" ;;
+      esac
+      ;;
+  esac
+done
+'''
+mode = "execute"
+
+[actions.trust-cask]
+description = "Toggle trust for the selected item(s) as a cask (only applies on the Trust source)"
+separator = "\n"
+command = '''
+printf '%s\n' '{trim}' | while IFS="$(printf '\t')" read -r kind name col2 col3; do
+  [ "$kind" = "trust" ] || continue
+  case "$col3" in
+    *untrusted*) brew trust --cask "$name" ;;
+    *) brew untrust --cask "$name" ;;
+  esac
+done
+'''
+mode = "execute"
