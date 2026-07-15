@@ -1,4 +1,54 @@
 #######################################
+# Nerd Font detection (cached per shell) with emoji fallback.
+# Glyphs/colors sourced from common/.config/nvim/lua/config/icons.lua and
+# ANSI colors follow the Rose Pine palette (linux/common/.config/waybar/rose-pine.css).
+#######################################
+typeset -g _ZF_NERD_FONT=""
+function _zf_has_nerd_font() {
+  if [[ -z "$_ZF_NERD_FONT" ]]; then
+    if command -v fc-list &>/dev/null && fc-list 2>/dev/null | grep -qi "nerd font"; then
+      _ZF_NERD_FONT=1
+    elif [[ "$OSTYPE" == darwin* ]] && find /Library/Fonts "$HOME/Library/Fonts" -iname "*Nerd Font*" -print -quit 2>/dev/null | grep -q .; then
+      _ZF_NERD_FONT=1
+    else
+      _ZF_NERD_FONT=0
+    fi
+  fi
+  [[ "$_ZF_NERD_FONT" == 1 ]]
+}
+
+_ZF_RED=$'\033[38;2;235;111;146m'
+_ZF_YELLOW=$'\033[38;2;246;193;119m'
+_ZF_GREEN=$'\033[38;2;49;116;143m'
+_ZF_BLUE=$'\033[38;2;156;207;216m'
+_ZF_RESET=$'\033[0m'
+
+if _zf_has_nerd_font; then
+  ICON_CASK="${_ZF_BLUE}"$'\ueb29'"${_ZF_RESET}"
+  ICON_PACKAGE="${_ZF_BLUE}"$'\ueb29'"${_ZF_RESET}"
+  ICON_INSTALL="${_ZF_BLUE}"$'\ueac2'"${_ZF_RESET}"
+  ICON_TRUST="${_ZF_YELLOW}"$'\uea75'"${_ZF_RESET}"
+  ICON_ERROR="${_ZF_RED}"$'\uea87'"${_ZF_RESET}"
+  ICON_SUCCESS="${_ZF_GREEN}"$'\ueab2'"${_ZF_RESET}"
+  ICON_WARN="${_ZF_YELLOW}"$'\uea6c'"${_ZF_RESET}"
+  ICON_GRADLE="${_ZF_BLUE}"$'\ue7f2'"${_ZF_RESET}"
+  ICON_WAVE="${_ZF_BLUE}"$'\U000f1821'"${_ZF_RESET}"
+  ICON_UNINSTALL="${_ZF_RED}"$'\uea81'"${_ZF_RESET}"
+else
+  ICON_CASK="🖥️"
+  ICON_PACKAGE="📦"
+  ICON_INSTALL="🔧"
+  ICON_TRUST="🔓"
+  ICON_ERROR="❌"
+  ICON_SUCCESS="✅"
+  ICON_WARN="⚠"
+  ICON_UNINSTALL="🧼"
+fi
+
+# Always emoji — preferred over the Nerd Font glyph for this one.
+ICON_SEARCH="🍺"
+
+#######################################
 # QMK compile repo based
 #######################################
 function compile_qmk() {
@@ -52,7 +102,7 @@ function run() {
         echo "No recognized JS/TS package manager lockfile found."
       fi
     else
-      echo "Nothing selected. Exiting 👋"
+      echo "Nothing selected. Exiting $ICON_WAVE"
     fi
 
   elif [[ -f build.gradle || -f build.gradle.kts || -f settings.gradle || -f settings.gradle.kts ]]; then
@@ -71,7 +121,7 @@ function run() {
       $gradle_cmd tasks 2>&1 \
         | grep -E '^[a-zA-Z][a-zA-Z0-9]* - ' \
         | awk -F ' - ' '{printf "%-35s \033[2m%s\033[0m\n", $1, $2}' \
-        | fzf --ansi --height 40% --prompt="🐘 Gradle > "
+        | fzf --ansi --height 40% --prompt="$ICON_GRADLE Gradle > "
     )
 
     if [[ -n "$selected" ]]; then
@@ -80,7 +130,7 @@ function run() {
       print -s "$gradle_cmd $task_name"
       $gradle_cmd "$task_name"
     else
-      echo "Nothing selected. Exiting 👋"
+      echo "Nothing selected. Exiting $ICON_WAVE"
     fi
 
   else
@@ -113,6 +163,9 @@ function brzf() {
     --cask | -c)
       cmd="cask"
       ;;
+    --trust | -t)
+      cmd="trust"
+      ;;
     --help | -h)
       echo "brzf: Interactive Homebrew with fuzzy search"
       echo ""
@@ -120,6 +173,7 @@ function brzf() {
       echo "  brzf [query]             Search and install package (default)"
       echo "  brzf -r | --rm           Fuzzy uninstall installed package"
       echo "  brzf -c | --cask [query] Search and install GUI app (cask)"
+      echo "  brzf -t | --trust        Fuzzy-trust untrusted installed formulae/casks"
       echo "  brzf -h | --help         Show this help message"
       return 0
       ;;
@@ -133,20 +187,91 @@ function brzf() {
   case "$cmd" in
   uninstall)
     local choice
-    choice=$(brew list | fzf --ansi --height=40% --prompt="❌ brzf: Uninstall > " --preview 'echo {}')
-    [[ -n "$choice" ]] && echo "🧼 Uninstalling $choice..." && brew uninstall "$choice" || echo "❌ No package selected."
+    choice=$(brew list | fzf --ansi --height=40% --prompt="$ICON_UNINSTALL brzf: Uninstall > " --preview 'echo {}')
+    [[ -n "$choice" ]] && echo "$ICON_UNINSTALL Uninstalling $choice..." && brew uninstall "$choice" || echo "$ICON_ERROR No package selected."
     ;;
 
   cask)
     local choice
-    choice=$(brew search --casks --desc "$arg" 2>&1 | grep -v 'Warning: Use `--eval-all`' | awk '{printf "\033[1m%s\033[0m \033[2m%s\033[0m\n", $1, substr($0, index($0,$2))}' | fzf --ansi --height=40% --prompt="🖥️ brzf: Cask > ")
-    [[ -n "$choice" ]] && pkg=$(echo "$choice" | awk '{print $1}' | sed 's/:$//') && echo "📦 Installing cask: $pkg..." && brew install --cask "$pkg" || echo "❌ No cask selected."
+    choice=$(brew search --casks --desc "$arg" 2>&1 | grep -v 'Warning: Use `--eval-all`' | awk '{printf "\033[1m%s\033[0m \033[2m%s\033[0m\n", $1, substr($0, index($0,$2))}' | fzf --ansi --height=40% --prompt="$ICON_CASK brzf: Cask > ")
+    [[ -n "$choice" ]] && pkg=$(echo "$choice" | awk '{print $1}' | sed 's/:$//') && echo "$ICON_PACKAGE Installing cask: $pkg..." && brew install --cask "$pkg" || echo "$ICON_ERROR No cask selected."
+    ;;
+
+  trust)
+    local receipt tap name
+    local -a formula_receipts cask_receipts candidates menu
+
+    # Batch all receipts through one jq call per kind instead of forking jq
+    # per file — with ~300 installed formulae, per-file jq forks made this
+    # mode take several seconds; batching brings it under a tenth of that.
+    formula_receipts=("$(brew --cellar)"/*/*/INSTALL_RECEIPT.json(N))
+    if [[ ${#formula_receipts[@]} -gt 0 ]]; then
+      while IFS=$'\t' read -r receipt tap; do
+        [[ -z "$tap" || "$tap" == "homebrew/core" ]] && continue
+        name=$(basename "$(dirname "$(dirname "$receipt")")")
+        candidates+=("formula|$tap/$name")
+      done < <(jq -r '[input_filename, (.source.tap // "")] | @tsv' "${formula_receipts[@]}" 2>/dev/null)
+    fi
+
+    cask_receipts=("$(brew --caskroom)"/*/.metadata/INSTALL_RECEIPT.json(N))
+    if [[ ${#cask_receipts[@]} -gt 0 ]]; then
+      while IFS=$'\t' read -r receipt tap; do
+        [[ -z "$tap" || "$tap" == "homebrew/cask" ]] && continue
+        name=$(basename "$(dirname "$(dirname "$receipt")")")
+        candidates+=("cask|$tap/$name")
+      done < <(jq -r '[input_filename, (.source.tap // "")] | @tsv' "${cask_receipts[@]}" 2>/dev/null)
+    fi
+
+    if [[ ${#candidates[@]} -eq 0 ]]; then
+      echo "$ICON_SUCCESS Nothing installed from third-party taps."
+      return 0
+    fi
+
+    # Read trust.json directly rather than `brew trust --json=v1` — skips a
+    # full brew/Ruby bootstrap just to read a small local JSON file.
+    local trust_file="${XDG_CONFIG_HOME:-$HOME/.config}/homebrew/trust.json"
+    [[ -f "$trust_file" ]] || trust_file="$HOME/.homebrew/trust.json"
+
+    local trusted_taps="" trusted_formulae="" trusted_casks=""
+    if [[ -f "$trust_file" ]]; then
+      trusted_taps=$(jq -r '.trustedtaps[]? // empty' "$trust_file" 2>/dev/null)
+      trusted_formulae=$(jq -r '.trustedformulae[]? // empty' "$trust_file" 2>/dev/null)
+      trusted_casks=$(jq -r '.trustedcasks[]? // empty' "$trust_file" 2>/dev/null)
+    fi
+
+    local entry kind fullname tapname
+    for entry in "${candidates[@]}"; do
+      kind="${entry%%|*}"
+      fullname="${entry#*|}"
+      tapname="${fullname%/*}"
+      grep -qxF "$tapname" <<<"$trusted_taps" && continue
+      [[ "$kind" == "formula" ]] && grep -qxF "$fullname" <<<"$trusted_formulae" && continue
+      [[ "$kind" == "cask" ]] && grep -qxF "$fullname" <<<"$trusted_casks" && continue
+      menu+=("brew trust --$kind $fullname")
+    done
+
+    if [[ ${#menu[@]} -eq 0 ]]; then
+      echo "$ICON_SUCCESS Everything installed is already trusted."
+      return 0
+    fi
+
+    local selected
+    selected=$(printf '%s\n' "${menu[@]}" | sort -u | fzf --multi --height=40% --prompt="$ICON_TRUST brzf: Trust > ")
+
+    if [[ -n "$selected" ]]; then
+      while IFS= read -r line; do
+        print -s "$line"
+        eval "$line"
+      done <<<"$selected"
+    else
+      echo "$ICON_ERROR Nothing selected."
+    fi
     ;;
 
   *)
     local choice
-    choice=$(brew search --desc "$arg" 2>&1 | grep -v 'Warning: Use `--eval-all`' | awk '{printf "\033[1m%s\033[0m \033[2m%s\033[0m\n", $1, substr($0, index($0,$2))}' | fzf --ansi --height=40% --prompt="🍺 brzf: Install > ")
-    [[ -n "$choice" ]] && pkg=$(echo "$choice" | awk '{print $1}' | sed 's/:$//') && echo "🔧 Installing $pkg..." && brew install "$pkg" || echo "❌ No package selected."
+    choice=$(brew search --desc "$arg" 2>&1 | grep -v 'Warning: Use `--eval-all`' | awk '{printf "\033[1m%s\033[0m \033[2m%s\033[0m\n", $1, substr($0, index($0,$2))}' | fzf --ansi --height=40% --prompt="$ICON_SEARCH brzf: Install > ")
+    [[ -n "$choice" ]] && pkg=$(echo "$choice" | awk '{print $1}' | sed 's/:$//') && echo "$ICON_INSTALL Installing $pkg..." && brew install "$pkg" || echo "$ICON_ERROR No package selected."
     ;;
   esac
 }
@@ -181,7 +306,7 @@ function _claude_config_check() {
     for f in "$HOME"/.claude/backups/.claude.json.backup.*(.NOm); do
       if jq empty "$f" >/dev/null 2>&1; then latest_valid="$f"; break; fi
     done
-    print -P "%F{red}⚠ ~/.claude.json is unparseable (MCP serializer bug?)%f"
+    print -P "%F{red}$ICON_WARN ~/.claude.json is unparseable (MCP serializer bug?)%f"
     [[ -n "$latest_valid" ]] && print -P "%F{yellow}  Latest valid backup: $latest_valid%f"
     print -P "%F{yellow}  Restore: cp \"\$BACKUP\" ~/.claude.json%f"
     return
@@ -191,7 +316,7 @@ function _claude_config_check() {
   local mcp_type
   mcp_type=$(jq -r '.mcpServers | type' "$config" 2>/dev/null)
   if [[ "$mcp_type" == "array" ]]; then
-    print -P "%F{red}⚠ ~/.claude.json: top-level mcpServers is an array — should be an object%f"
+    print -P "%F{red}$ICON_WARN ~/.claude.json: top-level mcpServers is an array — should be an object%f"
     print -P "%F{yellow}  Fix: jq '.mcpServers = {}' ~/.claude.json > ~/.claude.json.tmp && mv ~/.claude.json.tmp ~/.claude.json%f"
   fi
 }
