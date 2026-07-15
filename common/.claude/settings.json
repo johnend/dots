@@ -154,6 +154,7 @@
       "Bash(yarn upgrade *)"
     ]
   },
+  "model": "sonnet",
   "hooks": {
     "PreToolUse": [
       {
@@ -215,7 +216,6 @@
       ]
     }
   },
-  "effortLevel": "xhigh",
-  "editorMode": "vim",
-  "model": "sonnet"
+  "effortLevel": "high",
+  "editorMode": "vim"
 }
