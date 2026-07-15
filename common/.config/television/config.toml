@@ -112,6 +112,9 @@ sort_alphabetically = true
 # Example overrides:
 [ui.theme_overrides]
 background = "#191724"
+# Rose Pine "subtle" — the theme's own border_fg (#26233a, "overlay") is too
+# close to this background to read; subtle gives real contrast.
+border_fg = "#908caa"
 # text_fg = "#ffffff"
 # selection_bg = "#444444"
 # match_fg = "#ff0000"
