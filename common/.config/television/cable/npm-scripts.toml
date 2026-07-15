@@ -1,7 +1,7 @@
 [metadata]
 name = "npm-scripts"
 description = "List and run package.json scripts"
-requirements = ["jq"]
+requirements = ["jq", "bat"]
 
 [source]
 command = '''
@@ -50,12 +50,14 @@ frecency = false
 [preview]
 command = '''
 cd '{split:\t:0}' || exit 1
-jq -r --arg script '{split:\t:3}' '.scripts[$script]' package.json
+jq -r --arg script '{split:\t:3}' '.scripts[$script]' package.json | bat --color=always --style=plain -l bash
 '''
+env = { BAT_THEME = "ansi" }
 
 [ui.preview_panel]
-size = 30
+size = 60
 header = "{split:\\t:5}"
+word_wrap = true
 
 [keybindings]
 enter = "actions:run"
