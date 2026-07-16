@@ -64,6 +64,9 @@ trust_level = "trusted"
 [projects."/home/johne/Developer/aurijin-worktrees"]
 trust_level = "trusted"
 
+[projects."/home/johne/Developer/johnenderby"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 "gpt-5.3-codex" = "gpt-5.4"
 "gpt-5.4" = "gpt-5.5"
