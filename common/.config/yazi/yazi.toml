@@ -1,3 +1,6 @@
 # yazi.toml
 [mgr]
 show_hidden = true
+
+[preview]
+image_delay = 100
