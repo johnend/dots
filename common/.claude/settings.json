@@ -154,7 +154,10 @@
       "Bash(yarn upgrade *)"
     ]
   },
-  "model": "sonnet",
+  "model": "opusplan",
+  "env": {
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-4-8[1m]"
+  },
   "hooks": {
     "PreToolUse": [
       {
@@ -205,7 +208,7 @@
     "pyright-lsp@claude-plugins-official": true,
     "jdtls-lsp@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true,
-    "feature-dev@claude-plugins-official": true
+    "feature-dev@claude-plugins-official": false
   },
   "sandbox": {
     "network": {
