@@ -1,6 +1,9 @@
 ---
 name: Karpathy Guidelines
-description: Behavioral guidelines to reduce common LLM coding mistakes. Use when writing, reviewing, or refactoring code to avoid overcomplication, make surgical changes, surface assumptions, and define verifiable success criteria.
+description: >
+  Behavioral checklist to avoid common LLM coding mistakes: resist overcomplication, make surgical changes, surface assumptions, and define verifiable success criteria.
+  TRIGGER when: about to start a non-trivial implementation, refactor, or debugging task — read before writing code; also when the user asks you to "follow the guidelines", slow down, or stop over-engineering.
+  DO NOT TRIGGER for: trivial one-line/mechanical edits, or pure Q&A with no code changes.
 ---
 
 # Karpathy Guidelines

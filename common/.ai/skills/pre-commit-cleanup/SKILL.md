@@ -1,6 +1,9 @@
 ---
 name: pre-commit-cleanup
-description: Clean up a patch before review or commit by removing AI-style slop, checking test value, validating key paths, and surfacing remaining risks.
+description: >
+  Tidy a mostly-finished patch before review or commit: remove AI-style slop, check test value, validate key paths, and surface remaining risks. Edits code.
+  TRIGGER when: user asks to clean up / tidy / polish a patch or diff before committing, "remove the slop", "get this ready to commit", or "clean this up before I commit".
+  DO NOT TRIGGER when: user wants read-only findings (use review-local) or a colleague's PR reviewed (use review-pr).
 ---
 
 # Pre-Commit Cleanup

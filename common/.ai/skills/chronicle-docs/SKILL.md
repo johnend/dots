@@ -1,6 +1,9 @@
 ---
 name: chronicle-docs
-description: Draft or update high-quality technical documentation for the Obsidian vault with clear structure, Obsidian-ready frontmatter, appropriate tags, rationale, and practical examples.
+description: >
+  Draft or update high-quality technical documentation in the Obsidian vault, with clear structure, Obsidian-ready frontmatter, tags, rationale, and examples.
+  TRIGGER when: user asks to document something, write or update docs/notes, add a page to the Obsidian vault / knowledge base, "chronicle this", or "write this up".
+  DO NOT TRIGGER for: code comments, repo README/docs, or PR descriptions (use describe-pr).
 ---
 
 # Chronicle Docs

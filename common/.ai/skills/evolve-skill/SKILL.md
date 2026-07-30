@@ -1,6 +1,9 @@
 ---
 name: evolve-skill
-description: Review user feedback or session patterns and create or update agent skills so durable behavior changes are captured in the right SKILL.md with proposal-first approval.
+description: >
+  Create or update an agent skill so a durable behavior change lands in the right SKILL.md, with proposal-first approval.
+  TRIGGER when: user asks to create/update/change a skill, "turn this into a skill", "make a skill for this", or gives feedback about how you should behave in future sessions.
+  DO NOT TRIGGER for: one-off task requests, or edits to app/repo code (not a skill).
 ---
 
 # Evolve Skill
