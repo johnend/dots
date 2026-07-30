@@ -1,0 +1,9 @@
+# keymap.toml
+# Keeps yazi's default keys; only adds bindings that have no default.
+# Pause on a prefix key (e.g. `g`) to trigger yazi's built-in hint popup.
+
+# smart-enter: open the file, or enter the directory, with a single key.
+[[mgr.prepend_keymap]]
+on   = "l"
+run  = "plugin smart-enter"
+desc = "Enter the child directory, or open the file"

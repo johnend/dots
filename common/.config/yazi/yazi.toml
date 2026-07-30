@@ -4,3 +4,16 @@ show_hidden = true
 
 [preview]
 image_delay = 100
+
+# git.yazi: fetch git status for files and directories in the current view.
+[[plugin.prepend_fetchers]]
+id    = "git"
+url   = "*"
+run   = "git"
+group = "git"
+
+[[plugin.prepend_fetchers]]
+id    = "git"
+url   = "*/"
+run   = "git"
+group = "git"
