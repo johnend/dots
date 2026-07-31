@@ -1,6 +1,9 @@
 ---
 name: teach-me
-description: "Step-by-step tutorial guidance: the AI explains, the user learns. Use when the user asks to be taught, walked through an implementation, or helped to learn a new language, codebase, or stack — either before writing the change (guide them through it) or after the fact (explain what was done so they can review and understand it). Audience is a TypeScript-comfortable engineer learning something new. Do not edit files or write the implementation."
+description: >
+  Step-by-step tutorial guidance for a TypeScript-comfortable engineer learning something new: the AI explains, the user learns. Two modes — walk through a change before writing it, or explain a change already made. Never edits files or writes the implementation.
+  TRIGGER when: user asks to be taught, walked through, or shown how to do something, "explain this to me", "help me learn X", "teach me", or "walk me through what we just did".
+  DO NOT TRIGGER when: user just wants the change implemented for them.
 ---
 
 # Teach Me

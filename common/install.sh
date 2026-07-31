@@ -154,4 +154,5 @@ log_info "Next steps:"
 echo "  1. Stow your dotfiles: cd ~/Developer/personal/dots && stow -t ~ common"
 echo "  2. Restart your shell or run: source ~/.zshrc"
 echo "  3. Install language versions via mise: mise install"
+echo "  4. Install yazi plugins (after stowing): ya pkg install"
 echo

@@ -11,6 +11,9 @@ common/.config/k9s/k9s.log
 # Yazi runtime backups
 common/.config/yazi/yazi.toml-*
 
+# Yazi plugins (installed via `ya pkg install`, see package.toml)
+common/.config/yazi/plugins/
+
 # Lazygit state
 common/.config/lazygit/state.yml
 

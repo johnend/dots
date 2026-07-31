@@ -1,6 +1,9 @@
 ---
 name: Session Wrap
-description: "End-of-session documentation: synthesizes what was done, why, patterns implemented, and codebase knowledge gained, then hands off to chronicle-docs to write a structured Obsidian note."
+description: >
+  Produce a rich end-of-session Obsidian note — what was done, why, patterns implemented, and codebase knowledge gained — then hand off to chronicle-docs to format and store it.
+  TRIGGER when: user asks to wrap up the session, write session notes, "document what we did", or "capture this session" before finishing.
+  DO NOT TRIGGER for: general documentation not tied to this session (use chronicle-docs directly).
 ---
 
 # Session Wrap

@@ -1,6 +1,9 @@
 ---
 name: get-pr-comments
-description: Fetch review and discussion comments for the current pull request, classify human-reviewer feedback against tracked patterns, and turn it all into a concise action list.
+description: >
+  Fetch review and discussion comments on the current branch's pull request, classify human-reviewer feedback against tracked patterns, and turn it into a concise action list.
+  TRIGGER when: user asks to get/fetch/summarize PR comments, "what did reviewers say", "any feedback on my PR", check review comments, or address PR feedback.
+  DO NOT TRIGGER when: user wants a fresh review of a colleague's PR (use review-pr) or of their own local changes (use review-local).
 effort: medium
 model: claude-haiku-4-5
 ---
