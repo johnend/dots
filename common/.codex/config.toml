@@ -1,4 +1,4 @@
-model = "gpt-5.6-sol"
+model = "gpt-5.6-luna"
 model_reasoning_effort = "medium"
 personality = "pragmatic"
 plan_mode_reasoning_effort = "xhigh"
