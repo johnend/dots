@@ -18,6 +18,12 @@
       "Bash(git blame*)",
       "Bash(git shortlog*)",
       "Bash(git stash list*)",
+      "Bash(git fetch*)",
+      "Bash(git push)",
+      "Bash(git push -u origin *)",
+      "Bash(git push origin *)",
+      "Bash(git pull*)",
+      "Bash(git ls-remote*)",
       "Bash(rg *)",
       "Bash(fd *)",
       "Bash(bat *)",
@@ -127,6 +133,7 @@
       "Bash(fastfetch*)",
       "Bash(yarn)",
       "Bash(yarn *)",
+      "Bash(./gradlew *)",
       "Bash(* --version)",
       "Bash(* --help)",
       "Bash(* --help *)",
@@ -154,10 +161,7 @@
       "Bash(yarn upgrade *)"
     ]
   },
-  "model": "opusplan",
-  "env": {
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-4-8[1m]"
-  },
+  "model": "claude-opus-4-8[1m]",
   "hooks": {
     "PreToolUse": [
       {
