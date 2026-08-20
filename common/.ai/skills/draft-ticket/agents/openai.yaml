@@ -1,0 +1,6 @@
+interface:
+  display_name: "Draft Ticket"
+  short_description: "Draft and create a tech/Jira ticket from context or details you provide"
+  default_prompt: "Use $draft-ticket to draft and create a ticket for this work."
+policy:
+  allow_implicit_invocation: true
