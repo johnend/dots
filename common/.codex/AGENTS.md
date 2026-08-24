@@ -37,6 +37,7 @@ Do not make any changes until you have 95% confidence in what you need to build.
 - Technical depth appreciated
 - Check official docs before implementing with unfamiliar libraries — don't iterate blindly on failed approaches
 - Check local docs first (plugin `/doc/`, `node_modules/*/README.md`), then online via webfetch
+- Never use em dashes in prose you write - use commas, parentheses, periods, or hyphens instead
 
 ## UI/Frontend
 
