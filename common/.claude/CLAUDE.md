@@ -73,6 +73,7 @@ Do not make any changes until you have 95% confidence in what you need to build.
 
 For non-trivial work (features, subtle bugs, integrations, dependency/config changes), don't start editing immediately:
 
+0. **Invoke the `guidelines` skill first** and follow its checklist before planning or writing code. This is the Karpathy behavioral checklist; its trigger is a task state, not a keyword, so it must be invoked explicitly here rather than left to auto-detection. Skip only for trivial mechanical edits.
 1. **Discover** — Read the smallest set of relevant docs, configs, and code paths. Prefer existing implementations over inventing a new pattern. Map the affected flow and dependencies before editing.
 2. **Verify** — Confirm the likely data flow, ownership, and change surface. Identify blockers and risky assumptions. Ask a focused question when a key requirement cannot be inferred safely.
 3. **Execute** — Implement once the path is clear. Prefer extending existing code over introducing parallel abstractions.
