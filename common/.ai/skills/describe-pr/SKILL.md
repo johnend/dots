@@ -1,7 +1,7 @@
 ---
 name: describe-pr
 description: >
-  Create a pull request OR update the description of an existing PR for the current branch. Handles repo PR templates, JIRA ticket extraction (including title prefix), a prose summary followed by implementation bullets with rationale, testing evidence, and screenshot prompts for UI/frontend changes.
+  Create a pull request OR update the description of an existing PR for the current branch. Handles repo PR templates, JIRA ticket extraction (including title prefix), a prose summary followed by implementation bullets with rationale, testing evidence, and screenshot prompts for UI/frontend changes. On FanDuel repos, offers to move the linked JIRA ticket to Code Review after creating the PR.
   TRIGGER when: user asks to create a PR, open a PR, "/describe-pr", "/create-pr", update the PR description, refresh PR body, or after pushing a branch that already has a PR.
 effort: medium
 model: claude-haiku-4-5
@@ -155,3 +155,32 @@ Show the user:
 - Return the PR URL.
 
 Do **not** auto-merge, auto-assign reviewers, add labels, or push without confirmation unless the user explicitly asks.
+
+## 10. Move the JIRA ticket to Code Review (FanDuel repos only)
+
+**Scope gate.** Only run this step when **both** hold:
+
+- The repository lives under `~/Developer/fanduel` (check with `git rev-parse --show-toplevel` and confirm the path is inside that directory). Skip silently for any other repo.
+- A JIRA ticket was extracted from the branch in step 3, and this was **Create mode** (a new PR). In Update mode, skip — the ticket is normally already in review; only transition if the user explicitly asks.
+
+Use the `fd-atlassian` MCP tools for all JIRA operations — never a raw REST call or shell script.
+
+### 10a. Discover the target transition
+
+- Call `getTransitionsForJiraIssue` for the extracted ticket (cloudId is the FanDuel site; reuse the standard site if already known this session, otherwise resolve via `getAccessibleAtlassianResources`).
+- From the returned transitions, pick the first whose `to.name` (or transition `name`) case-insensitively looks like code review: match `code review`, `in review`, `in code review`, or `review` as a whole word. Prefer a more specific match ("Code Review") over a bare "Review" if both exist.
+- If **no** matching transition is available, report the ticket's current status and the list of available transition names, then stop — do not guess or force a transition.
+
+### 10b. Confirm before transitioning
+
+Show the user:
+
+- The ticket key and its current status.
+- The target transition name that will be applied.
+
+**Wait for explicit approval.** (This matches the manual-control default — never move a ticket without sign-off.)
+
+### 10c. Apply the transition
+
+- On approval, call `transitionJiraIssue` with the chosen transition id.
+- Report the outcome: ticket key, old status → new status. If the transition fails (e.g. a required field on the transition screen), surface the error and the field it's asking for rather than retrying blindly.
