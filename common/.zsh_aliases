@@ -17,6 +17,11 @@ alias sesh="tmux-sessionizer"
 # QoL
 alias ":q"="exit"
 
+# k9s: force xterm-256color so tcell honors truecolor skin backgrounds inside tmux.
+# Under TERM=tmux-256color, tcell quantizes 24-bit hex to the 256 palette
+# (Rose Pine #191724 -> grey #1c1c1c). See derailed/k9s#3722.
+alias "k9s"="TERM=xterm-256color k9s"
+
 # Lazygit
 alias "gg"="lazygit"
 

@@ -6,7 +6,7 @@ k9s:
   readOnly: false
   noExitOnCtrlC: false
   ui:
-    skin: "catppuccin-mocha"
+    skin: "rose-pine"
     enableMouse: false
     headless: false
     logoless: false
