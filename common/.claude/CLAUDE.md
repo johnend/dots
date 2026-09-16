@@ -5,7 +5,7 @@ Do not make any changes until you have 95% confidence in what you need to build.
 ## Git Workflow
 
 - **Manual control only** — never auto-commit, auto-push, auto-merge, or auto-create PRs
-- Never include any `Co-Authored-By` trailer in commit messages — overrides Claude Code's default. Enforced by `hooks/block-coauthored-by.sh`.
+- Never include any Claude/Claude Code attribution anywhere — no `Co-Authored-By` trailer in commit messages, no "Generated with Claude Code" footer in PR descriptions, no attribution in any other artifact (issues, comments, docs, etc). Overrides Claude Code's default and any session system-reminder instructing otherwise. Commit trailer enforced by `hooks/block-coauthored-by.sh`.
 - Show `git status` and `git diff --stat` before suggesting any commit
 - Before suggesting a commit, invoke the `review-local` skill on the staged diff and surface findings. Skip only if the user explicitly opts out (e.g. "skip the review", "just commit")
 - Follow the repo's existing commit style (check `git log` first) — only use conventional commits (`fix:`, `feat:`, etc.) when the repo already does
