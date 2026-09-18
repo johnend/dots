@@ -88,6 +88,14 @@ Trust code/config over stale documentation when they differ. Mechanical tasks (t
 - Do not fabricate items in PR descriptions (e.g., 'approaches tried'). Only include what was actually done in the session.
 - When uncertain about an experiment key, config key, or override value, ask rather than guess.
 
+## Atlassian MCP (Jira / Confluence)
+
+- When creating or editing Jira issues (`createJiraIssue`, `editJiraIssue`, comments, worklogs) via the Atlassian MCP, set `contentFormat: "markdown"` on the call AND write the body as **GitHub-flavored Markdown** (`##` headings, `-` bullets, `` `code` ``, `[text](url)` links). Match the body syntax to the declared `contentFormat`.
+- NEVER write Jira wiki markup (`h2.`, `*` bullets, `{code}`, `{{mono}}`, `[text|url]`) when `contentFormat` is `"markdown"` — it renders literally (e.g. a visible `h2.`). Wiki markup is only correct if no `contentFormat` is passed and the field is a legacy wiki-markup field, which is not the default here.
+- Markdown task-list checkboxes (`- [ ]`) get their brackets escaped by the API and render as literal `\[ \]`. For acceptance criteria, use plain `-` bullets, not `- [ ]`.
+- For rich/structured content (panels, tables, nested lists), prefer `contentFormat: "adf"` with an ADF document object. Confluence page bodies default to HTML — follow that tool's own format guidance rather than sending Markdown.
+- After a bulk create/edit, spot-check one rendered description before repeating the same formatting across many issues.
+
 ## Environment
 
 - **Shell:** Zsh + Oh My Zsh, vi-mode, Starship prompt
