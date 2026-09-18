@@ -16,6 +16,7 @@ Do not make any changes until you have 95% confidence in what you need to build.
 - Delta configured as git pager (side-by-side, catppuccin-mocha)
 - When committing multiple changes, chunk them into logical commits rather than one large commit.
 - Commit before replying to PR review comments when both are requested.
+- After pushing changes to a branch that already has an open PR, check whether the PR description is still accurate against the new changes (e.g. copy/values quoted in the body, scope, checklist). If it has drifted, flag it and offer to update the description — don't leave a stale description that contradicts the code.
 
 ## Code Quality
 
