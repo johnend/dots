@@ -22,12 +22,21 @@ Review a colleague's pull request and output a structured, actionable review the
 
 ### 1. Gather context
 
+Never load the full diff into the main context up front. Large PRs have overflowed context before.
+
 Run these in parallel:
 
-- `gh pr view <pr> --json title,body,author,baseRefName,headRefName,files,additions,deletions,labels` — PR metadata.
-- `gh pr diff <pr>` — full diff.
+- `gh pr view <pr> --json title,body,author,baseRefName,headRefName,files,additions,deletions,labels` — PR metadata and per-file line counts.
+- `gh pr diff <pr> --name-only` — changed file list.
 - `gh pr view <pr> --json comments,reviews,reviewRequests` — existing review comments (to avoid duplicating already-flagged issues).
 - `gh api repos/{owner}/{repo}/pulls/{pr}/comments` — inline review comments.
+
+Then size the review:
+
+- **Small** (under ~500 changed lines and under ~15 files): read `gh pr diff <pr>` directly and continue to step 2.
+- **Large**: group files by area (feature, layer, or directory) and launch one subagent per group in a single message (`Explore` in Claude; a subagent in Codex). Each gets the PR number, its file list, the repo path and these instructions: read the diff hunks and surrounding code for these files only; return candidate findings as `file:line · category · severity · one-line issue · the 2-3 relevant code lines`; under 300 words; no preamble. If tests or logs are relevant, one extra subagent finds the tests covering the changed code and reports gaps under 200 words.
+
+Write the review from the subagent reports. Read specific hunks yourself (`gh pr diff <pr> -- <path>` or the local file) only to confirm a finding before including it. Drop anything you can't confirm, or frame it as a Question.
 
 ### 2. Read project standards
 
@@ -39,7 +48,7 @@ Read the repo's coding standards and instruction files to calibrate findings:
 
 ### 3. Read surrounding code
 
-For each changed file, read the full file (not just the diff) to understand context — types, sibling functions, existing patterns. This prevents false positives and reveals whether the PR is following or breaking local conventions.
+For each changed file, read the full file (not just the diff) to understand context — types, sibling functions, existing patterns. This prevents false positives and reveals whether the PR is following or breaking local conventions. On large PRs this is the subagents' job; only do it yourself for files behind a finding you're confirming.
 
 ### 4. Analyse the diff
 

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Retro"
+  short_description: "Capture session lessons into AGENTS.md, memory, skills or hooks"
+  default_prompt: "Use $retro to review this session and record any durable lessons."
+policy:
+  allow_implicit_invocation: true

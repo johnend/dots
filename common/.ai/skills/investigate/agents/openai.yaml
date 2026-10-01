@@ -1,0 +1,6 @@
+interface:
+  display_name: "Investigate"
+  short_description: "Hypothesis ledger with parallel falsification; docs-only until confirmed"
+  default_prompt: "Use $investigate on this bug: pin the scope, list competing hypotheses, and try to falsify each with evidence."
+policy:
+  allow_implicit_invocation: true

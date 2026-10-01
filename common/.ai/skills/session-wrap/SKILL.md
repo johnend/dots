@@ -10,6 +10,8 @@ description: >
 
 Produces a rich end-of-session Obsidian note. Two phases: gather and synthesize, then hand off to `chronicle-docs` for formatting and storage.
 
+Before Phase 1, invoke the `retro` skill so lessons from the session are recorded even if the note is declined. Include its report in the draft under **Follow-ups** if anything was proposed rather than written.
+
 ---
 
 ## Phase 1 — Gather artifacts

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Triage"
+  short_description: "Trace a support report to its owner and draft a short Slack hand-off"
+  default_prompt: "Use $triage on this report: find the failing component, the evidence-backed owner, and draft a short hand-off."
+policy:
+  allow_implicit_invocation: true
