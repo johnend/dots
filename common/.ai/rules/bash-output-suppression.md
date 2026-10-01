@@ -10,10 +10,11 @@ alwaysApply: true
 Capture stdout+stderr in one run, check status, print only the tail on failure. This never runs the command twice and keeps success noise out of context:
 
 ```bash
-output=$(cmd 2>&1); status=$?
-[ "$status" -ne 0 ] && printf '%s\n' "$output" | tail -20
+output=$(cmd 2>&1); rc=$?
+[ "$rc" -ne 0 ] && printf '%s\n' "$output" | tail -20
 ```
 
+- Name the exit-code variable `rc`, never `status` (read-only in zsh, so the assignment errors).
 - Use `printf '%s\n'`, not `echo` (POSIX-reliable on bash 3, no escape interpretation).
 - Apply to anything multi-line: builds, type checks, lint, tests, installs (`npm install`, `yarn`, `pip install` are routinely thousands of lines).
 - Always cap the tail; raise it when useful (e.g. `tail -50` for test suites) but never leave it uncapped.
@@ -21,8 +22,8 @@ output=$(cmd 2>&1); status=$?
 
   ```bash
   local output
-  output=$(cmd 2>&1); status=$?
-  [ "$status" -ne 0 ] && { printf '%s\n' "$output" | tail -20 >&2; return "$status"; }
+  output=$(cmd 2>&1); rc=$?
+  [ "$rc" -ne 0 ] && { printf '%s\n' "$output" | tail -20 >&2; return "$rc"; }
   ```
 
 ### Probes: Discard Everything
@@ -46,7 +47,7 @@ Hook script conventions:
 
 - Use `set -uo pipefail` (omit `-e`; hooks need intentional `|| true` fallback branches).
 - Variable-capture every internal side-effect command; route errors to `>&2` (stdout is additionalContext, stderr is not).
-- Group the failure branch so exit always runs, avoiding a `&&` short-circuit gap: `[ "$status" -ne 0 ] && { printf '%s\n' "$output" | tail -20 >&2; exit "$status"; }`
+- Group the failure branch so exit always runs, avoiding a `&&` short-circuit gap: `[ "$rc" -ne 0 ] && { printf '%s\n' "$output" | tail -20 >&2; exit "$rc"; }`
 
 ### Never Suppress: gh / git remote
 
