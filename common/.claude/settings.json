@@ -170,17 +170,17 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash ~/.claude/hooks/block-coauthored-by.sh",
+            "command": "bash ~/.ai/hooks/block-coauthored-by.sh",
             "timeout": 5
           },
           {
             "type": "command",
-            "command": "bash ~/.claude/hooks/block-dependency-changes.sh",
+            "command": "bash ~/.ai/hooks/block-dependency-changes.sh",
             "timeout": 5
           },
           {
             "type": "command",
-            "command": "bash ~/.claude/hooks/block-stderr-suppression.sh",
+            "command": "bash ~/.ai/hooks/block-stderr-suppression.sh",
             "timeout": 5
           }
         ]
@@ -192,12 +192,23 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash ~/.claude/hooks/check-shell-safe-mode.sh",
+            "command": "bash ~/.ai/hooks/check-shell-safe-mode.sh",
             "timeout": 5
           },
           {
             "type": "command",
-            "command": "bash ~/.claude/hooks/check-local-assignment.sh",
+            "command": "bash ~/.ai/hooks/check-local-assignment.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.ai/hooks/nudge-learning-capture.sh",
             "timeout": 5
           }
         ]

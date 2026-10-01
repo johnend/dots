@@ -3,7 +3,7 @@
 # upgrade, or otherwise mutate dependencies — across npm, pnpm, bun, pip,
 # poetry, cargo, and bundle.
 #
-# Enforces the global rule in ~/.claude/CLAUDE.md:
+# Enforces the global rule in ~/.ai/AGENTS.md:
 #   "Never modify dependencies without explicit confirmation"
 #
 # Allowed (do NOT block):
@@ -12,8 +12,8 @@
 #   - Script runs:           `npm run X`, `npm test`, `pnpm run X`, etc.
 #   - Lockfile / editable pip: `pip install -r ...`, `pip install -e .`
 #
-# `yarn add|remove|upgrade` is already blocked via settings.json deny list;
-# this hook extends coverage to the other managers.
+# Shared by Claude Code and Codex. Claude's settings.json also denies
+# `yarn add|remove|upgrade`; this hook covers yarn for Codex too.
 #
 # Hook contract: exit 0 = allow; exit 2 = block.
 set -uo pipefail
@@ -33,7 +33,7 @@ block() {
   cat >&2 <<EOF
 Blocked: command modifies dependencies ($reason).
 
-Global rule (~/.claude/CLAUDE.md):
+Global rule (~/.ai/AGENTS.md):
   Never modify dependencies without explicit confirmation. Lockfile installs
   and script runs are fine; adding, removing, or upgrading packages requires
   explicit user approval first.
@@ -78,6 +78,12 @@ fi
 # cargo add / remove / rm / update.
 if printf '%s' "$NORM" | grep -qE '[;&|][[:space:]]*cargo[[:space:]]+(add|remove|rm|update)\b'; then
   block "cargo dependency change"
+fi
+
+# yarn add / remove / upgrade. Claude also denies these in settings.json, but
+# Codex shares this hook and has no equivalent deny list.
+if printf '%s' "$NORM" | grep -qE '[;&|][[:space:]]*yarn[[:space:]]+(add|remove|upgrade|up)\b'; then
+  block "yarn dependency change"
 fi
 
 # bundle add / remove / update.

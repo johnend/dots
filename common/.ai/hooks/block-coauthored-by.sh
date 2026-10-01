@@ -2,7 +2,7 @@
 # PreToolUse hook (Bash): block `git commit` invocations whose message
 # contains a "Co-Authored-By" trailer.
 #
-# Enforces the global rule in ~/.claude/CLAUDE.md:
+# Enforces the global rule in ~/.ai/AGENTS.md:
 #   "Never include any Co-Authored-By trailer in commit messages."
 # This overrides Claude Code's built-in default of appending one.
 #
@@ -29,7 +29,7 @@ fi
 cat >&2 <<'EOF'
 Blocked: `git commit` message contains a "Co-Authored-By" trailer.
 
-Global rule (~/.claude/CLAUDE.md):
+Global rule (~/.ai/AGENTS.md):
   Never include any Co-Authored-By trailer in commit messages — including
   Claude Code's default `Co-Authored-By: Claude ... <noreply@anthropic.com>`.
   Applies to all commits regardless of repo, branch, or context.

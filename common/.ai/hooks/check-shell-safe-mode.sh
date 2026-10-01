@@ -2,7 +2,7 @@
 # PostToolUse hook (Write|Edit): when a bash script is written or edited,
 # verify it declares safe-mode flags near the top.
 #
-# Enforces the global rule in ~/.claude/CLAUDE.md:
+# Enforces the global rule in ~/.ai/AGENTS.md:
 #   "Shell scripts: set -euo pipefail, 2-space indent, ..."
 #
 # Lenient check: requires that some `set -...e...` or `set -...u...` flag
@@ -62,7 +62,7 @@ fi
 cat >&2 <<EOF
 Advisory: $FILE_PATH is a bash script but is missing safe-mode flags.
 
-Global rule (CLAUDE.md):
+Global rule (~/.ai/AGENTS.md):
   Shell scripts should declare 'set -euo pipefail' near the top so they
   fail fast on errors, unset variables, and pipeline failures.
 

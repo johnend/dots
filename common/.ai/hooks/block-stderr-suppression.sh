@@ -3,7 +3,7 @@
 # stderr carries load-bearing diagnostics.
 #
 # Enforces:
-#   - ~/.claude/CLAUDE.md: "Never use 2>/dev/null on commands whose stderr
+#   - ~/.ai/rules/bash-output-suppression.md: "Never use 2>/dev/null on commands whose stderr
 #     matters for debugging (e.g., gradle, build tools)."
 #   - common/.ai/rules/bash-output-suppression.md: gh CLI and
 #     `git push|fetch|pull|ls-remote|commit` also flow load-bearing stderr
@@ -45,7 +45,7 @@ if [ "$category" = "build" ]; then
   cat >&2 <<EOF
 Blocked: stderr suppression on a build / debug-sensitive command.
 
-Global rule (~/.claude/CLAUDE.md):
+Global rule (~/.ai/rules/bash-output-suppression.md):
   Never use 2>/dev/null on commands whose stderr matters for debugging
   (gradle, mvn, tsc, jest, pytest, eslint, etc.). Errors hide silently and
   waste cycles diagnosing later.

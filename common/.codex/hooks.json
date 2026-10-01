@@ -1,0 +1,22 @@
+{
+  "description": "Shared guard hooks from ~/.ai/hooks (same scripts Claude Code runs). The Write|Edit shell-safety checks are Claude-only: Codex edits via apply_patch, which has no tool_input.file_path.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "bash ~/.ai/hooks/block-coauthored-by.sh", "timeout": 5 },
+          { "type": "command", "command": "bash ~/.ai/hooks/block-dependency-changes.sh", "timeout": 5 },
+          { "type": "command", "command": "bash ~/.ai/hooks/block-stderr-suppression.sh", "timeout": 5 }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          { "type": "command", "command": "bash ~/.ai/hooks/nudge-learning-capture.sh", "timeout": 5 }
+        ]
+      }
+    ]
+  }
+}
