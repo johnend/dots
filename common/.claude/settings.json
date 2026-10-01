@@ -147,6 +147,7 @@
       "Read(~/.gitconfig)",
       "Read(~/.gitsettings/**)",
       "Read(~/.tmux.conf)",
+      "Read(~/.docker/config.json)",
       "Edit(/Users/john.enderby/Developer/**)"
     ],
     "deny": [
@@ -161,7 +162,7 @@
       "Bash(yarn upgrade *)"
     ]
   },
-  "model": "claude-opus-4-8[1m]",
+  "model": "claude-opus-5-5[1m]",
   "hooks": {
     "PreToolUse": [
       {
@@ -224,5 +225,10 @@
     }
   },
   "effortLevel": "high",
-  "editorMode": "vim"
+  "editorMode": "vim",
+  "modelSettings": {
+    "claude-opus-5": {
+      "effortLevel": "xhigh"
+    }
+  }
 }
