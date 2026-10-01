@@ -89,7 +89,16 @@ mode = "limited"
 
 [permissions.git-fsmonitor-workspace.network.unix_sockets]
 "/home/johne/Developer/dots/.git/fsmonitor--daemon.ipc" = "allow"
+"/Users/john.enderby/Developer/personal/dots/.git/fsmonitor--daemon.ipc" = "allow"
 
+# Paths differ per machine (shared stow), so each disable is listed per OS.
 [[skills.config]]
 path = "/home/johne/Developer/dots/common/.ai/skills/audit-claude-setup/SKILL.md"
 enabled = false
+
+[[skills.config]]
+path = "/Users/john.enderby/Developer/personal/dots/common/.ai/skills/audit-claude-setup/SKILL.md"
+enabled = false
+
+[features]
+memories = true
