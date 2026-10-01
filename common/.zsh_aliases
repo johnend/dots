@@ -45,6 +45,13 @@ alias "spt"="spotify_player"
 # opencode
 alias "oc"="opencode"
 
+# Claude Code
+alias "claude"="claude --model 'claude-opus-5-5[1m]'"
+# Small-context sessions: the Kong gateway disables MCP tool search, so every
+# tool schema loads up front. Drop the heavy servers (~120k tokens); read-only
+# GitHub stays. settings.json already denies Atlassian, auth stubs and writes.
+alias "claude-lean"="command claude --disallowedTools 'mcp__FD-Amplitude__*' 'mcp__FD-Datadog__*' 'mcp__FD-Slack__*' 'mcp__FD-BuildKite__*' 'mcp__prefab__*' 'mcp__Initializ__*'"
+
 compile_sofle() {
   if [[ "$(basename "$PWD")" == "qmk_firmware" ]]; then
     qmk compile -kb sofle -km johnend

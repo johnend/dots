@@ -99,7 +99,7 @@ Trust code/config over stale documentation.
 
 ## Atlassian (Jira / Confluence)
 
-- Prefer the `twg` CLI over the Atlassian MCP
+- Use the `twg` CLI for Jira/Confluence; the Atlassian MCP is disabled
 - When writing Jira content, declare markdown format and write GitHub-flavored Markdown. Never Jira wiki markup (`h2.`, `{code}`, `[text|url]`)
 - Don't use `- [ ]` checkboxes (rendered escaped); use plain `-` bullets
 - Confluence page bodies follow that tool's own format guidance. Spot-check one rendered result before bulk edits
@@ -130,4 +130,6 @@ Add a one-line bullet here (under 15 words, no explanation) when: you make the s
 - Debugging Claude/gateway config: read settings files first, not env probes.
 - Never infer the newest gateway model from env vars; check the model list.
 - CloudFront `FunctionGeneratedResponse` identifies the layer, not the reason; hand over.
+- Slack and GitHub MCP are read-only context sources: never post, react, create, merge or push through them. Draft text for me to send; use `gh` for any GitHub write I've approved
 - Large PR reviews: use the 1M-context model or delegate to subagents.
+- Testing guard hooks: feed blocked sample commands from a file, not inline.
