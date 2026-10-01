@@ -97,3 +97,9 @@ common/.local/bin/claude
 /common/.zcompdump-*
 **/geeqie/history
 linux/kde/.local/share/plasma/containmentpreviews/
+
+# twg skills (installed and updated by the twg installer, not maintained here)
+common/.ai/skills/twg*/
+
+# Claude Code write scratch dirs
+**/.claude/.cc-writes/
