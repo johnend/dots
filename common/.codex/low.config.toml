@@ -1,0 +1,2 @@
+model_context_window = 272000
+model_auto_compact_token_limit = 204000
