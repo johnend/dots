@@ -123,6 +123,8 @@ Prefer `rg` over grep, `fd` over find, `bat` over cat, `eza` over ls, `delta` ov
 
 ## Applied Learning
 
+- Bound audits, review before expensive verification, and repeat checks only with concrete justification.
+
 Add a one-line bullet here (under 15 words, no explanation) when: you make the same mistake twice, I correct or re-explain something, or a workaround is found for a tool limitation. Write it immediately, tell me you did, and don't ask first. Repo-specific facts go in project memory instead. Run the `retro` skill at the end of sessions with friction. Prune bullets that are stale or now covered elsewhere.
 
 - `rg -r` means replace, not recursive; ripgrep recurses by default.
