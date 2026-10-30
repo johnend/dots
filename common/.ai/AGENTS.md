@@ -135,3 +135,4 @@ Add a one-line bullet here (under 15 words, no explanation) when: you make the s
 - Slack and GitHub MCP are read-only context sources: never post, react, create, merge or push through them. Draft text for me to send; use `gh` for any GitHub write I've approved
 - Large PR reviews: use the 1M-context model or delegate to subagents.
 - Testing guard hooks: feed blocked sample commands from a file, not inline.
+- Sandboxed `git fetch` fails on a self-signed cert; retry unsandboxed.
