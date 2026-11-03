@@ -76,7 +76,15 @@ trust_level = "trusted"
 [tui]
 theme = "catppuccin-mocha"
 vim_mode_default = true
-status_line = ["model-with-reasoning", "current-dir", "project-name", "git-branch", "context-used", "codex-version", "context-window-size"]
+status_line = [
+  "model-with-reasoning",
+  "current-dir",
+  "project-name",
+  "git-branch",
+  "context-used",
+  "codex-version",
+  "context-window-size",
+]
 
 [tui.model_availability_nux]
 "gpt-5.5" = 4
@@ -104,3 +112,4 @@ enabled = false
 
 [features]
 memories = true
+codex_hooks = true
