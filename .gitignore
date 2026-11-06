@@ -63,6 +63,9 @@ common/.claude/plugins/
 # System-provided AI skills
 common/.ai/skills/.system/
 
+# Claude.ai org/plugin skills (synced by Claude Code, not maintained here)
+common/.ai/skills/synced/
+
 # Codex runtime state
 /.codex
 common/.codex/auth.json
