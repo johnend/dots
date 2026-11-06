@@ -181,7 +181,7 @@
       "mcp__FD-Github__request_copilot_review"
     ]
   },
-  "model": "claude-opus-5-5[1m]",
+  "model": "opus",
   "hooks": {
     "PreToolUse": [
       {
@@ -405,10 +405,14 @@
     }
   },
   "effortLevel": "high",
-  "editorMode": "vim",
   "modelSettings": {
     "claude-opus-5": {
       "effortLevel": "xhigh"
+    },
+    "claude-opus-5-5": {
+      "effortLevel": "high"
     }
-  }
+  },
+  "tui": "fullscreen",
+  "editorMode": "vim"
 }
