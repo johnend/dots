@@ -181,7 +181,7 @@
       "mcp__FD-Github__request_copilot_review"
     ]
   },
-  "model": "opus",
+  "model": "opus[1m]",
   "hooks": {
     "PreToolUse": [
       {
