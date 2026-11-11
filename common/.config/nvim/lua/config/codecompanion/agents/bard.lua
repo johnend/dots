@@ -73,7 +73,7 @@ Instead, this flow happens:
 - @{file_search} - Find component patterns
 - @{grep_search} - Search for style patterns
 - @{create_file} - Create new components
-- @{insert_edit_into_file} - Update components
+- @{edit_file} - Update components
 
 **Context:**
 - #{buffer} - Current file

@@ -12,7 +12,7 @@ function M.setup()
       "read_file",           -- Read any file
       "create_file",         -- Create new files
       "delete_file",         -- Remove files
-      "insert_edit_into_file", -- Edit existing files
+      "edit_file", -- Edit existing files
       
       -- Search and navigation
       "file_search",         -- Find files by pattern (fd-based)
@@ -44,7 +44,7 @@ function M.setup()
       "file_search",
       "grep_search",
       "create_file",
-      "insert_edit_into_file",
+      "edit_file",
       "memory",
     },
 
@@ -72,7 +72,7 @@ function M.setup()
     sentinel = {
       "read_file",
       "create_file",
-      "insert_edit_into_file",
+      "edit_file",
       "delete_file",
       "file_search",
       "grep_search",
@@ -94,7 +94,7 @@ function M.setup()
       "file_search",
       "grep_search",
       "create_file",
-      "insert_edit_into_file",
+      "edit_file",
       "memory",
     },
 
