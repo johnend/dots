@@ -101,8 +101,10 @@ common/.local/bin/claude
 **/geeqie/history
 linux/kde/.local/share/plasma/containmentpreviews/
 
-# twg skills (installed and updated by the twg installer, not maintained here)
-common/.ai/skills/twg*/
+# twg skills (installed and updated by the twg installer, not maintained here).
+# No trailing slash: the installer now creates symlinks, which git treats as
+# files, so a directory-only pattern stops matching them.
+common/.ai/skills/twg*
 
 # Claude Code write scratch dirs
 **/.claude/.cc-writes/
