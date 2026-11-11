@@ -89,10 +89,10 @@ A complete development environment featuring:
 
 #### Editors
 - Neovim
-- Emacs
 - nano with nanorc
 
 #### Git Tools
+- git
 - GitHub CLI (`gh`)
 - lazygit
 - git-delta (better diffs)
@@ -102,6 +102,7 @@ A complete development environment featuring:
 - cmake
 - make
 - gcc
+- pkgconf
 
 #### Container & Kubernetes
 - Docker (requires separate installation)
@@ -127,6 +128,9 @@ A complete development environment featuring:
 - luarocks
 - stylua (Lua formatter)
 - tree-sitter-cli
+- gopls, gomodifytags, gotests (Go)
+- shellcheck, shfmt (shell)
+- stylelint, js-beautify (web)
 
 ### Command Line Utilities
 
@@ -138,28 +142,24 @@ A complete development environment featuring:
 - **fzf** → Fuzzy finder
 - **zoxide** → Smarter `cd`
 - **thefuck** → Command correction
+- **television** → General purpose fuzzy finder TUI
 
 #### File Management
 - stow (dotfile manager)
 - tree
 - yazi (terminal file manager)
-- rsync
 
 #### System Utilities
 - btop (system monitor)
 - fastfetch (system info)
 - watchman (file watcher)
-- pv (pipe viewer)
-- tldr (simplified man pages)
+- lexy (Learn X in Y Minutes in the terminal)
 
 #### Compression & Archives
 - sevenzip
-- unrar
 
 #### Text Processing
 - jq (JSON processor)
-- grep (GNU version)
-- sed (GNU version)
 
 #### Media & Images
 - imagemagick
@@ -173,7 +173,6 @@ A complete development environment featuring:
 - mermaid-cli
 
 #### Network Tools
-- curl
 - wget
 - mkcert (local SSL certificates)
 - unbound
@@ -181,10 +180,10 @@ A complete development environment featuring:
 
 #### Terminal & tmux
 - tmux
-- tmuxinator (installed via `common/install.sh`)
 
 #### Python Tooling
 - pipx (isolated Python app installer)
+- python-setuptools
 
 #### Database Clients
 - mysql-client
@@ -200,17 +199,25 @@ A complete development environment featuring:
 
 ### macOS Specific
 - borders (window borders for tiling WMs)
+- menuanywhere (menu bar at the cursor)
+- fileicon (custom file and folder icons)
+- ios-deploy, xcodes (iOS and Xcode tooling)
 
 ### GUI Applications (Casks)
 - 1password-cli
 - AeroSpace (tiling window manager)
-- Alacritty (terminal)
-- Font: Recursive Mono Nerd Font
-- Neovide (GUI Neovim)
-- OpenLens (Kubernetes UI)
+- Bruno (API client)
+- Fonts: Monaspace Frozen, Recursive Mono Nerd Font
+- KeyCastr (keystroke visualiser)
+- Kitty (terminal)
+- Obsidian
 - QMK Toolbox
 - Rancher Desktop
 - WezTerm (terminal)
+
+### Go and Cargo Packages
+- gore (Go REPL)
+- fd-find, rustlings, toipe (cargo)
 
 ## 🔧 Configuration
 
@@ -263,8 +270,8 @@ brew doctor
 # Cleanup old versions
 brew cleanup
 
-# Generate updated Brewfile
-brew bundle dump --file=lib/macos/Brewfile --force
+# Dump installed packages, then merge changes into the Brewfile's sections
+brew bundle dump --file=/tmp/Brewfile.dump --force
 ```
 
 ## 🎯 Cross-Platform Consistency
@@ -276,7 +283,7 @@ This setup maintains consistency with the Linux configuration:
 | Version Manager   | mise                  | mise                  |
 | Prompt            | Starship              | Starship              |
 | Shell Framework   | Oh-My-Zsh             | Oh-My-Zsh             |
-| Terminal          | Alacritty/WezTerm     | Ghostty/Alacritty     |
+| Terminal          | WezTerm/Kitty         | Ghostty/Alacritty     |
 | Editor            | Neovim                | Neovim                |
 | File Manager      | yazi (CLI)            | yazi (CLI), Nemo (GUI)|
 | System Monitor    | btop                  | btop                  |
@@ -291,7 +298,7 @@ To customize for your needs:
 1. **Modify Brewfile**: Add or remove packages
 2. **Test installation**: Run `brew bundle --file=lib/macos/Brewfile --dry-run`
 3. **Apply changes**: Run `brew bundle --file=lib/macos/Brewfile`
-4. **Update Brewfile**: Run `brew bundle dump --force` to regenerate
+4. **Update Brewfile**: Dump to a temp file and merge changes into the matching sections
 
 ### Adding New Packages
 
@@ -302,8 +309,8 @@ brew search <package>
 # Get package info
 brew info <package>
 
-# Add to Brewfile
-echo 'brew "<package>"' >> lib/macos/Brewfile
+# Add to Brewfile under the matching section
+brew "<package>"
 
 # Install
 brew bundle --file=lib/macos/Brewfile

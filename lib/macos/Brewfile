@@ -1,23 +1,25 @@
-tap "common-fate/granted"
-tap "derailed/k9s"
-tap "felixkratz/formulae"
-tap "hashicorp/tap"
-tap "jesseduffield/lazygit"
-tap "jstkdng/programs"
-tap "koekeishiya/formulae"
-tap "nikitabobko/tap"
-tap "osx-cross/arm"
-tap "osx-cross/avr"
-tap "qmk/qmk"
-tap "sst/tap"
+tap "acsandmann/tap", trusted: true
+tap "agavra/tap", trusted: true
+tap "anomalyco/tap", trusted: true
+tap "antoniorodr/lexy", trusted: true
+tap "common-fate/granted", trusted: true
+tap "derailed/k9s", trusted: true
+tap "felixkratz/formulae", "https://github.com/FelixKratz/homebrew-formulae", trusted: true
+tap "hashicorp/tap", trusted: true
+tap "jesseduffield/lazygit", trusted: true
+tap "jstkdng/programs", trusted: true
+tap "nikitabobko/tap", trusted: true
+tap "osx-cross/arm", trusted: true
+tap "osx-cross/avr", trusted: true
+tap "qmk/qmk", trusted: true
+tap "sst/tap", "https://github.com/anomalyco/homebrew-tap.git", trusted: true
+tap "xcodesorg/made"
 
 # =====================================
 # SYSTEM LIBRARIES & DEPENDENCIES
 # =====================================
 brew "xz"
-brew "openssl@3"
-brew "readline"
-brew "sqlite"
+brew "openssl@3", link: true
 brew "zlib"
 
 # =====================================
@@ -25,6 +27,8 @@ brew "zlib"
 # =====================================
 # mise - unified version manager for node, python, ruby, go, etc.
 brew "mise"
+brew "jenv"
+brew "n"
 
 # =====================================
 # SHELL & PROMPT
@@ -37,11 +41,11 @@ brew "starship"
 
 ## Editors
 brew "neovim"
-brew "emacs"
 brew "nano"
 brew "nanorc"
 
 ## Git tools
+brew "git"
 brew "gh"
 brew "lazygit"
 brew "git-delta"
@@ -51,6 +55,7 @@ brew "automake"
 brew "cmake"
 brew "make"
 brew "gcc"
+brew "pkgconf"
 
 ## Container & Kubernetes
 brew "docker"
@@ -60,13 +65,13 @@ brew "kubernetes-cli"
 brew "helm"
 brew "lazydocker"
 brew "minikube"
-brew "derailed/k9s/k9s"
+brew "derailed/k9s/k9s", trusted: true
 
 ## Infrastructure as Code
-brew "hashicorp/tap/terraform"
+brew "hashicorp/tap/terraform", trusted: true
 
 ## Cloud CLI tools
-brew "common-fate/granted/granted"
+brew "common-fate/granted/granted", trusted: true
 
 ## Programming languages
 brew "php"
@@ -79,6 +84,13 @@ brew "openjdk@21"
 brew "luarocks"
 brew "stylua"
 brew "tree-sitter-cli"
+brew "gopls"
+brew "gomodifytags"
+brew "gotests"
+brew "shellcheck"
+brew "shfmt"
+brew "stylelint"
+brew "js-beautify"
 
 # =====================================
 # COMMAND LINE UTILITIES
@@ -92,28 +104,24 @@ brew "ripgrep"
 brew "fzf"
 brew "zoxide"
 brew "thefuck"
+brew "television"
 
 ## File management
 brew "stow"
 brew "tree"
 brew "yazi"
-brew "rsync"
 
 ## System utilities
 brew "btop"
 brew "fastfetch"
 brew "watchman"
-brew "pv"
-brew "tldr"
+brew "antoniorodr/lexy/lexy", trusted: true
 
 ## Compression & archives
 brew "sevenzip"
-brew "unrar"
 
 ## Text processing & search
 brew "jq"
-brew "grep"
-brew "sed"
 
 ## Media & images
 brew "imagemagick"
@@ -127,7 +135,6 @@ brew "tectonic"
 brew "mermaid-cli"
 
 ## Network tools
-brew "curl"
 brew "wget"
 brew "mkcert"
 brew "unbound"
@@ -135,10 +142,10 @@ brew "gnutls"
 
 ## Terminal & tmux
 brew "tmux"
-brew "tmuxinator"
 
 ## Python tooling (beyond mise)
 brew "pipx"
+brew "python-setuptools"
 
 ## Database clients
 brew "mysql-client"
@@ -150,6 +157,18 @@ brew "libmagic"
 brew "icu4c@76"
 brew "jpeg"
 brew "tcl-tk"
+brew "cairo"
+brew "giflib"
+brew "gmp"
+brew "krb5"
+brew "libffi"
+brew "libpng"
+brew "librsvg"
+brew "libyaml"
+brew "nss"
+brew "openssl@1.1"
+brew "pango"
+brew "pixman"
 
 # =====================================
 # SPOTIFY
@@ -159,145 +178,41 @@ brew "spotify_player"
 # =====================================
 # QMK FIRMWARE
 # =====================================
-brew "qmk/qmk/qmk"
+brew "qmk/qmk/qmk", trusted: true
 brew "qemu"
 
 # =====================================
 # MACOS SPECIFIC TOOLS
 # =====================================
-brew "felixkratz/formulae/borders"
-
-# =====================================
-# OPENCODE (AI ASSISTANT)
-# =====================================
-brew "sst/tap/opencode"
+brew "felixkratz/formulae/borders", trusted: true
+brew "acsandmann/tap/menuanywhere", trusted: true
+brew "fileicon"
+brew "ios-deploy"
+brew "xcodesorg/made/xcodes", trusted: true
 
 # =====================================
 # CASKS (GUI APPLICATIONS)
 # =====================================
 cask "1password-cli"
-cask "aerospace"
-cask "alacritty"
+cask "nikitabobko/tap/aerospace", trusted: true
+cask "bruno"
+cask "font-monaspace-frozen"
 cask "font-recursive-mono-nerd-font"
-cask "neovide-app"
-cask "openlens"
+cask "keycastr"
+cask "kitty"
+cask "obsidian"
 cask "qmk-toolbox"
 cask "rancher"
 cask "wezterm"
 
 # =====================================
-# VSCODE EXTENSIONS
-# =====================================
-vscode "aaron-bond.better-comments"
-vscode "adpyke.codesnap"
-vscode "alefragnani.project-manager"
-vscode "amazonwebservices.codewhisperer-for-command-line-companion"
-vscode "andrew-codes.cypress-snippets"
-vscode "andrewbeletskiy.sort-css-declarations"
-vscode "astro-build.astro-vscode"
-vscode "asvetliakov.vscode-neovim"
-vscode "be5invis.toml"
-vscode "be5invis.vscode-custom-css"
-vscode "bierner.github-markdown-preview"
-vscode "bierner.markdown-checkbox"
-vscode "bierner.markdown-emoji"
-vscode "bierner.markdown-footnotes"
-vscode "bierner.markdown-mermaid"
-vscode "bierner.markdown-preview-github-styles"
-vscode "bierner.markdown-yaml-preamble"
-vscode "bradgashler.htmltagwrap"
-vscode "catppuccin.catppuccin-vsc"
-vscode "catppuccin.catppuccin-vsc-icons"
-vscode "christian-kohler.npm-intellisense"
-vscode "christian-kohler.path-intellisense"
-vscode "clinyong.vscode-css-modules"
-vscode "codezombiech.gitignore"
-vscode "dbaeumer.vscode-eslint"
-vscode "deerawan.vscode-dash"
-vscode "dirt-lxiv.language-csgo-cfg"
-vscode "dlasagno.rasi"
-vscode "donjayamanne.git-extension-pack"
-vscode "donjayamanne.githistory"
-vscode "dsznajder.es7-react-js-snippets"
-vscode "eamodio.gitlens"
-vscode "editorconfig.editorconfig"
-vscode "emmanuelbeziat.vscode-great-icons"
-vscode "enkia.tokyo-night"
-vscode "esbenp.prettier-vscode"
-vscode "eww-yuck.yuck"
-vscode "figma.figma-vscode-extension"
-vscode "firefox-devtools.vscode-firefox-debug"
-vscode "formulahendry.auto-close-tag"
-vscode "formulahendry.auto-rename-tag"
-vscode "formulahendry.code-runner"
-vscode "foxundermoon.shell-format"
-vscode "github.copilot"
-vscode "github.copilot-chat"
-vscode "github.github-vscode-theme"
-vscode "github.vscode-pull-request-github"
-vscode "golang.go"
-vscode "graphql.vscode-graphql"
-vscode "graphql.vscode-graphql-syntax"
-vscode "gruntfuggly.todo-tree"
-vscode "hashicorp.terraform"
-vscode "hilleer.yaml-plus-json"
-vscode "iakimov.check-npm-updates"
-vscode "jock.svg"
-vscode "jsynowiec.vscode-insertdatestring"
-vscode "keifererikson.nightfox"
-vscode "kimuson.ts-type-expand"
-vscode "llvm-vs-code-extensions.vscode-clangd"
-vscode "mads-hartmann.bash-ide-vscode"
-vscode "mechatroner.rainbow-csv"
-vscode "mhutchie.git-graph"
-vscode "miguelsolorio.fluent-icons"
-vscode "mikestead.dotenv"
-vscode "mrmlnc.vscode-scss"
-vscode "ms-azuretools.vscode-containers"
-vscode "ms-azuretools.vscode-docker"
-vscode "ms-python.debugpy"
-vscode "ms-python.python"
-vscode "ms-python.vscode-pylance"
-vscode "ms-python.vscode-python-envs"
-vscode "ms-vscode.cpptools"
-vscode "ms-vscode.makefile-tools"
-vscode "ms-vsliveshare.vsliveshare"
-vscode "msjsdiag.vscode-react-native"
-vscode "mvllow.rose-pine"
-vscode "nico-castell.linux-desktop-file"
-vscode "orta.vscode-jest"
-vscode "pnp.polacode"
-vscode "pomber.git-file-history"
-vscode "pranaygp.vscode-css-peek"
-vscode "qiqigou.tpl-lang"
-vscode "rebornix.toggle"
-vscode "redhat.vscode-yaml"
-vscode "rogalmic.bash-debug"
-vscode "runarsf.platform-settings"
-vscode "shelex.vscode-cy-helper"
-vscode "sonarsource.sonarlint-vscode"
-vscode "streetsidesoftware.code-spell-checker"
-vscode "styled-components.vscode-styled-components"
-vscode "sumneko.lua"
-vscode "tamasfe.even-better-toml"
-vscode "techer.open-in-browser"
-vscode "timonwong.shellcheck"
-vscode "unifiedjs.vscode-mdx"
-vscode "visualstudioexptteam.intellicode-api-usage-examples"
-vscode "visualstudioexptteam.vscodeintellicode"
-vscode "vscode-icons-team.vscode-icons"
-vscode "vscodevim.vim"
-vscode "waderyan.gitblame"
-vscode "wix.vscode-import-cost"
-vscode "xabikos.javascriptsnippets"
-vscode "xyc.vscode-mdx-preview"
-vscode "yoavbls.pretty-ts-errors"
-vscode "yzhang.markdown-all-in-one"
-vscode "zainchen.json"
-vscode "zignd.html-css-class-completion"
-vscode "ziyasal.vscode-open-in-github"
-
-# =====================================
 # GO PACKAGES
 # =====================================
-go "github.com/bootdotdev/bootdev"
+go "github.com/x-motemen/gore/cmd/gore"
+
+# =====================================
+# CARGO PACKAGES
+# =====================================
+cargo "fd-find"
+cargo "rustlings"
+cargo "toipe"
