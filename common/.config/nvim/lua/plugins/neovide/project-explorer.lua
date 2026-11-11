@@ -1,7 +1,7 @@
 return {
 
   "Rics-Dev/project-explorer.nvim",
-  dependecies = {
+  dependencies = {
     "nvim-telescope/telescope.nvim",
   },
 
