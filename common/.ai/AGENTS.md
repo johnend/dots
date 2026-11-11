@@ -136,3 +136,4 @@ Add a one-line bullet here (under 15 words, no explanation) when: you make the s
 - Large PR reviews: use the 1M-context model or delegate to subagents.
 - Testing guard hooks: feed blocked sample commands from a file, not inline.
 - Sandboxed `git fetch`/`push` fails on a self-signed cert; retry unsandboxed.
+- Config comments: one-line purpose only; never explain mechanics behind a fix.
