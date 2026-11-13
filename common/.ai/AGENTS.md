@@ -272,3 +272,4 @@ Add a one-line bullet here (under 15 words, no explanation) when: you make the s
 - Require detached readers to recompute eligibility from sealed evidence.
 - End independent implementation reviews with a copyable prompt for the implementation chat.
 - Construct negative controls that pass earlier gates and isolate the intended failure.
+- Verify terminal-dependent hooks through the actual runtime, including shared daemon environment.

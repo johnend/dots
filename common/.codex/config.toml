@@ -1,7 +1,7 @@
-model = "gpt-6.1-sol"
+model = "gpt-6-luna"
 model_context_window = 872000
 model_auto_compact_token_limit = 654000
-model_reasoning_effort = "xhigh"
+model_reasoning_effort = "medium"
 personality = "pragmatic"
 plan_mode_reasoning_effort = "xhigh"
 default_permissions = "git-fsmonitor-workspace"
@@ -127,6 +127,18 @@ trusted_hash = "sha256:1e80fe9dabb53f71df828ea63e4990fd2763a17d8fb202d3444e10497
 
 [hooks.state."/home/johne/.codex/hooks.json:user_prompt_submit:0:0"]
 trusted_hash = "sha256:d7913ff5e43eb58cca2cf45e89c324d40dd4b8af9f960da9588770ec28fe8cd6"
+
+[hooks.state."/home/johne/.codex/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:12079aeea781a3d6b823078c1e269fc87ab3a3a6e3d5c128fe75646f74e30715"
+
+[hooks.state."/home/johne/.codex/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:b86bd2c467ec5a1f2c4bfabc7c79d2332ae450696aa4eb0457b1780034ee791a"
+
+[hooks.state."/home/johne/.codex/hooks.json:user_prompt_submit:0:1"]
+trusted_hash = "sha256:d92432ba38ee56e7b63735ef1fc7640cfba23458de330e845906d642e4e6e556"
+
+[hooks.state."/home/johne/.codex/hooks.json:stop:0:0"]
+trusted_hash = "sha256:65abd737de10a50427aca9a30a9970119081babed241dfec4f40ec9a5bff9754"
 
 [plugins."figma@openai-curated-remote"]
 enabled = false

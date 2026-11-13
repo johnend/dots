@@ -14,7 +14,30 @@
     "UserPromptSubmit": [
       {
         "hooks": [
-          { "type": "command", "command": "bash ~/.ai/hooks/nudge-learning-capture.sh", "timeout": 5 }
+          { "type": "command", "command": "bash ~/.ai/hooks/nudge-learning-capture.sh", "timeout": 5 },
+          { "type": "command", "command": "bash ~/.config/tmux/plugins/tmux-agent-sidebar/hook.sh codex user-prompt-submit", "timeout": 5 }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "startup|resume",
+        "hooks": [
+          { "type": "command", "command": "bash ~/.config/tmux/plugins/tmux-agent-sidebar/hook.sh codex session-start", "timeout": 5 }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          { "type": "command", "command": "bash ~/.config/tmux/plugins/tmux-agent-sidebar/hook.sh codex stop", "timeout": 5 }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          { "type": "command", "command": "bash ~/.config/tmux/plugins/tmux-agent-sidebar/hook.sh codex activity-log", "timeout": 5 }
         ]
       }
     ]
