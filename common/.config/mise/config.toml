@@ -13,6 +13,7 @@ task.disable_paths = ["/"]
 minimum_release_age_excludes = ["codex"]
 
 [tools]
+codex = "latest"
 "github:agavra/tuicr" = "latest"
 npm = "latest"
 pipx = "latest"
