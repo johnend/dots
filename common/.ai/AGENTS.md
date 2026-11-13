@@ -123,7 +123,98 @@ Prefer `rg` over grep, `fd` over find, `bat` over cat, `eza` over ls, `delta` ov
 
 ## Applied Learning
 
+- Validate Markdown fragments against complete heading slugs, including dates.
+
+- Use Chromium headless-shell for CLI rendering when regular Chromium hangs.
+
+- Check existing viewer configuration before changing diagrams or recommending replacement tools.
+
+- Configure visible fields on GitHub table views; Roadmap rejects column configuration.
+
+- Limit GitHub schema introspection to two inputFields selections per query.
+
+- Insert new sections before existing headings without duplicating those headings.
+
+- Verify raw policy text when extracted pages omit relevant clauses.
+
+- Normalise terminal wrapping before asserting CLI error messages.
+
+- Verify acquisition permission independently of static-map display rights.
+
+- Inspect registered CLI options when help truncates flag names.
+
+- Nest view variants beneath their primary inspection category.
+
+- Verify map exports contain pixels before accepting service responses.
+
+- Check contour density against each map’s actual height range.
+- Generalise display lines without changing source terrain or implying vertical accuracy.
+
+- Use object-dtype arrays for empty Shapely spatial-index queries.
+
+- Allow subnanometre floating-point tolerance in derived polygon-boundary predicates.
+
+- Allow CSSOM rounding when verifying fractional percentage positions.
+
+- Preserve observed partial boundary cells when clipping raster displays to polygon outlines.
+
+- Clarify whether colour thresholds are bands or continuous scale anchors.
+
+- Inspect existing API definitions before writing verification helpers.
+
+- Recheck Git with fsmonitor disabled per command after IPC warnings.
+
+- Check filesystem devices before renaming audit scratch.
+
+- Separate standard, dependency and project imports, including imports inside test functions.
+
+- Verify SVG text bounds in the browser; successful raster rendering can hide clipping.
+- Check serialized SVG transforms separately from float32 browser matrix values.
+- Compare SVG bounds and viewports in the same coordinate system.
+- Check SVG clipping inherited from ancestor groups.
+- Validate visibility, placement and every reference to SVG geometry used as evidence.
+- Reject non-finite browser measurements before JSON serialization.
+- Verify raster coverage at every viewport corner after rotation.
+
+- Use login-free shells and verified Mise pruning exclusions during verification.
+
+- Extend generated schemas with allOf; replacing properties erases generated field definitions.
+
+- Poll asynchronous browser state instead of assuming fixed delays complete work.
+
+- Check assertion line lengths before validation; formatters cannot reliably split long expressions.
+
+- Inspect read results before constructing dependent patches; use separate tool calls.
+
+- Anchor generated directory ignore rules to avoid hiding source packages with matching names.
+
+- Check optional CLI availability before relying on it for verification.
+
+- Run mise and uv with approved cache access in restricted workspaces.
+- Protect configured Mise tools from automatic pruning during unrelated verification.
+
 - Bound audits, review before expensive verification, and repeat checks only with concrete justification.
+
+- Use discovered paths for searches; avoid speculative shell globs.
+
+- Inspect nested model fields before constructing or mutating fixture values.
+
+- Verify public API documentation before treating frontend endpoints as supported provider interfaces.
+
+- Keep new Python lines within the configured Ruff line length before validation.
+
+- Split long string literals before validation; formatters cannot shorten their source lines.
+
+- Preserve Markdown bullet markers when composing patch hunks.
+
+- Locate every affected patch context after formatting, including small sibling edits.
+- Recheck formatter-changed patch context before applying multi-file edits.
+
+- Use whole-block patches when inserting sibling branches.
+
+- Version-gate stricter validation to preserve historical parsing contracts.
+
+- Clarify whether visual feedback targets the base image or a toggled overlay.
 
 Add a one-line bullet here (under 15 words, no explanation) when: you make the same mistake twice, I correct or re-explain something, or a workaround is found for a tool limitation. Write it immediately, tell me you did, and don't ask first. Repo-specific facts go in project memory instead. Run the `retro` skill at the end of sessions with friction. Prune bullets that are stale or now covered elsewhere.
 
@@ -137,3 +228,47 @@ Add a one-line bullet here (under 15 words, no explanation) when: you make the s
 - Testing guard hooks: feed blocked sample commands from a file, not inline.
 - Sandboxed `git fetch`/`push` fails on a self-signed cert; retry unsandboxed.
 - Config comments: one-line purpose only; never explain mechanics behind a fix.
+- Combine each file's edits into one apply_patch operation per patch.
+- Order each file's patch hunks by their current line positions.
+- Match application headers in HTTP diagnostics; default tool headers can change responses.
+- Exclude assets from config searches; filter large JSON output before returning it.
+- Limit batched reads by their combined tool output budget.
+- Keep combined discovery output below the tool budget, including search results.
+- Compare large serialized regression results by digest to avoid expensive failure diffs.
+- Release closure-captured loop variables by reassignment, not deletion, to satisfy Ruff.
+- Freeze fingerprinted source files throughout incremental-cache verification.
+- Keep pytest's cache provider enabled when using --ff or --lf.
+- Omit empty patch hunks; they can invalidate all edits in a patch.
+
+- Derive configured test output paths from returned artifacts rather than hardcoded locations.
+- Revise dependent assertions when changing fixture versions or adding imported records.
+- Avoid duplicate context hunks when composing a single-file patch.
+- Revise the existing interface when the user rejects a parallel review surface.
+- Recheck imports after auto-fixes before adding later symbol usages.
+- Treat CSS function names case-insensitively while preserving identifier case.
+- Restrict numeric validation to numeric fields; preserve identifiers as literal text.
+- Separate publication eligibility from strict aggregate read validity.
+- Tokenize SVG path data before checking numeric finiteness.
+- Summarise generated asset inventories instead of returning every path.
+- Test magnitude-based selection with vertically scaled negative controls.
+- Separate domain exclusions from missing observations in coverage denominators.
+- Verify complete rendered stroke footprints, including casing, against continuous support.
+- Extract relevant XML fields instead of printing complete metadata documents.
+- Verify provider HTTP responses before treating web-reader failures as unavailable documentation.
+- Separate numerical estimator support from physical feature-size requirements.
+- Test non-quadratic smooth terrain before interpreting better fits as discrete transitions.
+- Exclude held-out heights from discovery, preprocessing, derivative stencils and model fitting.
+- Verify each group's painted footprint against its own associated model support.
+- Disable Ruff caching when checking scratch files against a read-only repository.
+- Measure the requested contrast directly before substituting curvature or edge-detection proxies.
+- Require feature-wide evidence before promoting local matches into whole-feature classifications.
+- Apply eligibility requirements before reducing ranked alternatives to a winner.
+- Count evidence intersections when qualification requires multiple conditions in the same cases.
+- Fix evaluation observations and weights independently of training-selected candidates.
+- Verify that a claimed counterexample occurs within the algorithm's declared search space.
+- Verify discovery with production grid alignment and quotas separately from fixed-witness replay.
+- Specify how gaps split candidates before fitting and budget each fragment.
+- Give review variants explicit verifier identities and routes into the review surface.
+- Require detached readers to recompute eligibility from sealed evidence.
+- End independent implementation reviews with a copyable prompt for the implementation chat.
+- Construct negative controls that pass earlier gates and isolate the intended failure.
