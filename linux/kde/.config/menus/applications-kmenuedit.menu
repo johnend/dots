@@ -1,0 +1,42 @@
+<!DOCTYPE Menu PUBLIC '-//freedesktop//DTD Menu 1.0//EN' 'http://www.freedesktop.org/standards/menu-spec/menu-1.0.dtd'>
+<Menu>
+ <Menu>
+  <Name>Internet</Name>
+  <Layout>
+   <Merge type="menus"/>
+   <Menuname>Terminal</Menuname>
+   <Merge type="files"/>
+   <Filename>aerc.desktop</Filename>
+   <Filename>bssh.desktop</Filename>
+   <Filename>bvnc.desktop</Filename>
+   <Filename>beeper.desktop</Filename>
+   <Filename>discord.desktop</Filename>
+   <Filename>firefox-developer-edition.desktop</Filename>
+   <Filename>org.kde.kdeconnect.app.desktop</Filename>
+   <Filename>org.kde.kdeconnect.sms.desktop</Filename>
+   <Filename>mullvad-vpn.desktop</Filename>
+   <Filename>steam.desktop</Filename>
+   <Separator/>
+   <Menuname>More</Menuname>
+  </Layout>
+  <Exclude>
+   <Filename>Beeper.desktop</Filename>
+  </Exclude>
+ </Menu>
+ <Menu>
+  <Name>Applications</Name>
+  <Layout/>
+  <Exclude>
+   <Filename>wine-Programs-GRYPHLINK-GRYPHLINK.desktop</Filename>
+   <Filename>wine-Programs-GRYPHLINK-Uninstall GRYPHLINK Uninstaller.desktop</Filename>
+  </Exclude>
+ </Menu>
+ <Menu>
+  <Name>.hidden</Name>
+  <Include>
+   <Filename>Beeper.desktop</Filename>
+   <Filename>wine-Programs-GRYPHLINK-GRYPHLINK.desktop</Filename>
+   <Filename>wine-Programs-GRYPHLINK-Uninstall GRYPHLINK Uninstaller.desktop</Filename>
+  </Include>
+ </Menu>
+</Menu>

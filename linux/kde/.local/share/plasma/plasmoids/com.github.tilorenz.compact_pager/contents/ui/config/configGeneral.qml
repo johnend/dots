@@ -28,26 +28,31 @@ KCM.SimpleKCM {
 	id: layoutGeneralRoot
 
 	property alias cfg_forceLayout: pagerLayout.currentIndex
+	property alias cfg_enableDnD: enableDnD.checked
 	property alias cfg_enableScrolling: enableScrolling.checked
+	property alias cfg_invertScrollDirection: invertScrollDirection.checked
 	property alias cfg_wrapPage: wrapPage.checked
 	property alias cfg_currentDesktopSelected: currentDesktopSelectedBox.currentIndex
 	property alias cfg_actionOnCompactLayout: actionOnCompactLayout.checked
 	property alias cfg_stayVisible: stayVisible.checked
 	property alias cfg_showDesktopNames: showDesktopNames.checked
+	property alias cfg_showWindowIcons: showWindowIcons.checked
+	property alias cfg_showOnlyCurrentScreen: showOnlyCurrentScreen.checked
+	property alias cfg_hideDesktopsWithoutWindows: hideDesktopsWithoutWindows.checked
 
 	Kirigami.FormLayout {
 		id: layoutGeneral
 
-		//anchors.fill: parent
-
-		QtControls.CheckBox {
-			id: showDesktopNames
-			text: i18n("Show Desktop names rather than numbers")
-		}
-
 		QtControls.CheckBox {
 			id: stayVisible
 			text: i18n("Stay visible when there is only one virtual desktop")
+		}
+
+		QtControls.CheckBox {
+			id: enableDnD
+			text: i18n("Enable dropping apps to move")
+			QtControls.ToolTip.visible: hovered
+			QtControls.ToolTip.text: i18n("Enable drag-and-dropping apps from the task manager to move them to other desktops")
 		}
 
 		QtControls.CheckBox {
@@ -56,9 +61,50 @@ KCM.SimpleKCM {
 		}
 
 		QtControls.CheckBox {
+			id: invertScrollDirection
+			enabled: enableScrolling.checked
+			text: i18n("Invert scroll direction")
+		}
+
+		QtControls.CheckBox {
 			id: wrapPage
-			enabled: cfg_enableScrolling
+			enabled: enableScrolling.checked
 			text: i18n("Navigation wraps around")
+		}
+
+		QtControls.CheckBox {
+			id: showOnlyCurrentScreen
+			text: i18n("Only show windows from current Screen in pager")
+		}
+
+		QtControls.CheckBox {
+			id: hideDesktopsWithoutWindows
+			text: i18n("Hide desktops without any windows")
+		}
+
+		Item {
+			Kirigami.FormData.isSection: true
+		}
+
+		QtControls.ButtonGroup {
+			buttons: [showDesktopNumbers, showDesktopNames, showWindowIcons]
+		}
+
+		QtControls.RadioButton {
+			id: showDesktopNumbers
+			Kirigami.FormData.label: i18n("What to show in box:")
+			text: i18n("Show desktop numbers")
+			checked: !showDesktopNames.checked && !showWindowIcons.checked
+		}
+
+		QtControls.RadioButton {
+			id: showDesktopNames
+			text: i18n("Show desktop names")
+		}
+
+		QtControls.RadioButton {
+			id: showWindowIcons
+			text: i18n("Show window icons")
 		}
 
 		Item {
@@ -71,16 +117,16 @@ KCM.SimpleKCM {
 			Kirigami.FormData.label: i18n("Layout:")
 			QtControls.ComboBox {
 				id: pagerLayout
-				model: ["Adaptive", "Full", "Compact"]
+				model: [i18n("Adaptive"), i18n("Full"), i18n("Compact")]
 			}
 
 			QtControls.Button {
 				id: infoButton
 				icon.name: "dialog-information"
 				QtControls.ToolTip.visible: hovered
-				QtControls.ToolTip.text: "<b>Adaptive</b>:<br>Switch the layout depending on available space.<br><br>" +
-										 "<b>Full</b>:<br>Always show full layout.<br><br>" +
-										 "<b>Compact</b>:<br>Always show compact layout."
+				QtControls.ToolTip.text: i18n(
+					"<b>Adaptive</b>:<br>Switch the layout depending on available space.<br><br><b>Full</b>:<br>Always show full layout.<br><br><b>Compact</b>:<br>Always show compact layout."
+				)
 			}
 		}
 
@@ -92,7 +138,7 @@ KCM.SimpleKCM {
 			id: currentDesktopSelectedBox
 			Kirigami.FormData.label: i18n("Selecting current virtual desktop:")
 
-			model: ["Does nothing", "Shows the desktop", "Shows overview"]
+			model: [i18n("Does nothing"), i18n("Shows the desktop"), i18n("Shows overview")]
 		}
 
 		QtControls.CheckBox {

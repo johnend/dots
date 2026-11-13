@@ -10,17 +10,37 @@
 			<label>Show Desktop names rather than numbers</label>
 			<default>false</default>
 		</entry>
+		<entry name="showWindowIcons" type="Bool">
+			<label>Show window icons rather than numbers</label>
+			<default>false</default>
+		</entry>
+		<entry name="showOnlyCurrentScreen" type="Bool">
+			<label>Only show windows from current Screen in pager</label>
+			<default>false</default>
+		</entry>
 		<entry name="stayVisible" type="Bool">
 			<label>Whether to stay visible when there is only one virtual desktop</label>
+			<default>true</default>
+		</entry>
+		<entry name="enableDnD" type="Bool">
+			<label>Whether to enable drag-and-dropping apps from the task manager to move them to other desktops</label>
 			<default>true</default>
 		</entry>
 		<entry name="enableScrolling" type="Bool">
 			<label>Whether to enable scrolling to change the active desktop</label>
 			<default>true</default>
 		</entry>
+		<entry name="invertScrollDirection" type="Bool">
+			<label>Invert the scroll direction</label>
+			<default>false</default>
+		</entry>
 		<entry name="wrapPage" type="Bool">
 			<label>Whether to wrap page when navigating with pager</label>
 			<default>true</default>
+		</entry>
+		<entry name="hideDesktopsWithoutWindows" type="Bool">
+			<label>Whether to hide desktops without any windows</label>
+			<default>false</default>
 		</entry>
 		<entry name="actionOnCompactLayout" type="Bool">
 			<label>Whether to directly show the overview / desktop in compact layout</label>

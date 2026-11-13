@@ -1,5 +1,5 @@
 /*
- * Copyright 2021  Tino Lorenz <tilrnz@gmx.net>
+ * Copyright 2021-2026  Tino Lorenz <tilrnz@gmx.net>
  * Copyright 2022  Diego Miguel <hello@diegomiguel.me>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,12 +17,12 @@
  */
 
 import QtQuick
+import QtQuick.Layouts
 import org.kde.plasma.plasmoid
 import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.components as PlasmaComponents
 import org.kde.kquickcontrolsaddons as KQuickControlsAddonsComponents
 import org.kde.kirigami as Kirigami
-import org.kde.plasma.private.pager
 
 Rectangle {
 	id: numberBox
@@ -35,14 +35,27 @@ Rectangle {
 	border.width: plasmoid.configuration.displayBorder ? plasmoid.configuration.borderThickness : 0
 	radius: height > width ? height * (plasmoid.configuration.borderRadius / 100) : width * (plasmoid.configuration.borderRadius / 100)
 
-	TextMetrics {
-		id: textMet
-		text: numberText.text
-		font: numberText.font
+	Text {
+		id: sizeRefText
+		visible: false
+		// color: "red"
+		text: numberBox.text
+		font {
+			family: plasmoid.configuration.fontFamily || Kirigami.Theme.defaultFont.family
+			bold: plasmoid.configuration.fontBold
+			italic: plasmoid.configuration.fontItalic
+			pixelSize: fontSizeChecked ? plasmoid.configuration.fontSize : Kirigami.Theme.defaultFont.pixelSize
+		}
 	}
 
-	implicitWidth: Math.max(textMet.width + 10, 18)
-	implicitHeight: textMet.height + 6
+	Layout.minimumWidth: sizeRefText.width + 10
+	Layout.minimumHeight: sizeRefText.height
+
+	Layout.preferredWidth: sizeRefText.width + 10
+	Layout.preferredHeight: sizeRefText.height
+
+	Layout.fillWidth: Plasmoid.formFactor != PlasmaCore.Types.Horizontal
+	Layout.fillHeight: Plasmoid.formFactor != PlasmaCore.Types.Vertical
 
 	Rectangle {
 		id: windowIndicator
@@ -61,14 +74,61 @@ Rectangle {
 
 	Text {
 		id: numberText
+		visible: !plasmoid.configuration.showWindowIcons
+
 		anchors.centerIn: parent
-		text: pagerModel.currentPage + 1
+		width: parent.width - 10
+		height: parent.height
+		horizontalAlignment: Text.AlignHCenter
+		verticalAlignment: Text.AlignVCenter
+
 		color: fontColor
 		font {
 			family: plasmoid.configuration.fontFamily || Kirigami.Theme.defaultFont.family
 			bold: plasmoid.configuration.fontBold
 			italic: plasmoid.configuration.fontItalic
-			pixelSize: fontSizeChecked ? plasmoid.configuration.fontSize : Math.min(parent.height*0.7, parent.width*0.7)
+			pixelSize: fontSizeChecked ? plasmoid.configuration.fontSize : 999
+		}
+		fontSizeMode: fontSizeChecked ? Text.FixedSize : Text.Fit
+		minimumPixelSize: Kirigami.Theme.smallFont.pixelSize
+	}
+
+	Grid {
+		id: iconGrid
+		anchors.centerIn: parent
+		visible: plasmoid.configuration.showWindowIcons
+
+		readonly property bool showIconsInColumn: numberBox.height > numberBox.width
+		readonly property bool showAllIcons: iconSize > 6
+		readonly property int shorterSide: Math.min(numberBox.height, numberBox.width)
+		readonly property int longerSide: Math.max(numberBox.height, numberBox.width)
+		readonly property int iconSize: Math.min(shorterSide * 0.8, (longerSide - 4) / tasksModel.count)
+
+		columns: (showIconsInColumn || !showAllIcons) ? 1 : tasksModel.count
+		rows: (showIconsInColumn && showAllIcons) ? tasksModel.count : 1
+		flow: showIconsInColumn ? Grid.TopToBottom : Grid.LeftToRight
+
+		component BoxIcon: Kirigami.Icon {
+			height: iconGrid.iconSize
+			width: iconGrid.iconSize
+			roundToIconSize: false
+		}
+
+		Repeater {
+			model: tasksModel
+			BoxIcon {
+				visible: iconGrid.showAllIcons
+				source: model.decoration
+			}
+		}
+
+		Kirigami.Icon {
+			height: iconGrid.shorterSide * 0.7
+			width: iconGrid.shorterSide * 0.7
+			roundToIconSize: false
+			visible: !iconGrid.showAllIcons
+			source: iconGrid.showIconsInColumn ? "view-more-symbolic" : "view-more-horizontal-symbolic"
 		}
 	}
+
 }

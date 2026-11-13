@@ -23,7 +23,8 @@ import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.components as PlasmaComponents
 import org.kde.kquickcontrolsaddons as KQuickControlsAddonsComponents
 import org.kde.kirigami as Kirigami
-import org.kde.plasma.private.pager
+import org.kde.taskmanager
+import org.kde.draganddrop as DnD
 
 
 GridLayout {
@@ -59,13 +60,13 @@ GridLayout {
 	)
 
 	function modelColumns() {
-		return Math.ceil(pagerModel.count / pagerModel.layoutRows)
+		return Math.ceil(pagerModel.numberOfDesktops / pagerModel.desktopLayoutRows)
 	}
 
 	// if we have the space to lay the desktops out like the model says
 	function properLayoutFits(cols) {
 		let wantedWidth = 20 * cols
-		let wantedHeight = 20 * pagerModel.layoutRows
+		let wantedHeight = 20 * pagerModel.desktopLayoutRows
 		return width >= wantedWidth && height >= wantedHeight
 	}
 
@@ -95,8 +96,8 @@ GridLayout {
 			// since the plasmoid can scale in those directions
 			case 2: { // horizontal
 				let availableRows = Math.floor(height / 20)
-				let targetRows = Math.max(Math.min(availableRows, pagerModel.layoutRows), 1)
-				return Math.ceil(pagerModel.count / targetRows)
+				let targetRows = Math.max(Math.min(availableRows, pagerModel.desktopLayoutRows), 1)
+				return Math.ceil(pagerModel.numberOfDesktops / targetRows)
 			}
 			case 3: { // vertical
 				let availableColumns = Math.floor(width / 20)
@@ -109,39 +110,63 @@ GridLayout {
 
 	Repeater {
 		id: dRep
-		model: pagerModel
+		model: pagerModel.numberOfDesktops
 
 		NumberBox {
 			id: nBox
-			visible: reprLayout.shouldShowFullLayout || index === pagerModel.currentPage
-			// TODO fix in plasma
-			text: (plasmoid.configuration.showDesktopNames && model.display != "") ? model.display : index + 1
-			Layout.fillWidth: true
-			Layout.fillHeight: true
-			Layout.minimumWidth: implicitWidth
-			Layout.preferredHeight: implicitHeight
-			Layout.minimumHeight: 20
-			Layout.preferredWidth: Math.max(implicitWidth, height)
+
+			property var desktopId: pagerModel.desktopIds[index]
+			property bool isCurrentDesktop: pagerModel.currentDesktopOnScreen === desktopId
+			visible: isCurrentDesktop
+				|| (
+					reprLayout.shouldShowFullLayout
+					&& (tasksModel.count > 0 || !plasmoid.configuration.hideDesktopsWithoutWindows)
+				)
+
+			text: plasmoid.configuration.showDesktopNames ? pagerModel.desktopNames[index] : index + 1
+
 			Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
 
-			// this is horrible, is there really no other way to do this in qml???
-			Repeater {
-				id: proxyRepeater
-				model: TasksModel
-				Rectangle { visible: false }
+			TasksModel {
+				id: tasksModel
+				filterByVirtualDesktop: true
+				virtualDesktop: desktopId
+				groupMode: TasksModel.GroupDisabled
+				screenGeometry: Plasmoid.containment.screenGeometry
+				filterByScreen: plasmoid.configuration.showOnlyCurrentScreen
+				filterByActivity: true
+				activity: activityModel.currentActivity
 			}
-			showWindowIndicator: plasmoid.configuration.showWindowIndicator && proxyRepeater.count > 0
+
+			showWindowIndicator: plasmoid.configuration.showWindowIndicator && tasksModel.count > 0
+
+			DnD.DropArea {
+				id: droparea
+				enabled: plasmoid.configuration.enableDnD
+				anchors.fill: parent
+				preventStealing: true
+
+				onDrop: event => {
+					let md = event.mimeData
+					for (let format of md.formats) {
+						if (format.startsWith("windowsystem/winid+{")) {
+							// console.log("moving window", md.getDataAsByteArray(format), "to desktop", index + 1, "/desktopId", desktopId)
+							modevWindowToDesktop(md.getDataAsByteArray(format), desktopId)
+						}
+					}
+				}
+			}
 
 			//highlight the current desktop
-			color: index === pagerModel.currentPage ? bgColorHighlight :
-				((proxyRepeater.count > 0) ? bgColor : bgColorWithoutWindows)
-			border.color: index === pagerModel.currentPage ? borderColorHighlight : borderColor
+			color: isCurrentDesktop ? bgColorHighlight :
+				((tasksModel.count > 0) ? bgColor : bgColorWithoutWindows)
+			border.color: isCurrentDesktop ? borderColorHighlight : borderColor
 
 			MouseArea {
 				anchors.fill: parent
 				onClicked: {
 					// when clicking on the desktop we're already on
-					if (model.index === pagerModel.currentPage) {
+					if (isCurrentDesktop) {
 						// ...and we're in full layout or configured to do an action in compact layout...
 						if (reprLayout.shouldShowFullLayout || plasmoid.configuration.actionOnCompactLayout) {
 							// do some action
@@ -149,7 +174,7 @@ GridLayout {
 								case 0: // do nothing
 									break;
 								case 1: // show desktop
-									pagerModel.changePage(pagerModel.currentPage)
+									showDesktop()
 									break;
 								case 2:
 									runOverview()
@@ -160,7 +185,7 @@ GridLayout {
 							root.expanded = !root.expanded
 						}
 					} else {
-						pagerModel.changePage(model.index)
+						setCurrentDesktop(index + 1)
 						root.expanded = false
 					}
 				}
