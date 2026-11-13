@@ -1,10 +1,11 @@
-model = "gpt-5.6-luna"
+model = "gpt-6.1-sol"
 model_context_window = 872000
 model_auto_compact_token_limit = 654000
-model_reasoning_effort = "medium"
+model_reasoning_effort = "xhigh"
 personality = "pragmatic"
 plan_mode_reasoning_effort = "xhigh"
 default_permissions = "git-fsmonitor-workspace"
+service_tier = "default"
 
 [projects."/Users/john.enderby"]
 trust_level = "trusted"
@@ -69,26 +70,25 @@ trust_level = "trusted"
 [projects."/home/johne/Developer/johnenderby"]
 trust_level = "trusted"
 
+[projects."/home/johne/Developer/course-mapper"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 "gpt-5.3-codex" = "gpt-5.4"
 "gpt-5.4" = "gpt-5.5"
 
 [tui]
-theme = "catppuccin-mocha"
+theme = "ansi"
 vim_mode_default = true
-status_line = [
-  "model-with-reasoning",
-  "current-dir",
-  "project-name",
-  "git-branch",
-  "context-used",
-  "codex-version",
-  "context-window-size",
-]
+status_line = ["model-with-reasoning", "current-dir", "project-name", "git-branch", "context-used", "codex-version", "context-window-size"]
+screen_reader_detection_done = true
+status_line_use_colors = true
+pet = "null-signal"
 
 [tui.model_availability_nux]
 "gpt-5.5" = 4
 "gpt-5.6-sol" = 4
+"gpt-6.1-sol" = 4
 
 [permissions.git-fsmonitor-workspace]
 extends = ":workspace"
@@ -113,3 +113,94 @@ enabled = false
 [features]
 memories = true
 codex_hooks = true
+
+[hooks.state]
+
+[hooks.state."/home/johne/.codex/hooks.json:pre_tool_use:0:0"]
+trusted_hash = "sha256:c5f52744316164113e0c9a2dc084c7265bf96ddf3e48f6d90e24e9cd84d7c960"
+
+[hooks.state."/home/johne/.codex/hooks.json:pre_tool_use:0:1"]
+trusted_hash = "sha256:05544762a1348f6b45ba4940b294c97b9eae17b6af3b617c9df0fdbda7f828e2"
+
+[hooks.state."/home/johne/.codex/hooks.json:pre_tool_use:0:2"]
+trusted_hash = "sha256:1e80fe9dabb53f71df828ea63e4990fd2763a17d8fb202d3444e104979a6dc4d"
+
+[hooks.state."/home/johne/.codex/hooks.json:user_prompt_submit:0:0"]
+trusted_hash = "sha256:d7913ff5e43eb58cca2cf45e89c324d40dd4b8af9f960da9588770ec28fe8cd6"
+
+[plugins."figma@openai-curated-remote"]
+enabled = false
+
+[plugins."github@openai-curated-remote"]
+enabled = true
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."template-creator@openai-primary-runtime"]
+enabled = true
+
+[desktop]
+followUpQueueMode = "steer"
+conversationDetailMode = "STEPS_PROSE"
+ambient-suggestions-enabled = true
+appearanceDarkCodeThemeId = "rose-pine"
+selected-avatar-id = "null-signal"
+show-context-window-usage = true
+usePointerCursors = true
+
+[desktop.appearanceDarkChromeTheme]
+accent = "#ea9a97"
+accentSource = "custom"
+contrast = 60
+ink = "#e0def4"
+opaqueWindows = false
+surface = "#191724"
+
+[desktop.appearanceDarkChromeTheme.fonts]
+
+[desktop.appearanceDarkChromeTheme.semanticColors]
+diffAdded = "#9ccfd8"
+diffRemoved = "#908caa"
+skill = "#c4a7e7"
+
+[desktop.open-in-target-preferences]
+global = "ghostty"
+
+[mcp_servers.node_repl]
+args = []
+command = "/usr/lib/chatgpt/resources/cua_node/bin/node_repl"
+env_vars = ["BROWSER_USE_ACCESS_EXECUTOR_ID", "BROWSER_USE_ACCESS_PIPE_PATH", "BROWSER_USE_ACCESS_VERIFYING_IDENTITY"]
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = "/usr/lib/chatgpt/resources/cua_node/lib/node_modules"
+NODE_REPL_NODE_PATH = "/usr/lib/chatgpt/resources/cua_node/bin/node"
+NODE_REPL_TRUSTED_CODE_PATHS = "/home/johne/.codex:/usr/lib/chatgpt/resources/cua_node/lib/node_modules"
+CODEX_HOME = "/home/johne/.codex"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab,mcpapps"
+BROWSER_USE_TINYSKY_ENABLED = "1"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.1103.60933"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/home/johne/.codex/plugins/cache/openai-bundled/browser/26.1103.60933/scripts/browser-service.mjs"}'
+CODEX_CLI_PATH = "/usr/lib/chatgpt/resources/codex"
+
+[mcp_servers.cua_repl]
+command = "/usr/lib/chatgpt/ChatGPT"
+enabled = false
+
+[marketplaces.openai-primary-runtime]
+source_type = "local"
+source = "/home/johne/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
