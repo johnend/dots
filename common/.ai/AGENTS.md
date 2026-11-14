@@ -142,6 +142,7 @@ Prefer `rg` over grep, `fd` over find, `bat` over cat, `eza` over ls, `delta` ov
 - Verify acquisition permission independently of static-map display rights.
 
 - Inspect registered CLI options when help truncates flag names.
+- Validate Codex profiles with `mcp list`; app-server startup validation rejects `--profile`.
 
 - Nest view variants beneath their primary inspection category.
 
@@ -273,3 +274,5 @@ Add a one-line bullet here (under 15 words, no explanation) when: you make the s
 - End independent implementation reviews with a copyable prompt for the implementation chat.
 - Construct negative controls that pass earlier gates and isolate the intended failure.
 - Verify terminal-dependent hooks through the actual runtime, including shared daemon environment.
+- Freeze per-combination ranks, costs and rejection reasons before comparing against references.
+- Keep optional measurement landmarks out of detection and ranking unless required by evidence.
