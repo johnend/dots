@@ -76,6 +76,7 @@ common/.codex/goals_*.sqlite
 common/.codex/goals_*.sqlite-shm
 common/.codex/goals_*.sqlite-wal
 common/.codex/history.jsonl
+/common/.codex/transcription-history.jsonl
 common/.codex/installation_id
 common/.codex/log/
 common/.codex/logs_*.sqlite

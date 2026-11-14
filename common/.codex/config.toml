@@ -1,11 +1,11 @@
-model = "gpt-6-luna"
+model = "gpt-6.1-sol"
 model_context_window = 872000
 model_auto_compact_token_limit = 654000
-model_reasoning_effort = "medium"
-personality = "pragmatic"
+model_reasoning_effort = "xhigh"
 plan_mode_reasoning_effort = "xhigh"
 default_permissions = "git-fsmonitor-workspace"
 service_tier = "default"
+web_search = "live"
 
 [projects."/Users/john.enderby"]
 trust_level = "trusted"
@@ -73,14 +73,27 @@ trust_level = "trusted"
 [projects."/home/johne/Developer/course-mapper"]
 trust_level = "trusted"
 
+[projects."/home/johne/Documents/ChatGPT/Course Mapper"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 "gpt-5.3-codex" = "gpt-5.4"
 "gpt-5.4" = "gpt-5.5"
 
 [tui]
+notifications = ["agent-turn-complete", "approval-requested"]
+notification_condition = "always"
 theme = "ansi"
 vim_mode_default = true
-status_line = ["model-with-reasoning", "current-dir", "project-name", "git-branch", "context-used", "codex-version", "context-window-size"]
+status_line = [
+  "model-with-reasoning",
+  "current-dir",
+  "project-name",
+  "git-branch",
+  "context-used",
+  "codex-version",
+  "context-window-size",
+]
 screen_reader_detection_done = true
 status_line_use_colors = true
 pet = "null-signal"
@@ -112,7 +125,7 @@ enabled = false
 
 [features]
 memories = true
-codex_hooks = true
+hooks = true
 
 [hooks.state]
 
@@ -163,12 +176,13 @@ enabled = true
 
 [desktop]
 followUpQueueMode = "steer"
-conversationDetailMode = "STEPS_PROSE"
+conversationDetailMode = "STEPS_COMMANDS"
 ambient-suggestions-enabled = true
 appearanceDarkCodeThemeId = "rose-pine"
 selected-avatar-id = "null-signal"
 show-context-window-usage = true
 usePointerCursors = true
+composerEnterBehavior = "cmdIfMultiline"
 
 [desktop.appearanceDarkChromeTheme]
 accent = "#ea9a97"
@@ -191,7 +205,11 @@ global = "ghostty"
 [mcp_servers.node_repl]
 args = []
 command = "/usr/lib/chatgpt/resources/cua_node/bin/node_repl"
-env_vars = ["BROWSER_USE_ACCESS_EXECUTOR_ID", "BROWSER_USE_ACCESS_PIPE_PATH", "BROWSER_USE_ACCESS_VERIFYING_IDENTITY"]
+env_vars = [
+  "BROWSER_USE_ACCESS_EXECUTOR_ID",
+  "BROWSER_USE_ACCESS_PIPE_PATH",
+  "BROWSER_USE_ACCESS_VERIFYING_IDENTITY",
+]
 startup_timeout_sec = 120
 
 [mcp_servers.node_repl.env]

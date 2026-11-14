@@ -23,8 +23,9 @@ Reference: https://developers.openai.com/codex/skills
 
 ## Context profiles
 
-The base config defaults to high. Each profile inherits the base settings and
-overrides the context limit and automatic compaction threshold.
+The base config uses `gpt-6.1-sol` with `xhigh` reasoning and high context limits.
+Each profile inherits the base settings and overrides the context limit and
+automatic compaction threshold.
 
 | Profile | Context tokens | Auto compact tokens (75%) |
 | --- | ---: | ---: |
@@ -41,8 +42,8 @@ codex --profile high
 ```
 
 Profile files are loaded from `~/.codex/<name>.config.toml`. Stow `common` on
-each machine to expose these files. Limits use the current `gpt-6.1-sol`
-catalog's default (272,000) and advertised maximum (872,000); configuration
-does not increase backend model capacity.
+each machine to expose these files. The profiles set custom context budgets.
+The `gpt-6.1-sol` catalog advertises a default context window of 500,000 tokens
+and a maximum of 872,000; configuration does not increase backend model capacity.
 
 Reference: https://learn.chatgpt.com/docs/config-file/config-advanced#profiles
