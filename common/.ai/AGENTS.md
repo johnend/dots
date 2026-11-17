@@ -227,7 +227,7 @@ Add a one-line bullet here (under 15 words, no explanation) when: you make the s
 - Slack and GitHub MCP are read-only context sources: never post, react, create, merge or push through them. Draft text for me to send; use `gh` for any GitHub write I've approved
 - Large PR reviews: use the 1M-context model or delegate to subagents.
 - Testing guard hooks: feed blocked sample commands from a file, not inline.
-- Sandboxed `git fetch`/`push` fails on a self-signed cert; retry unsandboxed.
+- Sandboxed `git fetch`/`push`/`rebase` fails (self-signed cert, SSH known_hosts, protected files); retry unsandboxed.
 - Config comments: one-line purpose only; never explain mechanics behind a fix.
 - Combine each file's edits into one apply_patch operation per patch.
 - Order each file's patch hunks by their current line positions.
@@ -276,3 +276,7 @@ Add a one-line bullet here (under 15 words, no explanation) when: you make the s
 - Verify terminal-dependent hooks through the actual runtime, including shared daemon environment.
 - Freeze per-combination ranks, costs and rejection reasons before comparing against references.
 - Keep optional measurement landmarks out of detection and ranking unless required by evidence.
+- Performance reviews: calibrate to level; seeking senior advice isn't a weakness.
+- Fetch origin before citing local repo files as current state.
+- Jira checkboxes: send raw ADF `taskList` via `twg jira workitem update --fields-json`.
+- Sandbox blocks DNS (`dig` times out); retry lookups unsandboxed.
