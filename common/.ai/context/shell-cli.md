@@ -20,3 +20,4 @@ Read before substantial shell commands, Git remote operations, filesystem change
 - Sandbox blocks DNS (`dig` times out); retry lookups unsandboxed.
 - Verify live symlinks before interpreting Stow simulation errors as broken links.
 - Bash tool runs zsh: `$var` doesn't word-split; use `${=var}` or literal commands.
+- macOS `/bin/bash` is 3.2: no `BASHPID`, `mapfile` or associative arrays.
