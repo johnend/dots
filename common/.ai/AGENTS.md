@@ -284,3 +284,5 @@ Add a one-line bullet here (under 15 words, no explanation) when: you make the s
 - Sandbox blocks DNS (`dig` times out); retry lookups unsandboxed.
 - Verify browser availability before promising control or recommending Chrome installation.
 - Verify live symlinks before interpreting Stow simulation errors as broken links.
+- Don't offer Jira transitions for partial PRs on multi-item checklist tickets.
+- Run Gradle resolution unsandboxed with `--no-daemon`; sandboxed `--write-locks` silently no-ops.
