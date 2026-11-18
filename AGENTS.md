@@ -6,7 +6,7 @@ Dotfiles are split by portability: `common/` holds cross-platform config (Neovim
 
 ## Build, Test, and Development Commands
 
-- `stow common -t $HOME` — symlink the shared configs into a fresh home directory; repeat for `linux` or `macos` as needed.
+- `stow common -t $HOME` — symlink the shared configs into a fresh home directory; then `stow macos -t $HOME` on macOS. `linux/` is a parent of packages, not one package: `stow -d linux -t $HOME common` plus the desktop package (`sway`, `kde` or `hyprland`). Linux-only files go in `linux/common/`.
 - `bash common/install.sh` — reproducibly install Oh My Zsh, Starship, TPM, and rebuild the `bat` cache.
 - `sudo ./lib/sway/sway-install.sh --dry-run` — show everything the Sway installer would touch; drop `--dry-run` to perform the real install.
 - `./lib/sway/validate-environment.sh` — confirm required packages, services, and dotfiles are present after provisioning.
