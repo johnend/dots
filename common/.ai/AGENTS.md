@@ -102,7 +102,7 @@ Trust code/config over stale documentation.
 
 - Use the `twg` CLI for Jira/Confluence; the Atlassian MCP is disabled
 - When writing Jira content, declare markdown format and write GitHub-flavored Markdown. Never Jira wiki markup (`h2.`, `{code}`, `[text|url]`)
-- Don't use `- [ ]` checkboxes (rendered escaped); use plain `-` bullets
+- Don't use `- [ ]` checkboxes (rendered escaped); use plain `-` bullets. When real checkboxes are needed, send raw ADF `taskList` via `twg jira workitem update --fields-json`
 - Confluence page bodies follow that tool's own format guidance. Spot-check one rendered result before bulk edits
 
 ## Obsidian Vault
@@ -136,6 +136,7 @@ loaded through a symlink or Claude import.
 | Markdown, diagrams, document links or extracted reference material | [Documentation](context/documentation.md) |
 | Shell commands, Git remotes, filesystem/Stow work or Mise/uv verification | [Shell and CLI](context/shell-cli.md) |
 | Python implementation, Ruff, pytest or verification in another checkout | [Python testing](context/python-testing.md) |
+| Gradle builds, JVM dependency resolution or lockfiles | [JVM and Gradle](context/jvm-gradle.md) |
 | SVG/CSS generation, browser checks, measurements or raster overlays | [SVG and browser verification](context/svg-browser.md) |
 | Shapely, polygon predicates or clipped geospatial rasters | [Geospatial](context/geospatial.md) |
 | Schemas, parsers, validation contracts, fixtures or regression checks | [Data validation](context/data-validation.md) |
@@ -168,11 +169,3 @@ Shared lessons live under `~/.ai/context/`; project lessons stay with the projec
 This authorises routine guidance and index maintenance. Changes to permissions,
 global preferences, executable hooks or procedural skills still follow their normal
 approval rules and any explicit authorisation already given for the current task.
-
-## Work-specific learning
-
-- CloudFront `FunctionGeneratedResponse` identifies the layer, not the reason; hand over.
-- Performance reviews: calibrate to level; seeking senior advice isn't a weakness.
-- Jira checkboxes: send raw ADF `taskList` via `twg jira workitem update --fields-json`.
-- Don't offer Jira transitions for partial PRs on multi-item checklist tickets.
-- Run Gradle resolution unsandboxed with `--no-daemon`; sandboxed `--write-locks` silently no-ops.
