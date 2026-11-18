@@ -84,7 +84,26 @@ Draft a ticket, show it for approval, then create it. Never create anything befo
 
 ## 7. Create the artifact
 
-**Jira:** run `twg jira workitem create --space <KEY> --type <Type> --summary "<title>" --description "<markdown>" --description-format markdown`, adding any required custom fields with `--fields-json` (e.g. `'{"customfield_15822": {"id": "17984"}}'`). Report back the issue key and URL.
+**Jira:** write the approved title and Markdown body to temporary UTF-8 files using
+a file-writing tool. Set `ticket_title_file` and `ticket_body_file` to the returned
+file paths, then read their contents into variables before creating the issue:
+
+```bash
+ticket_title=$(cat "$ticket_title_file") || exit 1
+ticket_description=$(cat "$ticket_body_file") || exit 1
+twg jira workitem create --space '<KEY>' --type '<Type>' \
+  --summary "$ticket_title" \
+  --description "$ticket_description" \
+  --description-format markdown
+```
+
+Quoted variable expansions pass the file contents as data. Never paste the title
+or Markdown directly into shell command text; double quotes alone still evaluate
+backticks and `$()` substitutions. Abort if either file cannot be read.
+
+Add required custom fields with `--fields-json`, passing the JSON as a literal
+argument (e.g. `'{"customfield_15822": {"id": "17984"}}'`). Use the same file-to-variable
+method for JSON containing free-form text. Report back the issue key and URL.
 
 - If the create still fails on a missing required field, the error's `problems`/`allowedValues` name the field and valid options. Set it from context (or ask only if it can't be inferred) and retry once — don't re-surface the whole draft for approval over a mechanical field.
 
