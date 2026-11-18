@@ -163,12 +163,17 @@ Do **not** auto-merge, auto-assign reviewers, add labels, or push without confir
 - The repository lives under `~/Developer/fanduel` (check with `git rev-parse --show-toplevel` and confirm the path is inside that directory). Skip silently for any other repo.
 - A JIRA ticket was extracted from the branch in step 3, and this was **Create mode** (a new PR). In Update mode, skip — the ticket is normally already in review; only transition if the user explicitly asks.
 
-Use the `fd-atlassian` MCP tools for all JIRA operations — never a raw REST call or shell script.
+Use the `twg` CLI for all JIRA operations (the Atlassian MCP is disabled) — never a raw REST call.
+
+### 10-pre. Check the PR completes the ticket
+
+Ask: "Does this PR complete RACNS-1234, or is it one of several items on that ticket?" Skip the transition with a one-line reason if the PR is partial or the ticket has open checklist items. Continue to 10a only when the user confirms this PR completes the ticket.
 
 ### 10a. Discover the target transition
 
-- Call `getTransitionsForJiraIssue` for the extracted ticket (cloudId is the FanDuel site; reuse the standard site if already known this session, otherwise resolve via `getAccessibleAtlassianResources`).
-- From the returned transitions, pick the first whose `to.name` (or transition `name`) case-insensitively looks like code review: match `code review`, `in review`, `in code review`, or `review` as a whole word. Prefer a more specific match ("Code Review") over a bare "Review" if both exist.
+- Get the current status: `twg jira workitem get <KEY> --fields status`.
+- List transitions: `twg jira workitem transitions query --id <KEY>` (prints `• <Name> (id: <n>)` lines).
+- From the returned transitions, pick the first whose name case-insensitively looks like code review: match `code review`, `in review`, `in code review`, or `review` as a whole word. Prefer a more specific match ("Code Review") over a bare "Review" if both exist.
 - If **no** matching transition is available, report the ticket's current status and the list of available transition names, then stop — do not guess or force a transition.
 
 ### 10b. Confirm before transitioning
@@ -182,5 +187,5 @@ Show the user:
 
 ### 10c. Apply the transition
 
-- On approval, call `transitionJiraIssue` with the chosen transition id.
+- On approval, run `twg jira workitem transition --id <KEY> --transition-id <id>`.
 - Report the outcome: ticket key, old status → new status. If the transition fails (e.g. a required field on the transition screen), surface the error and the field it's asking for rather than retrying blindly.
