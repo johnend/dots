@@ -15,6 +15,7 @@ ICON_CACHE=$(printf '\xf3\xb0\x85\x90') # md-clock-outline U+F0150
 ICON_CREDITS=$(printf '\xf3\xb0\x87\x81') # md-currency-usd U+F01C1
 
 BAR_STEPS=5
+GIT_CACHE_TTL_SECONDS=5
 USAGE_CACHE="${TMPDIR:-/tmp}/claude-statusline-usage.pct"
 USAGE_ATTEMPT="${USAGE_CACHE}.attempt"
 USAGE_MAX_AGE=300
@@ -25,8 +26,10 @@ now=$(date +%s)
 
 # ── Extract all fields in one jq pass (unit separator keeps empty fields) ──
 # Pre-set so empty or invalid stdin can't trip set -u
-raw_dir="" model="" used_pct="" cache_present="" cache_warm="" cache_ttl="" cache_expires="" cache_recache=""
-IFS=$'\x1f' read -r raw_dir model used_pct cache_present cache_warm cache_ttl cache_expires cache_recache < <(
+raw_dir="" model="" used_pct="" cache_present="" cache_warm=""
+prompt_cache_ttl="" cache_expires="" cache_recache=""
+IFS=$'\x1f' read -r raw_dir model used_pct cache_present cache_warm \
+  prompt_cache_ttl cache_expires cache_recache < <(
   printf '%s' "$input" | jq -r '[
     (.workspace.current_dir // .cwd // ""),
     (.model.display_name // ""),
@@ -43,7 +46,14 @@ IFS=$'\x1f' read -r raw_dir model used_pct cache_present cache_warm cache_ttl ca
 # Seconds since a file was modified; large value when missing
 file_age() {
   local modified
-  modified=$(stat -f %m "$1" 2>/dev/null || stat -c %Y "$1" 2>/dev/null) || { echo 999999; return; }
+  # A failed stat probe can still write to stdout.
+  if ! modified=$(stat -f %m "$1" 2>/dev/null); then
+    modified=$(stat -c %Y "$1" 2>/dev/null) || { echo 999999; return; }
+  fi
+  if [[ ! "$modified" =~ ^[0-9]+$ ]]; then
+    echo 999999
+    return
+  fi
   echo $(( now - modified ))
 }
 
@@ -81,6 +91,8 @@ print_bar_segment() {
 # Undocumented endpoint (same source as /usage)
 refresh_usage() {
   local token tmp
+  # Credits lookup requires the macOS Keychain.
+  [[ "$(uname -s)" == Darwin ]] || return 1
   token=$(security find-generic-password -s "Claude Code-credentials" -w 2>/dev/null \
     | jq -r '.claudeAiOauth.accessToken // empty') || return 1
   [ -n "$token" ] || return 1
@@ -114,11 +126,10 @@ fi
 branch=""
 branch_flag=""
 cache_file="${TMPDIR:-/tmp}/claude-git-$(echo "$raw_dir" | md5 -q 2>/dev/null || echo "$raw_dir" | md5sum | cut -d' ' -f1)"
-cache_ttl=5
 
 if git -C "$raw_dir" rev-parse --is-inside-work-tree &>/dev/null; then
   # Use cache if it exists and is fresh
-  if [ -f "$cache_file" ] && [ "$(file_age "$cache_file")" -lt $cache_ttl ]; then
+  if [ -f "$cache_file" ] && [ "$(file_age "$cache_file")" -lt "$GIT_CACHE_TTL_SECONDS" ]; then
     cached=$(cat "$cache_file")
     branch="${cached%%|*}"
     branch_flag="${cached##*|}"
@@ -158,7 +169,7 @@ fi
 if [ "$cache_present" = "true" ]; then
   if [ "$cache_warm" = "true" ] && [ -n "$cache_expires" ] && [ "$cache_expires" -gt "$now" ]; then
     remaining=$(( cache_expires - now ))
-    case "$cache_ttl" in
+    case "$prompt_cache_ttl" in
       5m) ttl_seconds=300 ;;
       1h) ttl_seconds=3600 ;;
       *)  ttl_seconds=0 ;;
