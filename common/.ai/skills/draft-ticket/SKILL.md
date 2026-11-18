@@ -17,8 +17,8 @@ Draft a ticket, show it for approval, then create it. Never create anything befo
 - Current working directory under `~/Developer/fanduel/` → **Jira path**.
 - Otherwise → **Obsidian path**.
 
-**Jira path only** — verify the `fd-atlassian` MCP is reachable before going further. There is no `authenticate` tool for this server, so check by making a lightweight call (`atlassianUserInfo`). If it fails, tell the user the Atlassian MCP isn't available/authenticated and ask whether to:
-1. Fix it and retry, or
+**Jira path only** — use the `twg` CLI for all Jira calls (the Atlassian MCP is disabled). Check auth first with `twg whoami`. If it fails, show the error and ask whether to:
+1. Fix it (`twg login`, or the `twg-setup` skill) and retry, or
 2. Fall back to drafting an Obsidian note instead.
 
 ---
@@ -29,8 +29,8 @@ Draft a ticket, show it for approval, then create it. Never create anything befo
 
 - Do **not** infer the Jira project key from the current GitHub repo — it is frequently wrong.
 - Default-suggest `RACNS` ("most tickets for work go here") and ask the user to confirm or supply a different project key.
-- Once confirmed, call `getVisibleJiraProjects` (scoped to the key) then `getJiraProjectIssueTypesMetadata` for that project to fetch the real issue types available on it. Present those as the type choices — never a hardcoded list.
-- After the type is chosen, call `getJiraIssueTypeMetaWithFields` (`requiredFieldsOnly: true`) for that project + type to discover **mandatory custom fields** before drafting. FanDuel projects often require select fields that aren't obvious. Gather any values you can't infer as part of the draft, and use `allowedValues` for the option id.
+- Once confirmed, run `twg jira workitem types query --project <KEY>` to fetch the real issue types available on it. Present those as the type choices — never a hardcoded list.
+- After the type is chosen, run `twg jira workitem field create-metadata --space <KEY> --type <Type>` to discover **mandatory custom fields** before drafting. FanDuel projects often require select fields that aren't obvious. Gather any values you can't infer as part of the draft, and use `allowedValues` for the option id.
   - Known: RACNS **Bug** requires **"Stage found in"** (`customfield_15822`) — options Production (`17983`) / Pre-Production (`17984`). Infer from where the bug was found (e.g. devstack/int → Pre-Production, live → Production) and state the inference; don't ask if it's obvious from context.
 
 **Obsidian path:**
@@ -70,7 +70,7 @@ Draft a ticket, show it for approval, then create it. Never create anything befo
 
 ## 5. Jira formatting
 
-- Use the markdown supported by `createJiraIssue`/`editJiraIssue`'s `contentFormat: markdown` (headings, lists, code fences, blockquotes for the "Starting points" block).
+- Write GitHub-flavored Markdown and pass `--description-format markdown` (headings, lists, code fences, blockquotes for the "Starting points" block). No `- [ ]` checkboxes; they render escaped.
 - If unsure whether a specific formatting construct will render as intended, note that as a risk in the draft rather than guessing or over-engineering detection.
 
 ---
@@ -84,7 +84,7 @@ Draft a ticket, show it for approval, then create it. Never create anything befo
 
 ## 7. Create the artifact
 
-**Jira:** call `createJiraIssue` with the confirmed project key, issue type, title, markdown description (`contentFormat: markdown`), and any required custom fields (pass options via `additional_fields`, e.g. `{"customfield_15822": {"id": "17984"}}`). Report back the issue key and URL.
+**Jira:** run `twg jira workitem create --space <KEY> --type <Type> --summary "<title>" --description "<markdown>" --description-format markdown`, adding any required custom fields with `--fields-json` (e.g. `'{"customfield_15822": {"id": "17984"}}'`). Report back the issue key and URL.
 
 - If the create still fails on a missing required field, the error's `problems`/`allowedValues` name the field and valid options. Set it from context (or ask only if it can't be inferred) and retry once — don't re-surface the whole draft for approval over a mechanical field.
 
