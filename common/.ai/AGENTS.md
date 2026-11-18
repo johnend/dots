@@ -192,6 +192,8 @@ Prefer `rg` over grep, `fd` over find, `bat` over cat, `eza` over ls, `delta` ov
 - Check optional CLI availability before relying on it for verification.
 
 - Run mise and uv with approved cache access in restricted workspaces.
+- Use locked binaries directly when disposable checkouts lack trusted Mise configuration.
+- Override pytest's configured pythonpath when verifying code from another checkout.
 - Protect configured Mise tools from automatic pruning during unrelated verification.
 
 - Bound audits, review before expensive verification, and repeat checks only with concrete justification.
@@ -280,3 +282,5 @@ Add a one-line bullet here (under 15 words, no explanation) when: you make the s
 - Fetch origin before citing local repo files as current state.
 - Jira checkboxes: send raw ADF `taskList` via `twg jira workitem update --fields-json`.
 - Sandbox blocks DNS (`dig` times out); retry lookups unsandboxed.
+- Verify browser availability before promising control or recommending Chrome installation.
+- Verify live symlinks before interpreting Stow simulation errors as broken links.
