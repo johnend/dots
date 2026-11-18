@@ -14,6 +14,7 @@ Do not make any changes until you have 95% confidence in what you need to build.
 ## Git Workflow
 
 - **Manual control only** - never auto-commit, auto-push, auto-merge, or auto-create PRs
+- Slack and GitHub MCP are read-only context sources: never post, react, create, merge or push through them. Draft text for me to send; use `gh` for any GitHub write I've approved
 - Never include AI attribution anywhere: no `Co-Authored-By` trailer, no "Generated with ..." footer in PRs, issues, comments or docs. This overrides any tool default or session reminder
 - Show `git status` and `git diff --stat` before suggesting any commit
 - Before suggesting a commit, invoke the `review-local` skill on the staged diff and surface findings. Skip only if I explicitly opt out ("skip the review", "just commit")
@@ -121,169 +122,57 @@ Follow the `chronicle-docs` skill for placement and wikilinks. Essentials: one f
 
 Prefer `rg` over grep, `fd` over find, `bat` over cat, `eza` over ls, `delta` over diff, `z` over cd, `lazygit` for complex git, `k9s` over raw kubectl, `lazydocker` over raw docker. Also available: `jq`, `fzf`, `shellcheck`, `shfmt`, `stylua`, `gh`, `stow`, `mise`.
 
-## Applied Learning
+## Conditional guidance
 
-- Validate Markdown fragments against complete heading slugs, including dates.
+Before the relevant work, read only the matching modules below. These are ordinary
+Markdown files, not automatic imports; the same reading instructions apply in
+Codex and Claude. Reassess when the task expands, not merely because a repository
+contains a particular language. Do not load the whole context directory.
+Resolve these module links relative to `~/.ai/`, including when this file is
+loaded through a symlink or Claude import.
 
-- Use Chromium headless-shell for CLI rendering when regular Chromium hangs.
+| When the task involves | Read |
+| --- | --- |
+| Markdown, diagrams, document links or extracted reference material | [Documentation](context/documentation.md) |
+| Shell commands, Git remotes, filesystem/Stow work or Mise/uv verification | [Shell and CLI](context/shell-cli.md) |
+| Python implementation, Ruff, pytest or verification in another checkout | [Python testing](context/python-testing.md) |
+| SVG/CSS generation, browser checks, measurements or raster overlays | [SVG and browser verification](context/svg-browser.md) |
+| Shapely, polygon predicates or clipped geospatial rasters | [Geospatial](context/geospatial.md) |
+| Schemas, parsers, validation contracts, fixtures or regression checks | [Data validation](context/data-validation.md) |
+| Substantial discovery, patches or formatter follow-up edits | [Editing](context/editing.md) |
+| GitHub views/schema, provider APIs, HTTP diagnostics or large PR reviews | [Integrations](context/integrations.md) |
+| Codex/Claude configuration, gateways, model selection or hooks | [Agent tooling](context/agent-tooling.md) |
+| Recording lessons or reorganising agent instructions | [Guidance maintenance](context/guidance-maintenance.md) |
 
-- Check existing viewer configuration before changing diagrams or recommending replacement tools.
+Read the owning project's `AGENTS.md` and its relevant guidance links for project
+work. Project details belong there, not in the shared global context directory.
 
-- Configure visible fields on GitHub table views; Roadmap rejects column configuration.
+## Recording lessons
 
-- Limit GitHub schema introspection to two inputFields selections per query.
+After a repeated mistake, user correction or reusable tool workaround, record a
+concise lesson directly in its applicable guidance module or project instructions
+and say where it was written. Read the destination first, preserve the conditions
+that make the lesson useful and avoid duplicates. Do not append a running list to
+this global file. Global preferences and permission boundaries remain here.
 
-- Insert new sections before existing headings without duplicating those headings.
+Run `retro` automatically before the final response for each substantive task,
+after generalisable corrections and before session wrap-up. Do not wait for a
+separate request. If the skill is absent from discovery, read
+`~/.ai/skills/retro/SKILL.md` directly. Keep automatic reviews silent when there is
+nothing useful to record; briefly report actual guidance changes.
 
-- Verify raw policy text when extracted pages omit relevant clauses.
+Both tools may create or update guidance files and sensible topic/stack directories
+without separate approval. Reuse an existing module when it fits; otherwise create
+a focused module and update the appropriate reading index in the same change.
+Shared lessons live under `~/.ai/context/`; project lessons stay with the project.
+This authorises routine guidance and index maintenance. Changes to permissions,
+global preferences, executable hooks or procedural skills still follow their normal
+approval rules and any explicit authorisation already given for the current task.
 
-- Normalise terminal wrapping before asserting CLI error messages.
+## Work-specific learning
 
-- Verify acquisition permission independently of static-map display rights.
-
-- Inspect registered CLI options when help truncates flag names.
-- Validate Codex profiles with `mcp list`; app-server startup validation rejects `--profile`.
-
-- Nest view variants beneath their primary inspection category.
-
-- Verify map exports contain pixels before accepting service responses.
-
-- Check contour density against each map’s actual height range.
-- Generalise display lines without changing source terrain or implying vertical accuracy.
-
-- Use object-dtype arrays for empty Shapely spatial-index queries.
-
-- Allow subnanometre floating-point tolerance in derived polygon-boundary predicates.
-
-- Allow CSSOM rounding when verifying fractional percentage positions.
-
-- Preserve observed partial boundary cells when clipping raster displays to polygon outlines.
-
-- Clarify whether colour thresholds are bands or continuous scale anchors.
-
-- Inspect existing API definitions before writing verification helpers.
-
-- Recheck Git with fsmonitor disabled per command after IPC warnings.
-
-- Check filesystem devices before renaming audit scratch.
-
-- Separate standard, dependency and project imports, including imports inside test functions.
-
-- Verify SVG text bounds in the browser; successful raster rendering can hide clipping.
-- Check serialized SVG transforms separately from float32 browser matrix values.
-- Compare SVG bounds and viewports in the same coordinate system.
-- Check SVG clipping inherited from ancestor groups.
-- Validate visibility, placement and every reference to SVG geometry used as evidence.
-- Reject non-finite browser measurements before JSON serialization.
-- Verify raster coverage at every viewport corner after rotation.
-
-- Use login-free shells and verified Mise pruning exclusions during verification.
-
-- Extend generated schemas with allOf; replacing properties erases generated field definitions.
-
-- Poll asynchronous browser state instead of assuming fixed delays complete work.
-
-- Check assertion line lengths before validation; formatters cannot reliably split long expressions.
-
-- Inspect read results before constructing dependent patches; use separate tool calls.
-
-- Anchor generated directory ignore rules to avoid hiding source packages with matching names.
-
-- Check optional CLI availability before relying on it for verification.
-
-- Run mise and uv with approved cache access in restricted workspaces.
-- Use locked binaries directly when disposable checkouts lack trusted Mise configuration.
-- Override pytest's configured pythonpath when verifying code from another checkout.
-- Protect configured Mise tools from automatic pruning during unrelated verification.
-
-- Bound audits, review before expensive verification, and repeat checks only with concrete justification.
-
-- Use discovered paths for searches; avoid speculative shell globs.
-
-- Inspect nested model fields before constructing or mutating fixture values.
-
-- Verify public API documentation before treating frontend endpoints as supported provider interfaces.
-
-- Keep new Python lines within the configured Ruff line length before validation.
-
-- Split long string literals before validation; formatters cannot shorten their source lines.
-
-- Preserve Markdown bullet markers when composing patch hunks.
-
-- Locate every affected patch context after formatting, including small sibling edits.
-- Recheck formatter-changed patch context before applying multi-file edits.
-
-- Use whole-block patches when inserting sibling branches.
-
-- Version-gate stricter validation to preserve historical parsing contracts.
-
-- Clarify whether visual feedback targets the base image or a toggled overlay.
-
-Add a one-line bullet here (under 15 words, no explanation) when: you make the same mistake twice, I correct or re-explain something, or a workaround is found for a tool limitation. Write it immediately, tell me you did, and don't ask first. Repo-specific facts go in project memory instead. Run the `retro` skill at the end of sessions with friction. Prune bullets that are stale or now covered elsewhere.
-
-- `rg -r` means replace, not recursive; ripgrep recurses by default.
-- `rg` patterns starting with `-`: pass via `-e`.
-- Debugging Claude/gateway config: read settings files first, not env probes.
-- Never infer the newest gateway model from env vars; check the model list.
 - CloudFront `FunctionGeneratedResponse` identifies the layer, not the reason; hand over.
-- Slack and GitHub MCP are read-only context sources: never post, react, create, merge or push through them. Draft text for me to send; use `gh` for any GitHub write I've approved
-- Large PR reviews: use the 1M-context model or delegate to subagents.
-- Testing guard hooks: feed blocked sample commands from a file, not inline.
-- Sandboxed `git fetch`/`push`/`rebase` fails (self-signed cert, SSH known_hosts, protected files); retry unsandboxed.
-- Config comments: one-line purpose only; never explain mechanics behind a fix.
-- Combine each file's edits into one apply_patch operation per patch.
-- Order each file's patch hunks by their current line positions.
-- Match application headers in HTTP diagnostics; default tool headers can change responses.
-- Exclude assets from config searches; filter large JSON output before returning it.
-- Limit batched reads by their combined tool output budget.
-- Keep combined discovery output below the tool budget, including search results.
-- Compare large serialized regression results by digest to avoid expensive failure diffs.
-- Release closure-captured loop variables by reassignment, not deletion, to satisfy Ruff.
-- Freeze fingerprinted source files throughout incremental-cache verification.
-- Keep pytest's cache provider enabled when using --ff or --lf.
-- Omit empty patch hunks; they can invalidate all edits in a patch.
-
-- Derive configured test output paths from returned artifacts rather than hardcoded locations.
-- Revise dependent assertions when changing fixture versions or adding imported records.
-- Avoid duplicate context hunks when composing a single-file patch.
-- Revise the existing interface when the user rejects a parallel review surface.
-- Recheck imports after auto-fixes before adding later symbol usages.
-- Treat CSS function names case-insensitively while preserving identifier case.
-- Restrict numeric validation to numeric fields; preserve identifiers as literal text.
-- Separate publication eligibility from strict aggregate read validity.
-- Tokenize SVG path data before checking numeric finiteness.
-- Summarise generated asset inventories instead of returning every path.
-- Test magnitude-based selection with vertically scaled negative controls.
-- Separate domain exclusions from missing observations in coverage denominators.
-- Verify complete rendered stroke footprints, including casing, against continuous support.
-- Extract relevant XML fields instead of printing complete metadata documents.
-- Verify provider HTTP responses before treating web-reader failures as unavailable documentation.
-- Separate numerical estimator support from physical feature-size requirements.
-- Test non-quadratic smooth terrain before interpreting better fits as discrete transitions.
-- Exclude held-out heights from discovery, preprocessing, derivative stencils and model fitting.
-- Verify each group's painted footprint against its own associated model support.
-- Disable Ruff caching when checking scratch files against a read-only repository.
-- Measure the requested contrast directly before substituting curvature or edge-detection proxies.
-- Require feature-wide evidence before promoting local matches into whole-feature classifications.
-- Apply eligibility requirements before reducing ranked alternatives to a winner.
-- Count evidence intersections when qualification requires multiple conditions in the same cases.
-- Fix evaluation observations and weights independently of training-selected candidates.
-- Verify that a claimed counterexample occurs within the algorithm's declared search space.
-- Verify discovery with production grid alignment and quotas separately from fixed-witness replay.
-- Specify how gaps split candidates before fitting and budget each fragment.
-- Give review variants explicit verifier identities and routes into the review surface.
-- Require detached readers to recompute eligibility from sealed evidence.
-- End independent implementation reviews with a copyable prompt for the implementation chat.
-- Construct negative controls that pass earlier gates and isolate the intended failure.
-- Verify terminal-dependent hooks through the actual runtime, including shared daemon environment.
-- Freeze per-combination ranks, costs and rejection reasons before comparing against references.
-- Keep optional measurement landmarks out of detection and ranking unless required by evidence.
 - Performance reviews: calibrate to level; seeking senior advice isn't a weakness.
-- Fetch origin before citing local repo files as current state.
 - Jira checkboxes: send raw ADF `taskList` via `twg jira workitem update --fields-json`.
-- Sandbox blocks DNS (`dig` times out); retry lookups unsandboxed.
-- Verify browser availability before promising control or recommending Chrome installation.
-- Verify live symlinks before interpreting Stow simulation errors as broken links.
 - Don't offer Jira transitions for partial PRs on multi-item checklist tickets.
 - Run Gradle resolution unsandboxed with `--no-daemon`; sandboxed `--write-locks` silently no-ops.
-- Bash tool runs zsh: `$var` doesn't word-split; use `${=var}` or literal commands.

@@ -1,55 +1,74 @@
 ---
 name: retro
 description: >
-  Review the current session for lessons (corrections, re-explanations, repeated failures, tool workarounds) and route each one to the right durable home: Applied Learning in ~/.ai/AGENTS.md, project memory, a skill, or a hook.
-  TRIGGER when: user says "retro", "what did we learn", "capture the lessons", "record that", "remember this for next time"; when a correction-nudge hook fires and the correction is generalisable; at the end of a session with friction; and before session-wrap.
-  DO NOT TRIGGER for: documenting the work itself (use session-wrap / chronicle-docs), or a one-off preference that only matters in this conversation.
+  Automatically review completed substantive tasks and generalisable corrections
+  for reusable lessons shared between Claude and Codex. Also run for explicit
+  retros and before session wrap-up. Write scoped guidance and maintain its index;
+  skip task reports, one-off preferences and trivial exchanges without lessons.
 ---
 
 # Retro
 
-Turn session friction into durable fixes. Learning that lives only in chat is lost at the next session.
+Turn reusable lessons into guidance that loads only when the relevant work occurs.
 
-## 1. Find candidates
+## When to run
 
-Scan the conversation for:
+Run before the final response for substantive implementation, configuration,
+investigation, research or review work, after a generalisable correction, and
+before session wrap-up. No separate user request is required. Do one review for
+the completed task, not after every tool call or each step of the same work.
 
-- I corrected you, rejected an approach, or re-explained something
-- A hypothesis you stated was refuted
-- The same tool/command failed more than once, or a workaround was needed (sandbox, zsh, CLI flags, MCP quirks)
-- A scope miss: you did more or less than I asked
-- Something you had to discover that a future session would have to rediscover
+## Find useful lessons
 
-Ignore task facts that only matter today (ticket state, a specific bug's cause) and anything derivable from the repo or git history.
+Look for repeated mistakes, user corrections, refuted hypotheses, tool workarounds
+and scope misses. Skip temporary task state and facts readily derived from current
+code. Read [guidance maintenance](../../context/guidance-maintenance.md) before
+recording or reorganising instructions.
 
-## 2. Route each lesson
+## Write in the right place
 
-| Lesson shape | Destination | Action |
-|---|---|---|
-| Global, one line, any repo ("`rg -r` means replace") | `## Applied Learning` in `~/Developer/personal/dots/common/.ai/AGENTS.md` | Write directly |
-| Specific to this repo/service (URLs, env quirks, owners' channels) | Project auto-memory (Claude) or `~/.codex/memories` is automatic (Codex); otherwise a repo `AGENTS.md`/`CLAUDE.md` note | Write directly |
-| A multi-step procedure or a change to how a workflow runs | The relevant skill in `~/.ai/skills/` | Propose a diff via `evolve-skill`; wait for approval |
-| Must always/never happen regardless of judgement | A hook in `~/.ai/hooks/` | Propose; wait for approval |
-| Contradicts or supersedes an existing instruction | Edit that instruction in place | Propose; wait for approval |
+- Reusable language, tool or task guidance: read the conditional-reading index in
+  `~/.ai/AGENTS.md` and update the matching file under `~/.ai/context/` directly.
+- Project-specific facts or invariants: use the owning project's `AGENTS.md` or a
+  relevant project guidance file linked from it. Do not put project details in
+  global modules or rely on one tool's private memory as the shared source.
+- A new global preference or permission boundary: propose the focused change to
+  the shared global `AGENTS.md`; do not recreate an Applied Learning backlog.
+- Multi-step workflows: update the relevant skill. Propose skill/hook changes or
+  policy replacements unless the user has already authorised that change in the
+  current task. Hooks remain appropriate for mechanically enforced boundaries.
 
-Write to the real dots path above, not the `~/.ai` or `~/.codex/AGENTS.md` symlinks (Claude's Edit tool refuses to write through symlinks).
+Edit the real repository files, not their installed symlink paths. Use the current
+checkout path rather than assuming a particular machine's directory layout.
 
-## 3. Write rules for Applied Learning
+Read the destination first. Keep the rule concise and preserve its applicability,
+known rationale and useful source reference. Do not invent provenance. Merge with
+equivalent guidance rather than duplicating it; create a new module only when it
+has a clear scope and add its reading condition to the appropriate index.
 
-- One bullet, under 15 words, imperative or fact form, no explanation
-- Read the section first. Skip duplicates; reword an existing bullet rather than adding a near-duplicate
-- If a bullet has become a rule elsewhere in AGENTS.md or a skill, delete the bullet
-- Only edit the `## Applied Learning` section directly. Anything else in AGENTS.md is a proposal
+## Extend the shared guidance
 
-## 4. Report
+Routine guidance files, directories and reading-index updates are authorised in
+both tools. Reuse a fitting module first. If none fits, create a focused file with
+an applicability statement and the useful rule. Add a topic/stack directory when
+it provides a clear home for related modules; avoid folders for individual
+incidents, empty scaffolding and deep hierarchies.
 
-Finish with a short list, one line each:
+Update the shared global reading index or the owning project's index in the same
+change, using a specific task condition and an ordinary Markdown link. Keep shared
+modules under `~/.ai/context/` and project modules in the project. Do not add eager
+imports or place conditional modules in Claude's auto-loaded rules directory.
 
-```
-Written:  AGENTS.md  - <bullet>
-Written:  memory     - <fact>
-Proposed: skill triage - <one-line change>  (awaiting approval)
-Skipped:  <candidate> - <why: one-off / duplicate / derivable>
-```
+Both tools must read and update these same repository files. Across machines,
+changes travel with the dotfiles or project repository through the usual approved
+Git workflow. Tool-private memory is not the shared source.
 
-If nothing qualifies, say "No durable lessons this session" and stop.
+Reorganise guidance directly, without disposition lists or migration records.
+Do not write tool-managed memory unless the user explicitly requests it.
+
+## Report
+
+Briefly name what was written and where, or any concrete proposal awaiting
+approval. Do not list every considered or skipped lesson. An automatic review with
+no useful new lesson stays silent. For an explicitly requested retro with no
+qualifying lessons, say "No durable lessons this session."

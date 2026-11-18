@@ -9,6 +9,9 @@ Source of truth for configuration shared by Claude Code and Codex. Stowed to
   - Codex: `~/.codex/AGENTS.md` -> `../.ai/AGENTS.md`
   - Claude: `~/.claude/CLAUDE.md` imports it with `@~/.ai/AGENTS.md`, then adds
     Claude-only notes (sandbox, hooks)
+- `context/` - shared guidance read only for matching tasks, using the index in
+  `AGENTS.md`. These are ordinary Markdown files, outside Claude's auto-loaded
+  rules directory; do not import the whole directory into either tool.
 - `skills/` - shared skills. `agents/openai.yaml` inside a skill is Codex metadata.
   - Claude: `~/.claude/skills` -> `.ai/skills`
   - Codex: `common/.agents/skills/<name>` relative links, stowed into
@@ -32,6 +35,28 @@ Source of truth for configuration shared by Claude Code and Codex. Stowed to
 
 ## Learning loop
 
-The `retro` skill and the `nudge-learning-capture.sh` UserPromptSubmit hook keep
-`## Applied Learning` in `AGENTS.md` current. Skill and hook changes are proposed,
-not written directly.
+The `retro` skill and the `nudge-learning-capture.sh` UserPromptSubmit hook direct
+reusable lessons to the relevant `context/` module or project guidance. The global
+`AGENTS.md` holds preferences, permission boundaries and the conditional reading
+index, rather than a growing list of technical lessons.
+
+Both tools run retro automatically before finishing substantive work, after
+generalisable corrections and before session wrap-up. This is part of the agent's
+completion instructions, not a background process that runs after a session is
+closed. Reviews with nothing useful to record stay silent.
+
+Applied learning is portable Markdown: Claude and Codex read and update the same
+`context/` files and the same shared retro skill. Project-specific guidance stays
+with the project. Across machines, use the usual approved dotfiles/project Git
+workflow to carry those changes with you.
+
+Read the destination before updating it and preserve the conditions that make the
+lesson useful. Either tool may create focused modules and sensible topic/stack
+directories when an existing module does not fit. Add the new module's task
+condition and link to the relevant reading index in the same change. Avoid folders
+for individual incidents, empty scaffolding and eagerly importing the modules.
+
+Routine guidance and index maintenance needs no separate approval. Permission,
+global preference, executable hook and procedural skill changes retain their
+normal approval rules unless already authorised for the current task. Commits
+and pushes still require explicit approval.
