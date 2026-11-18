@@ -286,3 +286,4 @@ Add a one-line bullet here (under 15 words, no explanation) when: you make the s
 - Verify live symlinks before interpreting Stow simulation errors as broken links.
 - Don't offer Jira transitions for partial PRs on multi-item checklist tickets.
 - Run Gradle resolution unsandboxed with `--no-daemon`; sandboxed `--write-locks` silently no-ops.
+- Bash tool runs zsh: `$var` doesn't word-split; use `${=var}` or literal commands.
