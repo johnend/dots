@@ -18,11 +18,14 @@ sudo ./lib/sway/sway-install.sh
 
 # Stow your dotfiles
 stow common -t ~
-stow linux -t ~
+stow -d linux -t ~ common sway
 
 # Install language versions
 mise install
 ```
+
+`linux/common/` holds Linux-wide settings. For KDE or Hyprland, replace `sway`
+with `kde` or `hyprland`; choose the desktop you use.
 
 See [`lib/sway/README.md`](lib/sway/README.md) for detailed installation instructions.
 
@@ -62,6 +65,7 @@ dots/
 │   └── install.sh       # Common installation script
 │
 ├── linux/               # Linux-specific configs
+│   ├── common/         # Linux-wide configs
 │   ├── sway/           # Sway window manager
 │   ├── hyprland/       # Hyprland (legacy)
 │   └── kde/            # KDE Plasma
