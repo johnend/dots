@@ -63,7 +63,7 @@ Applies to anything a person reads: replies to me, PRs, tickets, Slack, docs, no
 - Label every root-cause claim **Confirmed** (cite the log line, query, or file:line), **Hypothesis**, or **Refuted**. Never present a hypothesis as the cause
 - Before claiming something is or isn't logged, configured or tested, verify with a search; don't infer from reading code
 - Before theorising, pin the scope: env (dev/staging/QA/prod), Amplitude/Datadog project, affected users or accounts, device/build. Ask if unknown
-- Scope every Datadog query and link to the env under discussion. Amplitude defaults to the dev project unless I say prod
+- Scope every Datadog query and link to the env under discussion. For analytics and observability tools with several projects or environments, default to the non-production one unless I say prod
 - During an investigation, "fix it" means update the docs/notes. No code changes until I confirm the diagnosis
 - For multi-hypothesis bugs use the `investigate` skill; for support-rota reports use `triage`
 
@@ -109,7 +109,7 @@ Trust code/config over stale documentation.
 ## Scope Discipline
 
 - Don't modify shared/infrastructure files (Dockerfile, base images, shared build configs) to fix a local-only issue unless asked
-- Never stub backend services or edit tracked files to fake them; use the devstack replica (`.int` URLs)
+- Never stub backend services or edit tracked files to fake them; use the project's shared development environment, as its own `AGENTS.md`, README or the work notes describe
 - Don't fabricate PR description items; only include what was actually done
 - When uncertain about an experiment key, config key or override value, ask
 
@@ -166,7 +166,9 @@ loaded through a symlink or Claude import.
 Read the owning project's `AGENTS.md` and its relevant guidance links for project
 work. Project details belong there, not in the shared global context directory.
 For work tasks, also read `~/.ai-work/AGENTS.md` if it exists: private, untracked
-company details that stay out of this public repository.
+company details that stay out of this public repository, including the work
+directory, default Jira project and shared development environment that skills
+look up. If it doesn't exist, treat every repository as personal.
 
 ## Recording lessons
 

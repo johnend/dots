@@ -31,21 +31,21 @@ If not in a git repo, note it and use the directory name as the project name.
 ## Phase 2 — Determine context
 
 **JIRA ticket**: Extract from branch name using pattern `([A-Z]+-[0-9]+)`.
-Example: `RACNS-1234-some-feature` → `RACNS-1234`. Omit if no match.
+Example: `ABC-123-some-feature` → `ABC-123`. Omit if no match.
 
 **Workspace classification** — determines the Obsidian destination:
 
-- Path under `~/Developer/fanduel/` → **Work**
-  - Repo name = directory immediately under `~/Developer/fanduel/` (e.g. `refer-a-friend`)
+- Path under the work directory named in `~/.ai-work/AGENTS.md` → **Work**
+  - Repo name = directory immediately under the work directory (e.g. `checkout-service`)
   - Obsidian target: `Work/Domains/<repo-name>/`
   - Include `repo` in frontmatter
-- All other paths, or if `~/Developer/fanduel/` does not exist → **Personal**
+- All other paths, or if `~/.ai-work/AGENTS.md` does not exist → **Personal**
   - Obsidian target: `Personal/Projects/<project>/` for personal projects, `Personal/Knowledge/Tools/` for tooling, config, or dotfile work
   - No `repo` field in frontmatter
 
 **File name**:
 
-- Work with JIRA ticket: `<TICKET>-<Short-Title>.md` (e.g. `RACNS-1234-Predicts-Join-Page.md`)
+- Work with JIRA ticket: `<TICKET>-<Short-Title>.md` (e.g. `ABC-123-Checkout-Retry.md`)
 - Everything else: `YYYY-MM-DD-<Short-Title>.md`
 
 ---
@@ -95,14 +95,14 @@ Deferred work, known gaps, open questions, or next steps. Omit this section enti
 Prepare these fields to pass to `chronicle-docs`:
 
 - `date` — today's date in ISO 8601 (e.g. `2026-05-15`)
-- `ticket` — JIRA ticket number if extracted (e.g. `RACNS-1234`); omit otherwise
-- `repo` — repo name if Work context (e.g. `refer-a-friend`); omit otherwise
+- `ticket` — JIRA ticket number if extracted (e.g. `ABC-123`); omit otherwise
+- `repo` — repo name if Work context (e.g. `checkout-service`); omit otherwise
 - `status` — `complete` or `in-progress`
 - `type` — infer from changes: `feature`, `bugfix`, `refactor`, `docs`, `config`, `tooling`, or `review`
 - `tags` — combine into a single flat list:
-  - Ticket project prefix if present (e.g. `RACNS`)
-  - Repo name if Work (e.g. `refer-a-friend`)
-  - Organisation namespace if Work (e.g. `fanduel`)
+  - Ticket project prefix if present (e.g. `ABC`)
+  - Repo name if Work (e.g. `checkout-service`)
+  - Organisation tag from `~/.ai-work/AGENTS.md` if Work
   - Session type (e.g. `feature`)
   - Tech stack: infer from files changed — include languages (e.g. `typescript`, `java`), frameworks (e.g. `react`, `spring-boot`), and tooling (e.g. `jest`, `css-modules`, `kafka`) that were meaningfully involved. Only include what was actively worked with, not every project dependency.
 

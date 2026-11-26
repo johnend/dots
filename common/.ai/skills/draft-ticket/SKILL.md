@@ -1,7 +1,7 @@
 ---
 name: draft-ticket
 description: >
-  Draft a tech/Jira ticket from conversation context or user-provided details, get explicit approval, then create it — as a real Jira issue (FanDuel repos) or an Obsidian note (personal projects).
+  Draft a tech/Jira ticket from conversation context or user-provided details, get explicit approval, then create it — as a real Jira issue (work repos) or an Obsidian note (personal projects).
   TRIGGER when: user asks to write/create/draft a ticket, "file a bug", "make a Jira ticket", "write this up as a ticket/story/task".
   DO NOT TRIGGER for: PR descriptions (use describe-pr) or general documentation/notes (use chronicle-docs).
 ---
@@ -14,8 +14,8 @@ Draft a ticket, show it for approval, then create it. Never create anything befo
 
 ## 1. Determine destination
 
-- Current working directory under `~/Developer/fanduel/` → **Jira path**.
-- Otherwise → **Obsidian path**.
+- Current working directory under the work directory named in `~/.ai-work/AGENTS.md` → **Jira path**.
+- Otherwise, or if that file doesn't exist → **Obsidian path**.
 
 **Jira path only** — use the `twg` CLI for all Jira calls (the Atlassian MCP is disabled). Check auth first with `twg whoami`. If it fails, show the error and ask whether to:
 1. Fix it (`twg login`, or the `twg-setup` skill) and retry, or
@@ -28,10 +28,10 @@ Draft a ticket, show it for approval, then create it. Never create anything befo
 **Jira path:**
 
 - Do **not** infer the Jira project key from the current GitHub repo — it is frequently wrong.
-- Default-suggest `RACNS` ("most tickets for work go here") and ask the user to confirm or supply a different project key.
+- Default-suggest the default Jira project from `~/.ai-work/AGENTS.md` and ask the user to confirm or supply a different project key.
 - Once confirmed, run `twg jira workitem types query --project <KEY>` to fetch the real issue types available on it. Present those as the type choices — never a hardcoded list.
-- After the type is chosen, run `twg jira workitem field create-metadata --space <KEY> --type <Type>` to discover **mandatory custom fields** before drafting. FanDuel projects often require select fields that aren't obvious. Gather any values you can't infer as part of the draft, and use `allowedValues` for the option id.
-  - Known: RACNS **Bug** requires **"Stage found in"** (`customfield_15822`) — options Production (`17983`) / Pre-Production (`17984`). Infer from where the bug was found (e.g. devstack/int → Pre-Production, live → Production) and state the inference; don't ask if it's obvious from context.
+- After the type is chosen, run `twg jira workitem field create-metadata --space <KEY> --type <Type>` to discover **mandatory custom fields** before drafting. Work projects often require select fields that aren't obvious. Gather any values you can't infer as part of the draft, and use `allowedValues` for the option id.
+  - Check `~/.ai-work/AGENTS.md` for required fields already known for that project and type, and how to infer their values; state the inference rather than asking when it's obvious from context. Record newly discovered required fields there, not in this skill.
 
 **Obsidian path:**
 
@@ -103,7 +103,7 @@ or Markdown directly into shell command text; double quotes alone still evaluate
 backticks and `$()` substitutions. Abort if either file cannot be read.
 
 Add required custom fields with `--fields-json`, passing the JSON as a literal
-argument (e.g. `'{"customfield_15822": {"id": "17984"}}'`). Use the same file-to-variable
+argument (e.g. `'{"customfield_NNNNN": {"id": "<option-id>"}}'`). Use the same file-to-variable
 method for JSON containing free-form text. Report back the issue key and URL.
 
 - If the create still fails on a missing required field, the error's `problems`/`allowedValues` name the field and valid options. Set it from context (or ask only if it can't be inferred) and retry once — don't re-surface the whole draft for approval over a mechanical field.

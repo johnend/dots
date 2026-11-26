@@ -1,7 +1,7 @@
 ---
 name: describe-pr
 description: >
-  Create a pull request OR update the description of an existing PR for the current branch. Handles repo PR templates, JIRA ticket extraction (including title prefix), a prose summary followed by implementation bullets with rationale, testing evidence, and screenshot prompts for UI/frontend changes. On FanDuel repos, offers to move the linked JIRA ticket to Code Review after creating the PR.
+  Create a pull request OR update the description of an existing PR for the current branch. Handles repo PR templates, JIRA ticket extraction (including title prefix), a prose summary followed by implementation bullets with rationale, testing evidence, and screenshot prompts for UI/frontend changes. On work repos, offers to move the linked JIRA ticket to Code Review after creating the PR.
   TRIGGER when: user asks to create a PR, open a PR, "/describe-pr", "/create-pr", update the PR description, refresh PR body, or after pushing a branch that already has a PR.
 effort: medium
 model: claude-haiku-4-5
@@ -33,7 +33,7 @@ In update mode, also fetch the current body so you can preserve any sections the
 
 ## 3. Extract JIRA ticket
 
-From the current branch name, match `[A-Z]+-[0-9]+` (most commonly `RACNS-1234`). If found, capture it for use in the body. If not found, proceed without — do not invent one.
+From the current branch name, match `[A-Z]+-[0-9]+` (e.g. `ABC-123`). If found, capture it for use in the body. If not found, proceed without — do not invent one.
 
 ## 4. Find a PR template
 
@@ -88,9 +88,9 @@ Under 70 chars total, imperative mood (e.g. "Add retry logic to webhook handler"
 
 **Prepend the JIRA ticket** if one was extracted in step 3, matching the user's commit-prefix convention:
 
-- Format: `RACNS-1234 Add retry logic to webhook handler` (space-separated, no colon, no brackets).
+- Format: `ABC-123 Add retry logic to webhook handler` (space-separated, no colon, no brackets).
 - The 70-char budget **includes** the ticket prefix.
-- In **update mode**, check the existing title first — if it already starts with the same ticket (e.g. `RACNS-1234 `), keep the title; do not double up. If the existing title is missing the prefix and a ticket was extracted from the branch, ask the user whether to fix the title or leave it alone.
+- In **update mode**, check the existing title first — if it already starts with the same ticket (e.g. `ABC-123 `), keep the title; do not double up. If the existing title is missing the prefix and a ticket was extracted from the branch, ask the user whether to fix the title or leave it alone.
 
 ### Body shape (no template)
 
@@ -114,7 +114,7 @@ Under 70 chars total, imperative mood (e.g. "Add retry logic to webhook handler"
 ## Screenshots
 <only if UI changes — see step 6>
 
-JIRA: RACNS-1234 (omit line if no ticket)
+JIRA: ABC-123 (omit line if no ticket)
 ```
 
 ### Body shape (template exists)
@@ -157,18 +157,18 @@ Show the user:
 
 Do **not** auto-merge, auto-assign reviewers, add labels, or push without confirmation unless the user explicitly asks.
 
-## 10. Move the JIRA ticket to Code Review (FanDuel repos only)
+## 10. Move the JIRA ticket to Code Review (work repos only)
 
 **Scope gate.** Only run this step when **both** hold:
 
-- The repository lives under `~/Developer/fanduel` (check with `git rev-parse --show-toplevel` and confirm the path is inside that directory). Skip silently for any other repo.
+- The repository lives under the work directory named in `~/.ai-work/AGENTS.md` (check with `git rev-parse --show-toplevel` and confirm the path is inside that directory). Skip silently for any other repo, or if that file doesn't exist.
 - A JIRA ticket was extracted from the branch in step 3, and this was **Create mode** (a new PR). In Update mode, skip — the ticket is normally already in review; only transition if the user explicitly asks.
 
 Use the `twg` CLI for all JIRA operations (the Atlassian MCP is disabled) — never a raw REST call.
 
 ### 10-pre. Check the PR completes the ticket
 
-Ask: "Does this PR complete RACNS-1234, or is it one of several items on that ticket?" Skip the transition with a one-line reason if the PR is partial or the ticket has open checklist items. Continue to 10a only when the user confirms this PR completes the ticket.
+Ask: "Does this PR complete ABC-123, or is it one of several items on that ticket?" Skip the transition with a one-line reason if the PR is partial or the ticket has open checklist items. Continue to 10a only when the user confirms this PR completes the ticket.
 
 ### 10a. Discover the target transition
 
