@@ -189,3 +189,10 @@ Shared lessons live under `~/.ai/context/`; project lessons stay with the projec
 This authorises routine guidance and index maintenance. Changes to permissions,
 global preferences, executable hooks or procedural skills still follow their normal
 approval rules and any explicit authorisation already given for the current task.
+
+The dotfiles are public, so shared lessons must be general. Strip company names,
+project keys, ticket numbers, field IDs, internal hostnames and team names, and
+record the lesson that remains. Put details that only make sense with those
+specifics in `~/.ai-work/AGENTS.md` (private, untracked). A lesson that only
+applies when calling one MCP server or CLI goes in that tool's own context module
+(for example `context/datadog.md`), created when its first lesson arrives.

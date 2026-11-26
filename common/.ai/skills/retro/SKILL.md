@@ -29,6 +29,14 @@ recording or reorganising instructions.
 
 - Reusable language, tool or task guidance: read the conditional-reading index in
   `~/.ai/AGENTS.md` and update the matching file under `~/.ai/context/` directly.
+  These files are in a public repository, so first make the lesson general: strip
+  company names, project keys, ticket numbers, field IDs, internal hostnames and
+  team names.
+- Lessons that only apply when calling one MCP server or CLI: that tool's own
+  module (`~/.ai/context/<tool>.md`), created on its first lesson and added to the
+  index. Don't mix tools in one module.
+- Company-specific details that don't survive generalising and aren't tied to one
+  repository: `~/.ai-work/AGENTS.md` (private, untracked; create it if missing).
 - Project-specific facts or invariants: use the owning project's `AGENTS.md` or a
   relevant project guidance file linked from it. Do not put project details in
   global modules or rely on one tool's private memory as the shared source.
