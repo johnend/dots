@@ -17,7 +17,9 @@ Read before substantial shell commands, Git remote operations, filesystem change
 - `rg` patterns starting with `-`: pass via `-e`.
 - Sandboxed `git fetch`/`push`/`rebase` fails (self-signed cert, SSH known_hosts, protected files); retry unsandboxed.
 - Fetch origin before citing local repo files as current state.
+- `git add -p` is unavailable (no interactive input). To split one file across commits, write the intermediate content to scratch, then `git hash-object -w` and `git update-index --cacheinfo 100644,<blob>,<path>`; lint-staged keeps the unstaged remainder.
 - Sandbox blocks DNS (`dig` times out); retry lookups unsandboxed.
+- Sandboxed `tsx` dev servers fail with `EPERM` on `listen` (IPC pipe); run unsandboxed. Unsandboxed `$TMPDIR` is `/var/folders/...`, not the sandbox temp dir, so read its logs unsandboxed too.
 - Verify live symlinks before interpreting Stow simulation errors as broken links.
 - Bash tool runs zsh: `$var` doesn't word-split; use `${=var}` or literal commands.
 - macOS `/bin/bash` is 3.2: no `BASHPID`, `mapfile` or associative arrays.
