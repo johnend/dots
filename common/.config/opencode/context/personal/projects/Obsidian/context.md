@@ -62,7 +62,7 @@ Obsidian/
 │   │   ├── Journal AGENTS.md # AI agent journal for work
 │   │   └── 2025/             # 2025 goals and quarterly plans
 │   ├── General/              # General work notes
-│   ├── Raccoons/             # Team-specific notes
+│   ├── <Team>/               # Team-specific notes
 │   └── ToDo list.md          # Work task list
 ├── _templates/               # Note templates
 │   ├── 🧠 CBT Thought Record.md
@@ -132,7 +132,7 @@ Obsidian/
 - **Goals**: Annual and quarterly work objectives with detailed tracking
 - **Archive**: Historical work documentation
 - **General**: Day-to-day work notes
-- **Raccoons**: Team-specific collaboration notes
+- **<Team>**: Team-specific collaboration notes
 
 ## Version Control
 

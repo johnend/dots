@@ -13,7 +13,20 @@ const os = require('os');
 
 const OBSIDIAN_ROOT = path.join(os.homedir(), 'Developer', 'personal', 'Obsidian');
 const MAPPINGS_FILE = path.join(os.homedir(), '.config', 'opencode', 'obsidian-mappings.json');
-const FANDUEL_DIR = path.join(os.homedir(), 'Developer', 'fanduel');
+// The work directory is set in the gitignored context/work/settings.json so the
+// company name stays out of this public repo.
+const WORK_SETTINGS_FILE = path.join(os.homedir(), '.config', 'opencode', 'context', 'work', 'settings.json');
+
+function loadWorkDir() {
+  try {
+    const { workDir } = JSON.parse(fs.readFileSync(WORK_SETTINGS_FILE, 'utf-8'));
+    return workDir ? workDir.replace(/^~/, os.homedir()) : null;
+  } catch {
+    return null;
+  }
+}
+
+const WORK_DIR = loadWorkDir();
 
 /**
  * Load cached mappings from disk
@@ -164,7 +177,7 @@ function inferLocation(workingDir) {
   const mappings = loadMappings();
   
   // Determine if work or personal
-  const isWork = workingDir.startsWith(FANDUEL_DIR);
+  const isWork = WORK_DIR !== null && workingDir.startsWith(WORK_DIR);
   const projectType = isWork ? 'work' : 'personal';
   
   // Extract project name from path
@@ -309,10 +322,10 @@ if (require.main === module) {
     console.log('  obsidian-mapper.js remove <type> <name>   - Remove a cached mapping');
     console.log('');
     console.log('Examples:');
-    console.log('  obsidian-mapper.js infer ~/Developer/fanduel/raf-app');
-    console.log('  obsidian-mapper.js cache work raf-app "Work/Domains/Refer-a-Friend"');
+    console.log('  obsidian-mapper.js infer ~/Developer/work/checkout-app');
+    console.log('  obsidian-mapper.js cache work checkout-app "Work/Domains/Payments"');
     console.log('  obsidian-mapper.js list');
-    console.log('  obsidian-mapper.js remove work raf-app');
+    console.log('  obsidian-mapper.js remove work checkout-app');
     process.exit(0);
   }
 }

@@ -88,7 +88,7 @@ export const gloomstalkerHook = async (
   if (finalFiles.length < finalConfig.minFiles!) {
     if (finalConfig.debug) {
       console.warn(`⚠️  Warning: Only ${finalFiles.length} files loaded (min: ${finalConfig.minFiles})`);
-      console.warn('    This is expected for generic tasks or non-FanDuel projects.');
+      console.warn('    This is expected for generic tasks or non-work projects.');
     }
   }
   

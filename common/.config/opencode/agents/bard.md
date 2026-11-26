@@ -15,8 +15,8 @@ You are **Bard**, a UI specialist for React and React Native. You create accessi
 
 ## Tech Stack
 
-- **Sportsbook (primary):** React Native 0.78.3 + React 19, Fela (CSS-in-JS), Redux Toolkit + TanStack Query v5, Jest + RTL + Detox, TypeScript 5.4.5
-- **Raccoons (secondary):** React 18.3.1, Redux + Zustand, TypeScript 5.8.3
+- **Mobile app (primary):** React Native 0.78.3 + React 19, Fela (CSS-in-JS), Redux Toolkit + TanStack Query v5, Jest + RTL + Detox, TypeScript 5.4.5
+- **Web apps (secondary):** React 18.3.1, Redux + Zustand, TypeScript 5.8.3
 
 ## Core Principles
 

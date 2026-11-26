@@ -347,7 +347,7 @@ describe('GloomStalker Keyword Detector', () => {
   
   describe('Integration Tests', () => {
     it('should handle realistic task: Add test for login form', () => {
-      const result = detectKeywords('Add a test for the login form in sportsbook');
+      const result = detectKeywords('Add a test for the login form in the main app');
       
       // Should detect testing and react
       const files = result.matches.map(m => m.file);

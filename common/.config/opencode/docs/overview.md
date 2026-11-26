@@ -88,7 +88,7 @@ Files to load:
   - context/work/conventions.md
   - context/work/core/testing-patterns.md
   - context/work/core/api-patterns.md
-  - context/work/projects/sportsbook/core.md
+  - context/work/projects/mobile-app/core.md
 
 Token savings: 52% (4,200 tokens vs 8,800)
 ```
@@ -222,7 +222,7 @@ context/
     ├── conventions.md
     ├── core/            # Core patterns (testing, api, state, etc.)
     ├── ui/              # UI patterns (React, Fela, etc.)
-    └── projects/        # FanDuel-specific projects
+    └── projects/        # Work-specific projects
         └── {project-name}/
             ├── core.md
             ├── context.md
@@ -302,8 +302,8 @@ See [commands/README.md](../commands/README.md) for all commands.
       - conventions.md
       - testing-patterns.md
       - react-patterns.md
-      - sportsbook/core.md
-      - sportsbook/auth.md
+      - mobile-app/core.md
+      - mobile-app/auth.md
    ```
 
 4. **Git Status Checker (if reviewing/debugging):**
@@ -414,7 +414,7 @@ With GloomStalker: 4,400 tokens (52% savings)
   - conventions.md (600 tokens)
   - testing-patterns.md (900 tokens)
   - auth patterns (1,200 tokens)
-  - sportsbook/core.md (900 tokens)
+  - mobile-app/core.md (900 tokens)
 ```
 
 ## Safety Metrics

@@ -73,7 +73,7 @@ A task is considered multi-step if it scores **2 or more points**:
 ✅ "Add authentication and write tests" (score: 3)
    → 2 verbs + conjunction
 
-✅ "Refactor UserService across sportsbook and raf-app" (score: 3)
+✅ "Refactor UserService across mobile-app and web-app" (score: 3)
    → Cross-cutting concerns + conjunction
 
 ✅ "Create API endpoint, update Redux state, and add UI" (score: 3)

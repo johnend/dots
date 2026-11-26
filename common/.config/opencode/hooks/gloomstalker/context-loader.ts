@@ -67,6 +67,9 @@ const WORK_CORE_DIR = path.join(WORK_DIR, 'core');
 const WORK_UI_DIR = path.join(WORK_DIR, 'ui/web');
 const WORK_PROJECTS_DIR = path.join(WORK_DIR, 'projects');
 const WORK_CONVENTIONS_PATH = path.join(WORK_DIR, 'conventions.md');
+// The work directory is set in the gitignored work/settings.json so the
+// company name stays out of this public repo.
+const WORK_SETTINGS_PATH = path.join(WORK_DIR, 'settings.json');
 
 // Personal context (loaded for personal projects)
 const PERSONAL_DIR = path.join(CONTEXT_BASE_DIR, 'personal');
@@ -149,6 +152,14 @@ export interface ProjectInfo {
 }
 
 /**
+ * Work directory from the private work/settings.json, if configured
+ */
+const configuredWorkDir = (): string | null => {
+  const settings = readJsonFile<{ workDir?: string }>(WORK_SETTINGS_PATH);
+  return settings?.workDir ? expandPath(settings.workDir) : null;
+};
+
+/**
  * Detect project type based on working directory
  */
 const detectProjectType = (workingDir: string, projectName: string): ProjectType => {
@@ -166,8 +177,9 @@ const detectProjectType = (workingDir: string, projectName: string): ProjectType
     return 'personal';
   }
   
-  // Fallback: Check if path contains known work indicators
-  if (expanded.includes('fanduel') || expanded.includes('work')) {
+  // Fallback: Check if path is under the configured work directory or looks like work
+  const workDir = configuredWorkDir();
+  if ((workDir && expanded.startsWith(workDir)) || expanded.includes('work')) {
     return 'work';
   }
   

@@ -107,7 +107,7 @@ User: @Scribe We just implemented password reset. Can you document it?
 
 Scribe: /chronicle Document the password reset API endpoint
 
-[Calls chronicle hook → Creates Work/Domains/Refer-a-Friend/Password-Reset-API.md]
+[Calls chronicle hook → Creates Work/Domains/Payments/Password-Reset-API.md]
 [Analyzes the code we just wrote]
 [Fills in with clear explanations, code examples, usage patterns]
 
@@ -156,7 +156,7 @@ User: [Provides details]
 
 Scribe: /chronicle Production deployment workflow
 
-[Calls chronicle hook → Creates Work/Domains/Refer-a-Friend/Production-Deployment.md]
+[Calls chronicle hook → Creates Work/Domains/Payments/Production-Deployment.md]
 [Creates step-by-step guide]
 [Includes Mermaid diagram visualizing the flow]
 [Adds troubleshooting section]
@@ -167,7 +167,7 @@ Created deployment workflow doc with:
 - Commands and examples
 - Common issues and solutions
 
-Location: Work/Domains/Refer-a-Friend/Production-Deployment.md
+Location: Work/Domains/Payments/Production-Deployment.md
 ```
 
 ## Technical Details
@@ -203,8 +203,8 @@ Mappings cached in: `~/.config/opencode/obsidian-mappings.json`
 ```json
 {
   "work": {
-    "raf-app": "Work/Domains/Refer-a-Friend",
-    "account-e2e": "Work/Domains/Account-E2E"
+    "checkout-app": "Work/Domains/Payments",
+    "admin-web": "Work/Domains/Admin"
   },
   "personal": {
     "dotfiles": "Personal/Projects/Dotfiles"

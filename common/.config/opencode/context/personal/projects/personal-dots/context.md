@@ -262,7 +262,7 @@ macOS-specific configs override common ones:
 ```gitconfig
 [user]
     name = John Enderby
-    email = john.enderby@fanduel.com
+    email = <your email>
 
 [core]
     pager = delta
@@ -284,7 +284,7 @@ macOS-specific configs override common ones:
 
 ### Recent Changes (2026-01-30)
 - **Added context system:** `.config/opencode/context/` directory
-- **Project contexts:** Created for 8 FanDuel projects
+- **Project contexts:** Created for 8 work projects
 - **User preferences:** Extracted to `user-preferences.md`
 - **Agent updates:** Updated Artificer agent profile
 

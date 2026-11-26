@@ -502,7 +502,7 @@ if (require.main === module) {
     console.log('  scribe-chronicle.js <documentation-request> [workingDir]');
     console.log('');
     console.log('Examples:');
-    console.log('  scribe-chronicle.js "Document authentication flow" ~/Developer/fanduel/raf-app');
+    console.log('  scribe-chronicle.js "Document authentication flow" ~/Developer/work/checkout-app');
     console.log('  scribe-chronicle.js "How to setup DynamoDB local"');
     console.log('');
     console.log('Note: This CLI creates the file structure. The Scribe agent fills in content.');

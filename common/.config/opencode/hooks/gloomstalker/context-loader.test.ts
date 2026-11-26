@@ -14,13 +14,33 @@ import {
   ContextFile,
   LoadingResult
 } from './context-loader';
+import * as fs from 'fs';
+import * as os from 'os';
+import * as path from 'path';
 
 // ============================================================================
 // Test Helpers
 // ============================================================================
 
+// The work directory and real work project names live in the gitignored
+// context/work/settings.json; placeholders keep company names out of this repo.
+type WorkSettings = { workDir?: string; testProjects?: Record<string, string> };
+
+const workSettings: WorkSettings = (() => {
+  try {
+    const settingsPath = path.join(os.homedir(), '.config/opencode/context/work/settings.json');
+    return JSON.parse(fs.readFileSync(settingsPath, 'utf-8'));
+  } catch {
+    return {};
+  }
+})();
+
+const workProject = (placeholder: string): string =>
+  workSettings.testProjects?.[placeholder] ?? placeholder;
+
 const mockProjectPath = (projectName: string): string => {
-  return `/Users/john.enderby/Developer/fanduel/raccoons/${projectName}`;
+  const workDir = (workSettings.workDir ?? '~/Developer/work').replace(/^~/, os.homedir());
+  return path.join(workDir, projectName);
 };
 
 // ============================================================================
@@ -28,24 +48,24 @@ const mockProjectPath = (projectName: string): string => {
 // ============================================================================
 
 describe('detectProject', () => {
-  it('should detect sportsbook project', () => {
-    const workingDir = mockProjectPath('sportsbook');
+  it('should detect the mobile app project', () => {
+    const workingDir = mockProjectPath(workProject('mobile-app'));
     const project = detectProject(workingDir);
     
     // Note: This test will only pass if metadata files exist
-    // In real environment, it should return 'sportsbook'
+    // In real environment, it should return the mobile app project name
     expect(project).toBeTruthy();
   });
   
-  it('should detect raf-app project', () => {
-    const workingDir = mockProjectPath('raf-app');
+  it('should detect the web app project', () => {
+    const workingDir = mockProjectPath(workProject('web-app'));
     const project = detectProject(workingDir);
     
     expect(project).toBeTruthy();
   });
   
-  it('should detect refer-a-friend-service project', () => {
-    const workingDir = mockProjectPath('refer-a-friend-service');
+  it('should detect the service project', () => {
+    const workingDir = mockProjectPath(workProject('service'));
     const project = detectProject(workingDir);
     
     expect(project).toBeTruthy();
@@ -59,10 +79,10 @@ describe('detectProject', () => {
   });
   
   it('should traverse parent directories to find project', () => {
-    const workingDir = mockProjectPath('sportsbook/libs/feature-betting');
+    const workingDir = mockProjectPath(`${workProject('mobile-app')}/libs/feature-betting`);
     const project = detectProject(workingDir);
     
-    // Should traverse up and find sportsbook
+    // Should traverse up and find the mobile app project
     expect(project).toBeTruthy();
   });
 });
@@ -81,11 +101,11 @@ describe('loadContext', () => {
       expect(hasUserPrefs).toBe(true);
     });
     
-    it('should always load fanduel conventions', () => {
+    it('should always load work conventions', () => {
       const result = loadContext('Do something', '/tmp');
       const paths = getFilePaths(result);
       
-      const hasConventions = paths.some(p => p.includes('fanduel-conventions.md'));
+      const hasConventions = paths.some(p => p.includes('conventions.md'));
       expect(hasConventions).toBe(true);
     });
   });
@@ -142,34 +162,34 @@ describe('loadContext', () => {
   
   describe('Project-specific loading', () => {
     it('should load project core.md when in project directory', () => {
-      const workingDir = mockProjectPath('sportsbook');
+      const workingDir = mockProjectPath(workProject('mobile-app'));
       const result = loadContext('Do something', workingDir);
       const paths = getFilePaths(result);
       
       const hasProjectCore = paths.some(p => 
-        p.includes('projects/sportsbook/core.md')
+        p.includes(`projects/${workProject('mobile-app')}/core.md`)
       );
       expect(hasProjectCore).toBe(true);
     });
     
     it('should load project-specific testing.md for test tasks', () => {
-      const workingDir = mockProjectPath('sportsbook');
+      const workingDir = mockProjectPath(workProject('mobile-app'));
       const result = loadContext('Add a test', workingDir);
       const paths = getFilePaths(result);
       
       const hasProjectTesting = paths.some(p => 
-        p.includes('projects/sportsbook/testing.md')
+        p.includes(`projects/${workProject('mobile-app')}/testing.md`)
       );
       expect(hasProjectTesting).toBe(true);
     });
     
-    it('should load raf-app local-dev.md for local development tasks', () => {
-      const workingDir = mockProjectPath('raf-app');
+    it('should load web app local-dev.md for local development tasks', () => {
+      const workingDir = mockProjectPath(workProject('web-app'));
       const result = loadContext('Fix local dev setup', workingDir);
       const paths = getFilePaths(result);
       
       const hasLocalDev = paths.some(p => 
-        p.includes('projects/raf-app/local-dev.md')
+        p.includes(`projects/${workProject('web-app')}/local-dev.md`)
       );
       expect(hasLocalDev).toBe(true);
     });
@@ -206,7 +226,7 @@ describe('loadContext', () => {
         f.path.includes('user-preferences.md')
       );
       const hasConventions = topFiles.some(f => 
-        f.path.includes('fanduel-conventions.md')
+        f.path.includes('conventions.md')
       );
       
       expect(hasUserPrefs || hasConventions).toBe(true);
@@ -312,48 +332,48 @@ describe('formatLoadingResult', () => {
 // ============================================================================
 
 describe('Integration tests', () => {
-  it('should load correct context for sportsbook test task', () => {
-    const workingDir = mockProjectPath('sportsbook');
+  it('should load correct context for mobile app test task', () => {
+    const workingDir = mockProjectPath(workProject('mobile-app'));
     const result = loadContext('Add a Detox test for login', workingDir);
     const paths = getFilePaths(result);
     
     // Should load:
     // - User prefs
-    // - FanDuel conventions
+    // - Work conventions
     // - Core testing patterns
-    // - Sportsbook core
-    // - Sportsbook testing (Detox-specific)
+    // - Mobile app core
+    // - Mobile app testing (Detox-specific)
     
     expect(paths.length).toBeGreaterThanOrEqual(4);
     
     const hasTestingPatterns = paths.some(p => p.includes('testing-patterns.md'));
-    const hasSportsbookCore = paths.some(p => p.includes('projects/sportsbook/core.md'));
+    const hasMobileAppCore = paths.some(p => p.includes(`projects/${workProject('mobile-app')}/core.md`));
     
     expect(hasTestingPatterns).toBe(true);
-    expect(hasSportsbookCore).toBe(true);
+    expect(hasMobileAppCore).toBe(true);
   });
   
-  it('should load correct context for raf-app component task', () => {
-    const workingDir = mockProjectPath('raf-app');
+  it('should load correct context for web app component task', () => {
+    const workingDir = mockProjectPath(workProject('web-app'));
     const result = loadContext('Create a button component with styled-components', workingDir);
     const paths = getFilePaths(result);
     
     // Should load:
     // - User prefs
-    // - FanDuel conventions
+    // - Work conventions
     // - React patterns
     // - styled-components patterns
-    // - raf-app core
+    // - Web app core
     
     expect(paths.length).toBeGreaterThanOrEqual(4);
     
     const hasReactPatterns = paths.some(p => p.includes('react-patterns.md'));
     const hasStyledComponents = paths.some(p => p.includes('styled-components.md'));
-    const hasRafAppCore = paths.some(p => p.includes('projects/raf-app/core.md'));
+    const hasWebAppCore = paths.some(p => p.includes(`projects/${workProject('web-app')}/core.md`));
     
     expect(hasReactPatterns).toBe(true);
     expect(hasStyledComponents).toBe(true);
-    expect(hasRafAppCore).toBe(true);
+    expect(hasWebAppCore).toBe(true);
   });
   
   it('should reduce token count compared to loading all files', () => {
@@ -400,7 +420,7 @@ describe('Performance', () => {
     const start = Date.now();
     const result = loadContext(
       'Add comprehensive E2E tests for authentication flow with Redux Toolkit state management and Apollo GraphQL API integration using Cypress and React Testing Library with Percy visual regression testing',
-      mockProjectPath('sportsbook')
+      mockProjectPath(workProject('mobile-app'))
     );
     const elapsed = Date.now() - start;
     
@@ -434,28 +454,28 @@ describe('getFilePaths', () => {
 describe('Real-world scenarios', () => {
   const scenarios = [
     {
-      task: 'Fix failing Jest test in sportsbook',
-      workingDir: mockProjectPath('sportsbook'),
-      expectedPatterns: ['testing-patterns.md', 'sportsbook/core.md']
+      task: 'Fix failing Jest test in the main app',
+      workingDir: mockProjectPath(workProject('mobile-app')),
+      expectedPatterns: ['testing-patterns.md', `${workProject('mobile-app')}/core.md`]
     },
     {
       task: 'Add TanStack Query hook for user API',
-      workingDir: mockProjectPath('raf-app'),
+      workingDir: mockProjectPath(workProject('web-app')),
       expectedPatterns: ['state-management.md', 'api-patterns.md', 'react-patterns.md']
     },
     {
       task: 'Update styled-components theme',
-      workingDir: mockProjectPath('raf-app'),
-      expectedPatterns: ['styled-components.md', 'raf-app/core.md']
+      workingDir: mockProjectPath(workProject('web-app')),
+      expectedPatterns: ['styled-components.md', `${workProject('web-app')}/core.md`]
     },
     {
       task: 'Add Detox E2E test for iOS',
-      workingDir: mockProjectPath('sportsbook'),
-      expectedPatterns: ['testing-patterns.md', 'react-native-patterns.md', 'sportsbook/testing.md']
+      workingDir: mockProjectPath(workProject('mobile-app')),
+      expectedPatterns: ['testing-patterns.md', 'react-native-patterns.md', `${workProject('mobile-app')}/testing.md`]
     },
     {
       task: 'Fix Apollo GraphQL cache issue',
-      workingDir: mockProjectPath('sportsbook'),
+      workingDir: mockProjectPath(workProject('mobile-app')),
       expectedPatterns: ['api-patterns.md', 'state-management.md']
     }
   ];

@@ -58,7 +58,7 @@ Files to load:
   - /Users/you/.config/opencode/context/work/conventions.md
   - /Users/you/.config/opencode/context/work/core/testing-patterns.md
   - /Users/you/.config/opencode/context/work/core/api-patterns.md
-  - /Users/you/.config/opencode/context/work/projects/sportsbook/core.md
+  - /Users/you/.config/opencode/context/work/projects/mobile-app/core.md
 
 Token savings: 52% (4,200 tokens vs 8,800)
 ```
@@ -181,7 +181,7 @@ node cli.js --help
 **Multi-Step (Blocked):**
 ```bash
 ✓ "Add authentication and write tests" → score: 3
-✓ "Refactor UserService across sportsbook and raf-app" → score: 3
+✓ "Refactor UserService across mobile-app and web-app" → score: 3
 ✓ "Create API endpoint, update Redux, and add UI" → score: 3
 ```
 

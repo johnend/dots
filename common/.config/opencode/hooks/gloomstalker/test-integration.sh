@@ -1,67 +1,43 @@
 #!/bin/bash
+set -euo pipefail
 
 # GloomStalker Integration Test Script
-# Tests various scenarios to validate token savings and accuracy
+# Tests various scenarios to validate token savings and accuracy.
+#
+# Usage: test-integration.sh [mobile-app-dir] [web-app-dir]
+# Project folders are arguments so no work paths live in this public repo;
+# without them the tests run from /tmp and exercise the fallback path.
 
-echo "=================================================="
-echo "GloomStalker Integration Test"
-echo "=================================================="
-echo ""
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+MOBILE_APP_DIR="${1:-/tmp}"
+WEB_APP_DIR="${2:-/tmp}"
 
-# Test 1: Simple test task
-echo "Test 1: Simple test task"
-echo "Task: 'Add a test for login form'"
-echo "--------------------------------------------------"
-cd ~/Developer/fanduel/sportsbook 2>/dev/null || cd /tmp
-node ~/.config/opencode/agents/gloomstalker/hook.ts "Add a test for login form" --debug
-echo ""
-echo ""
+run_test() {
+  local title="$1"
+  local task="$2"
+  local project_dir="$3"
 
-# Test 2: Complex Redux task
-echo "Test 2: Complex Redux task"
-echo "Task: 'Add Redux state for API auth with tests'"
-echo "--------------------------------------------------"
-cd ~/Developer/fanduel/sportsbook 2>/dev/null || cd /tmp
-node ~/.config/opencode/agents/gloomstalker/hook.ts "Add Redux state for API auth with tests" --debug
-echo ""
-echo ""
+  printf '%s\n' "$title"
+  printf "Task: '%s'\n" "$task"
+  printf '%s\n' "--------------------------------------------------"
+  (cd "$project_dir" && node "$SCRIPT_DIR/cli.js" "$task" --debug) || printf 'Test failed: %s\n' "$title"
+  printf '\n\n'
+}
 
-# Test 3: Styling task
-echo "Test 3: Styling task"
-echo "Task: 'Update Fela theme colors'"
-echo "--------------------------------------------------"
-cd ~/Developer/fanduel/sportsbook 2>/dev/null || cd /tmp
-node ~/.config/opencode/agents/gloomstalker/hook.ts "Update Fela theme colors" --debug
-echo ""
-echo ""
+printf '%s\n' "==================================================" "GloomStalker Integration Test" "==================================================" ""
 
-# Test 4: RAF-app component task
-echo "Test 4: RAF-app component task"
-echo "Task: 'Create a button component with styled-components'"
-echo "--------------------------------------------------"
-cd ~/Developer/fanduel/raccoons/raf-app 2>/dev/null || cd /tmp
-node ~/.config/opencode/agents/gloomstalker/hook.ts "Create a button component with styled-components" --debug
-echo ""
-echo ""
+run_test "Test 1: Simple test task" "Add a test for login form" "$MOBILE_APP_DIR"
+run_test "Test 2: Complex Redux task" "Add Redux state for API auth with tests" "$MOBILE_APP_DIR"
+run_test "Test 3: Styling task" "Update Fela theme colors" "$MOBILE_APP_DIR"
+run_test "Test 4: Web app component task" "Create a button component with styled-components" "$WEB_APP_DIR"
+run_test "Test 5: Unknown project (graceful fallback)" "Add a test" "/tmp"
 
-# Test 5: Unknown project
-echo "Test 5: Unknown project (graceful fallback)"
-echo "Task: 'Add a test'"
-echo "--------------------------------------------------"
-cd /tmp
-node ~/.config/opencode/agents/gloomstalker/hook.ts "Add a test" --debug
-echo ""
-echo ""
-
-echo "=================================================="
-echo "Integration Test Complete"
-echo "=================================================="
-echo ""
-echo "Summary:"
-echo "- Test 1: Sportsbook test task (should load testing patterns)"
-echo "- Test 2: Complex Redux task (should load state + API + testing)"
-echo "- Test 3: Styling task (should load Fela patterns)"
-echo "- Test 4: RAF-app component (should load React + styled-components)"
-echo "- Test 5: Unknown project (should load core patterns only)"
-echo ""
-echo "Expected token savings: 40-60% on average"
+printf '%s\n' "==================================================" "Integration Test Complete" "==================================================" ""
+printf '%s\n' "Summary:" \
+  "- Test 1: Mobile app test task (should load testing patterns)" \
+  "- Test 2: Complex Redux task (should load state + API + testing)" \
+  "- Test 3: Styling task (should load Fela patterns)" \
+  "- Test 4: Web app component (should load React + styled-components)" \
+  "- Test 5: Unknown project (should load core patterns only)" \
+  "" \
+  "Expected token savings: 40-60% on average"
