@@ -156,12 +156,17 @@ loaded through a symlink or Claude import.
 | Shapely, polygon predicates or clipped geospatial rasters | [Geospatial](context/geospatial.md) |
 | Schemas, parsers, validation contracts, fixtures or regression checks | [Data validation](context/data-validation.md) |
 | Substantial discovery, patches or formatter follow-up edits | [Editing](context/editing.md) |
-| GitHub views/schema, provider APIs, HTTP diagnostics or large PR reviews | [Integrations](context/integrations.md) |
+| GitHub Projects views or GraphQL schema queries | [GitHub](context/github.md) |
+| Jira or Confluence through `twg` | [Atlassian](context/atlassian.md) |
+| Datadog queries through the MCP server or UI | [Datadog](context/datadog.md) |
+| Provider APIs, HTTP diagnostics or large PR reviews | [Integrations](context/integrations.md) |
 | Codex/Claude configuration, gateways, model selection or hooks | [Agent tooling](context/agent-tooling.md) |
 | Recording lessons or reorganising agent instructions | [Guidance maintenance](context/guidance-maintenance.md) |
 
 Read the owning project's `AGENTS.md` and its relevant guidance links for project
 work. Project details belong there, not in the shared global context directory.
+For work tasks, also read `~/.ai-work/AGENTS.md` if it exists: private, untracked
+company details that stay out of this public repository.
 
 ## Recording lessons
 

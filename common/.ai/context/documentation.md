@@ -3,7 +3,6 @@
 Read when editing Markdown or diagrams, checking document links, or extracting policy/XML evidence.
 
 - Validate Markdown fragments against complete heading slugs, including dates.
-- Confluence Cloud deep links: a heading's anchor is its text with spaces as hyphens (`#Key-findings`), generated at render so absent from storage HTML; anchor macros link by their name (`#E07`). Check anchor macros exist in the `--format html` body before linking.
 - Check existing viewer configuration before changing diagrams or recommending replacement tools.
 - Insert new sections before existing headings without duplicating those headings.
 - Verify raw policy text when extracted pages omit relevant clauses.
