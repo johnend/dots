@@ -9,3 +9,4 @@ Read when configuring or diagnosing Codex, Claude, AI gateways, model selection,
 - Testing guard hooks: feed blocked sample commands from a file, not inline.
 - Verify terminal-dependent hooks through the actual runtime, including shared daemon environment.
 - Verify both tools resolve installed skills to the same canonical files.
+- Claude's sandbox blocks writes under `common/.ai/{skills,hooks,rules}` and `common/.claude/settings.json`; Bash writes there need the sandbox disabled (with a permission prompt), while Edit/Write work normally.

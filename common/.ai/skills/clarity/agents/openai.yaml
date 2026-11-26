@@ -1,0 +1,6 @@
+interface:
+  display_name: "Clarity"
+  short_description: "Review, rewrite or co-write clear prose"
+  default_prompt: "Use $clarity to review this draft without rewriting it."
+policy:
+  allow_implicit_invocation: true
