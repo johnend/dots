@@ -4,7 +4,7 @@ Create documentation for the user's Obsidian vault at **`~/Developer/personal/Ob
 
 1. **Infer topic and type** from the conversation or the user's request (code, workflow, learning note, tool guide, or concept).
 2. **Suggest location** in the vault:
-   - Work projects (`~/Developer/fanduel/*`): `Work/Domains/{Project-Name}/` for code/workflows, `Work/Knowledge/` for cross-project patterns.
+   - Work projects (under the work directory named in `~/.ai-work/AGENTS.md`): `Work/Domains/{Project-Name}/` for code/workflows, `Work/Knowledge/` for cross-project patterns.
    - Personal: `Personal/Learning/Notes/` for learning, `Personal/Knowledge/Tools/` for tools, `Personal/Projects/{Project-Name}/` for project-specific.
 3. **Create the content** (here in chat or as a file the user can copy):
    - **Style:** Natural, human voice. Technical detail + readable. Explain _why_ as well as _how_. No corporate or AI-sounding phrasing ("Furthermore", "utilize", "leverage").

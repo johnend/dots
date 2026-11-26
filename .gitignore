@@ -43,7 +43,7 @@ linux/common/.config/thefuck/__pycache__/settings.cpython-314.pyc
 !common/.config/opencode/context/general/
 !common/.config/opencode/context/personal/
 
-# Ignore work-specific context (FanDuel patterns and projects)
+# Ignore work-specific context (work patterns and projects)
 common/.config/opencode/context/work/
 
 # Ignore node_modules and build artifacts everywhere

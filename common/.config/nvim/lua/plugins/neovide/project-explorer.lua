@@ -8,8 +8,6 @@ return {
   opts = {
     paths = {
       "~/Developer",
-      "~/Developer/fanduel",
-      "~/Developer/fanduel/raccoons",
       "~/Developer/dots/common/.config",
       "~/Developer/dots/linux/common/.config",
       "~/Developer/dots/linux/sway/.config",

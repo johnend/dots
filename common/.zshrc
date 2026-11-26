@@ -121,6 +121,9 @@ command -v thefuck &> /dev/null && eval "$(thefuck --alias)"
 # Secrets and credentials (should contain only env vars)
 [[ -f "$HOME/.zsh_secrets" ]] && source "$HOME/.zsh_secrets"
 
+# Work-only helpers
+[[ -f "$HOME/.zsh_work" ]] && source "$HOME/.zsh_work"
+
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
