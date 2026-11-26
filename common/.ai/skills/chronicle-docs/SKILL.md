@@ -65,7 +65,7 @@ Reference example: `Work/Domains/Refer-a-Friend/` — `Work-Items/RACNS-1551-Cas
 
 - Explain why and how.
 - Include examples, commands, and troubleshooting.
-- Use concise, natural technical language.
+- Use concise, plain language, then do the reader pass from **Writing for People** in AGENTS.md.
 
 # 6. Output:
 

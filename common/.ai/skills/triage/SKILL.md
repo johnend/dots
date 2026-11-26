@@ -55,7 +55,7 @@ Rules:
 > <under 80 words: what's failing, which component, who owns it, the link(s). Conclusion first.>
 ```
 
-Keep the draft short on the first attempt; don't wait for me to ask.
+Keep the draft short on the first attempt; don't wait for me to ask. Before presenting, do the reader pass from **Writing for People** in AGENTS.md: the Slack reader is on another team and has none of this context.
 
 ## 5. Close
 

@@ -138,6 +138,6 @@ If the PR is clean, skip the findings section and add a single line stating that
 - Output the review as text in your response — not as a plan, not as tasks.
 - Keep descriptions concise — one or two lines per finding.
 - Always include `file:line` references.
-- **Tone**: Frame suggestions and nits as short questions, not prescriptive statements. Raise the concern, ask if it's worth addressing, and give the author an easy out. Avoid lecturing or over-explaining — the user will be pasting these as-is and wants them to read naturally as peer feedback, not AI output.
+- **Tone**: Frame suggestions and nits as short questions, not prescriptive statements. Raise the concern, ask if it's worth addressing, and give the author an easy out. Avoid lecturing or over-explaining — the user will be pasting these as-is and wants them to read naturally as peer feedback, not AI output. Do the reader pass from **Writing for People** in AGENTS.md on each comment.
 - Flag uncertainty: if you're unsure about a finding, frame it as a question rather than a statement.
 - Consider the PR holistically: does the change make sense as a unit? Is it too large? Should it be split?

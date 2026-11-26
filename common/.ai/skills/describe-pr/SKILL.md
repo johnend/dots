@@ -128,6 +128,7 @@ Fit the same content into the template's sections. Leave inapplicable optional s
 - No auto-generated changelogs or file lists.
 - Do **not** fabricate "approaches tried", testing that didn't happen, or evidence that doesn't exist. If you didn't verify it, don't claim it.
 - Include the JIRA ticket if extracted in step 3.
+- Before presenting, do the reader pass from **Writing for People** in AGENTS.md.
 
 ## 8. Present for approval
 

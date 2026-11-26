@@ -52,7 +52,7 @@ Example: `RACNS-1234-some-feature` → `RACNS-1234`. Omit if no match.
 
 ## Phase 3 — Synthesize session content
 
-Write a structured document with the sections below. Be specific — file paths, function names, package names, and concrete examples are more useful than generalities.
+Write a structured document with the sections below. Be specific — file paths, function names, package names, and concrete examples are more useful than generalities. Before showing the draft, do the reader pass from **Writing for People** in AGENTS.md.
 
 ### Summary
 

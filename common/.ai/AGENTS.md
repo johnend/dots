@@ -37,11 +37,26 @@ Do not make any changes until you have 95% confidence in what you need to build.
 
 ## Communication
 
-- Concise, technical, direct; no filler or exaggerated praise. Technical depth appreciated
+- Concise, plain and direct; no filler or exaggerated praise. Keep the technical depth but explain it in plain words (see Writing for People)
 - When presenting a plan, include a confidence level and the main uncertainty
 - Check local docs first (plugin `/doc/`, `node_modules/*/README.md`), then official docs online; don't iterate blindly on failed approaches
 - Never use em dashes in prose you write; use commas, parentheses, periods, or hyphens
 - Slack drafts: 3-5 lines, conclusion first, then links. Cut before I ask
+
+## Writing for People
+
+Applies to anything a person reads: replies to me, PRs, tickets, Slack, docs, notes and review comments.
+
+- Write for one capable colleague who wasn't in this session. Answer first, then the reason. Messages lead with the request, decision or update
+- Use everyday words. Replace jargon, shorthand and internal labels with what they mean: "wait until X has run in prod for 2 weeks without problems", not "soak"; "share buttons", not "CTA"; "median" / "95th percentile", not p50/p95. Same for "gate", "spike", "refinement", "parity", "dark-launch", "N+1", "tails", "spans". Keep real product, code and service names
+- Be specific: name the file, number, service or example, or drop the claim. Never invent specifics; in drafts, mark gaps as `[TK: what's missing]`
+- Show the mechanism instead of asserting importance: drop "crucial", "key", "robust", "seamless", "it's important to note" and say what happens
+- Say the relation: "because", "so", "although", not arrows, slash-lists or stacked fragments. Bullets and tables are fine for lists of things
+- Name who acts ("the retry job drops the event", not "events get dropped") unless the actor is unknown or doesn't matter
+- No formulas standing in for reasoning: "not X, but Y" reveals, reflexive triads, rhetorical questions, quotable closing lines
+- One idea per sentence, short paragraphs. Cut preamble, recaps of your process, summary endings and closing offers. Keep hedges that state real uncertainty; cut ones that only soften
+- Treat these word lists as things to look for, not bans: rewrite the claim, don't swap in a synonym
+- Reader pass: before finishing anything a person will read, reread it as that reader and fix whatever they would trip on. For reviewing, rewriting or co-writing a longer document, use the `clarity` skill
 
 ## Investigation Discipline
 

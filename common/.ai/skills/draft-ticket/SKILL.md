@@ -65,6 +65,7 @@ Draft a ticket, show it for approval, then create it. Never create anything befo
   - **Potential issues** — risks, edge cases, unknowns.
   - **Testing** — what should be verified, only when relevant (omit rather than force it).
 - Precision bar: the description + acceptance criteria should be unambiguous enough that an engineer (or AI) given only the ticket could execute with ≥95% confidence.
+- Before presenting, do the reader pass from **Writing for People** in AGENTS.md.
 
 ---
 
